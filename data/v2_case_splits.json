@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "manifest_id": "semantic-channel-v2-split-2026-10-30",
+  "dataset_version": "v2.0",
+  "frozen_at": "2026-10-30T00:00:00-07:00",
+  "exposure_note": "The development partition may be used for prompt and condition selection. The confirmation partition was frozen before V1.5 screening and must not be used for prompt revision, diagnostics, or calibration.",
+  "partitions": {
+    "development": [
+      "v2-dev-001",
+      "v2-dev-002",
+      "v2-dev-003",
+      "v2-dev-004",
+      "v2-dev-005",
+      "v2-dev-006",
+      "v2-dev-007",
+      "v2-dev-008"
+    ],
+    "confirmation": [
+      "v2-test-001",
+      "v2-test-002",
+      "v2-test-003",
+      "v2-test-004",
+      "v2-test-005",
+      "v2-test-006",
+      "v2-test-007",
+      "v2-test-008",
+      "v2-test-009",
+      "v2-test-010",
+      "v2-test-011",
+      "v2-test-012",
+      "v2-test-013",
+      "v2-test-014",
+      "v2-test-015",
+      "v2-test-016"
+    ]
+  }
+}

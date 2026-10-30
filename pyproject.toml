@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reasoning-covert-channel-eval"
+version = "0.1.0"
+description = "A provider-agnostic eval for semantic covert channels in reasoning-like natural language."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Experiment authors" }]
+dependencies = []
+
+[project.optional-dependencies]
+providers = [
+  "anthropic>=1.0.0",
+  "openai>=2.28.0",
+]
+dev = []
+
+[project.scripts]
+covert-eval = "covert_eval.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/covert_eval"]
+
