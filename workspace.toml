@@ -1,0 +1,7 @@
+schema_version = 1
+
+[budget]
+# Every experiment uses this same local campaign database.
+campaign_usd = "50.00"
+ledger = "artifacts/budget-ledger.sqlite3"
+pricing_max_age_days = 30

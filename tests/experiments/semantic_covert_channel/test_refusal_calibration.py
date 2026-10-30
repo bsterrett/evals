@@ -18,13 +18,13 @@ from covert_eval.refusal_calibration import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 
 class SonnetRefusalCalibrationTests(unittest.TestCase):
     def test_plan_is_balanced_and_below_the_hard_ceiling(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
 
         plan = refusal_calibration_plan(config)
 
@@ -38,7 +38,7 @@ class SonnetRefusalCalibrationTests(unittest.TestCase):
         )
 
     def test_prompt_variants_cross_only_the_declared_factors(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         case = next(
             item for item in load_cases(config.experiment.dataset) if item.id == CASE_IDS[0]
         )
@@ -60,7 +60,7 @@ class SonnetRefusalCalibrationTests(unittest.TestCase):
         self.assertIn("analytical paragraph", neutral_analytical)
 
     def test_dry_run_writes_all_48_balanced_results(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         TEST_TMP.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=TEST_TMP) as directory:
             root = Path(directory)

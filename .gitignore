@@ -6,6 +6,11 @@ __pycache__/
 .pytest_cache/
 .coverage
 .env
+.env.*
+!.env.example
 .test-tmp/
 artifacts/
+dist/
+build/
+*.egg-info/
 

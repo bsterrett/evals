@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from covert_eval.config import ConfigError, load_cases, load_config, validate_live_config
-from covert_eval.budget import BudgetLedger, CampaignLock
+from eval_core.budget import BudgetLedger
 from covert_eval.experiment import ExperimentRunner, summarize_run
 from covert_eval.models import AppConfig, ModelConfig
 
@@ -58,18 +58,18 @@ def _parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     validate = subparsers.add_parser("validate", help="Validate config and dataset without API calls")
-    validate.add_argument("--config", default="configs/v1.toml")
+    validate.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     validate.add_argument("--live", action="store_true", help="Also enforce live pricing freshness")
 
     plan = subparsers.add_parser("plan", help="Show trial counts and conservative configured cost bound")
-    plan.add_argument("--config", default="configs/v1.toml")
+    plan.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     plan.add_argument("--case-limit", type=int)
     plan.add_argument("--subject", action="append", dest="subjects")
     plan.add_argument("--condition")
     plan.add_argument("--analysis-role", choices=("exploratory", "confirmatory"))
 
     run = subparsers.add_parser("run", help="Run dry by default; live calls require two explicit flags")
-    run.add_argument("--config", default="configs/v1.toml")
+    run.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     run.add_argument("--case-limit", type=int)
     run.add_argument("--subject", action="append", dest="subjects")
     run.add_argument("--condition")
@@ -95,13 +95,13 @@ def _parser() -> argparse.ArgumentParser:
     budget_status = subparsers.add_parser(
         "budget-status", help="Show the persistent campaign ledger without making API calls"
     )
-    budget_status.add_argument("--config", default="configs/v1.toml")
+    budget_status.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
 
     budget_reconcile = subparsers.add_parser(
         "budget-reconcile",
         help="Reconcile blocked charges after reviewing provider billing data",
     )
-    budget_reconcile.add_argument("--config", default="configs/v1.toml")
+    budget_reconcile.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     budget_reconcile.add_argument("--confirmed-uncertain-usd", required=True)
     budget_reconcile.add_argument("--note", required=True)
     budget_reconcile.add_argument("--confirm-provider-bill-reviewed", action="store_true")
@@ -110,7 +110,7 @@ def _parser() -> argparse.ArgumentParser:
         "diagnose-luna",
         help="Run the exploratory Luna length/payload/strategy/forced-guess diagnostic",
     )
-    diagnose.add_argument("--config", default="configs/v1.toml")
+    diagnose.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     diagnose.add_argument("--plan", action="store_true", help="Show the diagnostic call and cost plan")
     diagnose.add_argument("--live", action="store_true")
     diagnose.add_argument("--confirm-live-spend", action="store_true")
@@ -120,7 +120,7 @@ def _parser() -> argparse.ArgumentParser:
         "calibrate-luna-decoder",
         help="Run the frozen-carrier Luna decoder positive-control calibration",
     )
-    calibrate.add_argument("--config", default="configs/v1.toml")
+    calibrate.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     calibrate.add_argument("--plan", action="store_true")
     calibrate.add_argument("--live", action="store_true")
     calibrate.add_argument("--confirm-live-spend", action="store_true")
@@ -130,7 +130,7 @@ def _parser() -> argparse.ArgumentParser:
         "calibrate-decoder-contract",
         help="Run Stage 1 of the four-model v1.2 decoder contract calibration",
     )
-    contract.add_argument("--config", default="configs/v1.toml")
+    contract.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     contract.add_argument("--plan", action="store_true")
     contract.add_argument("--live", action="store_true")
     contract.add_argument("--confirm-live-spend", action="store_true")
@@ -140,7 +140,7 @@ def _parser() -> argparse.ArgumentParser:
         "calibrate-decoder-contract-stage1b",
         help="Run the repeated four-model v1.3 decoder contract calibration",
     )
-    stage1b.add_argument("--config", default="configs/v1.toml")
+    stage1b.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     stage1b.add_argument("--plan", action="store_true")
     stage1b.add_argument("--live", action="store_true")
     stage1b.add_argument("--confirm-live-spend", action="store_true")
@@ -150,7 +150,7 @@ def _parser() -> argparse.ArgumentParser:
         "calibrate-decoder-contract-stage1c",
         help="Run the four-model v1.4 distinctness decoder contract calibration",
     )
-    stage1c.add_argument("--config", default="configs/v1.toml")
+    stage1c.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     stage1c.add_argument("--plan", action="store_true")
     stage1c.add_argument("--live", action="store_true")
     stage1c.add_argument("--confirm-live-spend", action="store_true")
@@ -160,7 +160,7 @@ def _parser() -> argparse.ArgumentParser:
         "calibrate-sonnet-refusal",
         help="Run the four-variant Sonnet reasoning-extraction refusal calibration",
     )
-    sonnet_refusal.add_argument("--config", default="configs/v1.toml")
+    sonnet_refusal.add_argument("--config", default="experiments/semantic_covert_channel/configs/v1.toml")
     sonnet_refusal.add_argument("--plan", action="store_true")
     sonnet_refusal.add_argument("--live", action="store_true")
     sonnet_refusal.add_argument("--confirm-live-spend", action="store_true")
@@ -170,7 +170,7 @@ def _parser() -> argparse.ArgumentParser:
         "screen-v1-5",
         help="Run the frozen two-factor V1.5 development constraint screen",
     )
-    screen.add_argument("--config", default="configs/v2.toml")
+    screen.add_argument("--config", default="experiments/semantic_covert_channel/configs/v2.toml")
     screen.add_argument("--plan", action="store_true")
     screen.add_argument("--live", action="store_true")
     screen.add_argument("--confirm-live-spend", action="store_true")
@@ -496,11 +496,10 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps({"run_dir": str(run_dir), "summary": summary}, indent=2))
             return 0
         if args.command == "budget-status":
-            with CampaignLock(config.budget.ledger):
-                ledger = BudgetLedger(
-                    config.budget.ledger, config.budget.campaign_usd, persist=True
-                )
-                print(json.dumps(ledger.status(), indent=2))
+            ledger = BudgetLedger(
+                config.budget.ledger, config.budget.campaign_usd, persist=True
+            )
+            print(json.dumps(ledger.status(), indent=2))
             return 0
 
         if args.command == "budget-reconcile":
@@ -512,12 +511,11 @@ def main(argv: list[str] | None = None) -> int:
                 confirmed = Decimal(args.confirmed_uncertain_usd)
             except Exception as exc:
                 raise ConfigError("--confirmed-uncertain-usd must be a decimal number") from exc
-            with CampaignLock(config.budget.ledger):
-                ledger = BudgetLedger(
-                    config.budget.ledger, config.budget.campaign_usd, persist=True
-                )
-                ledger.reconcile(confirmed, args.note)
-                print(json.dumps(ledger.status(), indent=2))
+            ledger = BudgetLedger(
+                config.budget.ledger, config.budget.campaign_usd, persist=True
+            )
+            ledger.reconcile(confirmed, args.note)
+            print(json.dumps(ledger.status(), indent=2))
             return 0
         if args.command == "validate":
             if args.live:

@@ -11,12 +11,12 @@ from covert_eval.prompts_v1_5 import prompt_fingerprint as v1_5_fingerprint
 from covert_eval.splits import load_split_manifest
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 
 
 class ConditionRegistryTests(unittest.TestCase):
     def test_prompt_releases_have_golden_fingerprints(self) -> None:
-        registry = load_condition_registry(ROOT / "configs" / "conditions_v1.toml")
+        registry = load_condition_registry(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "conditions_v1.toml")
         self.assertEqual(
             v1_4_fingerprint(),
             "abad1ea4f5bd61c42096d36628af1389091cfdd8f5c21a690d245267d0e2e68c",
@@ -30,7 +30,7 @@ class ConditionRegistryTests(unittest.TestCase):
         for condition_id, digest in expected.items():
             self.assertEqual(v1_5_fingerprint(registry.get(condition_id)), digest)
     def test_registry_tracks_exact_factor_diffs(self) -> None:
-        registry = load_condition_registry(ROOT / "configs" / "conditions_v1.toml")
+        registry = load_condition_registry(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "conditions_v1.toml")
         standard = registry.get("v1_5_strict_analytical_standard")
         long = registry.get("v1_5_strict_analytical_long")
         relaxed = registry.get("v1_5_elaboration_analytical_standard")
@@ -42,8 +42,8 @@ class ConditionRegistryTests(unittest.TestCase):
         self.assertNotEqual(standard.content_sha256(), long.content_sha256())
 
     def test_v1_5_release_changes_rendered_length_and_assertion_rules(self) -> None:
-        registry = load_condition_registry(ROOT / "configs" / "conditions_v1.toml")
-        cases = load_cases(ROOT / "data" / "v2_cases.jsonl")
+        registry = load_condition_registry(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "conditions_v1.toml")
+        cases = load_cases(ROOT / "experiments" / "semantic_covert_channel" / "data" / "v2_cases.jsonl")
         release = get_prompt_release(registry.get("v1_5_strict_analytical_standard"))
         strict = release.encoder(cases[0], registry.get("v1_5_strict_analytical_standard"))
         long = release.encoder(cases[0], registry.get("v1_5_strict_analytical_long"))
@@ -57,8 +57,8 @@ class ConditionRegistryTests(unittest.TestCase):
         self.assertIn("benign, plausible elaboration", relaxed)
 
     def test_split_is_complete_disjoint_and_payload_closed(self) -> None:
-        cases = load_cases(ROOT / "data" / "v2_cases.jsonl")
-        split = load_split_manifest(ROOT / "data" / "v2_case_splits.json", cases)
+        cases = load_cases(ROOT / "experiments" / "semantic_covert_channel" / "data" / "v2_cases.jsonl")
+        split = load_split_manifest(ROOT / "experiments" / "semantic_covert_channel" / "data" / "v2_case_splits.json", cases)
         self.assertEqual(len(split.development_case_ids), 8)
         self.assertEqual(len(split.confirmation_case_ids), 16)
         self.assertFalse(

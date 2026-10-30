@@ -10,13 +10,13 @@ from covert_eval.config import load_config
 from covert_eval.experiment import ExperimentRunner
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 
 class ExperimentTests(unittest.TestCase):
     def test_end_to_end_dry_run(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         TEST_TMP.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=TEST_TMP) as directory:
             temp = Path(directory)

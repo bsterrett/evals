@@ -10,7 +10,6 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
-from covert_eval.budget import BudgetLedger, CampaignLock
 from covert_eval.experiment import (
     DecoderParseError,
     ExperimentRunner,
@@ -482,7 +481,7 @@ class LunaDiagnosticRunner:
     def _call(
         self, model: ModelConfig, request: GenerationRequest, condition_id: str
     ) -> GenerationResponse:
-        response, _ = self.core._call(model, request, trial_id=condition_id)
+        response, _ = self.core.call(model, request, trial_id=condition_id)
         return response
 
     def _run_condition(self, condition: DiagnosticCondition) -> dict[str, Any]:
@@ -716,15 +715,7 @@ class LunaDiagnosticRunner:
         return result
 
     def run(self) -> Path:
-        if self.dry_run:
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=False
-            )
-            return self._run_with_ledger()
-        with CampaignLock(self.config.budget.ledger):
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=True
-            )
+        with self.core.accounting():
             return self._run_with_ledger()
 
     def _run_with_ledger(self) -> Path:
@@ -773,9 +764,9 @@ class LunaDiagnosticRunner:
         summary["run_spent_usd"] = self.core.run_spent_usd
         summary["run_budget_usd"] = self.core.run_budget_usd
         if not self.dry_run:
-            summary["campaign_spent_usd"] = self.core._budget().spent
-            summary["campaign_uncertain_usd"] = self.core._budget().uncertain
-            summary["campaign_remaining_usd"] = self.core._budget().remaining
+            summary["campaign_spent_usd"] = self.core.budget().spent
+            summary["campaign_uncertain_usd"] = self.core.budget().uncertain
+            summary["campaign_remaining_usd"] = self.core.budget().remaining
         _write_json(self.core.run_dir / "summary.json", summary)
         manifest["status"] = "completed"
         manifest["finished_at"] = datetime.now(timezone.utc)

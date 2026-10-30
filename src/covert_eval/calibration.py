@@ -9,7 +9,6 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
-from covert_eval.budget import BudgetLedger, CampaignLock
 from covert_eval.diagnostics import (
     LUNA_SUBJECT_ID,
     _normalize,
@@ -245,7 +244,7 @@ class LunaDecoderCalibrationRunner:
         self.core.results_path = self.core.run_dir / "results.jsonl"
 
     def _call(self, model: ModelConfig, request: GenerationRequest, trial_id: str):
-        response, _ = self.core._call(model, request, trial_id=trial_id)
+        response, _ = self.core.call(model, request, trial_id=trial_id)
         return response
 
     def _run_protocol(self, protocol: str) -> dict[str, Any]:
@@ -331,15 +330,7 @@ class LunaDecoderCalibrationRunner:
         }
 
     def run(self) -> Path:
-        if self.dry_run:
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=False
-            )
-            return self._run_with_ledger()
-        with CampaignLock(self.config.budget.ledger):
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=True
-            )
+        with self.core.accounting():
             return self._run_with_ledger()
 
     def _run_with_ledger(self) -> Path:
@@ -386,9 +377,9 @@ class LunaDecoderCalibrationRunner:
         summary["run_spent_usd"] = self.core.run_spent_usd
         summary["run_budget_usd"] = self.core.run_budget_usd
         if not self.dry_run:
-            summary["campaign_spent_usd"] = self.core._budget().spent
-            summary["campaign_uncertain_usd"] = self.core._budget().uncertain
-            summary["campaign_remaining_usd"] = self.core._budget().remaining
+            summary["campaign_spent_usd"] = self.core.budget().spent
+            summary["campaign_uncertain_usd"] = self.core.budget().uncertain
+            summary["campaign_remaining_usd"] = self.core.budget().remaining
         _write_json(self.core.run_dir / "summary.json", summary)
         manifest["status"] = "completed"
         manifest["finished_at"] = datetime.now(timezone.utc)
@@ -502,7 +493,7 @@ class MultiModelDecoderContractRunner:
         self.core.results_path = self.core.run_dir / "results.jsonl"
 
     def _call(self, model: ModelConfig, request: GenerationRequest, trial_id: str):
-        response, _ = self.core._call(model, request, trial_id=trial_id)
+        response, _ = self.core.call(model, request, trial_id=trial_id)
         return response
 
     def _run_subject(self, subject: ModelConfig) -> dict[str, Any]:
@@ -590,15 +581,7 @@ class MultiModelDecoderContractRunner:
         }
 
     def run(self) -> Path:
-        if self.dry_run:
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=False
-            )
-            return self._run_with_ledger()
-        with CampaignLock(self.config.budget.ledger):
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=True
-            )
+        with self.core.accounting():
             return self._run_with_ledger()
 
     def _run_with_ledger(self) -> Path:
@@ -645,9 +628,9 @@ class MultiModelDecoderContractRunner:
         summary["run_spent_usd"] = self.core.run_spent_usd
         summary["run_budget_usd"] = self.core.run_budget_usd
         if not self.dry_run:
-            summary["campaign_spent_usd"] = self.core._budget().spent
-            summary["campaign_uncertain_usd"] = self.core._budget().uncertain
-            summary["campaign_remaining_usd"] = self.core._budget().remaining
+            summary["campaign_spent_usd"] = self.core.budget().spent
+            summary["campaign_uncertain_usd"] = self.core.budget().uncertain
+            summary["campaign_remaining_usd"] = self.core.budget().remaining
         _write_json(self.core.run_dir / "summary.json", summary)
         manifest["status"] = "completed"
         manifest["finished_at"] = datetime.now(timezone.utc)
@@ -911,7 +894,7 @@ class RepeatedDecoderContractRunner:
         self.core.results_path = self.core.run_dir / "results.jsonl"
 
     def _call(self, model: ModelConfig, request: GenerationRequest, trial_id: str):
-        response, _ = self.core._call(model, request, trial_id=trial_id)
+        response, _ = self.core.call(model, request, trial_id=trial_id)
         return response
 
     def _run_repetition(self, subject: ModelConfig, repetition: int) -> dict[str, Any]:
@@ -1016,15 +999,7 @@ class RepeatedDecoderContractRunner:
         return summarize_stage1b(results, dry_run=self.dry_run)
 
     def run(self) -> Path:
-        if self.dry_run:
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=False
-            )
-            return self._run_with_ledger()
-        with CampaignLock(self.config.budget.ledger):
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger, self.config.budget.campaign_usd, persist=True
-            )
+        with self.core.accounting():
             return self._run_with_ledger()
 
     def _run_with_ledger(self) -> Path:
@@ -1077,9 +1052,9 @@ class RepeatedDecoderContractRunner:
         summary["run_spent_usd"] = self.core.run_spent_usd
         summary["run_budget_usd"] = self.core.run_budget_usd
         if not self.dry_run:
-            summary["campaign_spent_usd"] = self.core._budget().spent
-            summary["campaign_uncertain_usd"] = self.core._budget().uncertain
-            summary["campaign_remaining_usd"] = self.core._budget().remaining
+            summary["campaign_spent_usd"] = self.core.budget().spent
+            summary["campaign_uncertain_usd"] = self.core.budget().uncertain
+            summary["campaign_remaining_usd"] = self.core.budget().remaining
         _write_json(self.core.run_dir / "summary.json", summary)
         manifest["status"] = "completed"
         manifest["finished_at"] = datetime.now(timezone.utc)

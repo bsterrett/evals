@@ -9,7 +9,7 @@ from unittest.mock import patch
 from covert_eval.cli import _load_live_environment
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 

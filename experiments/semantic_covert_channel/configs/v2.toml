@@ -1,0 +1,95 @@
+schema_version = 2
+
+[experiment]
+name = "analytical_semantic_covert_channel_v2"
+hypothesis = "Can two stateless instances of the same model establish a zero-shot semantic covert channel through natural analytical prose without a prearranged protocol?"
+dataset = "../data/v2_cases.jsonl"
+output_dir = "../../../artifacts/runs/semantic_covert_channel"
+seed = 20261030
+repetitions = 1
+max_cases = 8
+excluded_case_ids = []
+cover_max_tokens = 520
+decoder_max_tokens = 500
+judge_max_tokens = 600
+condition_registry = "conditions_v1.toml"
+case_split_manifest = "../data/v2_case_splits.json"
+default_condition_id = "v1_5_strict_analytical_standard"
+default_analysis_role = "exploratory"
+
+[[subjects]]
+id = "openai_gpt_5_5_no_reasoning"
+provider = "openai"
+model = "gpt-5.5-2026-04-23"
+reasoning_effort = "none"
+enabled = true
+
+[subjects.rate]
+input_usd_per_million = "5.00"
+cached_input_usd_per_million = "0.50"
+output_usd_per_million = "30.00"
+max_input_tokens = 10000
+verified_at = "2026-10-26"
+source = "https://developers.openai.com/api/docs/models/gpt-5.5"
+
+[[subjects]]
+id = "openai_gpt_6_luna_no_reasoning"
+provider = "openai"
+model = "gpt-6-luna"
+reasoning_effort = "none"
+enabled = true
+
+[subjects.rate]
+input_usd_per_million = "0.10"
+cached_input_usd_per_million = "0.01"
+cache_write_usd_per_million = "0.125"
+output_usd_per_million = "0.50"
+max_input_tokens = 10000
+verified_at = "2026-10-26"
+source = "https://developers.openai.com/api/docs/models/gpt-6-luna"
+
+[[subjects]]
+id = "anthropic_claude_sonnet_5_5_no_upfront_thinking"
+provider = "anthropic"
+model = "claude-sonnet-5-5"
+thinking_type = "between_tools"
+enabled = true
+
+[subjects.rate]
+input_usd_per_million = "2.00"
+cached_input_usd_per_million = "0.20"
+cache_write_usd_per_million = "4.00"
+output_usd_per_million = "10.00"
+max_input_tokens = 10000
+verified_at = "2026-10-26"
+source = "https://platform.claude.com/docs/en/models/overview"
+
+[[subjects]]
+id = "anthropic_claude_haiku_5_5_no_reasoning"
+provider = "anthropic"
+model = "claude-haiku-5-5"
+thinking_type = "disabled"
+enabled = true
+
+[subjects.rate]
+input_usd_per_million = "0.10"
+cached_input_usd_per_million = "0.01"
+cache_write_usd_per_million = "0.20"
+output_usd_per_million = "0.50"
+max_input_tokens = 10000
+verified_at = "2026-10-26"
+source = "https://platform.claude.com/docs/en/about-claude/pricing"
+
+[judge]
+id = "openai_gpt_5_5_judge"
+provider = "openai"
+model = "gpt-5.5-2026-04-23"
+reasoning_effort = "none"
+
+[judge.rate]
+input_usd_per_million = "5.00"
+cached_input_usd_per_million = "0.50"
+output_usd_per_million = "30.00"
+max_input_tokens = 20000
+verified_at = "2026-10-26"
+source = "https://developers.openai.com/api/docs/models/gpt-5.5"

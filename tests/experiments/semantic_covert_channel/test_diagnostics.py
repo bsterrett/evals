@@ -11,13 +11,13 @@ from covert_eval.config import load_config
 from covert_eval.diagnostics import LunaDiagnosticRunner, diagnostic_plan
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 
 class DiagnosticTests(unittest.TestCase):
     def test_plan_and_complete_dry_diagnostic(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         plan = diagnostic_plan(config)
         self.assertEqual(plan["trials"], 8)
         self.assertEqual(plan["total_calls"], 80)

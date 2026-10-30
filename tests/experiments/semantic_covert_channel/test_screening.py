@@ -12,13 +12,13 @@ from covert_eval.experiment import summarize_run
 from covert_eval.screening import ConstraintFrontierScreenRunner, screening_plan
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 
 class ScreeningTests(unittest.TestCase):
     def test_plan_is_frozen_balanced_and_under_ceiling(self) -> None:
-        plan = screening_plan(load_config(ROOT / "configs" / "v2.toml"))
+        plan = screening_plan(load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v2.toml"))
         self.assertEqual(plan["paired_trials"], 32)
         self.assertEqual(plan["generation_calls"], 224)
         self.assertEqual(len(plan["condition_ids"]), 4)
@@ -27,7 +27,7 @@ class ScreeningTests(unittest.TestCase):
         )
 
     def test_dry_screen_keeps_conditions_and_claim_families_separate(self) -> None:
-        config = load_config(ROOT / "configs" / "v2.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v2.toml")
         TEST_TMP.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=TEST_TMP) as directory:
             temp = Path(directory)

@@ -10,7 +10,6 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
-from covert_eval.budget import BudgetLedger, CampaignLock
 from covert_eval.conditions import ExperimentalCondition, load_condition_registry
 from covert_eval.config import load_cases
 from covert_eval.experiment import (
@@ -328,19 +327,7 @@ class ConstraintFrontierScreenRunner:
         return order
 
     def run(self) -> Path:
-        if self.dry_run:
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger,
-                self.config.budget.campaign_usd,
-                persist=False,
-            )
-            return self._run_with_ledger()
-        with CampaignLock(self.config.budget.ledger):
-            self.core.ledger = BudgetLedger(
-                self.config.budget.ledger,
-                self.config.budget.campaign_usd,
-                persist=True,
-            )
+        with self.core.accounting():
             return self._run_with_ledger()
 
     def _run_with_ledger(self) -> Path:
@@ -438,10 +425,10 @@ class ConstraintFrontierScreenRunner:
         summary["run_spent_usd"] = self.core.run_spent_usd
         summary["run_budget_usd"] = self.core.run_budget_usd
         if not self.dry_run:
-            summary["campaign_spent_usd"] = self.core._budget().spent
-            summary["campaign_uncertain_usd"] = self.core._budget().uncertain
-            summary["campaign_remaining_usd"] = self.core._budget().remaining
-            summary["campaign_blocked"] = self.core._budget().blocked
+            summary["campaign_spent_usd"] = self.core.budget().spent
+            summary["campaign_uncertain_usd"] = self.core.budget().uncertain
+            summary["campaign_remaining_usd"] = self.core.budget().remaining
+            summary["campaign_blocked"] = self.core.budget().blocked
         _write_json(self.core.run_dir / "summary.json", summary)
         manifest["status"] = "completed"
         manifest["finished_at"] = datetime.now(timezone.utc)

@@ -4,14 +4,14 @@ import unittest
 from types import SimpleNamespace
 
 from covert_eval.config import load_config
-from covert_eval.models import GenerationRequest
-from covert_eval.providers.anthropic import AnthropicProvider
-from covert_eval.providers.openai import OpenAIProvider
+from eval_core.models import GenerationRequest
+from eval_core.providers.anthropic import AnthropicProvider
+from eval_core.providers.openai import OpenAIProvider
 
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class _CreateEndpoint:
@@ -25,7 +25,7 @@ class _CreateEndpoint:
 class ProviderFixtureTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         cls.openai_config = config.subjects[1]
         cls.anthropic_config = config.subjects[2]
         cls.request = GenerationRequest(stage="encoder", prompt="test", max_output_tokens=20)

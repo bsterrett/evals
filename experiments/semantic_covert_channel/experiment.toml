@@ -1,0 +1,12 @@
+schema_version = 1
+id = "semantic_covert_channel"
+title = "Zero-shot semantic covert channels in natural-language prose"
+status = "exploratory"
+package = "covert_eval"
+command = "covert-eval"
+source = "../../src/covert_eval"
+tests = "../../tests/experiments/semantic_covert_channel"
+configs = "configs"
+data = "data"
+protocols = "protocols"
+notes = "notes"

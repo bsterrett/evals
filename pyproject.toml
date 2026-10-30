@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "reasoning-covert-channel-eval"
 version = "0.1.0"
-description = "A provider-agnostic eval for semantic covert channels in reasoning-like natural language."
+description = "A workspace for independent model evaluations with shared execution and accounting."
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
@@ -21,7 +21,8 @@ dev = []
 
 [project.scripts]
 covert-eval = "covert_eval.cli:main"
+eval-workspace = "eval_core.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/covert_eval"]
+packages = ["src/covert_eval", "src/eval_core"]
 

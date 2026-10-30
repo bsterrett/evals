@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from dataclasses import replace
+from datetime import date
 from pathlib import Path
 from unittest.mock import patch
 
@@ -14,7 +15,7 @@ from covert_eval.models import GenerationRequest, GenerationResponse, TokenUsage
 from covert_eval.providers.base import Provider, ProviderError, ProviderRefusal
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 
@@ -32,11 +33,13 @@ class _FixtureProvider(Provider):
 
 class FailureAccountingTests(unittest.TestCase):
     def _runner(self, directory: Path) -> tuple[ExperimentRunner, object]:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         config = replace(
             config,
             experiment=replace(config.experiment, output_dir=directory / "runs"),
             budget=replace(config.budget, ledger=directory / "ledger.json"),
+            subjects=tuple(replace(subject, rate=replace(subject.rate, verified_at=date.today())) for subject in config.subjects),
+            judge=replace(config.judge, rate=replace(config.judge.rate, verified_at=date.today())),
         )
         subject = config.subjects[1]
         runner = ExperimentRunner(config, dry_run=False, selected_subjects={subject.id}, case_limit=1)
@@ -146,7 +149,7 @@ class FailureAccountingTests(unittest.TestCase):
     def test_trial_refusals_are_recorded_and_do_not_abort_run(self) -> None:
         TEST_TMP.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=TEST_TMP) as directory:
-            config = load_config(ROOT / "configs" / "v1.toml")
+            config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
             config = replace(
                 config,
                 experiment=replace(
@@ -182,7 +185,7 @@ class FailureAccountingTests(unittest.TestCase):
         TEST_TMP.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=TEST_TMP) as directory:
             root = Path(directory)
-            config = load_config(ROOT / "configs" / "v1.toml")
+            config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
             config = replace(
                 config,
                 experiment=replace(config.experiment, output_dir=root / "runs"),

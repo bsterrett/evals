@@ -22,13 +22,13 @@ from covert_eval.calibration import (
 from covert_eval.config import load_config
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 TEST_TMP = ROOT / ".test-tmp"
 
 
 class CalibrationTests(unittest.TestCase):
     def test_stage1c_plan_and_dry_run(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         plan = stage1c_plan(config)
         self.assertEqual(plan["decoder_prompt_version"], "v1.4.0")
         self.assertEqual(plan["repetitions_per_subject"], 1)
@@ -69,7 +69,7 @@ class CalibrationTests(unittest.TestCase):
         )
 
     def test_stage1b_plan_and_dry_run(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         plan = stage1b_plan(config)
         self.assertEqual(plan["repetitions_per_subject"], 3)
         self.assertEqual(plan["decoder_calls"], 36)
@@ -137,7 +137,7 @@ class CalibrationTests(unittest.TestCase):
         self.assertIsNone(summary["subjects"]["subject"]["clean"]["candidate"])
 
     def test_stage1_decoder_contract_plan_and_dry_run(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         plan = decoder_contract_plan(config)
         self.assertEqual(plan["decoder_calls"], 12)
         self.assertEqual(plan["judge_calls"], 4)
@@ -162,7 +162,7 @@ class CalibrationTests(unittest.TestCase):
             self.assertEqual(sum(event["event"] == "call_completed" for event in events), 16)
 
     def test_plan_and_complete_dry_calibration(self) -> None:
-        config = load_config(ROOT / "configs" / "v1.toml")
+        config = load_config(ROOT / "experiments" / "semantic_covert_channel" / "configs" / "v1.toml")
         plan = calibration_plan(config)
         self.assertEqual(plan["total_calls"], 16)
         self.assertLess(Decimal(plan["structural_preflight_bound_usd"]), Decimal("1.00"))

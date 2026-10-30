@@ -17,6 +17,7 @@ from covert_eval.models import (
 )
 from covert_eval.conditions import ANALYSIS_ROLES, load_condition_registry
 from covert_eval.splits import load_split_manifest
+from eval_core.workspace import load_workspace
 
 
 class ConfigError(ValueError):
@@ -34,8 +35,8 @@ def _decimal(value: Any, context: str) -> Decimal:
         result = Decimal(str(value))
     except (InvalidOperation, ValueError) as exc:
         raise ConfigError(f"{context} must be a decimal number") from exc
-    if result < 0:
-        raise ConfigError(f"{context} must be nonnegative")
+    if not result.is_finite() or result < 0:
+        raise ConfigError(f"{context} must be finite and nonnegative")
     return result
 
 
@@ -107,15 +108,25 @@ def _model(data: dict[str, Any], context: str, *, enabled_default: bool) -> Mode
 
 def load_config(path: str | Path) -> AppConfig:
     source_path = Path(path).resolve()
-    with source_path.open("rb") as handle:
-        raw = tomllib.load(handle)
+    seen: set[Path] = set()
+    while True:
+        if source_path in seen:
+            raise ConfigError("Configuration redirect cycle")
+        seen.add(source_path)
+        with source_path.open("rb") as handle:
+            raw = tomllib.load(handle)
+        if "redirect" not in raw:
+            break
+        if set(raw) != {"redirect"}:
+            raise ConfigError("A redirect configuration cannot override experiment settings")
+        source_path = _resolve(source_path, str(raw["redirect"]))
 
     schema_version = _positive_int(_required(raw, "schema_version", "root"), "schema_version")
     if schema_version not in {1, 2}:
         raise ConfigError(f"Unsupported schema_version {schema_version}")
 
     exp = _required(raw, "experiment", "root")
-    budget = _required(raw, "budget", "root")
+    budget = raw.get("budget")
     excluded_case_ids_raw = exp.get("excluded_case_ids", [])
     if not isinstance(excluded_case_ids_raw, list) or not all(
         isinstance(case_id, str) and case_id.strip() for case_id in excluded_case_ids_raw
@@ -159,15 +170,18 @@ def load_config(path: str | Path) -> AppConfig:
         ),
         default_analysis_role=str(exp.get("default_analysis_role", "exploratory")).strip(),
     )
+    workspace_budget = load_workspace(source_path).budget
     budget_settings = BudgetSettings(
         campaign_usd=_decimal(_required(budget, "campaign_usd", "budget"), "budget.campaign_usd"),
         ledger=_resolve(source_path, str(_required(budget, "ledger", "budget"))),
         pricing_max_age_days=_positive_int(
             _required(budget, "pricing_max_age_days", "budget"), "budget.pricing_max_age_days"
         ),
-    )
+    ) if budget is not None else workspace_budget
     if budget_settings.campaign_usd <= 0:
         raise ConfigError("budget.campaign_usd must be greater than zero")
+    if budget_settings != workspace_budget:
+        raise ConfigError("Experiments must use the shared budget settings in workspace.toml")
 
     subjects_raw = _required(raw, "subjects", "root")
     if not isinstance(subjects_raw, list) or not subjects_raw:

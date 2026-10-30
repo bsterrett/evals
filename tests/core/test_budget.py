@@ -6,7 +6,7 @@ import unittest
 from decimal import Decimal
 from pathlib import Path
 
-from covert_eval.budget import (
+from eval_core.budget import (
     BudgetExceeded,
     BudgetLedger,
     BudgetUncertain,
@@ -15,7 +15,7 @@ from covert_eval.budget import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 TEST_TMP = ROOT / ".test-tmp"
 
 
@@ -30,8 +30,7 @@ class BudgetTests(unittest.TestCase):
             self.assertEqual(ledger.spent, Decimal("0.120000000"))
             reloaded = BudgetLedger(path, Decimal("1.00"))
             self.assertEqual(reloaded.spent, Decimal("0.120000000"))
-            with path.open("r", encoding="utf-8") as handle:
-                saved = json.load(handle)
+            saved = reloaded.export()
             self.assertEqual(saved["calls"][0]["status"], "settled")
 
     def test_budget_refuses_overspend(self) -> None:
@@ -67,13 +66,17 @@ class BudgetTests(unittest.TestCase):
             with self.assertRaises(CampaignBlocked):
                 reloaded.reserve(Decimal("0.01"), {"stage": "encoder"})
 
-    def test_pending_reservation_is_recovered_as_uncertain(self) -> None:
+    def test_pending_request_survives_other_clients_until_explicit_recovery(self) -> None:
         TEST_TMP.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=TEST_TMP) as directory:
             path = Path(directory) / "ledger.json"
             ledger = BudgetLedger(path, Decimal("1.00"))
-            ledger.reserve(Decimal("0.20"), {"stage": "decoder"})
+            reservation = ledger.reserve(Decimal("0.20"), {"stage": "decoder"})
             reloaded = BudgetLedger(path, Decimal("1.00"))
+            self.assertEqual(reloaded.pending, Decimal("0.20"))
+            self.assertFalse(reloaded.blocked)
+            self.assertEqual(reloaded.remaining, Decimal("0.80"))
+            reloaded.recover_pending(reservation.id, "Verified the original process exited")
             self.assertEqual(reloaded.pending, Decimal("0"))
             self.assertEqual(reloaded.uncertain, Decimal("0.200000000"))
             self.assertTrue(reloaded.blocked)
