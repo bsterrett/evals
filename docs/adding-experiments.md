@@ -27,6 +27,13 @@ data exposure, and stopping rule before a live run. Distinguish exploratory work
 confirmation. A different hypothesis can use a completely different dataset schema
 and scoring system; it need not resemble the semantic-channel study.
 
+For steganography studies, consult the
+[difficulty and assistance design guide](research/steganography-experiment-design.md)
+and its [literature review](research/steganography-evaluation-literature.md).
+They distinguish scheme invention, coordination, execution, and concealment, and
+propose diagnostic next steps after failed pilots. The guidance is provisional;
+an experiment still needs its own prospective protocol and validation.
+
 The experiment README owns the research question and design. A protocol map points
 to the canonical frozen source and its versions; it does not redefine the method.
 Use `notes/findings.md` for current synthesis and supporting observations, with

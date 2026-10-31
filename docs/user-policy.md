@@ -4,8 +4,9 @@ Scope: documentation for agentic research in this repository. These entries reco
 the user's explicit directions. The detailed conventions in [AGENTS.md](../AGENTS.md)
 were designed by agents in consultation with the user.
 
-Source for the entries below: the user's initial documentation-design request in
-this Codex chat, 2026-10-30, America/Los_Angeles. No portable message ID is available;
+Unless an entry identifies a later source, its source is the user's initial
+documentation-design request in this Codex chat, 2026-10-30, America/Los_Angeles.
+No portable message ID is available;
 the excerpts preserve the operative wording. The later agreement with the design
 and request for an adoption plan do not establish unrelated research or execution
 policies.
@@ -47,3 +48,31 @@ Scope: documentation structure and lifecycle.
 Application: update documents when relevant evidence, methods, or directions
 change, or when their applicability matters to current work. Age alone creates no
 refresh requirement. The workflow and optional note shape are in `AGENTS.md`.
+
+## Steganography experiment design
+
+Scope: reusable guidance for agents designing steganography experiments in this
+repository. Source: the user's research request in this Codex chat, 2026-10-31,
+America/Los_Angeles; no portable message ID is available.
+
+> I would like the framework to help me trade off between strength of result and
+> likelihood of interesting signal by mediating the difficulty of the
+> steganographic experiment.
+
+> I want this framework to be able to be used by agents in this repo when
+> designing an experiment.
+
+> Can you start with research to understand how much of this tradeoff is already
+> understood by the industry? Please capture at least some of this research as
+> durable records in this repository, so other agents need not repeat your
+> internet research.
+
+Application: begin with existing research and preserve reusable findings and
+design guidance. Relate assistance choices, including codebooks, to the claims
+they support and to observed failure modes. The user identifies independent
+inventiveness as a reason to value unassisted results, while explicitly allowing
+that informative experiments may need relaxation. This is not a blanket ban or
+requirement for codebooks, nor authorization for new model runs or spending.
+The [design guide](research/steganography-experiment-design.md) and
+[literature review](research/steganography-evaluation-literature.md) are the
+canonical topic homes; their specific recommendations are agent choices.
