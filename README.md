@@ -4,6 +4,10 @@ A home for independent hypotheses explored through model evaluations. Each exper
 owns its scientific design; shared code handles execution, provider adapters, audit
 files, and a single campaign budget.
 
+Agents: start with [repository instructions](AGENTS.md) for documentation discovery,
+claim types, evidence, and lifecycle. [User policy](docs/user-policy.md) records the
+attributable directions behind those conventions.
+
 | Experiment | State | Design and findings |
 | --- | --- | --- |
 | `semantic_covert_channel` | Exploratory; V1 and V1.5 screens completed | [Protocol](experiments/semantic_covert_channel/README.md), [research notes](experiments/semantic_covert_channel/notes/findings.md) |
