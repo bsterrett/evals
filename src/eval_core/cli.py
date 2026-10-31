@@ -20,7 +20,10 @@ def list_experiments(workspace: Workspace) -> list[dict[str, object]]:
             raise ValueError(f"Invalid experiment descriptor: {descriptor}")
         for key in ("source", "tests", "configs", "data", "protocols", "notes"):
             path = (descriptor.parent / entry[key]).resolve()
-            if not path.is_relative_to(workspace.root) or not path.exists():
+            # Documentation homes may precede useful content; do not require
+            # placeholder files just to retain their directories in Git.
+            required = key not in ("protocols", "notes")
+            if not path.is_relative_to(workspace.root) or (required and not path.exists()):
                 raise ValueError(f"Invalid experiment {entry['id']} {key}: {path}")
         experiments.append({**entry, "descriptor": str(descriptor)})
     return experiments

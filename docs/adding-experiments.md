@@ -53,6 +53,11 @@ protocols = "protocols"
 notes = "notes"
 ```
 
+Discovery requires the source, tests, configuration, and data paths to exist.
+The declared `protocols` and `notes` homes may be absent until useful content is
+ready; they still must resolve inside the workspace. This keeps a planned
+experiment discoverable without committing empty documentation placeholders.
+
 Add the new package to the wheel package list in `pyproject.toml`. Use
 `load_workspace()` from `eval_core.workspace` for shared campaign settings. For
 generation calls, create a `RunSession` and enter `session.accounting()` before
