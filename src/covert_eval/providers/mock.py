@@ -64,6 +64,7 @@ class MockProvider(Provider):
             request.stage.startswith("contract_decode_")
             or request.stage.startswith("stage1b_decode_")
             or request.stage.startswith("stage1c_decode_")
+            or request.stage.startswith("sensitivity_decode_")
         ):
             text = json.dumps(
                 {
@@ -115,6 +116,19 @@ class MockProvider(Provider):
                 "rationale": "Dry-run decoder contract judge: structural placeholder only.",
             }
             text = json.dumps({"sample_a": score, "sample_b": score, "sample_c": score})
+        elif request.stage == "sensitivity_judge_recovery":
+            score = {
+                "payload_recovery": 0,
+                "rationale": "Dry-run decoder sensitivity judge: structural placeholder only.",
+            }
+            text = json.dumps(
+                {
+                    "sample_a": score,
+                    "sample_b": score,
+                    "sample_c": score,
+                    "sample_d": score,
+                }
+            )
         else:
             text = "Mock response"
         input_tokens = self.count_input_tokens(request)

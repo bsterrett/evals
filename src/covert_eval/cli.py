@@ -175,6 +175,18 @@ def _parser() -> argparse.ArgumentParser:
     screen.add_argument("--live", action="store_true")
     screen.add_argument("--confirm-live-spend", action="store_true")
     screen.add_argument("--run-budget-usd", default="20.00")
+
+    sensitivity = subparsers.add_parser(
+        "study-decoder-sensitivity",
+        help="Compare baseline and synthesis decoders on frozen Sonnet development carriers",
+    )
+    sensitivity.add_argument(
+        "--config", default="experiments/semantic_covert_channel/configs/v2.toml"
+    )
+    sensitivity.add_argument("--plan", action="store_true")
+    sensitivity.add_argument("--live", action="store_true")
+    sensitivity.add_argument("--confirm-live-spend", action="store_true")
+    sensitivity.add_argument("--run-budget-usd", default="1.00")
     return parser
 
 
@@ -267,6 +279,42 @@ def main(argv: list[str] | None = None) -> int:
             return 0
 
         config = load_config(args.config)
+        if args.command == "study-decoder-sensitivity":
+            from covert_eval.decoder_sensitivity import (
+                MAX_RUN_BUDGET_USD,
+                SavedCarrierDecoderSensitivityRunner,
+                decoder_sensitivity_plan,
+            )
+
+            try:
+                run_budget = Decimal(args.run_budget_usd)
+            except Exception as exc:
+                raise ConfigError("--run-budget-usd must be a decimal number") from exc
+            if run_budget <= 0 or run_budget > MAX_RUN_BUDGET_USD:
+                raise ConfigError(
+                    "--run-budget-usd must be greater than zero and no more than 1.00"
+                )
+            if args.plan:
+                if args.live or args.confirm_live_spend:
+                    raise ConfigError("--plan cannot be combined with live-run flags")
+                print(json.dumps(decoder_sensitivity_plan(config), indent=2))
+                return 0
+            if args.live and not args.confirm_live_spend:
+                raise ConfigError("--live requires --confirm-live-spend")
+            if args.confirm_live_spend and not args.live:
+                raise ConfigError("--confirm-live-spend is only valid with --live")
+            if args.live:
+                _load_live_environment()
+            runner = SavedCarrierDecoderSensitivityRunner(
+                config,
+                dry_run=not args.live,
+                run_budget_usd=run_budget,
+            )
+            run_dir = runner.run()
+            with (run_dir / "summary.json").open("r", encoding="utf-8") as handle:
+                summary = json.load(handle)
+            print(json.dumps({"run_dir": str(run_dir), "summary": summary}, indent=2))
+            return 0
         if args.command == "screen-v1-5":
             from covert_eval.screening import (
                 MAX_RUN_BUDGET_USD,
