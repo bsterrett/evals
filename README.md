@@ -4,6 +4,8 @@ A home for independent hypotheses explored through model evaluations. Each exper
 owns its scientific design; shared code handles execution, provider adapters, audit
 files, and a single campaign budget.
 
+Research preparation: [Clocktower benchmark and model recognition](docs/research/clocktower-model-recognition.md).
+
 Agents: start with [repository instructions](AGENTS.md) for documentation discovery,
 claim types, evidence, and lifecycle. [User policy](docs/user-policy.md) records the
 attributable directions behind those conventions.
