@@ -5,6 +5,11 @@ Scope: a working taxonomy for the [pretrained-model retrofit review](recurrent-d
 exhaustive list of all recurrent neural architectures or universal terminology.
 Performance findings and implementation-availability checks live in that review.
 
+For the separate question of replacing a written reasoning scratchpad, see
+[CoT substitution](recurrent-depth-cot-substitution.md). It distinguishes
+reductions due to fewer emission turns, material per turn, causal dependence on
+the scratchpad, and resource efficiency.
+
 ## Describe a method along independent axes
 
 “Recurrent depth” alone underspecifies the computation. Record at least:

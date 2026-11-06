@@ -29,6 +29,11 @@ The companion [methods and terminology](recurrent-depth-methods-and-terms.md)
 provides the taxonomy. Existing [native recurrent model descriptions](astra-recurrent-depth.md#published-recurrence-designs-we-can-inspect)
 remain their canonical home.
 
+The separate candidate of [replacing some written CoT scratchpad use with
+continuous recurrent computation](recurrent-depth-cot-substitution.md) has its own
+review and measurement criteria. It remains distinct from the general retrofit
+performance question, including when both use the same implementations.
+
 ## Direct literature: frozen base models
 
 ### Inner Loop Inference — Lys et al., February 2026

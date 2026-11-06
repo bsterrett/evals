@@ -105,3 +105,34 @@ by a calibrated local monitor with a blinded sample for inspection. Supplied
 schemes can diagnose component competence but their successes do not establish
 the primary unassisted claim. Model selection, detailed observer design, trial counts,
 and later expansions remain agent proposals or separately recorded decisions.
+
+## Two distinct recurrence research candidates
+
+Scope: research preparation for (1) improving pretrained open-weight models by
+adding recurrence and (2) substituting continuous recurrent computation for some
+explicit chain-of-thought scratchpad use. Source: the user's research follow-up
+and clarification in this Codex chat, 2026-11-06, America/Los_Angeles; no portable
+message IDs are available.
+
+> My interest in this question has not replaced my interest in the previous one,
+> they are both still valid candidates for pursuit in this repo.
+
+Application: preserve both candidates and their separate questions. Their
+canonical research homes are the [retrofit review](research/recurrent-depth-retrofit-literature.md)
+and [CoT-substitution review](research/recurrent-depth-cot-substitution.md).
+This does not authorize new model execution, training, or spending.
+
+The user clarified the intended CoT-length baseline after the agent initially
+emphasized compute per token:
+
+> if there are half as many turns per task, and turns produce about the same
+> amount of thinking on average, then there will be half as much material in the
+> chain of thought on average.
+
+Application: account for fewer opportunities to emit thinking when assessing
+whether CoT material is reduced. Merely halving total material with half as many
+turns does not establish the stronger reduction of interest. Keep this counting
+baseline distinct from the additional compute-efficiency question. The unit of
+“turn” and practical/statistical margins remain to be operationalized before an
+experiment; the agent's proposed metrics are recommendations, not additional user
+policy.

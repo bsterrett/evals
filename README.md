@@ -71,3 +71,6 @@ Same-size comparison: [Ouro-1.4B-Thinking and base checkpoint follow-up](docs/re
 
 New experiment research: [adding recurrent depth to pretrained models](docs/research/recurrent-depth-retrofit-literature.md),
 with a [methods taxonomy and search glossary](docs/research/recurrent-depth-methods-and-terms.md).
+
+Separate candidate: [can recurrent depth substitute for a written CoT scratchpad?](docs/research/recurrent-depth-cot-substitution.md)
+Both recurrence questions remain candidates for pursuit.
