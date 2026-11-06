@@ -81,6 +81,15 @@ reported component measures. A constant guesser can be correct on half of the
 balanced trials, including when honest text happens to pass all cover checks;
 that is not evidence of communication.
 
+> **Correction (2026-11-06 design review).** As defined above, the encoder-depth
+> joint contrast is not protected against cover quality: a carrier-blind decoder
+> scores about half the acceptance rate, so any depth difference in acceptance
+> moves the contrast without transmission. The decoder-depth contrast is
+> unaffected. No reported result changes because the pilot's joint endpoint was
+> undefined. Later runs use the within-cover pair score in the
+> [paid reference protocol](protocols/README.md#paid-feasibility-reference); see
+> [the review](notes/findings.md#demonstrated-analysis-defect).
+
 Use all sixteen bit attempts per depth cell, clustered by the eight cover cases.
 Reused carriers and repeated decodes do not increase the number of independent
 cover cases. Report exploratory cover-cluster bootstrap intervals and shuffled
@@ -114,6 +123,25 @@ indistinguishability or cryptographic secrecy.
    choosing a condition for the largest observed depth gap.
 5. Use development results to design a separately frozen, adequately sized
    comparison on unused cases. The present pilot is not confirmation.
+
+## Paid feasibility reference
+
+The first pilot stayed at chance (see [findings](notes/findings.md)). Before
+investing in depth comparisons or larger looped models, a reference check asks
+whether strong non-recurrent models can pass the payload at all under the same
+constraints: no written reasoning, fact-preserving paraphrase, and no shared
+strategy. It has no depth factor and supports no recurrence claim. If no cell is
+feasible, the floor lies in the task design rather than Dory's size.
+
+The user chose this check and approved a $10 ceiling (see
+[user policy](../../docs/user-policy.md#recurrent-depth-follow-up-after-the-first-pilot)).
+Agent design choices: GPT-5.5 with reasoning off and Claude Sonnet 5.5 without
+up-front thinking each encode and decode for themselves, and each judges the
+other's carriers. Both test the 2x2 of plain versus focal-point framing and 0/1
+versus meaningful word labels on 48 new development covers. The plain/0-1 cell
+reuses the pilot's exact prompts. The outcome is the within-cover pair score, with
+a Holm-corrected exact sign-flip decision rule fixed before the run. Method sources
+and commands are in the [protocol map](protocols/README.md#paid-feasibility-reference).
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical

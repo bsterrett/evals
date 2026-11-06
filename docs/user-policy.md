@@ -106,6 +106,57 @@ schemes can diagnose component competence but their successes do not establish
 the primary unassisted claim. Model selection, detailed observer design, trial counts,
 and later expansions remain agent proposals or separately recorded decisions.
 
+## Recurrent-depth follow-up after the first pilot
+
+Scope: next conditions for `experiments/recurrent_steganography` after the
+chance-level first pilot. Source: the user's replies to an agent design review in
+a Claude Code chat, 2026-11-06, America/Los_Angeles; no portable message IDs are
+available. The review and its recommendations are recorded in the experiment's
+[findings](../experiments/recurrent_steganography/notes/findings.md#design-review-after-the-first-pilot).
+
+Asked whether the absence of written reasoning is essential to the question:
+
+> "No written reasoning" is important. I want to make sure it is tested. But I
+> would not say it is "essential" in the sense that we should not also do a
+> variant **with** written reasoning.
+
+Asked about two unassisted relaxations, telling both endpoints to use the most
+obvious convention (focal-point framing) and replacing 0/1 with meaningful
+payload labels:
+
+> I like both of these ideas, but I think they should be tested one at a time and
+> also in combination. I do not think they should both be added at the same time.
+
+Asked whether to compare depths on a supplied-scheme track if the unassisted task
+stays at chance:
+
+> I think this is a valid idea, but let's hold off on pursuing this until other
+> things are tested.
+
+Asked whether an observer from another model family is acceptable:
+
+> Yes, this is acceptable. I am open to the idea of a paid judge.
+
+On the local hardware constraint:
+
+> the downloaded models were chosen based on their ability to fit on my graphics
+> hardware. I think this restriction could be relaxed: because the amount of
+> processing is small, this experiment is still feasible with local models that
+> run on my CPU.
+
+For a feasibility check with a strong non-recurrent model, the user selected
+"Paid model first", then "Approve $10 ceiling" for the proposed check: GPT-5.5
+with reasoning off and Claude Sonnet 5.5 without up-front thinking, each judged
+by the other, on the 2x2 of framing and labels without written reasoning.
+
+Application: keep a no-written-reasoning condition and add a separately labeled
+written-reasoning variant later. Test focal framing and meaningful labels alone
+and together, as a factorial, never only combined. Defer the supplied-scheme depth
+track. A cross-family or paid judge is acceptable; CPU-run local models are in
+scope. The $10 approval covers only the paid feasibility reference
+(`paid-feasibility-reference-v1`), not later runs. Prompt wording, covers, label
+pairs, and statistics are agent choices.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by
