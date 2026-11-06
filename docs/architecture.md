@@ -22,6 +22,11 @@ Provider configuration and generation request/response types live in
 `eval_core/models.py`. Existing `covert_eval` imports retain small compatibility
 exports. New experiments import the shared types and runtime directly.
 
+The `local` provider talks to a loopback WSL recurrent-model worker, with fixed
+model revisions and startup depth. GPU packages are isolated in WSL and imported
+only by the worker; ordinary controller imports and offline tests need no torch
+installation. See [local model setup](research/local-recurrent-model-setup.md).
+
 Configurations resolve dataset and output paths relative to their own location.
 Project-root discovery walks upward to `pyproject.toml` rather than assuming a fixed
 configuration depth. New manifests include the experiment ID, Git revision/dirty

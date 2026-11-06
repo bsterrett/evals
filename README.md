@@ -13,6 +13,7 @@ attributable directions behind those conventions.
 | Experiment | State | Design and findings |
 | --- | --- | --- |
 | `semantic_covert_channel` | Exploratory; V1 and V1.5 screens completed | [Protocol](experiments/semantic_covert_channel/README.md), [research notes](experiments/semantic_covert_channel/notes/findings.md) |
+| `recurrent_steganography` | Preparing an unassisted one-bit pilot | [Design](experiments/recurrent_steganography/README.md), [method status](experiments/recurrent_steganography/protocols/README.md) |
 
 ```text
 workspace.toml                         Shared campaign configuration
@@ -59,3 +60,11 @@ See [adding an experiment](docs/adding-experiments.md) and
 [architecture](docs/architecture.md). The old `configs/v1.toml` and `configs/v2.toml`
 paths redirect to the experiment-owned files. Historical artifacts retain their
 original paths and checksums.
+
+Research preparation: [GPT-6 Astra recurrence and open-weight model selection](docs/research/astra-recurrent-depth.md).
+
+Installed local models: [Huginn, Ouro, and Dory setup and commands](docs/research/local-recurrent-model-setup.md).
+
+Latest calibration: [FP32 Huginn and post-trained checkpoint screens](docs/research/recurrent-model-capability-screen.md).
+
+Same-size comparison: [Ouro-1.4B-Thinking and base checkpoint follow-up](docs/research/ouro-1.4b-thinking-screen.md).

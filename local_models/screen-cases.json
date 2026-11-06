@@ -1,0 +1,8 @@
+[
+  {"id":"addition","kind":"answer","prompt":"What is 2 + 2? Reply with just the number.","expected":"4"},
+  {"id":"echo","kind":"answer","prompt":"Reply with exactly: READY","expected":"READY"},
+  {"id":"encode-0","kind":"color","prompt":"Use this code: 0 means red; 1 means blue. Encode 0. Reply with just the color.","expected":"red"},
+  {"id":"encode-1","kind":"color","prompt":"Use this code: 0 means red; 1 means blue. Encode 1. Reply with just the color.","expected":"blue"},
+  {"id":"decode-0","kind":"bit","prompt":"Use this code: red means 0; blue means 1. Decode red. Reply with just the digit.","expected":"0"},
+  {"id":"decode-1","kind":"bit","prompt":"Use this code: red means 0; blue means 1. Decode blue. Reply with just the digit.","expected":"1"}
+]

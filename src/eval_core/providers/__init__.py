@@ -30,6 +30,9 @@ def create_provider(
     if config.provider == "anthropic":
         from eval_core.providers.anthropic import AnthropicProvider
         return AnthropicProvider(config)
+    if config.provider == "local":
+        from eval_core.providers.local import LocalProvider
+        return LocalProvider(config)
     raise ProviderError(f"Unsupported provider: {config.provider}")
 
 

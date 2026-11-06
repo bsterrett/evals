@@ -1,0 +1,1000 @@
+{
+  "schema_version": 1,
+  "purpose": "Runtime and ordinary competence; no hidden-message generation",
+  "conditions": {
+    "dory-d1": {
+      "profile": "dory",
+      "depth": 1,
+      "model": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16@f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+      "runtime_passed": true,
+      "exact_correct": 12,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 6993,
+          "actual": 6993,
+          "argmax_equal": true,
+          "observed_iterations": [
+            1
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 1046,
+          "actual": 1046,
+          "argmax_equal": true,
+          "observed_iterations": [
+            1
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 1531,
+          "actual": 1531,
+          "argmax_equal": true,
+          "observed_iterations": [
+            1
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 12.042970180511475,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 4
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "garden",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 3
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "Hot",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "circle",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "square",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/dory-d1.json",
+      "artifact_sha256": "343c6790d9aa85fa89f674dcf2e1bd80243c42b241a12270123ecf0974d4307d"
+    },
+    "dory-d2": {
+      "profile": "dory",
+      "depth": 2,
+      "model": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16@f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+      "runtime_passed": true,
+      "exact_correct": 12,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 6993,
+          "actual": 6993,
+          "argmax_equal": true,
+          "observed_iterations": [
+            2
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 1046,
+          "actual": 1046,
+          "argmax_equal": true,
+          "observed_iterations": [
+            2
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 1531,
+          "actual": 1531,
+          "argmax_equal": true,
+          "observed_iterations": [
+            2
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 12.04294729232788,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 4
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "garden",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 3
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "Hot",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "circle",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "square",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/dory-d2.json",
+      "artifact_sha256": "47c636152de0bdcd0501a56fbd93ef37e1e0fca5bad0b0119c55919d758f3193"
+    },
+    "dory-d4": {
+      "profile": "dory",
+      "depth": 4,
+      "model": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16@f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+      "runtime_passed": true,
+      "exact_correct": 12,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 6993,
+          "actual": 6993,
+          "argmax_equal": true,
+          "observed_iterations": [
+            4
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 1046,
+          "actual": 1046,
+          "argmax_equal": true,
+          "observed_iterations": [
+            4
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 1531,
+          "actual": 1531,
+          "argmax_equal": true,
+          "observed_iterations": [
+            4
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 12.347177028656006,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 4
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "garden",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 3
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "hot",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "circle",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "square",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 2
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/dory-d4.json",
+      "artifact_sha256": "e32e3f86c91316e27b55c4d16cf907d287baf0f67a23f3db09f1cd3b1d121a53"
+    },
+    "ouro-2.6b-thinking-d1": {
+      "profile": "ouro-2.6b-thinking",
+      "depth": 1,
+      "model": "ByteDance/Ouro-2.6B-Thinking@f1edd81e7ac41355db670500ceaf204e0f73af68",
+      "runtime_passed": true,
+      "exact_correct": 7,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 253,
+          "actual": 253,
+          "argmax_equal": true,
+          "observed_iterations": [
+            1
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 4525,
+          "actual": 4525,
+          "argmax_equal": true,
+          "observed_iterations": [
+            1
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 30,
+          "actual": 30,
+          "argmax_equal": true,
+          "observed_iterations": [
+            1
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 5.403010368347168,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 89
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 262
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 275
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 103
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 120
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 197
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "garden",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 115
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "\\boxed{warm}",
+          "exact": false,
+          "stop": "eos",
+          "output_tokens": 332
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": null,
+          "exact": false,
+          "stop": "max_output_tokens",
+          "output_tokens": 1024
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": null,
+          "exact": false,
+          "stop": "max_output_tokens",
+          "output_tokens": 1024
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "4. \"The answer is: 0 maps to circle, 1 maps to square.\"",
+          "exact": false,
+          "stop": "eos",
+          "output_tokens": 285
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "{\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"}\\n\\n\"content\": \"The answer is the word corresponding to the number 1 in the given mapping: 0 maps to circle and 1 maps to square. Therefore, the shape word is 'square'.\\n\\n\"",
+          "exact": false,
+          "stop": "max_output_tokens",
+          "output_tokens": 1024
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/ouro-2.6b-thinking-d1.json",
+      "artifact_sha256": "d34f29c3fbc74282de6bafaf4626abdd3ba9fdc1e60e5d2cb9f200fd3672d590"
+    },
+    "ouro-2.6b-thinking-d2": {
+      "profile": "ouro-2.6b-thinking",
+      "depth": 2,
+      "model": "ByteDance/Ouro-2.6B-Thinking@f1edd81e7ac41355db670500ceaf204e0f73af68",
+      "runtime_passed": true,
+      "exact_correct": 11,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 7042,
+          "actual": 7042,
+          "argmax_equal": true,
+          "observed_iterations": [
+            2
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 30,
+          "actual": 30,
+          "argmax_equal": true,
+          "observed_iterations": [
+            2
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 198,
+          "actual": 198,
+          "argmax_equal": true,
+          "observed_iterations": [
+            2
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 5.318572521209717,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 178
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 367
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 224
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 179
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 70
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 161
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "\\boxed{garden}",
+          "exact": false,
+          "stop": "eos",
+          "output_tokens": 96
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "hot",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 154
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 220
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 192
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "circle",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 117
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "square",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 233
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/ouro-2.6b-thinking-d2.json",
+      "artifact_sha256": "bd0ac44e7006981fb1a9b060c56e60dc9e7a4896a73a17e3ae1b3f4e7b885d54"
+    },
+    "ouro-2.6b-thinking-d3": {
+      "profile": "ouro-2.6b-thinking",
+      "depth": 3,
+      "model": "ByteDance/Ouro-2.6B-Thinking@f1edd81e7ac41355db670500ceaf204e0f73af68",
+      "runtime_passed": true,
+      "exact_correct": 12,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 7042,
+          "actual": 7042,
+          "argmax_equal": true,
+          "observed_iterations": [
+            3
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 30,
+          "actual": 30,
+          "argmax_equal": true,
+          "observed_iterations": [
+            3
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 198,
+          "actual": 198,
+          "argmax_equal": true,
+          "observed_iterations": [
+            3
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 5.509769439697266,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 147
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 180
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 407
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 168
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 119
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 177
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "garden",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 198
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "hot",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 142
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 186
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 202
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "circle",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 235
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "square",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 195
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/ouro-2.6b-thinking-d3.json",
+      "artifact_sha256": "c4d582df50d866ea73192f0794af726e338e4915c198200f721339b92f89d939"
+    },
+    "ouro-2.6b-thinking-d4": {
+      "profile": "ouro-2.6b-thinking",
+      "depth": 4,
+      "model": "ByteDance/Ouro-2.6B-Thinking@f1edd81e7ac41355db670500ceaf204e0f73af68",
+      "runtime_passed": true,
+      "exact_correct": 12,
+      "case_count": 12,
+      "repeatable": true,
+      "cache_control": [
+        {
+          "index": 0,
+          "expected": 7042,
+          "actual": 7042,
+          "argmax_equal": true,
+          "observed_iterations": [
+            4
+          ]
+        },
+        {
+          "index": 1,
+          "expected": 30,
+          "actual": 30,
+          "argmax_equal": true,
+          "observed_iterations": [
+            4
+          ]
+        },
+        {
+          "index": 2,
+          "expected": 198,
+          "actual": 198,
+          "argmax_equal": true,
+          "observed_iterations": [
+            4
+          ]
+        }
+      ],
+      "max_total_tokens": 2048,
+      "peak_allocated_gib": 8.108963966369629,
+      "controls": [
+        {
+          "case": "copy-word",
+          "expected": "PAPER",
+          "final": "PAPER",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 241
+        },
+        {
+          "case": "copy-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 513
+        },
+        {
+          "case": "copy-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 419
+        },
+        {
+          "case": "subtract",
+          "expected": "4",
+          "final": "4",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 168
+        },
+        {
+          "case": "add",
+          "expected": "8",
+          "final": "8",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 121
+        },
+        {
+          "case": "choose",
+          "expected": "apple",
+          "final": "apple",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 185
+        },
+        {
+          "case": "last",
+          "expected": "garden",
+          "final": "garden",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 164
+        },
+        {
+          "case": "opposite",
+          "expected": "hot",
+          "final": "hot",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 146
+        },
+        {
+          "case": "direct-map-zero",
+          "expected": "0",
+          "final": "0",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 152
+        },
+        {
+          "case": "direct-map-one",
+          "expected": "1",
+          "final": "1",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 237
+        },
+        {
+          "case": "reverse-map-zero",
+          "expected": "circle",
+          "final": "circle",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 114
+        },
+        {
+          "case": "reverse-map-one",
+          "expected": "square",
+          "final": "square",
+          "exact": true,
+          "stop": "eos",
+          "output_tokens": 129
+        }
+      ],
+      "cases_sha256": "ad173205bd523426424efe5675111beca4b824d3d291ef7a71721e0639c77941",
+      "tool_sha256": "1aa01af8ebcbdce592c4b39a268a980ed7e46fc3bf8b75214fdf2f9890fbee11",
+      "artifact": "artifacts/runs/local-runtime/preflight-20261106/ouro-2.6b-thinking-d4.json",
+      "artifact_sha256": "91c8c88216d16f213ca1a393a6cfcd5b7bcfeec43e52b85400da2b116fab8be0"
+    }
+  }
+}

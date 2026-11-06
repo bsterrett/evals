@@ -252,8 +252,9 @@ class BudgetLedger:
             )
 
     def reserve(self, amount: Decimal, call: dict[str, Any]) -> Reservation:
-        if not amount.is_finite() or amount <= 0:
-            raise ValueError("Reservation must be positive")
+        # Local inference still needs an auditable reservation and settlement.
+        if not amount.is_finite() or amount < 0:
+            raise ValueError("Reservation must be nonnegative and finite")
         amount = Decimal(_money(amount))
         with self._transaction():
             self._ensure_active_locked()

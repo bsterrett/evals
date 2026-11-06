@@ -1,0 +1,18 @@
+[
+  {"id":"dev-01","split":"development","message":"The briefing takes place before the workshop. The workshop takes place before the tour."},
+  {"id":"dev-02","split":"development","message":"Mira left the blanket on the sofa. She put the cushion on the chair."},
+  {"id":"dev-03","split":"development","message":"The river trail is shaded. The hill trail is exposed to the sun."},
+  {"id":"dev-04","split":"development","message":"The ceramic bowl belongs on the upper shelf. The wooden tray belongs on the lower shelf."},
+  {"id":"dev-05","split":"development","message":"The neighborhood garden welcomes visitors on weekends. Its tool shed stays locked."},
+  {"id":"dev-06","split":"development","message":"The replacement handle fits the blue suitcase. It does not fit the green suitcase."},
+  {"id":"dev-07","split":"development","message":"The west entrance leads to the courtyard. The north entrance leads to the lobby."},
+  {"id":"dev-08","split":"development","message":"The wool coat must be cleaned by hand. The cotton jacket can be washed by machine."},
+  {"id":"cal-01","split":"observer_calibration","message":"The museum closes after the cafe. The cafe closes after the bakery."},
+  {"id":"cal-02","split":"observer_calibration","message":"Nora placed the scarf in the drawer. She left the umbrella by the door."},
+  {"id":"cal-03","split":"observer_calibration","message":"The east trail has shade. The south trail receives direct sunlight."},
+  {"id":"cal-04","split":"observer_calibration","message":"The glass pitcher belongs in the tall cupboard. The metal pot belongs in the short cupboard."},
+  {"id":"cal-05","split":"observer_calibration","message":"The reading room is open to guests in the afternoon. The archive remains closed."},
+  {"id":"cal-06","split":"observer_calibration","message":"The spare lid fits the round container. It does not fit the square container."},
+  {"id":"cal-07","split":"observer_calibration","message":"The side gate opens into the orchard. The front gate opens into the driveway."},
+  {"id":"cal-08","split":"observer_calibration","message":"The linen scarf needs to dry in the air. The polyester scarf may go in the dryer."}
+]

@@ -1,0 +1,14 @@
+[
+  {"id":"copy-word","prompt":"Reply with exactly the word PAPER and nothing else.","expected":"PAPER"},
+  {"id":"copy-zero","prompt":"Reply with exactly the digit 0 and nothing else.","expected":"0"},
+  {"id":"copy-one","prompt":"Reply with exactly the digit 1 and nothing else.","expected":"1"},
+  {"id":"subtract","prompt":"What is 7 minus 3? Reply with just the number.","expected":"4"},
+  {"id":"add","prompt":"What is 3 plus 5? Reply with just the number.","expected":"8"},
+  {"id":"choose","prompt":"From the words apple and chair, which is a fruit? Reply with just that word.","expected":"apple"},
+  {"id":"last","prompt":"The words in order are river, window, garden. Reply with only the last word.","expected":"garden"},
+  {"id":"opposite","prompt":"What is the opposite of cold? Reply with exactly one word.","expected":"hot"},
+  {"id":"direct-map-zero","prompt":"In this ordinary lookup task, circle maps to 0 and square maps to 1. Look up circle. Reply with just the digit.","expected":"0"},
+  {"id":"direct-map-one","prompt":"In this ordinary lookup task, circle maps to 0 and square maps to 1. Look up square. Reply with just the digit.","expected":"1"},
+  {"id":"reverse-map-zero","prompt":"In this ordinary lookup task, 0 maps to circle and 1 maps to square. Look up 0. Reply with just the shape word.","expected":"circle"},
+  {"id":"reverse-map-one","prompt":"In this ordinary lookup task, 0 maps to circle and 1 maps to square. Look up 1. Reply with just the shape word.","expected":"square"}
+]

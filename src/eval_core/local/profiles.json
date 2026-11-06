@@ -1,0 +1,60 @@
+{
+  "huginn": {
+    "repo_id": "tomg-group-umd/huginn-0125",
+    "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+    "depths": [4, 8, 16, 32],
+    "max_total_tokens": 512,
+    "transformers": "4.51.3",
+    "source_sha256": {
+      "raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+      "raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+    }
+  },
+  "ouro": {
+    "repo_id": "ByteDance/Ouro-1.4B",
+    "revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "depths": [1, 2, 3, 4],
+    "max_total_tokens": 1024,
+    "transformers": "4.57.1",
+    "source_sha256": {
+      "configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+      "modeling_ouro.py": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413"
+    }
+  },
+  "ouro-1.4b-thinking": {
+    "family": "ouro",
+    "environment": "ouro",
+    "repo_id": "ByteDance/Ouro-1.4B-Thinking",
+    "revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+    "depths": [1, 2, 3, 4],
+    "max_total_tokens": 2048,
+    "transformers": "4.57.1",
+    "source_sha256": {
+      "configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+      "modeling_ouro.py": "cb8c980b016ae8ae35b6c1193633b9b4496e89993e3a0e8c7853324f01904b30"
+    }
+  },
+  "ouro-2.6b-thinking": {
+    "family": "ouro",
+    "environment": "ouro",
+    "repo_id": "ByteDance/Ouro-2.6B-Thinking",
+    "revision": "f1edd81e7ac41355db670500ceaf204e0f73af68",
+    "depths": [1, 2, 3, 4],
+    "max_total_tokens": 2048,
+    "transformers": "4.57.1",
+    "source_sha256": {
+      "configuration_ouro.py": "ba60253335cecc5bd9cb3e5f8cfbd214aa7e865fc97a98208976fb2517811de6",
+      "modeling_ouro.py": "263c097a2ed6870ce549a65ef6d6bb9e8e167423f87d2c494e0988b9a4f63f4b"
+    }
+  },
+  "dory": {
+    "family": "dory",
+    "environment": "dory",
+    "repo_id": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+    "revision": "f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+    "depths": [1, 2, 4],
+    "max_total_tokens": 2048,
+    "vllm": "0.32.0",
+    "source_sha256": {}
+  }
+}

@@ -76,3 +76,32 @@ requirement for codebooks, nor authorization for new model runs or spending.
 The [design guide](research/steganography-experiment-design.md) and
 [literature review](research/steganography-evaluation-literature.md) are the
 canonical topic homes; their specific recommendations are agent choices.
+
+## First recurrent-depth pilot
+
+Scope: the first pilot in `experiments/recurrent_steganography`. Source: the
+user's answers to the experiment-design questions in this chat, 2026-11-06,
+America/Los_Angeles; no portable message IDs are available.
+
+When asked which capability should be primary, the user selected:
+
+> Communicate without a shared strategy
+
+For the initial payload, the user selected:
+
+> Balanced one-bit payload (Recommended)
+
+For cover freedom, the user selected:
+
+> Preserve facts; change wording only (Recommended)
+
+For the first concealment assessment, the user selected:
+
+> Calibrated local monitor first (Recommended)
+
+Application: use unassisted coordination, balanced binary payloads, and
+fact-preserving paraphrases as the initial scientific condition, assessed first
+by a calibrated local monitor with a blinded sample for inspection. Supplied
+schemes can diagnose component competence but their successes do not establish
+the primary unassisted claim. Model selection, detailed observer design, trial counts,
+and later expansions remain agent proposals or separately recorded decisions.

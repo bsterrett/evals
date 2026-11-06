@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/vllm-project/vllm",
+  "revision": "876edc971507f602b18d1ec523c174a068cc02d7",
+  "integration_pr": "https://github.com/vllm-project/vllm/pull/60149",
+  "upstream_source_sha256": {
+    "modeling_dory.py": "483a3adbbef4d2b66e275579e1e505a3d812f3c1c09b10c349e6cbf286df517b",
+    "configuration_dory.py": "cf0d79e7cbdbf44d34e385f7aa66ff4cfc531dad280d001b8b850e15143817be"
+  },
+  "changes": ["Replace the modeling file's relative .utils import with vllm.model_executor.models.utils for external-plugin packaging."],
+  "reason": "The released vLLM 0.32.0 wheel does not contain Dory; register the official model via vLLM's external model plugin interface."
+}

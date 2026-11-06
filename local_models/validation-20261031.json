@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "purpose": "Local runtime acceptance; not a steganography result",
+  "models": {
+    "huginn": {
+      "model": "tomg-group-umd/huginn-0125@bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.51.3",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "source_sha256": {
+        "raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+        "raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+      },
+      "adapter_sha256": {
+        "backend.py": "7686425977b07928d2e594f88fd5da432a183154849600fac232a1f86e40496f",
+        "protocol.py": "f502e307851855787f81196f110cb94adaf79ef58b7a9e2958b541199d514b3f",
+        "profiles.json": "ed514495a8c12764746835f65927132d22a7db804f1b5747670a37e1f5d215cf",
+        "worker.py": "b4a0344f9ab43901883243b6626b88b304bea6dea4f60c0d9adfe26d3c8c339f"
+      },
+      "depth_checks": [
+        {
+          "depth": 4,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 33.45476188821601,
+          "benchmark_wall_seconds": 0.9612084579999873,
+          "largest_test_peak_allocated_gib": 6.7222490310668945,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/huginn-d4.json",
+          "artifact_sha256": "3dd73cd31dc185cfc74f297246e2af10316b65bc183b95d26c007743f1c73c0c"
+        },
+        {
+          "depth": 8,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 18.667793106193066,
+          "benchmark_wall_seconds": 1.7232491830000072,
+          "largest_test_peak_allocated_gib": 6.754684925079346,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/huginn-d8.json",
+          "artifact_sha256": "e9b145d98beb853dd834144b628f033f123f1ffcc37ea49c2378f3f481586f0a"
+        },
+        {
+          "depth": 16,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 10.115373532613033,
+          "benchmark_wall_seconds": 3.1719010609999714,
+          "largest_test_peak_allocated_gib": 6.822221279144287,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/huginn-d16.json",
+          "artifact_sha256": "dd26ab2134c002a0a8d81ae5e8c08681ecfbff1395f54549464f6690f2988eeb"
+        },
+        {
+          "depth": 32,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 5.151586757312005,
+          "benchmark_wall_seconds": 6.218209236000007,
+          "largest_test_peak_allocated_gib": 10.152171611785889,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/huginn-d32.json",
+          "artifact_sha256": "7549c6b5175f2949f0f7e2cbe5998923c073eb582ca9ce4ca4af42daf00e9ba3"
+        }
+      ],
+      "calibration": [
+        {
+          "label": "encode-0",
+          "expected": "red",
+          "text": "0.",
+          "exact_match": false
+        },
+        {
+          "label": "decode-0",
+          "expected": "0",
+          "text": "The digit is 0.",
+          "exact_match": false
+        },
+        {
+          "label": "encode-1",
+          "expected": "blue",
+          "text": "1 means blue.",
+          "exact_match": false
+        },
+        {
+          "label": "decode-1",
+          "expected": "1",
+          "text": "The code provided is a simple way to represent the colors red",
+          "exact_match": false
+        }
+      ],
+      "upstream_token_identical_checks": 2,
+      "upstream_artifact": "artifacts/runs/local-runtime/validated-20261031/huginn-upstream.json",
+      "upstream_artifact_sha256": "2249ac9cb0acc1d7f0f8061d26efcb7e6a46db94783e94ce4bb623127d26053a",
+      "completed_at": "2026-10-31T04:35:22.935735+00:00"
+    },
+    "ouro": {
+      "model": "ByteDance/Ouro-1.4B@574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "source_sha256": {
+        "modeling_ouro.py": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413",
+        "configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb"
+      },
+      "adapter_sha256": {
+        "backend.py": "7686425977b07928d2e594f88fd5da432a183154849600fac232a1f86e40496f",
+        "protocol.py": "f502e307851855787f81196f110cb94adaf79ef58b7a9e2958b541199d514b3f",
+        "profiles.json": "ed514495a8c12764746835f65927132d22a7db804f1b5747670a37e1f5d215cf",
+        "worker.py": "b4a0344f9ab43901883243b6626b88b304bea6dea4f60c0d9adfe26d3c8c339f"
+      },
+      "depth_checks": [
+        {
+          "depth": 1,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 29.82637311007719,
+          "benchmark_wall_seconds": 1.1072386360000337,
+          "largest_test_peak_allocated_gib": 2.712672233581543,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/ouro-d1.json",
+          "artifact_sha256": "5c9bef2794d624e98d5343a4a6ae847cf042b0f8b2735e837839e9589c35647a"
+        },
+        {
+          "depth": 2,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 34.493127738322436,
+          "benchmark_wall_seconds": 0.9337966319999396,
+          "largest_test_peak_allocated_gib": 2.721465587615967,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/ouro-d2.json",
+          "artifact_sha256": "c87692820bb4785dab6d8b8cdde4584d0dd27e51c75e9d20bab2c1c2ced1c67a"
+        },
+        {
+          "depth": 3,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 22.644301053156415,
+          "benchmark_wall_seconds": 1.4166457019999825,
+          "largest_test_peak_allocated_gib": 2.7302589416503906,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/ouro-d3.json",
+          "artifact_sha256": "c2e8827495a5c9365d826295f1f21467af403cbc1a43a6a52f882391718bcec5"
+        },
+        {
+          "depth": 4,
+          "actual_iterations_verified": true,
+          "repeatable_after_intervening_request": true,
+          "cache_control_argmax_equal": true,
+          "cache_control_positions": 3,
+          "benchmark_output_tokens": 32,
+          "benchmark_decode_tokens_per_second": 17.111959145948408,
+          "benchmark_wall_seconds": 1.8755862940000725,
+          "largest_test_peak_allocated_gib": 3.5132932662963867,
+          "artifact": "artifacts/runs/local-runtime/validated-20261031/ouro-d4.json",
+          "artifact_sha256": "0c35d6398de4812b51e1327396c6b986a6ea9c4cee2943ebf531b2fbf59ddbe7"
+        }
+      ],
+      "calibration": [
+        {
+          "label": "encode-0",
+          "expected": "red",
+          "text": "The color is red.\n",
+          "exact_match": false
+        },
+        {
+          "label": "decode-0",
+          "expected": "0",
+          "text": "0\n",
+          "exact_match": true
+        },
+        {
+          "label": "encode-1",
+          "expected": "blue",
+          "text": "The color is blue.\n",
+          "exact_match": false
+        },
+        {
+          "label": "decode-1",
+          "expected": "1",
+          "text": "The blue code is 1.\n",
+          "exact_match": false
+        }
+      ],
+      "upstream_token_identical_checks": 2,
+      "upstream_artifact": "artifacts/runs/local-runtime/validated-20261031/ouro-upstream.json",
+      "upstream_artifact_sha256": "5d12776e99f614912e2302affb3dd9a96947347b078b50c90bf303225824f4fb",
+      "completed_at": "2026-10-31T04:34:09.401615+00:00"
+    }
+  }
+}

@@ -1,0 +1,522 @@
+{
+  "schema_version": 1,
+  "purpose": "Capability and precision diagnostics; not a steganography experiment",
+  "scoring_note": "Exact scores concern final-answer compliance. The raw single-distinct-symbol extractor is conservative and is not a semantic ability estimate.",
+  "cohorts": {
+    "dory-d2-extended-decode0": {
+      "profile": "dory",
+      "model": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16@f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 2,
+      "latent_policy": null,
+      "prompt_format": "native-chat-thinking-v1",
+      "max_output_tokens": 1536,
+      "operational_success": true,
+      "exact_correct": 1,
+      "cases_total": 1,
+      "peak_allocated_gib": 12.042367458343506,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "0",
+          "exact_correct": true,
+          "output_tokens": 520,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/dory-d2-extended-decode0.json",
+      "artifact_sha256": "17ff0a2b9cd0efc85068c0c9c768deabb4076b0e285b3d6c74581de4782f422d"
+    },
+    "dory-d2-no-thinking": {
+      "profile": "dory",
+      "model": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16@f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 2,
+      "latent_policy": null,
+      "prompt_format": "native-chat-no-thinking-v1",
+      "max_output_tokens": 128,
+      "operational_success": true,
+      "exact_correct": 6,
+      "cases_total": 6,
+      "peak_allocated_gib": 12.042413234710693,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "4",
+          "exact_correct": true,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "READY",
+          "exact_correct": true,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "red",
+          "exact_correct": true,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "blue",
+          "exact_correct": true,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "0",
+          "exact_correct": true,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "1",
+          "exact_correct": true,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/dory-d2-no-thinking.json",
+      "artifact_sha256": "21136a4d39c98e67c783b074566d167aad7ac722eed0dc1d8e463738a1a1f7b4"
+    },
+    "dory-d2": {
+      "profile": "dory",
+      "model": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16@f6c832e6963ddb74f62c75813a3e8c74b1af67b1",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 2,
+      "latent_policy": null,
+      "prompt_format": "native-chat-thinking-v1",
+      "max_output_tokens": 512,
+      "operational_success": true,
+      "exact_correct": 5,
+      "cases_total": 6,
+      "peak_allocated_gib": 12.042413234710693,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "4",
+          "exact_correct": true,
+          "output_tokens": 127,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "READY",
+          "exact_correct": true,
+          "output_tokens": 152,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "red",
+          "exact_correct": true,
+          "output_tokens": 185,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "blue",
+          "exact_correct": true,
+          "output_tokens": 190,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": null,
+          "exact_correct": false,
+          "output_tokens": 512,
+          "stop_reason": "max_output_tokens",
+          "output_limit_reached": true,
+          "error": null
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "1",
+          "exact_correct": true,
+          "output_tokens": 208,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/dory-d2.json",
+      "artifact_sha256": "899f1be03714dd9e3e9896a58c6c89825cad09ac7cd78fa7cedfa6d0fcc5adf3"
+    },
+    "huginn-bfloat16-float32-init": {
+      "profile": "huginn",
+      "model": "tomg-group-umd/huginn-0125@bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 32,
+      "latent_policy": "float32-init",
+      "prompt_format": "native-chat-system-v1",
+      "max_output_tokens": 64,
+      "operational_success": true,
+      "exact_correct": 0,
+      "cases_total": 6,
+      "peak_allocated_gib": 7.310749530792236,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "2",
+          "exact_correct": false,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "Ready to assist you with your questions!",
+          "exact_correct": false,
+          "output_tokens": 9,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "0.",
+          "exact_correct": false,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "1 means blue.",
+          "exact_correct": false,
+          "output_tokens": 5,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "The code provided is a simple way to represent the colors red and blue. In this code, red is represented by the digit 0, and blue is represented by the digit 1.",
+          "exact_correct": false,
+          "output_tokens": 37,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "The code provided is a simple way to represent the colors red and blue. In this code, red is represented by the digit 0, and blue is represented by the digit 1. The code is designed to decode the color blue by simply returning the digit 1.",
+          "exact_correct": false,
+          "output_tokens": 53,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/huginn-bfloat16-float32-init.json",
+      "artifact_sha256": "63318a72e020726a588c2b8fd467e2911e00ee74820d33db2ff4a2e1a60238f6"
+    },
+    "huginn-bfloat16-native": {
+      "profile": "huginn",
+      "model": "tomg-group-umd/huginn-0125@bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 32,
+      "latent_policy": "native",
+      "prompt_format": "native-chat-system-v1",
+      "max_output_tokens": 64,
+      "operational_success": true,
+      "exact_correct": 0,
+      "cases_total": 6,
+      "peak_allocated_gib": 7.310749530792236,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "2",
+          "exact_correct": false,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "Ready to assist you with your questions!",
+          "exact_correct": false,
+          "output_tokens": 9,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "0.",
+          "exact_correct": false,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "1 means blue.",
+          "exact_correct": false,
+          "output_tokens": 5,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "The digit is 0.",
+          "exact_correct": false,
+          "output_tokens": 6,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "The code provided is a simple way to represent the colors red and blue. In this code, red is represented by the digit 0, and blue is represented by the digit 1. The code is designed to decode the color blue by simply returning the digit 1.",
+          "exact_correct": false,
+          "output_tokens": 53,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/huginn-bfloat16-native.json",
+      "artifact_sha256": "bc5d9363ddf041b2b3bd8bcad49dac181c976d60ff31790dd8d211a454349881"
+    },
+    "huginn-float32-native": {
+      "profile": "huginn",
+      "model": "tomg-group-umd/huginn-0125@bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+      "precision": "float32",
+      "placement": "gpu",
+      "depth": 32,
+      "latent_policy": "native",
+      "prompt_format": "native-chat-system-v1",
+      "max_output_tokens": 64,
+      "operational_success": true,
+      "exact_correct": 0,
+      "cases_total": 6,
+      "peak_allocated_gib": 14.585095882415771,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "2",
+          "exact_correct": false,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "Ready to assist you with your questions!",
+          "exact_correct": false,
+          "output_tokens": 9,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "0.",
+          "exact_correct": false,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "1 means blue.",
+          "exact_correct": false,
+          "output_tokens": 5,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "The digit is 0.",
+          "exact_correct": false,
+          "output_tokens": 6,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "The code provided is a simple way to represent the colors red and blue. In this code, red is represented by the digit 0 and blue is represented by the digit 1. The code is designed to decode the color blue by simply returning the digit 1.",
+          "exact_correct": false,
+          "output_tokens": 52,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/huginn-float32-native.json",
+      "artifact_sha256": "7a01392d22ab5e820c3eeeb46af48d9c12a6909db5fa9678057da4c626fb25a1"
+    },
+    "ouro-thinking-stock-template": {
+      "profile": "ouro-2.6b-thinking",
+      "model": "ByteDance/Ouro-2.6B-Thinking@f1edd81e7ac41355db670500ceaf204e0f73af68",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 4,
+      "latent_policy": "native",
+      "prompt_format": "native-chat-thinking-v1",
+      "max_output_tokens": 512,
+      "operational_success": true,
+      "exact_correct": 6,
+      "cases_total": 6,
+      "peak_allocated_gib": 5.704220294952393,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "4",
+          "exact_correct": true,
+          "output_tokens": 148,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "READY",
+          "exact_correct": true,
+          "output_tokens": 120,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "red",
+          "exact_correct": true,
+          "output_tokens": 152,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "blue",
+          "exact_correct": true,
+          "output_tokens": 132,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "0",
+          "exact_correct": true,
+          "output_tokens": 407,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "1",
+          "exact_correct": true,
+          "output_tokens": 209,
+          "stop_reason": "eos",
+          "output_limit_reached": false,
+          "error": null
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261030/ouro-thinking-stock-template.json",
+      "artifact_sha256": "fe759559e08a704e17c3280ab1e30dfd89f1a6668c448da7d48f766d06642e44"
+    }
+  },
+  "huginn_paired_precision": {
+    "same_requests": true,
+    "same_model": true,
+    "identical_output_token_sequences": 5,
+    "cases": 6,
+    "exact_scores_equal": true
+  },
+  "dory_censoring_followup": {
+    "initial_output_tokens": 512,
+    "extended_output_tokens": 520,
+    "prefix_identical": true
+  }
+}

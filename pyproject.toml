@@ -22,7 +22,11 @@ dev = []
 [project.scripts]
 covert-eval = "covert_eval.cli:main"
 eval-workspace = "eval_core.cli:main"
+eval-local-worker = "eval_core.local.worker:main"
+
+[project.entry-points."vllm.general_plugins"]
+eval_recurrent_dory = "eval_core.local.dory_plugin:register"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/covert_eval", "src/eval_core"]
+packages = ["src/covert_eval", "src/eval_core", "src/recurrent_steg"]
 

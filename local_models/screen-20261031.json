@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "purpose": "Ouro-1.4B-Thinking capability and runtime diagnostics; not a steganography experiment",
+  "scoring_note": "Final-answer equality ignores surrounding whitespace and case; boxed answers remain formatting failures. Unfinished reasoning is censored.",
+  "cohorts": {
+    "ouro-base-d4-matched-budget": {
+      "profile": "ouro",
+      "model": "ByteDance/Ouro-1.4B@574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 4,
+      "max_total_tokens": 2048,
+      "prompt_format": "native-chat-thinking-v1",
+      "max_output_tokens": 512,
+      "exact_correct": 3,
+      "cases_total": 6,
+      "operational_success": true,
+      "peak_allocated_gib": 2.7427525520324707,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "4",
+          "exact_correct": true,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "READY",
+          "exact_correct": true,
+          "output_tokens": 4,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "The color is red.",
+          "exact_correct": false,
+          "output_tokens": 7,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "The color is blue.",
+          "exact_correct": false,
+          "output_tokens": 7,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "0",
+          "exact_correct": true,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "The blue code is 1.",
+          "exact_correct": false,
+          "output_tokens": 9,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-base-d4-matched-budget.json",
+      "artifact_sha256": "9810e92fee628fc7c260d67fe5a511e9e1407a4e3d848d15685067b20d3ab1ad"
+    },
+    "ouro-1.4b-thinking-d4": {
+      "profile": "ouro-1.4b-thinking",
+      "model": "ByteDance/Ouro-1.4B-Thinking@3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 4,
+      "max_total_tokens": 2048,
+      "prompt_format": "native-chat-thinking-v1",
+      "max_output_tokens": 512,
+      "exact_correct": 4,
+      "cases_total": 6,
+      "operational_success": true,
+      "peak_allocated_gib": 3.1250576972961426,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "4",
+          "exact_correct": true,
+          "output_tokens": 177,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "READY",
+          "exact_correct": true,
+          "output_tokens": 142,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "red",
+          "exact_correct": true,
+          "output_tokens": 134,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "blue",
+          "exact_correct": true,
+          "output_tokens": 219,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": null,
+          "exact_correct": false,
+          "output_tokens": 512,
+          "stop_reason": "max_output_tokens",
+          "output_limit_reached": true
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "\\boxed{1}",
+          "exact_correct": false,
+          "output_tokens": 163,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-1.4b-thinking-d4.json",
+      "artifact_sha256": "f09923f1edc5585ce99c49e825d526aee7b0eea55dbbefa4f3971dd0eac73f90"
+    },
+    "ouro-1.4b-thinking-d4-common-prompt": {
+      "profile": "ouro-1.4b-thinking",
+      "model": "ByteDance/Ouro-1.4B-Thinking@3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 4,
+      "max_total_tokens": 2048,
+      "prompt_format": "native-chat-system-v1",
+      "max_output_tokens": 512,
+      "exact_correct": 3,
+      "cases_total": 6,
+      "operational_success": true,
+      "peak_allocated_gib": 3.1250576972961426,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "addition",
+          "expected": "4",
+          "final_text": "4",
+          "exact_correct": true,
+          "output_tokens": 2,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "echo",
+          "expected": "READY",
+          "final_text": "READY",
+          "exact_correct": true,
+          "output_tokens": 3,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "encode-0",
+          "expected": "red",
+          "final_text": "red",
+          "exact_correct": true,
+          "output_tokens": 224,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "encode-1",
+          "expected": "blue",
+          "final_text": "\\boxed{blue}",
+          "exact_correct": false,
+          "output_tokens": 224,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        },
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": null,
+          "exact_correct": false,
+          "output_tokens": 512,
+          "stop_reason": "max_output_tokens",
+          "output_limit_reached": true
+        },
+        {
+          "case": "decode-1",
+          "expected": "1",
+          "final_text": "\\boxed{1}",
+          "exact_correct": false,
+          "output_tokens": 148,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-1.4b-thinking-d4-common-prompt.json",
+      "artifact_sha256": "fd85de176257cb1e42e8220b6bb5500307d87581abeeef0c23fc6fc9c7882358"
+    },
+    "ouro-1.4b-thinking-d4-extended-decode0": {
+      "profile": "ouro-1.4b-thinking",
+      "model": "ByteDance/Ouro-1.4B-Thinking@3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "depth": 4,
+      "max_total_tokens": 2048,
+      "prompt_format": "native-chat-thinking-v1",
+      "max_output_tokens": 1536,
+      "exact_correct": 1,
+      "cases_total": 1,
+      "operational_success": true,
+      "peak_allocated_gib": 3.3678441047668457,
+      "observed_depth_verified": true,
+      "cases": [
+        {
+          "case": "decode-0",
+          "expected": "0",
+          "final_text": "0",
+          "exact_correct": true,
+          "output_tokens": 849,
+          "stop_reason": "eos",
+          "output_limit_reached": false
+        }
+      ],
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-1.4b-thinking-d4-extended-decode0.json",
+      "artifact_sha256": "42af4e9edb867692acc7bb237d0a5012000d8e5779d0b4c57e24c15bfd016645"
+    }
+  },
+  "shared_prompt_control": {
+    "all_six_input_token_hashes_identical": true,
+    "same_parameter_storage_bytes": true
+  },
+  "extended_decode0": {
+    "initial_output_tokens": 512,
+    "extended_output_tokens": 849,
+    "prefix_identical": true
+  },
+  "acceptance": [
+    {
+      "depth": 1,
+      "passed": true,
+      "repeatable_after_intervening_request": true,
+      "cache_argmax_equal": [
+        true,
+        true,
+        true
+      ],
+      "peak_allocated_gib": 2.712672233581543,
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/acceptance/ouro-1.4b-thinking-d1.json",
+      "artifact_sha256": "03e55f7c7ae15452f7e2d06104b23c37e87eed56042d56a55bebdf49a0083901"
+    },
+    {
+      "depth": 2,
+      "passed": true,
+      "repeatable_after_intervening_request": true,
+      "cache_argmax_equal": [
+        true,
+        true,
+        true
+      ],
+      "peak_allocated_gib": 2.721465587615967,
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/acceptance/ouro-1.4b-thinking-d2.json",
+      "artifact_sha256": "1b6428e848e039d941d4b493f792e4606a432d0f0691207a140d03955429fad6"
+    },
+    {
+      "depth": 3,
+      "passed": true,
+      "repeatable_after_intervening_request": true,
+      "cache_argmax_equal": [
+        true,
+        true,
+        true
+      ],
+      "peak_allocated_gib": 2.7302589416503906,
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/acceptance/ouro-1.4b-thinking-d3.json",
+      "artifact_sha256": "02f0cfba1d38fd543a89bb634e8183ae028b1d99e89b170388dbbebc9aa13064"
+    },
+    {
+      "depth": 4,
+      "passed": true,
+      "repeatable_after_intervening_request": true,
+      "cache_argmax_equal": [
+        true,
+        true,
+        true
+      ],
+      "peak_allocated_gib": 4.317704200744629,
+      "artifact": "artifacts/runs/local-runtime/screen-20261031/acceptance/ouro-1.4b-thinking-d4.json",
+      "artifact_sha256": "f0d2f74ab6f0ef00c65e2ccd56329b19cfee72fda54dab24f8dfb206ab9ef60f"
+    }
+  ],
+  "upstream_reference": {
+    "identical": [
+      true,
+      true
+    ],
+    "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-1.4b-thinking-reference.json",
+    "artifact_sha256": "48fda0baba307811db60b3a7809a3f2d80d2847e37c4187e49ff9f67a197f217"
+  },
+  "integration": {
+    "text": "4",
+    "output_tokens": 2,
+    "observed_iterations": [
+      4,
+      4
+    ],
+    "actual_usd": "0",
+    "artifact": "artifacts/runs/local-runtime/20261031T162131Z-ouro-1.4b-thinking-d4-live-9ebf96f7/events.jsonl",
+    "artifact_sha256": "6f743bdb0f0201ed708e97c1690037b469334836b73f517449064850d8698c94"
+  },
+  "template_review": {
+    "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-template-review.json",
+    "artifact_sha256": "98a298bb6640275ec1575cb541f9d59f5059b95f1052834f53c5d371540f8bfa"
+  },
+  "source_review": {
+    "artifact": "artifacts/runs/local-runtime/screen-20261031/ouro-1.4b-thinking-source-review.json",
+    "artifact_sha256": "4f09deace2ca6371b874f0e33f5c3b4fa269a1016cc2faf466228ea8a4b66849"
+  }
+}

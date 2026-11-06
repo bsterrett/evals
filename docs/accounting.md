@@ -19,6 +19,12 @@ charge blocks new reservations campaign-wide, while requests already in flight m
 still settle. Reconciliation is refused until every pending request is resolved.
 Per-run ceilings remain independently enforced.
 
+Local GPU calls use zero-charge rate cards. Zero-dollar reservations are recorded
+and settled in the same ledger, so local runs retain model/usage audit history
+without consuming the API budget. Wall time and GPU memory are recorded separately
+in local provider responses. A zero-dollar reservation still observes a blocked
+campaign ledger.
+
 Opening the ledger never treats another client's pending request as abandoned. If a
 process crashes, its reservation persists and continues to consume budget. After
 verifying that the request is no longer in flight, mark only that reservation
