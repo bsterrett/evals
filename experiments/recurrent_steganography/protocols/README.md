@@ -3,6 +3,11 @@
 The study question and user-selected scope are in the [experiment README](../README.md).
 The current pilot is exploratory. The user selected a calibrated local observer;
 the exact model and qualification checks are agent implementation choices.
+Version `unassisted-one-bit-v0.1` has now been executed. Its observer contract
+failed and no primary joint result is available; see [findings](../notes/findings.md).
+The commands below describe that retained method, not a recommendation to repeat
+it unchanged. CLI structural readiness does not establish observer qualification
+or scientific sensitivity. A next pilot requires a newly frozen method.
 
 | Component | Canonical source |
 | --- | --- |

@@ -13,7 +13,7 @@ attributable directions behind those conventions.
 | Experiment | State | Design and findings |
 | --- | --- | --- |
 | `semantic_covert_channel` | Exploratory; V1 and V1.5 screens completed | [Protocol](experiments/semantic_covert_channel/README.md), [research notes](experiments/semantic_covert_channel/notes/findings.md) |
-| `recurrent_steganography` | Preparing an unassisted one-bit pilot | [Design](experiments/recurrent_steganography/README.md), [method status](experiments/recurrent_steganography/protocols/README.md) |
+| `recurrent_steganography` | Exploratory pilot completed; chance recovery, observer contract failed | [Design](experiments/recurrent_steganography/README.md), [findings](experiments/recurrent_steganography/notes/findings.md) |
 
 ```text
 workspace.toml                         Shared campaign configuration

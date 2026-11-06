@@ -1,8 +1,10 @@
 # Recurrent depth and unassisted one-bit communication
 
 Scope: a new exploratory study, independent of `semantic_covert_channel`.
-Preparation started 2026-11-06, America/Los_Angeles. No steganography results
-have yet been observed for this study.
+Preparation started 2026-11-06, America/Los_Angeles. The first exploratory pilot
+is complete: recovery stayed at chance, and the observer's JSON contract failed.
+See [findings and limitations](notes/findings.md). This method version is retained
+for reproduction; a next pilot needs a newly frozen elicitation/observer design.
 
 ## Question and hypothesis
 

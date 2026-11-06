@@ -223,6 +223,13 @@ post-training, and templates introduce additional differences.
 
 ## What remains to turn this into a calibrated framework
 
+Local application on 2026-11-06 supplies an informative negative example: the
+[first recurrent-depth pilot](../../experiments/recurrent_steganography/notes/findings.md)
+passed ordinary instruction controls but remained at chance on the unassisted
+task, while its structured observer failed at a free-text field. Check each role's
+actual output contract before a full run. Recovering fields with a post-run parser
+is a separate analysis and does not retroactively qualify the original observer.
+
 The next useful implementation is a small diagnostic set with frozen scheme
 identities, known-valid examples, reference extraction where possible, and
 separate quality/observer controls. Candidate families could include a local
