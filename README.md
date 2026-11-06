@@ -68,3 +68,6 @@ Installed local models: [Huginn, Ouro, and Dory setup and commands](docs/researc
 Latest calibration: [FP32 Huginn and post-trained checkpoint screens](docs/research/recurrent-model-capability-screen.md).
 
 Same-size comparison: [Ouro-1.4B-Thinking and base checkpoint follow-up](docs/research/ouro-1.4b-thinking-screen.md).
+
+New experiment research: [adding recurrent depth to pretrained models](docs/research/recurrent-depth-retrofit-literature.md),
+with a [methods taxonomy and search glossary](docs/research/recurrent-depth-methods-and-terms.md).

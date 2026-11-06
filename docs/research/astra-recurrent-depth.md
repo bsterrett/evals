@@ -193,6 +193,12 @@ that Astra loops twice. Its graph-depth convention is unspecified here.
 
 ## Published recurrence designs we can inspect
 
+For the separate question of **adding recurrence to an already-trained ordinary
+model**, see the [retrofit literature review](recurrent-depth-retrofit-literature.md)
+and [methods/glossary](recurrent-depth-methods-and-terms.md). They distinguish
+frozen-weight interventions, conversion training, and native recurrent models;
+the checkpoint comparisons here do not establish retrofit effectiveness.
+
 Depth recurrence transforms continuous activations repeatedly before producing a
 token. Extra autoregressive reasoning tokens, repeated API calls, and additional
 agent turns are separate sources of computation. A model can combine latent
