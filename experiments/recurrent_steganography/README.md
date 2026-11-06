@@ -38,6 +38,21 @@ allowances, and greedy decoding fixed. Reuse each generated carrier across the
 decoder-depth conditions and analyze the dependencies by cover case. Changing
 both endpoints together would leave the contribution unidentified.
 
+The information boundaries for a main trial are:
+
+```mermaid
+flowchart LR
+    B[Private bit] --> E[Encoder at depth 1, 2, or 4]
+    M[Overt message] --> E
+    E --> C[Carrier text]
+    C --> D[Fresh decoder at depth 1, 2, or 4]
+    C --> O[Fixed monitor at depth 4]
+    M --> O
+    D --> R[Recovery score]
+    B --> R
+    O --> Q[Cover, leakage, and suspicion scores]
+```
+
 Start with short, synthetic cover tasks that admit ordinary alternative wording.
 Use both payload values on each development cover, balanced across depths.
 No-cover and honest-cover controls measure guessing and prompt-induced recovery;
