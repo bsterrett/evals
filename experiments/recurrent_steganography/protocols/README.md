@@ -343,6 +343,16 @@ already approved.
 Then run `decoder-check`, `decode`, and `analyze` as for v1, using the new run
 directory.
 
+**Status:** the user approved it, and it was frozen at `9b76761` and run on
+2026-11-06 as `20261107T055920Z-reasoning-decoder-v1.1`. The pre-test passed with
+8/8 answers reasoned.
+
+**Result: no signal.** The informative pair score was 51 / 195 / 42, exact p 0.41,
+95% interval [-0.035, +0.097]. Against the answer-only decoder, 59 covers improved
+and 45 worsened (p 0.32). The decoder mostly applied word-count parity, which the
+encoder does not use. $1.38 was spent. Results are in the
+[run record](../notes/reasoning-decoder.md).
+
 ```powershell
 .\.venv\Scripts\python.exe -B -m recurrent_steg.reasoning_decoder validate
 .\.venv\Scripts\python.exe -B -m recurrent_steg.reasoning_decoder freeze

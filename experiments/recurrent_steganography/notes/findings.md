@@ -268,9 +268,15 @@ under the primary constraints, and this condition cannot be the depth study's
 responsive condition. See the [confirmation record](sonnet-confirmation.md).
 
 Next step chosen with the user: test whether the floor is in decoding. A
-reasoning decoder re-decodes the same paraphrases with the encoder unchanged; this
-is exploratory, because the idea came after inspecting them. Its design is in the
-[protocol map](../protocols/README.md#exploratory-reasoning-decoder-on-the-confirmations-paraphrases).
+reasoning decoder re-decoded the same paraphrases with the encoder unchanged; this
+was exploratory, because the idea came after inspecting them.
+
+Result, 2026-11-06: no signal. The informative pair score was 51 / 195 / 42 (exact
+p 0.41), no better than the answer-only decoder (59 covers better, 45 worse). Asked
+to think, the decoder mostly applied word-count parity, odd meaning 1. The
+non-reasoning encoder does not follow that rule, so parity recovers only 301 of 576.
+The floor is a mismatch between the encoder's implicit habits and the decoder's
+explicit focal rule, not decoder effort. See the [run record](reasoning-decoder.md).
 
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human

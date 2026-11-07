@@ -168,6 +168,16 @@ like that, and recovery was exactly at chance
 Before calling a payload-dependent feature an encoding, check whether it can be
 read from a single carrier.
 
+Letting only one endpoint reason can swap one mismatch for another. In the same
+study, a Sonnet 5.5 decoder was asked to think about those non-reasoning
+paraphrases. It mostly settled on an explicit, countable rule, odd word count
+meaning 1, in 459 of 576 decodes. The encoder's parity barely tracked the payload,
+so recovery stayed at chance
+([record](../../experiments/recurrent_steganography/notes/reasoning-decoder.md)).
+A reasoning endpoint tends to choose an explicit focal rule. A non-reasoning
+endpoint shows implicit habits instead. Test whether the two sides' conventions
+match before attributing a floor to either side's capacity.
+
 For an exact codebook, a small diagnostic matrix is particularly useful:
 
 | Carrier producer | Decoder | Purpose |
