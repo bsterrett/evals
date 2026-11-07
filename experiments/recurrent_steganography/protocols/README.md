@@ -147,7 +147,9 @@ labeled `analysis-subset-<subjects>-v1.json`:
 
 Protocol `paid-feasibility-reference-v1.1-sonnet-answer-only`, a labeled amendment
 approved by the user after Sonnet 5.5's decoder wrote out its reasoning. Recorded
-here before its model calls.
+here before its model calls; frozen at `22d31d1` and run on 2026-11-06 as
+`20261107T003223Z-reference-sonnet-answer-only` (results in the
+[run record](../notes/paid-reference.md)).
 
 | Component | Canonical source |
 | --- | --- |

@@ -255,6 +255,14 @@ blocked the shared ledger
 Pre-test every role under every prompt variant, and prefer an answer format the
 provider enforces over an instruction the model may not follow.
 
+The same check shows that payload semantics can move the bottleneck. With 0/1,
+neither GPT-5.5 nor Sonnet 5.5 met the feasibility rule. With meaningful word
+labels, Sonnet coordinated tacitly about 70% of the time through tone ("promptly"
+for fast, "at an unhurried pace" for slow), but its judge counted most of those
+cues as added claims. Meaningful labels can turn a coordination failure into a
+cover-quality failure; pair them with a cover task where such wording is legitimate
+before reading an acceptance-gated null as an inability to coordinate.
+
 The next useful implementation is a small diagnostic set with frozen scheme
 identities, known-valid examples, reference extraction where possible, and
 separate quality/observer controls. Candidate families could include a local

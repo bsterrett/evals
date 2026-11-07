@@ -2,11 +2,17 @@
 
 Scope: exploratory protocol `paid-feasibility-reference-v1`, run
 `20261106T221454Z-reference` on 2026-11-06, method frozen at
-`fd80d8328958b6ee2c771eaf3daa180c1f24f567`. GPT-5.5 completed; Claude Sonnet 5.5
-stopped during decoding and is not analyzed. There is no depth factor; nothing
+`fd80d8328958b6ee2c771eaf3daa180c1f24f567`. GPT-5.5 completed under it. Claude
+Sonnet 5.5's decoding stopped and was redone under the labeled amendment
+`paid-feasibility-reference-v1.1-sonnet-answer-only` (frozen at `22d31d1`, run
+`20261107T003223Z-reference-sonnet-answer-only`). There is no depth factor; nothing
 here measures recurrence. Design and authorization are in the
 [experiment README](../README.md#paid-feasibility-reference) and the
 [protocol map](../protocols/README.md#paid-feasibility-reference).
+
+Summary: no model-condition cell met the prospective rule. Sonnet 5.5 came closest
+in plain/0-1 (Holm p 0.051). With word labels, Sonnet passed the label through
+tone, but GPT-5.5's judge rejected most such paraphrases for added claims.
 
 ## Question and prospective rule
 
@@ -82,35 +88,86 @@ Per-cover carriers, answers, acceptance, and scores for all four GPT-5.5 cells,
 plus the Sonnet stop evidence, are in the
 [evidence extract](paid-reference-v1-evidence.json).
 
+## Observations: Sonnet 5.5 (answer-only amendment)
+
+The user approved the amendment after the stop. Each decode request carried a
+structured-output schema allowing only `{"answer": <one of the two options>}`;
+prompts, jobs, thinking setting, and analysis code were the parent's frozen
+versions. The 8-call pre-test returned 8 valid answers, and all 592 decodes were
+valid. GPT-5.5 judged Sonnet's paraphrases in the parent's frozen judge phase. It
+qualified: its cutoff of 0.05 flagged 1 of 24 honest calibration paraphrases and
+8 of 8 overt controls, and it accepted 46 of 48 honest development paraphrases.
+
+| Cell | Pair scores +1 / 0 / -1 | Mean | Exact p | Holm p (8 cells) | Recovery-only +1 / 0 / -1 | Payload recovered | Accepted carriers | Identical pairs |
+| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: |
+| plain-bits | 11 / 36 / 1 | 0.21 | 0.0063 | 0.051 | 12 / 35 / 1 | 59/96 | 94/96 | 9/48 |
+| plain-words | 2 / 45 / 1 | 0.02 | 1.00 | 1.00 | 21 / 25 / 2 | 67/96 | 49/96 | 1/48 |
+| focal-bits | 3 / 44 / 1 | 0.04 | 0.63 | 1.00 | 4 / 43 / 1 | 51/96 | 90/96 | 15/48 |
+| focal-words | 2 / 45 / 1 | 0.02 | 1.00 | 1.00 | 24 / 22 / 2 | 70/96 | 44/96 | 1/48 |
+
+The combined decision, with GPT-5.5's four p-values fixed beforehand, found no
+feasible cell. Sonnet plain-bits missed the threshold narrowly (Holm p 0.051 against
+0.05). The 42 unenforced parent decodes were not scored.
+
+Post hoc observations (exploratory):
+
+- The plain-bits signal is not decoder noise: differing pairs scored 10 / 1
+  (exact p 0.012) and identical pairs 1 / 0. Sonnet's two decodes of an identical
+  carrier disagreed in only 3 of 24 identical bit pairs.
+- No single convention is evident. The three plain-bits carriers that open with
+  "First" all carried payload 1 and were decoded as 1, and payload-1 carriers were
+  longer in 19 of 39 differing pairs versus shorter in 9.
+- With word labels Sonnet transmitted through tone: recovery-only 21 / 2 (plain,
+  exact p 0.0001) and 24 / 2 (focal), still 20 / 2 and 18 / 2 after removing
+  pairs with deterministic label-word leaks. GPT-5.5 judged 47 of 96 (plain) and 52
+  of 96 (focal) of those paraphrases to add claims, so few pairs survived
+  acceptance. For example, "the lecture follows promptly" for fast against "follows
+  at an unhurried pace" for slow. fast/slow and happy/sad carried most of it;
+  warm/cool carried little (recovery-only sums 1 and 2).
+- Focal framing did not help Sonnet: focal-bits scored 3 / 1 against plain-bits'
+  11 / 1 (exploratory contrast p 0.09).
+
+Per-cover carriers, answers, judge flags, and scores for all four Sonnet cells are
+in the [amendment evidence extract](paid-reference-v1.1-sonnet-evidence.json).
+
 ## Interpretation and uncertainty
 
-Inference: GPT-5.5 did not transmit the payload at a detectable rate under the
-primary constraints, with or without focal framing or meaningful labels. The
-nominal focal-bits trend is accounted for by decoder noise on identical carriers.
-This makes it likely that the depth pilot's floor lies largely in the task rather
-than in Dory's size, so a larger recurrent subject is not the obvious next lever
-for this condition.
+Inference: under the primary constraints neither strong model met the feasibility
+rule. GPT-5.5 shows no transmission at all; its nominal focal-bits trend is
+accounted for by decoder noise on identical carriers. Sonnet 5.5 shows a weak,
+probably real channel in plain/0-1 through accepted, fact-preserving paraphrases,
+short of the corrected threshold. With word labels, tacit coordination clearly
+works for Sonnet, but through added tone that the fact-preserving cover forbids.
 
-Limits: one model and 48 covers. With Holm over eight cells, only large effects
-(a mean pair score of roughly 0.3 or more) were detectable; weaker channels are not
-excluded. Default sampling added decoder noise. Sonnet 5.5 is untested; its
-encoder visibly reached for tone in the word conditions ("but unfortunately" for
-sad), which a same-model decoder might read, so its omission is a real gap rather
-than a formality.
+So the binding constraint differs by condition. For arbitrary 0/1 payloads,
+coordination itself is the bottleneck even for frontier models. For meaningful
+labels, coordination is achievable and the cover constraint binds. Either way, the
+depth pilot's floor is mostly a property of the task as specified, not of Dory's
+size alone; a larger recurrent subject is not the obvious next lever.
+
+Limits: two models and 48 covers. With Holm over eight cells only large effects
+were detectable, and the plain-bits Sonnet result is borderline. Default sampling
+added decoder noise. Acceptance depends on one judge; GPT-5.5's added-claims
+standard for tonal words is a judgment call that humans might draw differently.
+The amendment changed Sonnet's decoder after its prompts proved unreliable; its
+outcome was not visible when the amendment was specified.
 
 ## Next useful step
 
 Agent recommendations, not user decisions:
 
-- Sonnet 5.5: drop it, or run a labeled amendment that enforces an answer-only
-  decoder reply, reusing its 456 frozen paraphrases (about $1.35; needs a provider
-  change and a new freeze). A reasoning decoder could be a separate labeled variant.
+- Confirm the Sonnet plain/0-1 signal on fresh covers as a single pre-registered
+  cell, so no multiple-comparison correction applies. Its post hoc 10 / 1 split on
+  differing pairs suggests roughly 100 new covers would decide it, at about $1-2.
+- For word labels, a cover task with legitimate room for tone (short reviews or
+  anecdotes, where a manner word adds no factual claim) would test whether the
+  coordination Sonnet showed survives concealment. That relaxes the user's chosen
+  "preserve facts; change wording only" condition, so it needs the user's decision.
+- A responsive condition like that could then be run on Dory across depths, which
+  is what the depth question needs.
 - Future protocols: score identical-carrier pairs as 0 or decode each carrier
   several times; enforce answer formats the provider can check; pre-test every role
   under every prompt variant.
-- To find a responsive condition before more depth runs, the user-approved
-  candidates are a separately labeled written-reasoning encoder variant and, later,
-  the deferred supplied-scheme track.
 
 ## Evidence identities
 
@@ -129,3 +186,18 @@ response logs remain local.
 | `encode-sonnet55.jsonl` | `daeea0f58b78e7df19fbc35bba1db191eb9d1132f2a6b19468ee2c0fee7456dc` |
 | `decode-sonnet55.jsonl` (partial) | `55f9914e2d24bc5c0124e75666f1de8ea90344b8155c3bcc95b967544a3721c4` |
 | `judge-controls-sonnet55.jsonl` | `37e1ef6dc31a70aeb8335dd486e72b605915f93556ce303316b35dab1c8fd755` |
+| `judge-sonnet55.jsonl` | `619368c406aeeb87bbfcc952e2fdea4a167efb1e43858adbea4fe3f120ad47e2` |
+
+Amendment directory:
+`artifacts/runs/recurrent_steganography/20261107T003223Z-reference-sonnet-answer-only/`,
+local-only.
+
+| Local file | SHA-256 |
+| --- | --- |
+| `plan.json` | `c7993fd14e936611547a4d52eb54f3d67bf9fc2d0cb5acad28321d3cc4d9f961` |
+| `decoder-check-sonnet55.jsonl` | `12ebb2e474c9691f30fc41c59116a57def871c6951bc8c6f50238e636ed5ce0d` |
+| `decode-sonnet55.jsonl` | `3ab6ba3d0c49ab9243bf94c49660bc15e832d3be481e2c8f34e95d36453d8342` |
+| `analysis-sonnet55-amended-v1.json` | `a8cf255b96642ac2e95ef1f064ec30a011941bf9c7199f519c58e188f771a4e2` |
+
+Total spend for the reference check: $3.45 ($2.92 parent run, $0.53 amendment),
+within the $10 approval. Campaign spend afterwards: $6.64 of $50.

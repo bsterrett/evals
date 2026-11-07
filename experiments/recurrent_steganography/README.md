@@ -143,9 +143,10 @@ reuses the pilot's exact prompts. The outcome is the within-cover pair score, wi
 a Holm-corrected exact sign-flip decision rule fixed before the run. Method sources
 and commands are in the [protocol map](protocols/README.md#paid-feasibility-reference).
 
-Status: run on 2026-11-06. GPT-5.5 completed with no feasible cell; Sonnet 5.5's
-decoder wrote out its reasoning, a capped reply blocked the ledger, and the user
-chose to continue with GPT-5.5 only. Results are in the
+Status: run on 2026-11-06. GPT-5.5 completed with no feasible cell. Sonnet 5.5's
+decoder wrote out its reasoning and a capped reply blocked the ledger; with the
+user's approval its decoding was redone under a labeled answer-only amendment. No
+cell met the rule; Sonnet plain/0-1 came closest. Results are in the
 [run record](notes/paid-reference.md).
 
 The assistance/difficulty rationale is in the

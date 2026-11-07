@@ -171,7 +171,9 @@ pairs, and statistics are agent choices.
 
 After Sonnet 5.5's decoder stopped the run (see the experiment findings), the user
 reviewed billing, reconciled the ledger, and directed: "Go forward with GPT-5.5".
-Sonnet's remaining decoding was left for a later decision.
+Sonnet's remaining decoding was left for a later decision. Offered "Run the
+amendment" or "Drop Sonnet" for a labeled answer-only Sonnet decoder estimated at
+about $1.35, the user selected "Run the amendment"; it ran within the original $10.
 
 ## Two distinct recurrence research candidates
 

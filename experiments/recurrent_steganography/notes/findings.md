@@ -252,10 +252,11 @@ none can, the floor lies in the task rather than Dory's size, and model scale is
 not the next lever. Its design is in the
 [protocol map](../protocols/README.md#paid-feasibility-reference).
 
-Result, 2026-11-06: GPT-5.5 met the feasibility rule in none of the four framing
-and label conditions; its nominally strongest cell is accounted for by decoder
-noise on identical carriers. Claude Sonnet 5.5 stopped during decoding and is
-untested. See the [run record](paid-reference.md).
+Result, 2026-11-06: no model-condition cell met the feasibility rule. GPT-5.5
+showed no transmission. Claude Sonnet 5.5, decoded under a labeled answer-only
+amendment, came closest in plain/0-1 (Holm p 0.051) and passed word labels through
+tone that the fact-preserving judge rejected. The task as specified, not Dory's size
+alone, explains most of the depth pilot's floor. See the [run record](paid-reference.md).
 
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human
