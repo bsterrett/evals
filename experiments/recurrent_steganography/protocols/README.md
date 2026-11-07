@@ -500,12 +500,12 @@ Protocol `sonnet-rules-decoder-v1`. It was recorded and committed before any of
 its model calls. The user chose this follow-up after the both-reasoning result (see
 [user policy](../../../docs/user-policy.md#recurrent-depth-follow-up-after-the-first-pilot)).
 
-**The ceiling is pending.** The $6.00 in the configuration is a proposal, and the
-run needs the user's spending approval first.
+**Ceiling:** the $6.00 in the configuration was proposed with the design, and the
+user approved it for this run only after the design was committed.
 
 | Component | Canonical source |
 | --- | --- |
-| Parent run and its pinned hashes, gate settings, proposed $6.00 ceiling | `../configs/rules-decoder-v1.toml` |
+| Parent run and its pinned hashes, gate settings, $6.00 ceiling | `../configs/rules-decoder-v1.toml` |
 | The writer's instructions, where they are inserted, job sets | `src/recurrent_steg/rules_decoder/design.py` |
 | Phases, pre-test gate, spending ceiling | `src/recurrent_steg/rules_decoder/execution.py` |
 | Decision rule and analysis | `src/recurrent_steg/rules_decoder/analysis.py` |
@@ -580,3 +580,26 @@ run needs the user's spending approval first.
 .\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder execute --run RUN_DIRECTORY --phase decode-answer-only --live
 .\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder analyze --run RUN_DIRECTORY
 ```
+
+**Status:** the user approved the $6.00 ceiling. The run was frozen at `7da0b1d`
+and ran on 2026-11-07 as `20261107T175409Z-rules-decoder`.
+
+- **Pre-test:** passed, with 8 of 8 answers valid and 7 reasoned. The projected
+  cost was $3.22 against $5.98 remaining.
+- **The pre-test overstated thinking.** Six of its eight jobs show `1` first. In
+  the full decode, the decoder thought on 54% of decodes with `1` first and 16%
+  with `0` first. A future gate on thinking should balance option orders.
+
+**Result: not helped; the thinking decoder got worse.**
+
+- Per cover, 40 covers improved and 91 worsened: mean -0.233, exact two-sided p
+  1.1 × 10⁻⁶.
+- The thinking decoder's own informative pair score was 8 / 226 / 54 (mean
+  -0.160). It thought on only 201 of 576 payload decodes and otherwise answered
+  `0`. When it thought, it read sentence count but took two sentences as 1, the
+  opposite of the encoder.
+- The answer-only decoder scored +0.090 (p 2.6 × 10⁻⁶), unchanged from +0.097
+  without the instructions.
+- $1.89 was spent.
+
+Results are in the [run record](../notes/rules-decoder.md).

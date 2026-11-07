@@ -213,9 +213,10 @@ These are agent recommendations, not user decisions.
   - A run on fresh covers could be pre-registered.
   - Either way, it changes what the decoder is told, so it is the user's decision.
 
-  The user chose this option. The exploratory re-decode is registered as
-  `sonnet-rules-decoder-v1`; see the
-  [protocol map](../protocols/README.md#exploratory-the-decoder-sees-the-writers-instructions).
+  The user chose this option, and the exploratory re-decode ran as
+  `sonnet-rules-decoder-v1`. The instructions did not help: the thinking decoder
+  read sentence count the other way round from the encoder. See the
+  [run record](rules-decoder.md).
 - **Confirm the thinking-encoder, answer-only-decoder secondary** on fresh covers,
   as a primary, if encoder reasoning alone matters to the research question.
 - **Do not tune prompts until both endpoints land on one rule.** That would amount

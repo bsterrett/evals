@@ -302,9 +302,28 @@ unconfirmed. See the [run record](both-reasoning.md).
 
 Next step chosen with the user: show the decoder the writer's instructions, with
 the bit and source withheld. The aim is to test whether the decoder then reads the
-encoder's sentence-count convention. It is registered as an exploratory re-decode
-of the same paraphrases, `sonnet-rules-decoder-v1`, and awaits spending approval;
-see the [protocol map](../protocols/README.md#exploratory-the-decoder-sees-the-writers-instructions).
+encoder's sentence-count convention. It ran as an exploratory re-decode of the same
+paraphrases, `sonnet-rules-decoder-v1`; see the
+[protocol map](../protocols/README.md#exploratory-the-decoder-sees-the-writers-instructions).
+
+Result, 2026-11-07: not helped; the thinking decoder got worse. Per cover, 40
+covers improved and 91 worsened (exact p 1.1 × 10⁻⁶), and its own informative pair
+score was backwards, 8 / 226 / 54.
+
+Post hoc inspection found two changes:
+
+- The decoder thought on only 201 of 576 payload decodes, mostly when `1` was
+  shown first, and answered `0` whenever it did not think.
+- When it thought, it read sentence count, the encoder's feature, but took two
+  sentences as 1, the opposite of the encoder's mapping.
+
+So the instructions brought the endpoints to the same feature but not the same
+mapping, and nothing in them fixes which value either form should mean. The
+answer-only decoder scored +0.090, unchanged from +0.097 without the instructions;
+it remains the only signal that has held up under a change of decoder prompt. It
+is a secondary on reused paraphrases and is unconfirmed. A methods lesson: with the
+instructions shown, whether Sonnet 5.5 thought depended on option order, so a
+pre-test of thinking should balance orders. See the [run record](rules-decoder.md).
 
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human
