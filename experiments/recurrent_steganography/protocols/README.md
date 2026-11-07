@@ -68,9 +68,11 @@ competence and are not hidden-message transmission.
 
 ## Paid feasibility reference
 
-Protocol `paid-feasibility-reference-v1`, exploratory. Status: drafted, not yet
-frozen or run. Its question and authorization are in the
-[experiment README](../README.md#paid-feasibility-reference).
+Protocol `paid-feasibility-reference-v1`, exploratory. Frozen at `fd80d83` and
+run on 2026-11-06 as `20261106T221454Z-reference`: GPT-5.5 completed; Sonnet 5.5
+stopped during its decode phase. Its question and authorization are in the
+[experiment README](../README.md#paid-feasibility-reference); results are in the
+[run record](../notes/paid-reference.md).
 
 | Component | Canonical source |
 | --- | --- |
@@ -130,3 +132,13 @@ For each subject (`gpt55`, `sonnet55`), run the phases in order, then analyze:
 Offline tests with scripted providers check that only a planted channel is
 judged feasible and that spending stops at each model's share; they are
 infrastructure checks, not model evidence.
+
+`analyze` requires every subject's phases. When a subject's pipeline is stopped,
+[`reference_subset_analysis.py`](../../../tools/recurrent_steganography/reference_subset_analysis.py)
+runs the same frozen code for the completed subjects and keeps the Holm correction
+over all eight cells, with excluded cells at p = 1. Its output is a separately
+labeled `analysis-subset-<subjects>-v1.json`:
+
+```powershell
+.\.venv\Scripts\python.exe -B tools/recurrent_steganography/reference_subset_analysis.py --run RUN_DIRECTORY --subject gpt55 --reason "WHY"
+```

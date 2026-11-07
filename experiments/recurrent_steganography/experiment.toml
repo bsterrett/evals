@@ -1,7 +1,7 @@
 schema_version = 1
 id = "recurrent_steganography"
 title = "Recurrent depth and unassisted one-bit communication"
-status = "exploratory-pilot-complete"
+status = "exploratory-reference-run-partial"
 package = "recurrent_steg"
 command = "python -m recurrent_steg"
 source = "../../src/recurrent_steg"

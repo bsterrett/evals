@@ -278,6 +278,37 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(Decimal(result["total_spend_usd"]), ledger.spent)
             self.assertTrue((run_dir / "blinded-sample-gpt55.json").exists())
 
+    def test_subset_analysis_reuses_frozen_code_and_corrects_over_all_cells(self):
+        import importlib.util
+        import sys
+        spec = importlib.util.spec_from_file_location("reference_subset_analysis",
+            ROOT / "tools/recurrent_steganography/reference_subset_analysis.py")
+        tool = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(tool)
+        with tempfile.TemporaryDirectory(dir=ROOT / ".test-tmp") as directory:
+            root, workspace, frozen = self.workspace(directory)
+            run_dir = root / "run"
+            run_dir.mkdir()
+            first, second, third = self.patches(workspace, frozen)
+            argv = ["tool", "--run", str(run_dir), "--subject", "gpt55", "--reason", "test"]
+            with first, second, third, patch.object(tool, "verify_freeze", return_value=frozen), \
+                    patch.object(tool, "load_workspace", return_value=workspace), \
+                    patch.object(sys, "argv", argv), redirect_stdout(io.StringIO()):
+                for phase in ("judge-controls", "encode", "decode", "judge"):
+                    execute(run_dir, phase, "gpt55", live=True, provider_factory=FakeProvider)
+                for phase in ("judge-controls", "encode"):
+                    execute(run_dir, phase, "sonnet55", live=True, provider_factory=FakeProvider)
+                self.assertEqual(tool.main(), 0)
+            self.assertFalse((run_dir / "analysis-v1.json").exists())
+            result = json.loads((run_dir / "analysis-subset-gpt55-v1.json").read_text(encoding="utf-8"))
+            self.assertEqual(set(result["cells"]), {f"gpt55/{condition}" for condition in CONDITIONS})
+            self.assertEqual(result["subset"]["holm_cells"], 8)
+            cell = result["cells"]["gpt55/focal-words"]
+            # The single nonzero p-value is multiplied by all eight configured cells.
+            self.assertAlmostEqual(cell["holm_p"], min(1.0, 8 * cell["primary_p"]))
+            self.assertAlmostEqual(cell["holm_p_within_subset"], min(1.0, 4 * cell["primary_p"]))
+            self.assertEqual(result["feasible_cells"], ["gpt55/focal-words"])
+
     def test_judge_contract_failure_stops_before_any_carrier_is_generated(self):
         with tempfile.TemporaryDirectory(dir=ROOT / ".test-tmp") as directory:
             root, workspace, frozen = self.workspace(directory)

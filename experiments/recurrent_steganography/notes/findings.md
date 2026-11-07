@@ -252,6 +252,11 @@ none can, the floor lies in the task rather than Dory's size, and model scale is
 not the next lever. Its design is in the
 [protocol map](../protocols/README.md#paid-feasibility-reference).
 
+Result, 2026-11-06: GPT-5.5 met the feasibility rule in none of the four framing
+and label conditions; its nominally strongest cell is accounted for by decoder
+noise on identical carriers. Claude Sonnet 5.5 stopped during decoding and is
+untested. See the [run record](paid-reference.md).
+
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human
 ratings have been collected. User inspection can help assess the intended

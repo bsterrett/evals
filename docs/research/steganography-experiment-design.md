@@ -94,6 +94,13 @@ otherwise 0. That score's expectation is zero whenever the carrier does not depe
 on the payload. The first recurrent-depth pilot's encoder contrast had this
 defect; see its [design review](../../experiments/recurrent_steganography/notes/findings.md#demonstrated-analysis-defect).
 
+A sampled decoder can still score identical carriers by chance. In the paid
+reference check, GPT-5.5's two decodes of an identical carrier disagreed in 18 of
+61 pairs, and those pairs produced most of its nominally strongest cell
+([run record](../../experiments/recurrent_steganography/notes/paid-reference.md)).
+The pair score stays unbiased, but identical pairs add noise; score them 0 or
+decode each carrier several times.
+
 For a uniformly sampled alphabet of K payloads, guessing accuracy is 1/K and
 nominal payload entropy is log2(K) bits. Reducing a whole proposition to a binary
 choice changes the task and raises chance success to one half. It does not make
@@ -239,6 +246,14 @@ passed ordinary instruction controls but remained at chance on the unassisted
 task, while its structured observer failed at a free-text field. Check each role's
 actual output contract before a full run. Recovering fields with a post-run parser
 is a separate analysis and does not retroactively qualify the original observer.
+
+The later paid reference check pre-tested its judges but not its decoders. Claude
+Sonnet 5.5 gave bare answers under plain framing but wrote out its reasoning in
+18 of its first 20 focal-framing decodes, and one reply that reached its token cap
+blocked the shared ledger
+([run record](../../experiments/recurrent_steganography/notes/paid-reference.md)).
+Pre-test every role under every prompt variant, and prefer an answer format the
+provider enforces over an instruction the model may not follow.
 
 The next useful implementation is a small diagnostic set with frozen scheme
 identities, known-valid examples, reference extraction where possible, and

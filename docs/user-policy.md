@@ -114,11 +114,21 @@ a Claude Code chat, 2026-11-06, America/Los_Angeles; no portable message IDs are
 available. The review and its recommendations are recorded in the experiment's
 [findings](../experiments/recurrent_steganography/notes/findings.md#design-review-after-the-first-pilot).
 
-Asked whether the absence of written reasoning is essential to the question:
+Asked whether the absence of written reasoning is essential to the question (the
+agent's question concerned the encoder reasoning privately):
 
 > "No written reasoning" is important. I want to make sure it is tested. But I
 > would not say it is "essential" in the sense that we should not also do a
 > variant **with** written reasoning.
+
+Later clarification in the same chat, after the agent had applied this to the
+decoder as well:
+
+> I meant that the encoding model should not use written reasoning about the
+> encoding while encoding, because that felt like too large of a compromise of
+> the original question about whether a model could do stenography in its chain
+> of thought. I am not sure if reasoning in the decoder compromises the original
+> question in the same way. I think it does, but perhaps to a lesser degree.
 
 Asked about two unassisted relaxations, telling both endpoints to use the most
 obvious convention (focal-point framing) and replacing 0/1 with meaningful
@@ -149,13 +159,19 @@ For a feasibility check with a strong non-recurrent model, the user selected
 with reasoning off and Claude Sonnet 5.5 without up-front thinking, each judged
 by the other, on the 2x2 of framing and labels without written reasoning.
 
-Application: keep a no-written-reasoning condition and add a separately labeled
-written-reasoning variant later. Test focal framing and meaningful labels alone
+Application: the encoder must not reason in writing about the encoding in the
+primary condition; a separately labeled written-reasoning variant can follow.
+Decoder reasoning is an open, lesser concern rather than a stated prohibition, so
+label decoder conditions explicitly. Test focal framing and meaningful labels alone
 and together, as a factorial, never only combined. Defer the supplied-scheme depth
 track. A cross-family or paid judge is acceptable; CPU-run local models are in
 scope. The $10 approval covers only the paid feasibility reference
 (`paid-feasibility-reference-v1`), not later runs. Prompt wording, covers, label
 pairs, and statistics are agent choices.
+
+After Sonnet 5.5's decoder stopped the run (see the experiment findings), the user
+reviewed billing, reconciled the ledger, and directed: "Go forward with GPT-5.5".
+Sonnet's remaining decoding was left for a later decision.
 
 ## Two distinct recurrence research candidates
 
