@@ -195,6 +195,14 @@ Application: design a separately labeled variant in which the decoder may reason
 The encoder stays unchanged and writes no reasoning. This choice selects the
 design only; any run needs its own spending approval.
 
+The user was shown the registered design: an exploratory re-decode of the
+confirmation's paraphrases with adaptive thinking at effort `high`, an 8-call
+pre-test gate, and a proposed $10 ceiling. Asked "Approve up to $10 for the
+reasoning-decoder run?", the user selected "Approve $10 and run".
+
+Application: `sonnet-reasoning-decoder-v1` is approved at up to $10.00, covering
+that run only.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by
