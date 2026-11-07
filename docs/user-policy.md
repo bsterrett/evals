@@ -246,6 +246,17 @@ the writer's instructions, with the private bit and the source message withheld,
 and no strategy. Agent choice: start with the cheaper exploratory re-decode. This
 choice selects the design only; any run needs its own spending approval.
 
+The user was shown the registered design (`c394f19`): the thinking and answer-only
+decoders re-read that run's 576 paraphrases with the writer's instructions shown,
+an 8-call pre-test that stops the run unless the decoder thinks and the projected
+cost fits, and a proposed $6 ceiling. The estimate had risen from about $1.30 to
+about $2.80-$4.30, because the instructions lengthen each prompt and the
+answer-only decoder was added. Asked "Approve up to $6 for the rules-decoder run?",
+the user selected "Approve $6 and run" on 2026-11-07.
+
+Application: `sonnet-rules-decoder-v1` is approved at up to $6.00, covering that
+run only.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by
