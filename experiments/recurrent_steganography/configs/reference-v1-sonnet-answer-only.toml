@@ -1,0 +1,21 @@
+schema_version = 1
+protocol = "paid-feasibility-reference-v1.1-sonnet-answer-only"
+role = "labeled amendment: enforced answer-only decoding for Claude Sonnet 5.5"
+
+# Parent run, frozen at fd80d83. Sonnet 5.5's paraphrases, judge controls, and
+# GPT-5.5's judgments of them come from the parent; only decoding is replaced.
+parent_run = "artifacts/runs/recurrent_steganography/20261106T221454Z-reference"
+parent_plan_sha256 = "31939949aeb207f58d9a2e7577a4540d88bd6671b564c1a9ce3e1676e4314642"
+parent_encode_sha256 = "daeea0f58b78e7df19fbc35bba1db191eb9d1132f2a6b19468ee2c0fee7456dc"
+parent_gpt_analysis = "analysis-subset-gpt55-v1.json"
+parent_gpt_analysis_sha256 = "9b1030a98821d41ef2c69b9b0f6cc8449514636be31bfbb784dd3bafd87e138f"
+subject = "sonnet55"
+
+# Structured output allows only {"answer": <one of the two shown options>}.
+decoder_tokens = 64
+check_jobs_per_condition = 2
+
+# The user approved $10 for the whole reference check. Parent spend plus this
+# amendment can never exceed it; the amendment alone is capped lower.
+amendment_budget_usd = "1.00"
+overall_ceiling_usd = "10.00"

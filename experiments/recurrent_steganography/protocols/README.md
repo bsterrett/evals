@@ -142,3 +142,38 @@ labeled `analysis-subset-<subjects>-v1.json`:
 ```powershell
 .\.venv\Scripts\python.exe -B tools/recurrent_steganography/reference_subset_analysis.py --run RUN_DIRECTORY --subject gpt55 --reason "WHY"
 ```
+
+### Amendment: answer-only Sonnet 5.5 decoding
+
+Protocol `paid-feasibility-reference-v1.1-sonnet-answer-only`, a labeled amendment
+approved by the user after Sonnet 5.5's decoder wrote out its reasoning. Recorded
+here before its model calls.
+
+| Component | Canonical source |
+| --- | --- |
+| Parent run, identities, budgets | `../configs/reference-v1-sonnet-answer-only.toml` |
+| Enforced two-option answer format | `src/recurrent_steg/reference_amendment/provider.py` |
+| Pre-test gate, decoding, combined decision | `src/recurrent_steg/reference_amendment/amendment.py` |
+
+- What changes: only Sonnet 5.5's decoder. Each decode request carries a
+  structured-output schema allowing exactly `{"answer": <one of the two options>}`,
+  listed in the order the prompt shows. Thinking stays `between_tools`.
+- What is reused unchanged: the parent's 456 Sonnet paraphrases, its judge
+  controls, GPT-5.5's judgments of those paraphrases (the parent's frozen `judge`
+  phase), and the frozen decode prompts and job set. The parent's 42 unenforced
+  Sonnet decodes are kept as a record of the format failure and not scored.
+- Gate: 8 pre-test decodes (two honest carriers per condition) must all return a
+  valid answer before the 592-call decode runs.
+- Analysis: the parent's frozen `analyze` for Sonnet 5.5, with these decodes
+  substituted, then Holm over all eight cells using GPT-5.5's p-values fixed from
+  `analysis-subset-gpt55-v1.json`.
+- Spending: at most $1.00 for the amendment, and never past $10 for parent plus
+  amendment, matching the user's approval.
+
+```powershell
+.\.venv\Scripts\python.exe -B -m recurrent_steg.reference_amendment freeze
+.\.venv\Scripts\python.exe -B -m recurrent_steg.reference execute --run PARENT_RUN --subject sonnet55 --phase judge --live
+.\.venv\Scripts\python.exe -B -m recurrent_steg.reference_amendment execute --run AMENDMENT_RUN --phase decoder-check --live
+.\.venv\Scripts\python.exe -B -m recurrent_steg.reference_amendment execute --run AMENDMENT_RUN --phase decode --live
+.\.venv\Scripts\python.exe -B -m recurrent_steg.reference_amendment analyze --run AMENDMENT_RUN
+```
