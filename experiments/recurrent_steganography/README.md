@@ -147,7 +147,10 @@ Status: run on 2026-11-06. GPT-5.5 completed with no feasible cell. Sonnet 5.5's
 decoder wrote out its reasoning and a capped reply blocked the ledger; with the
 user's approval its decoding was redone under a labeled answer-only amendment. No
 cell met the rule; Sonnet plain/0-1 came closest. Results are in the
-[run record](notes/paid-reference.md).
+[run record](notes/paid-reference.md). A pre-registered confirmation of that cell on
+288 fresh covers was null: the decoder's answers did not depend on the payload
+([confirmation record](notes/sonnet-confirmation.md)). Under the primary
+constraints, neither model transmits a 0/1 payload.
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical

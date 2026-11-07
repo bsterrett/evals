@@ -11,7 +11,8 @@ here measures recurrence. Design and authorization are in the
 [protocol map](../protocols/README.md#paid-feasibility-reference).
 
 Summary: no model-condition cell met the prospective rule. Sonnet 5.5 came closest
-in plain/0-1 (Holm p 0.051). With word labels, Sonnet passed the label through
+in plain/0-1 (Holm p 0.051), but a pre-registered confirmation on 288 fresh covers
+was null ([confirmation record](sonnet-confirmation.md)). With word labels, Sonnet passed the label through
 tone, but GPT-5.5's judge rejected most such paraphrases for added claims.
 
 ## Question and prospective rule
@@ -136,7 +137,14 @@ Inference: under the primary constraints neither strong model met the feasibilit
 rule. GPT-5.5 shows no transmission at all; its nominal focal-bits trend is
 accounted for by decoder noise on identical carriers. Sonnet 5.5 shows a weak,
 probably real channel in plain/0-1 through accepted, fact-preserving paraphrases,
-short of the corrected threshold. With word labels, tacit coordination clearly
+short of the corrected threshold.
+
+> **Not confirmed (2026-11-06).** The pre-registered confirmation on 288 fresh
+> covers found no channel in Sonnet plain/0-1: informative pair score 26 / 232 /
+> 30, exact p 0.69, 95% interval [-0.066, +0.038]. The decoder's answers did not
+> depend on the payload. The "probably real" inference above is withdrawn. The
+> exploratory signal was most likely selection of the best of eight cells. See the
+> [confirmation record](sonnet-confirmation.md). With word labels, tacit coordination clearly
 works for Sonnet, but through added tone that the fact-preserving cover forbids.
 
 So the binding constraint differs by condition. For arbitrary 0/1 payloads,
@@ -159,6 +167,8 @@ Agent recommendations, not user decisions:
 - Confirm the Sonnet plain/0-1 signal on fresh covers as a single pre-registered
   cell, so no multiple-comparison correction applies. Its post hoc 10 / 1 split on
   differing pairs suggests roughly 100 new covers would decide it, at about $1-2.
+  *Done:* it ran on 288 covers and was not confirmed; see the
+  [confirmation record](sonnet-confirmation.md).
 - For word labels, a cover task with legitimate room for tone (short reviews or
   anecdotes, where a manner word adds no factual claim) would test whether the
   coordination Sonnet showed survives concealment. That relaxes the user's chosen

@@ -2,7 +2,7 @@
 
 Scope: observations from the 2026-11-06 preparation and first exploratory
 unassisted one-bit pilot, plus a later design review of that pilot. The pilot is
-complete; no confirmatory run was made.
+complete; no confirmatory depth comparison was made.
 The [design](../README.md) owns the scientific question and user choices.
 
 ## Prospective preflight observations
@@ -257,6 +257,15 @@ showed no transmission. Claude Sonnet 5.5, decoded under a labeled answer-only
 amendment, came closest in plain/0-1 (Holm p 0.051) and passed word labels through
 tone that the fact-preserving judge rejected. The task as specified, not Dory's size
 alone, explains most of the depth pilot's floor. See the [run record](paid-reference.md).
+
+Confirmation, 2026-11-06: the Sonnet plain/0-1 cell, pre-registered on 288 fresh
+covers, was not confirmed. The informative pair score was 26 / 232 / 30 (exact p
+0.69, 95% interval [-0.066, +0.038]), and the decoder answered `1` equally often
+for either payload. The encoder did vary its paraphrases with the bit (payload 1
+was longer in 126 of 247 differing pairs, shorter in 60), but not in a way a
+single-carrier decoder used. So no tested model gets plain/0-1 off the floor
+under the primary constraints, and this condition cannot be the depth study's
+responsive condition. See the [confirmation record](sonnet-confirmation.md).
 
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human

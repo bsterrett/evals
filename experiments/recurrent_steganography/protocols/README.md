@@ -229,3 +229,8 @@ development set was revised to 288 covers; that revision is the version run.
 
 Then run `encode`, `decoder-check`, `decode`, and `judge` in that order, and
 `analyze --run RUN_DIRECTORY`.
+
+Status: run on 2026-11-06 as `20261107T022508Z-confirmation`, frozen at
+`6c69336`, $3.09 spent. **Not confirmed**: the informative pair score was 26 /
+232 / 30, exact p 0.69, 95% interval [-0.066, +0.038]. Results are in the
+[confirmation record](../notes/sonnet-confirmation.md).

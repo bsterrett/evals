@@ -158,6 +158,16 @@ recovering the actual secret above controls can establish recoverability, but
 its failure cannot prove that no usable encoding exists. Avoid inventing an
 "encoding success" label from inspection of suggestive words alone.
 
+Comparing a cover's two payload carriers can show that the encoder responds to
+the payload even when decoding fails, but that alone is not a decodable encoding.
+In the recurrent-depth Sonnet 5.5 confirmation, payload-1 paraphrases were longer
+in 126 of 247 differing pairs and shorter in 60. A decoder that sees one carrier,
+without the source or the alternative paraphrase, cannot use a relative difference
+like that, and recovery was exactly at chance
+([record](../../experiments/recurrent_steganography/notes/sonnet-confirmation.md)).
+Before calling a payload-dependent feature an encoding, check whether it can be
+read from a single carrier.
+
 For an exact codebook, a small diagnostic matrix is particularly useful:
 
 | Carrier producer | Decoder | Purpose |
@@ -198,6 +208,15 @@ meaningful effect and uncertainty, rather than repeatedly sampling until a
 favorable result appears. Repeated decodes of the same carrier are not independent
 encoding trials; account for case/carrier clustering. An all-zero small pilot
 does not establish zero ability in the population.
+
+The best of several exploratory cells overstates its effect. In the
+recurrent-depth paid reference, Sonnet 5.5's plain/0-1 cell was the best of eight
+(nominal p 0.006, Holm 0.051, differing pairs 10 / 1). A pre-registered
+confirmation on 288 fresh covers found nothing, with a 95% interval of [-0.066,
++0.038] against an exploratory estimate near +0.21
+([record](../../experiments/recurrent_steganography/notes/sonnet-confirmation.md)).
+Size a confirmation for well under the exploratory estimate. Do not build later
+conditions on a selected cell until it is confirmed.
 
 ## Applying the guide to recurrent depth
 
