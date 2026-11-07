@@ -374,13 +374,13 @@ encoding, and it does not replace that condition. A positive result would show
 coordination through reasoning that the decoder and judge never see, not encoding
 without reasoning.
 
-**The ceiling is pending.** The $15.00 in the configuration is a proposal, and the
-run needs the user's spending approval first.
+**Ceiling:** the $15.00 in the configuration was proposed with the design, and the
+user approved it for this run only after the design was committed.
 
 | Component | Canonical source |
 | --- | --- |
 | 288 development, 24 judge-calibration, and 8 encoder pre-test covers, all new | `../data/both-reasoning-covers-v1.json` |
-| Models, thinking sentence, gates, unit costs, proposed $15.00 ceiling | `../configs/both-reasoning-v1.toml` |
+| Models, thinking sentence, gates, unit costs, $15.00 ceiling | `../configs/both-reasoning-v1.toml` |
 | Covers, prompts, option orders, job sets | `src/recurrent_steg/both_reasoning/design.py` |
 | Thinking encoder | `src/recurrent_steg/both_reasoning/provider.py` |
 | Phases, pre-test gates, spending ceiling | `src/recurrent_steg/both_reasoning/execution.py` |
@@ -473,3 +473,23 @@ run needs the user's spending approval first.
 
 Then run `encoder-check`, `encode`, `decoder-check`, `decode`, `judge`, and
 `decode-answer-only` in that order, and `analyze --run RUN_DIRECTORY`.
+
+**Status:** the user approved the $15.00 ceiling. The run was frozen at `c507dbc`
+and ran on 2026-11-07 as `20261107T132019Z-both-reasoning`.
+
+- **Encoder pre-test:** passed. All 16 payload encodes thought, and the projected
+  cost was $7.61 against $14.89 remaining.
+- **Decoder pre-test:** passed, with 8 of 8 answers valid and reasoned.
+
+**Result: transmission not shown.**
+
+- The informative pair score was 69 / 171 / 48: mean +0.073, exact p 0.064, 95%
+  interval [0.000, +0.146].
+- Each endpoint settled on an explicit rule, but not the same one. The encoder
+  wrote one sentence for 1 and mostly kept two sentences for 0. The decoder mostly
+  read word-count parity.
+- The answer-only decoder, a secondary, scored +0.097 (p 0.0005) on the same
+  paraphrases.
+- $5.76 was spent.
+
+Results are in the [run record](../notes/both-reasoning.md).

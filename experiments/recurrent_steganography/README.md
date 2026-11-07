@@ -154,9 +154,10 @@ constraints, neither model transmits a 0/1 payload. A reasoning decoder, chosen
 by the user, re-decoded those paraphrases with the encoder unchanged. It found no
 signal: it mostly read word-count parity, which the non-reasoning encoder does not
 use ([run record](notes/reasoning-decoder.md)). The user then chose a labeled
-written-reasoning variant in which both endpoints think, on fresh covers. It is
-pre-registered and awaits spending approval
-([protocol map](protocols/README.md#pre-registered-both-endpoints-reason)).
+written-reasoning variant in which both endpoints think, on fresh covers. Its
+pre-registered test did not show transmission (p 0.064). The thinking encoder
+signalled with sentence count, while the thinking decoder mostly read parity
+([run record](notes/both-reasoning.md)).
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical

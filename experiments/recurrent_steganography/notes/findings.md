@@ -280,9 +280,25 @@ explicit focal rule, not decoder effort. See the [run record](reasoning-decoder.
 
 Next step chosen with the user: let both endpoints think, as a labeled
 written-reasoning variant on 288 fresh covers. If the floor is a mismatch of
-conventions, two thinking endpoints may settle on the same explicit rule. It is
-pre-registered as `sonnet-both-reasoning-v1` and awaits spending approval; see the
+conventions, two thinking endpoints may settle on the same explicit rule. It was
+pre-registered as `sonnet-both-reasoning-v1`; see the
 [protocol map](../protocols/README.md#pre-registered-both-endpoints-reason).
+
+Result, 2026-11-07: transmission not shown. The informative pair score was 69 /
+171 / 48 (exact p 0.064, 95% interval [0.000, +0.146]).
+
+Post hoc inspection found that each endpoint reasoned to an explicit rule, but to
+different ones:
+
+- The encoder signalled with sentence count. Payload 1 was one sentence in 280 of
+  288, and payload 0 was two sentences in 208 of 288. That rule alone would recover
+  489 of 576.
+- The decoder mostly read word-count parity again.
+
+So thinking at both ends does not by itself produce a shared convention. As a
+secondary, the answer-only decoder read the thinking encoder's paraphrases at
++0.097 (p 0.0005). That is weak but the clearest decoder signal so far, and it is
+unconfirmed. See the [run record](both-reasoning.md).
 
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human

@@ -138,8 +138,10 @@ These are agent recommendations, not user decisions.
     reasoning. It would not show steganography inside a model's own chain of
     thought.
 
-  The user chose this option. It is pre-registered as `sonnet-both-reasoning-v1`;
-  see the [protocol map](../protocols/README.md#pre-registered-both-endpoints-reason).
+  The user chose this option, and it ran as `sonnet-both-reasoning-v1`.
+  Transmission was not shown (p 0.064). The thinking encoder chose sentence count
+  rather than parity, and the decoder mostly read parity again; see the
+  [run record](both-reasoning.md).
 - **Word labels on a cover that allows tone** remain the other lead from the
   [reference check](paid-reference.md#next-useful-step).
 - **Do not spend more on decoding the current non-reasoning encoder.** The evidence
