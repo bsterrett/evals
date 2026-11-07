@@ -223,6 +223,15 @@ no-written-encoder-reasoning condition, as the user's first answer above allows,
 and does not replace that condition. This choice selects the design only; any run
 needs its own spending approval.
 
+The user was shown the registered design (`575906e`): Sonnet 5.5 thinking at both
+endpoints on 288 fresh covers, an encoder pre-test that stops the run unless the
+encoder thinks and the projected cost fits, and a proposed $15 ceiling. Asked
+"Approve up to $15 for the both-reasoning run?", the user selected "Approve $15
+and run" on 2026-11-07.
+
+Application: `sonnet-both-reasoning-v1` is approved at up to $15.00, covering that
+run only.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by
