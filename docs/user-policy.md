@@ -211,6 +211,18 @@ amendment".
 Application: `sonnet-reasoning-decoder-v1.1` may spend the $9.99 that remains of
 the same $10.00 approval, and that run only.
 
+The amendment found no signal; asked to think, the decoder mostly read word-count
+parity, which the non-reasoning encoder does not follow. Asked "Which direction
+should I design next?", the user chose "Encoder reasons too" over "Tone-friendly
+covers". The option was described as letting both endpoints reason, on fresh
+covers, to test whether they then settle on the same explicit rule.
+
+Application: design a separately labeled written-reasoning variant in which the
+encoder and the decoder may both think before answering. It relaxes the primary
+no-written-encoder-reasoning condition, as the user's first answer above allows,
+and does not replace that condition. This choice selects the design only; any run
+needs its own spending approval.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by

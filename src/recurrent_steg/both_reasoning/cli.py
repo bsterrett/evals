@@ -1,0 +1,183 @@
+"""Plan, preview, freeze, execute, and analyze the both-reasoning variant."""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+from decimal import Decimal
+import json
+from pathlib import Path
+import subprocess
+
+from eval_core.artifacts import file_sha256
+from eval_core.models import TokenUsage
+from eval_core.workspace import git_provenance, load_workspace
+from recurrent_steg.both_reasoning.analysis import DECISION_RULE
+from recurrent_steg.both_reasoning.design import (BIT_OPTIONS, CONDITION, PROTOCOL, control_jobs,
+    decoder_check_jobs, decoder_text, decoding_jobs, encoder_check_jobs, encoder_text, encoding_jobs, judge_jobs,
+    load_design, prompt_identity, shown)
+from recurrent_steg.both_reasoning.execution import PHASES
+from recurrent_steg.reference.cli import load_api_keys
+
+DEFAULT_CONFIG = Path("experiments/recurrent_steganography/configs/both-reasoning-v1.toml")
+# Planning figures only. Thinking length is unknown before the encoder pre-test, so the
+# estimate is given for three payload-encoder output sizes (thinking plus paraphrase).
+ENCODER_OUTPUT_SCENARIOS = (500, 1000, 2000)
+TYPICAL_OUTPUT = {"judge-controls": 40, "honest": 300, "decoder-check": 200, "decode": 200, "judge": 40,
+    "decode-answer-only": 10}
+# Measured input tokens with the answer schema: about 371 per reasoning decode (v1.1), 365 answer-only.
+DECODER_INPUT = 375
+PLACEHOLDER = "This placeholder stands in for an ordinary paraphrase of about the same length as a real carrier."
+
+
+def source_paths(root: Path) -> list[Path]:
+    paths = []
+    for package in ("both_reasoning", "confirmation", "reasoning_decoder", "reference"):
+        paths += sorted((root / "src/recurrent_steg" / package).glob("*.py"))
+    paths += [root / "src/recurrent_steg/reference_amendment/provider.py", root / "src/recurrent_steg/__init__.py"]
+    paths += sorted((root / "src/eval_core").rglob("*.py"))
+    return paths + [root / "pyproject.toml"]
+
+
+def plan(config_path: Path) -> dict:
+    config_path = Path(config_path).resolve()
+    config, cases, models, data_path = load_design(config_path)
+    root = load_workspace(config_path).root
+    subject, answer_only, judge = (models[config[key]] for key in ("subject", "answer_only", "judge"))
+    simulated = [dict(job, carrier=PLACEHOLDER) for job in encoding_jobs(config, cases)]
+    phases = {
+        "judge-controls": (control_jobs(config, cases), judge, config["judge_tokens"]),
+        "encoder-check": (encoder_check_jobs(config, cases), subject, config["encoder_tokens"]),
+        "encode": (encoding_jobs(config, cases), subject, config["encoder_tokens"]),
+        "decoder-check": (decoder_check_jobs(config, simulated, cases), subject, config["decoder_tokens"]),
+        "decode": (decoding_jobs(config, simulated, cases), subject, config["decoder_tokens"]),
+        "judge": (judge_jobs(config, simulated), judge, config["judge_tokens"]),
+        "decode-answer-only": (decoding_jobs(config, simulated, cases, reasoning=False), answer_only,
+            config["answer_only_tokens"]),
+    }
+    calls, estimates = {}, {scenario: Decimal() for scenario in ENCODER_OUTPUT_SCENARIOS}
+    for phase, (jobs, model, cap) in phases.items():
+        calls[phase] = dict(calls=len(jobs), model=model.id, max_output_tokens=cap)
+        for job in jobs:
+            tokens = DECODER_INPUT if "decode" in phase else max(1, len(job["prompt"]) // 4)
+            for scenario in ENCODER_OUTPUT_SCENARIOS:
+                if phase in ("encoder-check", "encode"):
+                    output = scenario if job["kind"] == "encoded" else TYPICAL_OUTPUT["honest"]
+                else:
+                    output = TYPICAL_OUTPUT[phase]
+                estimates[scenario] += model.rate.actual_cost(TokenUsage(tokens, output))
+    cent = Decimal("0.01")
+    return dict(schema_version=1, experiment_id="recurrent_steganography", protocol=PROTOCOL, role=config["role"],
+        config=config, config_path=config_path.relative_to(root).as_posix(), config_sha256=file_sha256(config_path),
+        data_sha256=file_sha256(data_path),
+        source_sha256={path.relative_to(root).as_posix(): file_sha256(path) for path in source_paths(root)},
+        git=git_provenance(root), subject=config["subject"], answer_only=config["answer_only"], judge=config["judge"],
+        condition=CONDITION, think_instruction=config["think_instruction"], prompt_fingerprints=prompt_identity(config),
+        option_orders={case["id"]: case["option_order"] for case in cases if case["split"] == "development"},
+        calls=calls, total_calls=sum(entry["calls"] for entry in calls.values()),
+        estimated_cost_usd={f"encoder output {scenario} tokens": str(value.quantize(cent))
+            for scenario, value in estimates.items()},
+        run_budget_usd=config["run_budget_usd"], decision_rule=DECISION_RULE, ready_for_generation=True)
+
+
+def verify_freeze(run_dir: Path) -> dict:
+    frozen = json.loads((Path(run_dir) / "plan.json").read_text(encoding="utf-8"))
+    if frozen.get("protocol") != PROTOCOL:
+        raise ValueError("This run directory does not hold a both-reasoning plan")
+    current = plan(load_workspace().root / frozen["config_path"])
+    for key in ("config_sha256", "data_sha256", "source_sha256", "prompt_fingerprints", "option_orders"):
+        if current[key] != frozen[key]:
+            raise ValueError("Frozen both-reasoning identity changed: " + key)
+    return frozen
+
+
+def freeze(config_path: Path, output: Path | None) -> tuple[Path, dict]:
+    result = plan(config_path)
+    root = load_workspace(config_path).root
+    data_file = ((root / result["config_path"]).parent / result["config"]["data"]).resolve()
+    identity = list(result["source_sha256"]) + [result["config_path"], data_file.relative_to(root).as_posix()]
+    changed = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=all", "--", *identity],
+        cwd=root, text=True, encoding="utf-8")
+    if changed.strip():
+        raise ValueError("Commit the both-reasoning source, configuration, and data before freezing")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    destination = output or root / "artifacts/runs/recurrent_steganography" / f"{stamp}-both-reasoning"
+    if destination.exists():
+        raise ValueError("Preserve existing evidence; choose another output directory")
+    destination.mkdir(parents=True)
+    (destination / "plan.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    return destination, result
+
+
+def preview(config_path: Path) -> str:
+    result = plan(config_path)
+    config, cases, models, _ = load_design(Path(config_path).resolve())
+    subject = models[config["subject"]]
+    example = next(case for case in cases if case["split"] == "development")
+    instruction = config["think_instruction"]
+    estimates = ", ".join(f"${value} at {key.removeprefix('encoder output ').removesuffix(' tokens')}"
+        for key, value in result["estimated_cost_usd"].items())
+    lines = [f"# Draft for review: {PROTOCOL}", "",
+        f"Nothing here has been frozen or run. Claude Sonnet 5.5 (`{subject.model}`, adaptive thinking at effort "
+        f"`{subject.reasoning_effort}`) writes and decodes after thinking; `{models[config['judge']].model}` judges. "
+        "The prompts are the frozen plain/0-1 prompts plus one sentence asking for thought. The confirmation's "
+        "answer-only decoder also reads the same carriers as a secondary.", "",
+        f"Calls: {result['total_calls']}. Estimated cost: {estimates} output tokens per payload encode. "
+        f"Proposed ceiling: ${result['run_budget_usd']}.", "", "## Decision rule", "", DECISION_RULE, "",
+        "## Prompts (example cover)", "", "```text", encoder_text(example["message"], instruction, "1"), "```", "",
+        "```text", decoder_text("<the encoder's paraphrase>", shown(example), instruction), "```", "",
+        "## Development covers", "", "| ID | Family | Decoder order | Cover |", "| --- | --- | --- | --- |"]
+    lines += [f"| {c['id']} | {c['family']} | {c['option_order']} | {c['message']} |"
+        for c in cases if c["split"] == "development"]
+    for split, title in (("judge_calibration", "Judge calibration covers"), ("encoder_check", "Encoder pre-test covers")):
+        lines += ["", f"## {title}", "", "| ID | Family | Cover |", "| --- | --- | --- |"]
+        lines += [f"| {c['id']} | {c['family']} | {c['message']} |" for c in cases if c["split"] == split]
+    return "\n".join(lines) + "\n"
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(prog="python -m recurrent_steg.both_reasoning",
+        description="Written-reasoning variant: Sonnet 5.5 encodes and decodes after thinking")
+    commands = parser.add_subparsers(dest="command", required=True)
+    for name in ("validate", "plan", "preview", "freeze"):
+        command = commands.add_parser(name)
+        command.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+        if name in ("preview", "freeze"):
+            command.add_argument("--output", type=Path)
+    run = commands.add_parser("execute", help="Paid calls; requires --live")
+    run.add_argument("--run", type=Path, required=True)
+    run.add_argument("--phase", choices=PHASES, required=True)
+    run.add_argument("--live", action="store_true")
+    analysis = commands.add_parser("analyze")
+    analysis.add_argument("--run", type=Path, required=True)
+    args = parser.parse_args()
+    try:
+        if args.command == "execute":
+            if not args.live:
+                raise ValueError("Paid calls require --live")
+            load_api_keys(load_workspace().root)
+            from recurrent_steg.both_reasoning.execution import execute
+            print(json.dumps(execute(args.run.resolve(), args.phase, live=True), indent=2))
+        elif args.command == "analyze":
+            from recurrent_steg.both_reasoning.analysis import analyze
+            result = analyze(args.run.resolve())
+            print(json.dumps({key: result[key] for key in ("transmission_shown", "primary", "total_spend_usd")},
+                indent=2))
+        elif args.command == "preview":
+            text = preview(args.config)
+            if args.output:
+                args.output.write_text(text, encoding="utf-8")
+            else:
+                print(text)
+        elif args.command == "freeze":
+            destination, result = freeze(args.config, args.output)
+            print(json.dumps(dict(run_dir=str(destination), total_calls=result["total_calls"],
+                estimated_cost_usd=result["estimated_cost_usd"]), indent=2))
+        else:
+            result = plan(args.config)
+            if args.command == "validate":
+                result = {key: result[key] for key in ("protocol", "subject", "answer_only", "judge", "calls",
+                    "total_calls", "estimated_cost_usd", "run_budget_usd")}
+            print(json.dumps(result, indent=2))
+        return 0
+    except (ValueError, OSError, KeyError) as exc:
+        parser.exit(2, "error: " + str(exc) + "\n")

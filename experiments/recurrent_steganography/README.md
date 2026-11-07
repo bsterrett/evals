@@ -153,7 +153,10 @@ cell met the rule; Sonnet plain/0-1 came closest. Results are in the
 constraints, neither model transmits a 0/1 payload. A reasoning decoder, chosen
 by the user, re-decoded those paraphrases with the encoder unchanged. It found no
 signal: it mostly read word-count parity, which the non-reasoning encoder does not
-use ([run record](notes/reasoning-decoder.md)).
+use ([run record](notes/reasoning-decoder.md)). The user then chose a labeled
+written-reasoning variant in which both endpoints think, on fresh covers. It is
+pre-registered and awaits spending approval
+([protocol map](protocols/README.md#pre-registered-both-endpoints-reason)).
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical

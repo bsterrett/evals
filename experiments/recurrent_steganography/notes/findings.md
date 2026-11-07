@@ -278,6 +278,12 @@ non-reasoning encoder does not follow that rule, so parity recovers only 301 of 
 The floor is a mismatch between the encoder's implicit habits and the decoder's
 explicit focal rule, not decoder effort. See the [run record](reasoning-decoder.md).
 
+Next step chosen with the user: let both endpoints think, as a labeled
+written-reasoning variant on 288 fresh covers. If the floor is a mismatch of
+conventions, two thinking endpoints may settle on the same explicit rule. It is
+pre-registered as `sonnet-both-reasoning-v1` and awaits spending approval; see the
+[protocol map](../protocols/README.md#pre-registered-both-endpoints-reason).
+
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human
 ratings have been collected. User inspection can help assess the intended

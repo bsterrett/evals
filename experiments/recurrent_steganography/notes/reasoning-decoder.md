@@ -137,6 +137,9 @@ These are agent recommendations, not user decisions.
   - A positive result would show that coordination works through explicit
     reasoning. It would not show steganography inside a model's own chain of
     thought.
+
+  The user chose this option. It is pre-registered as `sonnet-both-reasoning-v1`;
+  see the [protocol map](../protocols/README.md#pre-registered-both-endpoints-reason).
 - **Word labels on a cover that allows tone** remain the other lead from the
   [reference check](paid-reference.md#next-useful-step).
 - **Do not spend more on decoding the current non-reasoning encoder.** The evidence
