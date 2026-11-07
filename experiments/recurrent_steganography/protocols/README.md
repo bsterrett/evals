@@ -298,6 +298,51 @@ run needs the user's spending approval first.
   - Estimated cost for 586 calls is $3.36 at 500 output tokens per call, $6.29 at
     1,000, and $12.15 at 2,000.
 
+**Status:** the user approved the $10.00 ceiling. The run was frozen at
+`73aeb85` and run on 2026-11-06 as `20261107T054540Z-reasoning-decoder`.
+
+**The pre-test stopped it.** All 8 answers were valid, but none used reasoning:
+the API reported 0 thinking tokens on every call, each a bare 11-token answer. No
+decode ran, and $0.007 was spent. Adaptive thinking at the default effort did not
+think on this short prompt with an answer schema.
+
+| Local file | SHA-256 |
+| --- | --- |
+| `plan.json` | `b0118450849db917a69dcefb3542d43ac86d3bf207476b4394e6b93b74f2f4aa` |
+| `decoder-check-sonnet55.jsonl` | `9402f669fcd47f0c9947a0d8576eddda883bd18aa2f0298f8fb7b13efbe0e986` |
+
+The package was later generalized for the amendment below. So that run directory
+verifies only against its frozen commit, `73aeb85`.
+
+### Amendment: ask the decoder to think
+
+Protocol `sonnet-reasoning-decoder-v1.1`, recorded and committed before any of its
+model calls. **It is pending:** it needs the user's approval and shares the $10.00
+already approved.
+
+| Component | Canonical source |
+| --- | --- |
+| The added sentence and the remaining ceiling ($9.99) | `../configs/reasoning-decoder-v1.1.toml` |
+| Where the sentence is inserted, and the check that nothing else changes | `src/recurrent_steg/reasoning_decoder/design.py` |
+
+- **The one change:** the sentence "Think it through before you answer." is
+  inserted just before "Reply with exactly 0 or 1 and nothing else." It asks for
+  reasoning without suggesting any convention.
+- **Everything else is v1's:** the paraphrases, job ids, option orders, effort
+  `high`, answer schema, gates, and analysis.
+- **The answer-only comparison** now differs from the reasoning decoder by this
+  sentence as well as by thinking. The answer-only decoder could not think, so the
+  sentence alone is not expected to matter much; that is an assumption, not a
+  measurement.
+- **If the pre-test again shows no reasoning,** the run stops there.
+
+```powershell
+.\.venv\Scripts\python.exe -B -m recurrent_steg.reasoning_decoder freeze --config experiments/recurrent_steganography/configs/reasoning-decoder-v1.1.toml
+```
+
+Then run `decoder-check`, `decode`, and `analyze` as for v1, using the new run
+directory.
+
 ```powershell
 .\.venv\Scripts\python.exe -B -m recurrent_steg.reasoning_decoder validate
 .\.venv\Scripts\python.exe -B -m recurrent_steg.reasoning_decoder freeze

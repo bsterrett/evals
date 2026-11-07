@@ -18,8 +18,13 @@ from recurrent_steg.reference.design import model_config
 from recurrent_steg.reference.execution import phase_records
 
 PROTOCOL = "sonnet-reasoning-decoder-v1"
+# Amendment after v1's pre-test showed no thinking at all: the same design plus one
+# neutral sentence asking the decoder to think before it answers.
+AMENDED_PROTOCOL = "sonnet-reasoning-decoder-v1.1"
+PROTOCOLS = (PROTOCOL, AMENDED_PROTOCOL)
+INSTRUCTION_ANCHOR = "Reply with exactly"
 PARENT_PROTOCOL = parent_design.PROTOCOL
-# Proposed ceiling; a run needs the user's approval recorded in docs/user-policy.md first.
+# The user approved $10.00 for the reasoning-decoder run, shared by v1 and its amendment.
 MAX_BUDGET_USD = Decimal("10.00")
 PARENT_FILES = dict(plan="plan.json", encode="encode-sonnet55.jsonl", decode="decode-sonnet55.jsonl",
     analysis="analysis-v1.json")
@@ -42,8 +47,14 @@ def load(config_path: Path) -> dict:
     config_path = Path(config_path).resolve()
     with config_path.open("rb") as handle:
         config = tomllib.load(handle)
-    if config.get("schema_version") != 1 or config.get("protocol") != PROTOCOL:
+    if config.get("schema_version") != 1 or config.get("protocol") not in PROTOCOLS:
         raise ValueError("Unsupported reasoning-decoder protocol")
+    instruction = config.get("decoder_instruction")
+    if (config["protocol"] == AMENDED_PROTOCOL) != (instruction is not None):
+        raise ValueError("Only the amendment adds a decoder instruction, and it requires one")
+    if instruction is not None and (not isinstance(instruction, str) or not instruction.strip()
+            or INSTRUCTION_ANCHOR in instruction):
+        raise ValueError("decoder_instruction must be one plain sentence")
     budget = Decimal(config["run_budget_usd"])
     if not budget.is_finite() or budget <= 0 or budget > MAX_BUDGET_USD:
         raise ValueError(f"The run ceiling must be positive and no more than ${MAX_BUDGET_USD}")
@@ -80,20 +91,34 @@ def load(config_path: Path) -> dict:
         parent_decodes=parent_decodes, parent_analysis=parent_analysis)
 
 
+def with_instruction(prompt: str, instruction: str | None) -> str:
+    """The parent's prompt, with the amendment's sentence placed just before the reply instruction."""
+    if instruction is None:
+        return prompt
+    if prompt.count(INSTRUCTION_ANCHOR) != 1:
+        raise ValueError("The decoder prompt must contain the reply instruction exactly once")
+    return prompt.replace(INSTRUCTION_ANCHOR, f"{instruction.strip()} {INSTRUCTION_ANCHOR}")
+
+
+def _parent_jobs(loaded: dict) -> list[dict]:
+    jobs = parent_design.decoding_jobs(loaded["parent_config"], loaded["carriers"], loaded["cases"])
+    instruction = loaded["config"].get("decoder_instruction")
+    return [dict(job, prompt=with_instruction(job["prompt"], instruction)) for job in jobs]
+
+
 def decode_jobs(loaded: dict) -> list[dict]:
     """The confirmation's own decode jobs for payload carriers and the no-carrier controls.
 
-    Ids, prompts, shown order, and job order are identical to the parent's. Honest
-    paraphrases are not decoded again: no pre-registered measure here uses them.
+    Ids, shown order, and job order are identical to the parent's, and so are the
+    prompts apart from any amendment sentence. Honest paraphrases are not decoded
+    again: no pre-registered measure here uses them.
     """
-    jobs = parent_design.decoding_jobs(loaded["parent_config"], loaded["carriers"], loaded["cases"])
-    return [job for job in jobs if job["kind"] != "honest"]
+    return [job for job in _parent_jobs(loaded) if job["kind"] != "honest"]
 
 
 def check_jobs(loaded: dict) -> list[dict]:
     """Pre-test on the first honest development paraphrases by id; not part of any analysis."""
-    jobs = parent_design.decoding_jobs(loaded["parent_config"], loaded["carriers"], loaded["cases"])
-    honest = sorted((job for job in jobs if job["kind"] == "honest"), key=lambda job: job["id"])
+    honest = sorted((job for job in _parent_jobs(loaded) if job["kind"] == "honest"), key=lambda job: job["id"])
     return [dict(job, id="check-" + job["id"]) for job in honest[:loaded["config"]["check_jobs"]]]
 
 

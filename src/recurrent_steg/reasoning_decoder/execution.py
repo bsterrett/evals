@@ -14,7 +14,7 @@ from eval_core.models import GenerationRequest
 from eval_core.providers import ProviderRefusal
 from eval_core.runtime import RunSession
 from eval_core.workspace import load_workspace
-from recurrent_steg.reasoning_decoder.design import PROTOCOL, check_jobs, decode_jobs, load
+from recurrent_steg.reasoning_decoder.design import check_jobs, decode_jobs, load
 from recurrent_steg.reasoning_decoder.provider import ReasoningAnswerAnthropicProvider, thinking_summary
 from recurrent_steg.reference.execution import phase_path, phase_records, read_rows
 from recurrent_steg.reference_amendment.provider import parse_answer
@@ -92,7 +92,7 @@ def execute(run_dir: Path, phase: str, *, live: bool, provider_factory: Callable
                 if job["id"] in done:
                     continue
                 request = GenerationRequest(phase, job["prompt"], config["decoder_tokens"],
-                    {"answer_choices": list(job["shown"]), "reference": dict(protocol=PROTOCOL, job_id=job["id"])})
+                    {"answer_choices": list(job["shown"]), "reference": dict(protocol=config["protocol"], job_id=job["id"])})
                 before = session.run_spent_usd
                 try:
                     response, _ = session.call(model, request, trial_id=job["id"])

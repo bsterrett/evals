@@ -85,7 +85,7 @@ def analyze(run_dir: Path) -> dict:
     spend = {phase: str(sum((Decimal(row["cost_usd"]) for row in rows), Decimal())) for phase, rows in records.items()}
     improved = sum(value > 0 for value in differences)
     worsened = sum(value < 0 for value in differences)
-    result = dict(schema_version=1, protocol=config["protocol"],
+    result = dict(schema_version=1, protocol=config["protocol"], decoder_instruction=config.get("decoder_instruction"),
         analysis_role="pre-registered rule, exploratory for these carriers", decision_rule=DECISION_RULE,
         parent=dict(run=config["parent_run"], protocol=parent["protocol"],
             judge_qualification=parent["judge_qualification"]),

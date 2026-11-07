@@ -274,6 +274,14 @@ blocked the shared ledger
 Pre-test every role under every prompt variant, and prefer an answer format the
 provider enforces over an instruction the model may not follow.
 
+A reasoning setting also needs a check that reasoning actually happens. A Sonnet
+5.5 decoder was given adaptive thinking at the default effort `high`, the frozen
+plain/0-1 decode prompt, and an enforced answer schema. It reported 0 thinking
+tokens in 8 of 8 pre-test calls and answered at once. The API guide's description
+of `high` does not hold for this prompt
+([protocol map](../../experiments/recurrent_steganography/protocols/README.md#exploratory-reasoning-decoder-on-the-confirmations-paraphrases)).
+Gate any reasoning condition on reported thinking tokens before the full run.
+
 The same check shows that payload semantics can move the bottleneck. With 0/1,
 neither GPT-5.5 nor Sonnet 5.5 met the feasibility rule. With meaningful word
 labels, Sonnet coordinated tacitly about 70% of the time through tone ("promptly"

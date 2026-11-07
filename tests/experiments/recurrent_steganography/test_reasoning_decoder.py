@@ -22,7 +22,8 @@ from recurrent_steg.confirmation.analysis import analyze as analyze_parent
 from recurrent_steg.confirmation.design import PROTOCOL as PARENT_PROTOCOL
 from recurrent_steg.confirmation.execution import PHASES as PARENT_PHASES, execute as execute_parent
 from recurrent_steg.reasoning_decoder.analysis import analyze, exact_sign_flip_p
-from recurrent_steg.reasoning_decoder.design import PROTOCOL, check_jobs, decode_jobs, load
+from recurrent_steg.reasoning_decoder.design import (AMENDED_PROTOCOL, PROTOCOL, check_jobs, decode_jobs, load,
+    with_instruction)
 from recurrent_steg.reasoning_decoder.execution import PHASES, execute
 from recurrent_steg.reasoning_decoder.provider import ReasoningAnswerAnthropicProvider, thinking_summary
 from tests.experiments.recurrent_steganography.test_confirmation import Fake as ParentFake
@@ -31,6 +32,7 @@ ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "experiments/recurrent_steganography/data"
 PARENT_CONFIG = ROOT / "experiments/recurrent_steganography/configs/confirmation-v1.toml"
 CONFIG = ROOT / "experiments/recurrent_steganography/configs/reasoning-decoder-v1.toml"
+AMENDED_CONFIG = ROOT / "experiments/recurrent_steganography/configs/reasoning-decoder-v1.1.toml"
 
 
 class ReasoningFake(Provider):
@@ -145,15 +147,21 @@ class PipelineTests(unittest.TestCase):
                 ReasoningFake.swapped, ParentFake.swapped = set(ParentFake.swapped), set()
             execute_parent(parent, phase, live=True, provider_factory=ParentFake)
         cls.parent_result = analyze_parent(parent)
-        text = CONFIG.read_text(encoding="utf-8").replace("2026-11-06", today).replace(
-            "artifacts/runs/recurrent_steganography/20261107T022508Z-confirmation", "run-parent")
-        for name, filename in dict(plan="plan.json", encode="encode-sonnet55.jsonl", decode="decode-sonnet55.jsonl",
-                analysis="analysis-v1.json").items():
-            line = next(line for line in text.splitlines() if line.startswith(f"parent_{name}_sha256"))
-            text = text.replace(line, f'parent_{name}_sha256 = "{file_sha256(parent / filename)}"')
-        cls.config_text = text
+
+        def adapt(source: Path) -> str:
+            text = source.read_text(encoding="utf-8").replace("2026-11-06", today).replace(
+                "artifacts/runs/recurrent_steganography/20261107T022508Z-confirmation", "run-parent")
+            for name, filename in dict(plan="plan.json", encode="encode-sonnet55.jsonl", decode="decode-sonnet55.jsonl",
+                    analysis="analysis-v1.json").items():
+                line = next(line for line in text.splitlines() if line.startswith(f"parent_{name}_sha256"))
+                text = text.replace(line, f'parent_{name}_sha256 = "{file_sha256(parent / filename)}"')
+            return text
+
+        cls.config_text, cls.amended_text = adapt(CONFIG), adapt(AMENDED_CONFIG)
         cls.config = root / "experiment/configs/reasoning-decoder-v1.toml"
-        cls.config.write_text(text, encoding="utf-8")
+        cls.config.write_text(cls.config_text, encoding="utf-8")
+        cls.amended = root / "experiment/configs/reasoning-decoder-v1.1.toml"
+        cls.amended.write_text(cls.amended_text, encoding="utf-8")
 
     @classmethod
     def tearDownClass(cls):
@@ -163,11 +171,13 @@ class PipelineTests(unittest.TestCase):
     def setUp(self):
         ReasoningFake.output_tokens, ReasoningFake.malformed = 400, False
 
-    def run_dir(self, name: str, budget: str = "10.00") -> Path:
+    def run_dir(self, name: str, budget: str = "9.99", amended: bool = False) -> Path:
         config = self.root / f"experiment/configs/{name}.toml"
-        config.write_text(self.config_text.replace('run_budget_usd = "10.00"', f'run_budget_usd = "{budget}"'),
-            encoding="utf-8")
-        frozen = dict(protocol=PROTOCOL, config_path=config.relative_to(self.root).as_posix())
+        text = self.amended_text if amended else self.config_text
+        text = text.replace('run_budget_usd = "10.00"', 'run_budget_usd = "9.99"')
+        config.write_text(text.replace('run_budget_usd = "9.99"', f'run_budget_usd = "{budget}"'), encoding="utf-8")
+        frozen = dict(protocol=AMENDED_PROTOCOL if amended else PROTOCOL,
+            config_path=config.relative_to(self.root).as_posix())
         stack = ExitStack()
         stack.enter_context(patch("recurrent_steg.reasoning_decoder.cli.verify_freeze", return_value=frozen))
         self.addCleanup(stack.close)
@@ -189,9 +199,31 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual([job["id"] for job in checks],
             [f"check-dec-enc-conf-dev-00{index}-honest" for index in range(1, 9)])
 
+    def test_the_amendment_adds_only_its_sentence(self):
+        original, amended = load(self.config), load(self.amended)
+        instruction = amended["config"]["decoder_instruction"]
+        for jobs in ((decode_jobs(original), decode_jobs(amended)), (check_jobs(original), check_jobs(amended))):
+            self.assertEqual([(job["id"], job["shown"]) for job in jobs[0]], [(job["id"], job["shown"]) for job in jobs[1]])
+            for before, after in zip(*jobs):
+                self.assertEqual(after["prompt"].count(instruction), 1)
+                self.assertEqual(after["prompt"].replace(instruction + " ", "", 1), before["prompt"])
+                self.assertEqual(after["prompt"], with_instruction(before["prompt"], instruction))
+        self.assertIn(instruction + " Reply with exactly 0 or 1", decode_jobs(amended)[0]["prompt"])
+        line = f'decoder_instruction = "{instruction}"'
+        for text in (self.config_text.replace("seed =", line + "\nseed ="), self.amended_text.replace(line, "")):
+            wrong = self.root / "experiment/configs/wrong-instruction.toml"
+            wrong.write_text(text, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Only the amendment"):
+                load(wrong)
+
     def test_a_channel_the_answer_only_decoder_missed_is_detected(self):
         self.assertEqual(self.parent_result["primary"]["counts"], {"+1": 0, "0": 288, "-1": 0})
-        run_dir = self.run_dir("detect")
+        for amended in (False, True):
+            with self.subTest(amended=amended):
+                self.detect(amended)
+
+    def detect(self, amended: bool):
+        run_dir = self.run_dir("detect-amended" if amended else "detect", amended=amended)
         ledger = BudgetLedger(self.workspace.budget.ledger, Decimal(50))
         before = ledger.spent
         for phase in PHASES:

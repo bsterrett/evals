@@ -13,8 +13,8 @@ from eval_core.models import TokenUsage
 from eval_core.workspace import git_provenance, load_workspace
 from recurrent_steg.confirmation import design as parent_design
 from recurrent_steg.reasoning_decoder.analysis import DECISION_RULE
-from recurrent_steg.reasoning_decoder.design import (PROTOCOL, check_jobs, decode_jobs, job_identity, load,
-    parent_identity)
+from recurrent_steg.reasoning_decoder.design import (AMENDED_PROTOCOL, PROTOCOLS, check_jobs, decode_jobs,
+    job_identity, load, parent_identity, with_instruction)
 from recurrent_steg.reasoning_decoder.execution import PHASES
 from recurrent_steg.reference.cli import load_api_keys
 from recurrent_steg.reference.design import decoder_prompt
@@ -46,7 +46,8 @@ def plan(config_path: Path) -> dict:
     estimates = {name: str((model.rate.actual_cost(TokenUsage(INPUT_TOKENS, tokens)) * count).quantize(cent))
         for name, tokens in ASSUMED_OUTPUT_TOKENS.items()}
     bound = (model.rate.reserve_cost(INPUT_TOKENS, config["decoder_tokens"]) * count).quantize(cent)
-    return dict(schema_version=1, experiment_id="recurrent_steganography", protocol=PROTOCOL, role=config["role"],
+    return dict(schema_version=1, experiment_id="recurrent_steganography", protocol=config["protocol"],
+        role=config["role"], decoder_instruction=config.get("decoder_instruction"),
         config=config, config_path=loaded["config_path"].relative_to(root).as_posix(),
         config_sha256=file_sha256(loaded["config_path"]),
         source_sha256={path.relative_to(root).as_posix(): file_sha256(path) for path in source_paths(root)},
@@ -65,7 +66,7 @@ def plan(config_path: Path) -> dict:
 
 def verify_freeze(run_dir: Path) -> dict:
     frozen = json.loads((Path(run_dir) / "plan.json").read_text(encoding="utf-8"))
-    if frozen.get("protocol") != PROTOCOL:
+    if frozen.get("protocol") not in PROTOCOLS:
         raise ValueError("This run directory does not hold a reasoning-decoder plan")
     current = plan(load_workspace().root / frozen["config_path"])
     for key in ("config_sha256", "source_sha256", "parent", "prompt_fingerprints", "check_jobs", "decode_job_identity"):
@@ -83,7 +84,8 @@ def freeze(config_path: Path, output: Path | None) -> tuple[Path, dict]:
     if changed.strip():
         raise ValueError("Commit the reasoning-decoder source and configuration before freezing")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    destination = output or root / "artifacts/runs/recurrent_steganography" / f"{stamp}-reasoning-decoder"
+    suffix = "reasoning-decoder-v1.1" if result["protocol"] == AMENDED_PROTOCOL else "reasoning-decoder"
+    destination = output or root / "artifacts/runs/recurrent_steganography" / f"{stamp}-{suffix}"
     if destination.exists():
         raise ValueError("Preserve existing evidence; choose another output directory")
     destination.mkdir(parents=True)
@@ -94,7 +96,7 @@ def freeze(config_path: Path, output: Path | None) -> tuple[Path, dict]:
 def preview(config_path: Path) -> str:
     result = plan(config_path)
     model = result["model"]
-    lines = [f"# Draft for review: {PROTOCOL}", "",
+    lines = [f"# Draft for review: {result['protocol']}", "",
         "Nothing here has been frozen or run. Claude Sonnet 5.5 decodes the confirmation run's existing payload "
         f"paraphrases again, now with adaptive thinking at effort `{model['effort']}` (summaries kept) before the "
         "same schema-enforced answer. Paraphrases, prompts, option orders, and acceptance decisions are the "
@@ -102,8 +104,8 @@ def preview(config_path: Path) -> str:
         f"Calls: {result['total_calls']} ({result['calls']['decoder-check']} pre-test, {result['calls']['decode']} "
         f"decode). Estimated cost by mean output tokens: {result['estimated_cost_usd']}. Proposed ceiling: "
         f"${result['run_budget_usd']}.", "", "## Decision rule", "", DECISION_RULE, "",
-        "## Decoder prompt", "", "```text", decoder_prompt("<the encoder's paraphrase>", parent_design.CONDITION,
-            parent_design.BIT_OPTIONS), "```"]
+        "## Decoder prompt", "", "```text", with_instruction(decoder_prompt("<the encoder's paraphrase>",
+            parent_design.CONDITION, parent_design.BIT_OPTIONS), result["decoder_instruction"]), "```"]
     return "\n".join(lines) + "\n"
 
 
