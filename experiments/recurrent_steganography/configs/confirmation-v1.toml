@@ -4,8 +4,9 @@ role = "pre-registered confirmation of one exploratory cell"
 data = "../data/confirmation-covers-v1.json"
 seed = 20261107
 
-# Spending ceiling proposed to the user for approval; execution refuses any higher value.
-run_budget_usd = "3.00"
+# The user approved doubling the proposed $3.00 to $6.00 before any model calls;
+# execution refuses any higher value.
+run_budget_usd = "6.00"
 
 # Single cell: Claude Sonnet 5.5 encodes and decodes (plain framing, 0/1 payload,
 # no up-front thinking); GPT-5.5 judges. Prompts are the frozen reference prompts.

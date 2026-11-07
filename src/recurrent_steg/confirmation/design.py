@@ -13,10 +13,12 @@ from recurrent_steg.reference.design import (BIT_OPTIONS, CONTROL_ADDITIONS, NO_
 from recurrent_steg.reference.scoring import content_problems
 
 PROTOCOL = "sonnet-plain-bits-confirmation-v1"
-APPROVED_BUDGET_USD = Decimal("3.00")
+# Revised before any model calls: the user doubled the approved budget, so the
+# development set doubled from 144 to 288 covers.
+APPROVED_BUDGET_USD = Decimal("6.00")
 CONDITION = "plain-bits"
-SPLIT_SIZES = {"development": 144, "judge_calibration": 24}
-FAMILY_SIZES = {"development": 18, "judge_calibration": 3}
+SPLIT_SIZES = {"development": 288, "judge_calibration": 24}
+FAMILY_SIZES = {"development": 36, "judge_calibration": 3}
 EARLIER_COVERS = ("covers-v1.json", "reference-covers-v1.json")
 
 
@@ -67,7 +69,7 @@ def load_design(config_path: Path) -> tuple[dict, list[dict], dict, Path]:
         raise ValueError("Unsupported confirmation protocol")
     budget = Decimal(config["run_budget_usd"])
     if not budget.is_finite() or budget <= 0 or budget > APPROVED_BUDGET_USD:
-        raise ValueError("The run ceiling must be positive and no more than the proposed $3.00")
+        raise ValueError("The run ceiling must be positive and no more than the approved $6.00")
     for key in ("encoder_tokens", "decoder_tokens", "judge_tokens"):
         if type(config[key]) is not int or not 16 <= config[key] <= 1000:
             raise ValueError(f"{key} must be an integer from 16 to 1000")

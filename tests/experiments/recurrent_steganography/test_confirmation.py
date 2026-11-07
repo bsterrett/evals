@@ -75,20 +75,20 @@ class DesignTests(unittest.TestCase):
     def test_prompts_are_the_frozen_pilot_prompts_and_covers_are_balanced(self):
         config, cases, _, _ = load_design(CONFIG)
         development = [case for case in cases if case["split"] == "development"]
-        self.assertEqual(len(development), 144)
-        self.assertEqual(Counter(case["option_order"] for case in development), Counter(forward=72, reversed=72))
+        self.assertEqual(len(development), 288)
+        self.assertEqual(Counter(case["option_order"] for case in development), Counter(forward=144, reversed=144))
         for family in {case["family"] for case in development}:
             orders = Counter(c["option_order"] for c in development if c["family"] == family)
-            self.assertEqual(orders, Counter(forward=9, reversed=9))
+            self.assertEqual(orders, Counter(forward=18, reversed=18))
         jobs = encoding_jobs(config, cases)
-        self.assertEqual(len(jobs), 456)
+        self.assertEqual(len(jobs), 888)
         encoded = next(job for job in jobs if job["kind"] == "encoded" and job["payload"] == "1")
         self.assertEqual(encoded["prompt"], pilot_encoder_prompt(encoded["message"], 1))
         honest = next(job for job in jobs if job["kind"] == "honest")
         self.assertEqual(honest["prompt"], pilot_encoder_prompt(honest["message"], None))
         carriers = [dict(job, carrier="Text.") for job in jobs]
         decodes = decoding_jobs(config, carriers, cases)
-        self.assertEqual(len(decodes), 434)
+        self.assertEqual(len(decodes), 866)
         forward = next(job for job in decodes if job["shown"] == list(BIT_OPTIONS) and job["kind"] == "encoded")
         self.assertEqual(forward["prompt"], pilot_decoder_prompt("Text."))
         self.assertTrue(all("Secret" not in job["prompt"] for job in decodes + judge_jobs(config, carriers)))
@@ -102,11 +102,11 @@ class PipelineTests(unittest.TestCase):
     def setUp(self):
         Fake.plant, Fake.swapped, Fake.break_judge, Fake.malformed = True, set(), False, False
 
-    def build(self, root: Path, stack: ExitStack, budget: str = "3.00") -> tuple[Path, Workspace]:
+    def build(self, root: Path, stack: ExitStack, budget: str = "6.00") -> tuple[Path, Workspace]:
         (root / "experiment/configs").mkdir(parents=True)
         (root / "experiment/data").mkdir()
         text = CONFIG.read_text(encoding="utf-8").replace("2026-11-06", date.today().isoformat())
-        text = text.replace('run_budget_usd = "3.00"', f'run_budget_usd = "{budget}"')
+        text = text.replace('run_budget_usd = "6.00"', f'run_budget_usd = "{budget}"')
         (root / "experiment/configs/confirmation-v1.toml").write_text(text, encoding="utf-8")
         for name in ("confirmation-covers-v1.json", "covers-v1.json", "reference-covers-v1.json"):
             (root / "experiment/data" / name).write_bytes((DATA / name).read_bytes())
@@ -131,7 +131,8 @@ class PipelineTests(unittest.TestCase):
             result = self.run_all(run_dir)
             self.assertTrue(result["judge_qualification"]["qualified"])
             self.assertTrue(result["confirmed"])
-            self.assertEqual(result["primary"]["counts"], {"+1": 144, "0": 0, "-1": 0})
+            self.assertEqual(result["primary"]["ci95"], [1, 1])
+            self.assertEqual(result["primary"]["counts"], {"+1": 288, "0": 0, "-1": 0})
             ledger = BudgetLedger(workspace.budget.ledger, Decimal(50))
             self.assertEqual(ledger.pending, 0)
             self.assertEqual(Decimal(result["total_spend_usd"]), ledger.spent)
@@ -143,8 +144,8 @@ class PipelineTests(unittest.TestCase):
             Fake.plant = False
             result = self.run_all(run_dir)
             self.assertFalse(result["confirmed"])
-            self.assertEqual(result["tallies"]["identical_pairs"], 144)
-            self.assertEqual(result["primary"]["counts"], {"+1": 0, "0": 144, "-1": 0})
+            self.assertEqual(result["tallies"]["identical_pairs"], 288)
+            self.assertEqual(result["primary"]["counts"], {"+1": 0, "0": 288, "-1": 0})
 
     def test_gates_and_ceiling_stop_spending(self):
         with tempfile.TemporaryDirectory(dir=ROOT / ".test-tmp") as directory, ExitStack() as stack:

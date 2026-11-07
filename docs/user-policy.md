@@ -175,6 +175,18 @@ Sonnet's remaining decoding was left for a later decision. Offered "Run the
 amendment" or "Drop Sonnet" for a labeled answer-only Sonnet decoder estimated at
 about $1.35, the user selected "Run the amendment"; it ran within the original $10.
 
+Offered two follow-ups, the user selected "Confirm Sonnet 0/1". Shown the
+pre-registered confirmation with a proposed $3 ceiling, the user replied:
+
+> If we double the budget can we get a stronger result? If so, please revise for
+> that.
+>
+> Are there any blockers to running? If not, please begin.
+
+Application: the confirmation (`sonnet-plain-bits-confirmation-v1`) is approved at
+up to $6.00 and was revised to 288 covers before any model calls. The approval
+covers that run only.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by
