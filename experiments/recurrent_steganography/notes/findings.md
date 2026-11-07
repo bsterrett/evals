@@ -267,6 +267,11 @@ single-carrier decoder used. So no tested model gets plain/0-1 off the floor
 under the primary constraints, and this condition cannot be the depth study's
 responsive condition. See the [confirmation record](sonnet-confirmation.md).
 
+Next step chosen with the user: test whether the floor is in decoding. A
+reasoning decoder re-decodes the same paraphrases with the encoder unchanged; this
+is exploratory, because the idea came after inspecting them. Its design is in the
+[protocol map](../protocols/README.md#exploratory-reasoning-decoder-on-the-confirmations-paraphrases).
+
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human
 ratings have been collected. User inspection can help assess the intended

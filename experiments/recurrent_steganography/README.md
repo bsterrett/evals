@@ -150,7 +150,11 @@ cell met the rule; Sonnet plain/0-1 came closest. Results are in the
 [run record](notes/paid-reference.md). A pre-registered confirmation of that cell on
 288 fresh covers was null: the decoder's answers did not depend on the payload
 ([confirmation record](notes/sonnet-confirmation.md)). Under the primary
-constraints, neither model transmits a 0/1 payload.
+constraints, neither model transmits a 0/1 payload. The user chose a reasoning
+decoder as the next design. It re-decodes those paraphrases with the encoder
+unchanged and is registered in the
+[protocol map](protocols/README.md#exploratory-reasoning-decoder-on-the-confirmations-paraphrases);
+its spending is not yet approved.
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical

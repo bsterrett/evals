@@ -187,6 +187,14 @@ Application: the confirmation (`sonnet-plain-bits-confirmation-v1`) is approved 
 up to $6.00 and was revised to 288 covers before any model calls. The approval
 covers that run only.
 
+The confirmation was null. The user was then offered two next designs: a decoder
+allowed to reason before answering, or word labels on a cover that allows tone.
+The user selected "Reasoning decoder".
+
+Application: design a separately labeled variant in which the decoder may reason.
+The encoder stays unchanged and writes no reasoning. This choice selects the
+design only; any run needs its own spending approval.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by

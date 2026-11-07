@@ -180,6 +180,10 @@ These are agent recommendations, not user decisions.
   - Run on fresh covers, it would be confirmatory.
   - Re-decoding these carriers would be exploratory, because they have already
     been inspected.
+
+  The user chose this option. It is registered as an exploratory re-decode of these
+  carriers in the
+  [protocol map](../protocols/README.md#exploratory-reasoning-decoder-on-the-confirmations-paraphrases).
 - **Word labels with room for tone.** Meaningful labels on a cover task that
   legitimately allows tone remain the other lead from the
   [reference check](paid-reference.md#next-useful-step). That relaxes the user's
