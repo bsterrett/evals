@@ -212,6 +212,10 @@ These are agent recommendations, not user decisions.
     would be exploratory, because these paraphrases have been inspected.
   - A run on fresh covers could be pre-registered.
   - Either way, it changes what the decoder is told, so it is the user's decision.
+
+  The user chose this option. The exploratory re-decode is registered as
+  `sonnet-rules-decoder-v1`; see the
+  [protocol map](../protocols/README.md#exploratory-the-decoder-sees-the-writers-instructions).
 - **Confirm the thinking-encoder, answer-only-decoder secondary** on fresh covers,
   as a primary, if encoder reasoning alone matters to the research question.
 - **Do not tune prompts until both endpoints land on one rule.** That would amount

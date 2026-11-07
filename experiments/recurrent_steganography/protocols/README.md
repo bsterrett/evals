@@ -493,3 +493,90 @@ and ran on 2026-11-07 as `20261107T132019Z-both-reasoning`.
 - $5.76 was spent.
 
 Results are in the [run record](../notes/both-reasoning.md).
+
+## Exploratory: the decoder sees the writer's instructions
+
+Protocol `sonnet-rules-decoder-v1`. It was recorded and committed before any of
+its model calls. The user chose this follow-up after the both-reasoning result (see
+[user policy](../../../docs/user-policy.md#recurrent-depth-follow-up-after-the-first-pilot)).
+
+**The ceiling is pending.** The $6.00 in the configuration is a proposal, and the
+run needs the user's spending approval first.
+
+| Component | Canonical source |
+| --- | --- |
+| Parent run and its pinned hashes, gate settings, proposed $6.00 ceiling | `../configs/rules-decoder-v1.toml` |
+| The writer's instructions, where they are inserted, job sets | `src/recurrent_steg/rules_decoder/design.py` |
+| Phases, pre-test gate, spending ceiling | `src/recurrent_steg/rules_decoder/execution.py` |
+| Decision rule and analysis | `src/recurrent_steg/rules_decoder/analysis.py` |
+| Plan identities, preview, freeze guard | `src/recurrent_steg/rules_decoder/cli.py` |
+
+- **Question:** does the decoder read the encoder's convention once it knows the
+  writer's instructions?
+  - In the both-reasoning run, the thinking encoder signalled with sentence count,
+    one sentence for 1. The thinking decoder mostly read word-count parity.
+  - The encoder's prompt allows "at most two sentences"; the decoder's prompt
+    never mentions that.
+- **Explanation under test:** the encoder's instructions offer one versus two
+  sentences as a ready binary, and a decoder unaware of them falls back on parity.
+  It was formed after inspecting these paraphrases, so the run is exploratory.
+- **The one change:** each decoder prompt shows the writer's instructions verbatim,
+  right after its opening sentence. The source message and the secret bit are
+  replaced by "[withheld]", and no strategy is added.
+- **What stays the both-reasoning run's:** the paraphrases, decoders, models, job
+  ids, option orders, answer schema, and acceptance decisions.
+- **The instructions also reveal that the writer was asked to think,** because
+  they include "Think it through before you answer." That is part of the writer's
+  instructions and is not separated here.
+- **Primary measure and decision rule:** the per-cover difference in the
+  informative pair score: the thinking decoder shown the instructions, minus the
+  both-reasoning run's thinking decoder. It is taken over the 288 covers, using the
+  frozen acceptance decisions.
+  - The instructions are shown to help if the mean difference is above zero with
+    an exact two-sided sign-flip p below 0.05.
+  - This is the only test in the decision rule.
+  - The test is paired rather than absolute because the earlier decoder already
+    scored +0.073 (p 0.064) on these paraphrases. An absolute test could cross 0.05
+    by chance without any help from the instructions.
+- **Sample size:** power was simulated using the parent run's per-cover data. In
+  the model, the decoder follows the sentence rule on a share of paraphrases and
+  otherwise reads parity as before. Power is 0.18 at a 10% share, 0.77 at 20%, and
+  0.99 at 30%.
+- **Secondary measures,** reported regardless; they decide nothing:
+  - the informative pair score with the instructions shown, recovery-only, and
+    informative recovery-only;
+  - agreement with the sentence rule and with parity, for this decoder and for the
+    both-reasoning decoder;
+  - answers by payload and by option order, and no-carrier answers;
+  - **the answer-only decoder shown the instructions:** its informative pair score
+    and its per-cover difference from the both-reasoning answer-only decoder. With
+    the earlier runs, this covers each combination of thinking and seeing the
+    instructions, on the same paraphrases;
+  - thinking tokens, refusals, and spend.
+- **Gate:** the pre-test decodes the parent's 8 pre-test paraphrases, which are
+  honest development paraphrases, with the instructions shown. The full decode runs
+  only if all of the following hold:
+  - all 8 answers are valid;
+  - at least 6 decodes thought (20 or more thinking tokens);
+  - the rest of the run is projected to fit inside the remaining ceiling. The
+    projection is the pre-test's mean cost × 578, plus $0.0013 per answer-only
+    decode, all × 1.25, plus one maximal reservation.
+
+  Each phase requires the previous one to be complete. The answer-only secondary
+  runs last.
+- **Spending:**
+  - There are 1,164 calls: 8 in the pre-test, 578 thinking decodes, and 578
+    answer-only decodes.
+  - The estimated cost is $2.84 if thinking decodes average 250 output tokens,
+    $4.31 at 500, and $7.24 at 1,000. The both-reasoning decoder averaged 143.
+  - Under the $6.00 ceiling, the gate passes only if the pre-test averages below
+    about 550 output tokens. Otherwise the run stops after its 8 pre-test calls.
+
+```powershell
+.\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder validate
+.\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder freeze
+.\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder execute --run RUN_DIRECTORY --phase decoder-check --live
+.\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder execute --run RUN_DIRECTORY --phase decode --live
+.\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder execute --run RUN_DIRECTORY --phase decode-answer-only --live
+.\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder analyze --run RUN_DIRECTORY
+```

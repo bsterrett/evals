@@ -232,6 +232,20 @@ and run" on 2026-11-07.
 Application: `sonnet-both-reasoning-v1` is approved at up to $15.00, covering that
 run only.
 
+That run did not show transmission: the thinking encoder signalled with sentence
+count, and the thinking decoder mostly read word-count parity. The encoder's
+prompt allows "at most two sentences", which the decoder's prompt never mentions.
+Asked "Which follow-up should I design next?", the user chose "Decoder sees the
+rules" over "Confirm answer-only". The option was described as showing the decoder
+the writer's instructions, with the same limits and no strategy. It could be either
+an exploratory re-decode of that run's paraphrases (about $1.30) or a
+pre-registered run on fresh covers.
+
+Application: design a separately labeled decoder condition that shows the decoder
+the writer's instructions, with the private bit and the source message withheld,
+and no strategy. Agent choice: start with the cheaper exploratory re-decode. This
+choice selects the design only; any run needs its own spending approval.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by

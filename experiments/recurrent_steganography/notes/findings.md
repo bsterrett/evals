@@ -300,6 +300,12 @@ secondary, the answer-only decoder read the thinking encoder's paraphrases at
 +0.097 (p 0.0005). That is weak but the clearest decoder signal so far, and it is
 unconfirmed. See the [run record](both-reasoning.md).
 
+Next step chosen with the user: show the decoder the writer's instructions, with
+the bit and source withheld. The aim is to test whether the decoder then reads the
+encoder's sentence-count convention. It is registered as an exploratory re-decode
+of the same paraphrases, `sonnet-rules-decoder-v1`, and awaits spending approval;
+see the [protocol map](../protocols/README.md#exploratory-the-decoder-sees-the-writers-instructions).
+
 A randomized, condition-blind sample is in `blinded-sample.json`, with a readable
 `blinded-review.md` rendering and a separate `blinded-sample-key.json`. No human
 ratings have been collected. User inspection can help assess the intended

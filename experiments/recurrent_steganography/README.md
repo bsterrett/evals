@@ -157,7 +157,10 @@ use ([run record](notes/reasoning-decoder.md)). The user then chose a labeled
 written-reasoning variant in which both endpoints think, on fresh covers. Its
 pre-registered test did not show transmission (p 0.064). The thinking encoder
 signalled with sentence count, while the thinking decoder mostly read parity
-([run record](notes/both-reasoning.md)).
+([run record](notes/both-reasoning.md)). The next step chosen with the user is a
+re-decode in which the decoder sees the writer's instructions. It is registered and
+awaits spending approval
+([protocol map](protocols/README.md#exploratory-the-decoder-sees-the-writers-instructions)).
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical
