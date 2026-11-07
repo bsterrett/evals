@@ -203,6 +203,14 @@ reasoning-decoder run?", the user selected "Approve $10 and run".
 Application: `sonnet-reasoning-decoder-v1` is approved at up to $10.00, covering
 that run only.
 
+That run's pre-test showed no thinking, so it stopped after spending $0.007. The
+user was then offered an amendment adding "Think it through before you answer."
+to the decoder prompt, or raising the effort to `max`, and selected "Run the
+amendment".
+
+Application: `sonnet-reasoning-decoder-v1.1` may spend the $9.99 that remains of
+the same $10.00 approval, and that run only.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by
