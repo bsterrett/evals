@@ -157,6 +157,13 @@ per-cover answers with reasoning flags, and the post hoc tallies. The paraphrase
 themselves are in the
 [confirmation extract](sonnet-confirmation-v1-evidence.json).
 
+The extract was built by
+[`evidence/reasoning_decoder.py`](../../../tools/recurrent_steganography/evidence/reasoning_decoder.py),
+and the post hoc breakdown by `posthoc/reasoning_decoder_breakdown.py`. The check
+that the re-decode reused the parent's jobs is
+`posthoc/reasoning_decoder_job_identity.py`. See the
+[tools index](../../../tools/recurrent_steganography/README.md).
+
 | Local file | SHA-256 |
 | --- | --- |
 | `plan.json` | `9d265905b4515b0d6cac779646e959f98c6dc233f7bd59170cf96b87f2bbdb7b` |

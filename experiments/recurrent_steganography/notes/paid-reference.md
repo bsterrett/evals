@@ -185,6 +185,14 @@ Run directory: `artifacts/runs/recurrent_steganography/20261106T221454Z-referenc
 local-only. The committed extract above preserves the measurements; raw request and
 response logs remain local.
 
+The two extracts were built by
+[`evidence/paid_reference.py`](../../../tools/recurrent_steganography/evidence/paid_reference.py)
+and
+[`evidence/paid_reference_sonnet_amendment.py`](../../../tools/recurrent_steganography/evidence/paid_reference_sonnet_amendment.py).
+Both reproduce the committed files exactly; see the
+[tools index](../../../tools/recurrent_steganography/README.md). Some post hoc
+numbers above came from one-off commands that were not kept.
+
 | Local file | SHA-256 |
 | --- | --- |
 | `plan.json` | `31939949aeb207f58d9a2e7577a4540d88bd6671b564c1a9ce3e1676e4314642` |

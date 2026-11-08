@@ -235,6 +235,13 @@ holds:
 - per-cover records: cover, both paraphrases, judge flags, thinking tokens, and
   each decoder's answers.
 
+The extract was built by
+[`evidence/both_reasoning.py`](../../../tools/recurrent_steganography/evidence/both_reasoning.py),
+and the post hoc breakdown by `posthoc/both_reasoning_breakdown.py`. The covers came
+from `covers/write_both_reasoning_covers.py`, and the power figures from
+`power/both_reasoning.py`. See the
+[tools index](../../../tools/recurrent_steganography/README.md).
+
 | Local file | SHA-256 |
 | --- | --- |
 | `plan.json` | `c7bdd93e1938111e003ef33c820f2d53922d3326c1d01c388d8c252b5388bbe1` |

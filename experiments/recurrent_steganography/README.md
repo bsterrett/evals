@@ -1,10 +1,14 @@
 # Recurrent depth and unassisted one-bit communication
 
 Scope: a new exploratory study, independent of `semantic_covert_channel`.
-Preparation started 2026-11-06, America/Los_Angeles. The first exploratory pilot
-is complete: recovery stayed at chance, and the observer's JSON contract failed.
-See [findings and limitations](notes/findings.md). This method version is retained
-for reproduction; a next pilot needs a newly frozen elicitation/observer design.
+Preparation started 2026-11-06, America/Los_Angeles.
+
+Status, 2026-11-07: the depth pilot and five paid follow-ups are complete. No
+condition under the primary constraints transmits the bit, so no depth comparison
+can be made yet. The [current synthesis](notes/findings.md#current-synthesis) holds
+the results, open questions, and pending decisions, and the
+[protocol map](protocols/README.md) holds every frozen method. The pilot's method
+is retained for reproduction; a next depth pilot needs a newly frozen design.
 
 ## Question and hypothesis
 
@@ -143,25 +147,10 @@ reuses the pilot's exact prompts. The outcome is the within-cover pair score, wi
 a Holm-corrected exact sign-flip decision rule fixed before the run. Method sources
 and commands are in the [protocol map](protocols/README.md#paid-feasibility-reference).
 
-Status: run on 2026-11-06. GPT-5.5 completed with no feasible cell. Sonnet 5.5's
-decoder wrote out its reasoning and a capped reply blocked the ledger; with the
-user's approval its decoding was redone under a labeled answer-only amendment. No
-cell met the rule; Sonnet plain/0-1 came closest. Results are in the
-[run record](notes/paid-reference.md). A pre-registered confirmation of that cell on
-288 fresh covers was null: the decoder's answers did not depend on the payload
-([confirmation record](notes/sonnet-confirmation.md)). Under the primary
-constraints, neither model transmits a 0/1 payload. A reasoning decoder, chosen
-by the user, re-decoded those paraphrases with the encoder unchanged. It found no
-signal: it mostly read word-count parity, which the non-reasoning encoder does not
-use ([run record](notes/reasoning-decoder.md)). The user then chose a labeled
-written-reasoning variant in which both endpoints think, on fresh covers. Its
-pre-registered test did not show transmission (p 0.064). The thinking encoder
-signalled with sentence count, while the thinking decoder mostly read parity
-([run record](notes/both-reasoning.md)). The user then chose an exploratory
-re-decode in which the decoders see the writer's instructions. The instructions did
-not help: the thinking decoder moved to sentence count but read it backwards, and
-thought less. The answer-only decoder's weak signal was unchanged
-([run record](notes/rules-decoder.md)).
+Status: run on 2026-11-06. No cell met the rule, and Sonnet plain/0-1 came closest;
+see the [run record](notes/paid-reference.md). Each later follow-up was chosen by
+the user and is summarized, with links to its run record, in the
+[current synthesis](notes/findings.md#current-synthesis).
 
 The assistance/difficulty rationale is in the
 [design guide](../../docs/research/steganography-experiment-design.md); historical

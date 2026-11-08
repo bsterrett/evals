@@ -238,10 +238,20 @@ local-only. The committed [evidence extract](rules-decoder-v1-evidence.json) hol
 - the gate record and the pre-test with its thinking summaries;
 - the post hoc tallies and stratified example summaries;
 - per-cover records: both decoders' answers with and without the instructions,
-  the sentence-rule and parity answers, and thinking tokens.
+  the sentence-rule and parity answers, and thinking tokens;
+- under `execution`, the phase receipts, mean input tokens, and no-carrier
+  decodes.
 
 The covers and paraphrases are in the both-reasoning
 [evidence extract](both-reasoning-v1-evidence.json).
+
+The extract was built by
+[`evidence/rules_decoder.py`](../../../tools/recurrent_steganography/evidence/rules_decoder.py).
+That builder was extended on 2026-11-07, after this note was written, so that the
+extract holds every number the note cites. The post hoc breakdown is
+`posthoc/rules_decoder_breakdown.py`, and the power figures came from
+`power/rules_decoder.py`. See the
+[tools index](../../../tools/recurrent_steganography/README.md).
 
 | Local file | SHA-256 |
 | --- | --- |

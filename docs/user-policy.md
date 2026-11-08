@@ -257,6 +257,31 @@ the user selected "Approve $6 and run" on 2026-11-07.
 Application: `sonnet-rules-decoder-v1` is approved at up to $6.00, covering that
 run only.
 
+That run did not help: the thinking decoder read sentence count with the opposite
+mapping from the encoder's. Asked "Design a fresh-cover confirmation of the
+answer-only signal?", the user selected "Not now" on 2026-11-07.
+
+Application: no next step is chosen. The confirmation remains an agent
+recommendation, and the experiment waits for the user's direction.
+
+## Keep working state from drifting
+
+Scope: how agents keep the repository's working state in order during ongoing
+work. Source: the user's request in a Claude Code chat, 2026-11-07,
+America/Los_Angeles, after a catch-up on `experiments/recurrent_steganography`; no
+portable message ID is available.
+
+> I would like to catch/clean the state up so there is not so much drift as we
+> work.
+
+Application, as the agent's reading of that request rather than further user
+direction:
+
+- commit the scripts that produce committed evidence or cited numbers, together
+  with what they produce;
+- keep one canonical home for each result, and link to it elsewhere;
+- when summarizing state, report unpushed or unmerged work and leftover worktrees.
+
 ## Two distinct recurrence research candidates
 
 Scope: research preparation for (1) improving pretrained open-weight models by

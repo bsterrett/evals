@@ -204,7 +204,12 @@ contains the following:
 - for each cover, the carriers, answers, judge flags, acceptance, and scores;
 - the post hoc tallies, including the exploratory comparison cell.
 
-Raw request and response logs stay local.
+Raw request and response logs stay local. The extract was built by
+[`evidence/confirmation.py`](../../../tools/recurrent_steganography/evidence/confirmation.py),
+and the post hoc breakdowns by the `posthoc/confirmation_*.py` and
+`posthoc/reference_sonnet_plain_bits.py` scripts; see the
+[tools index](../../../tools/recurrent_steganography/README.md). The covers were
+written by the `covers/` scripts listed there.
 
 | Local file | SHA-256 |
 | --- | --- |

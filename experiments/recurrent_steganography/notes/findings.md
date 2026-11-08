@@ -1,9 +1,94 @@
-# Preparation and runtime suitability
+# Findings: recurrent depth and unassisted one-bit communication
 
-Scope: observations from the 2026-11-06 preparation and first exploratory
-unassisted one-bit pilot, plus a later design review of that pilot. The pilot is
-complete; no confirmatory depth comparison was made.
-The [design](../README.md) owns the scientific question and user choices.
+Scope: the current synthesis of `experiments/recurrent_steganography`, followed by
+the 2026-11-06 preparation, the first exploratory pilot, its design review, and a
+short record of each later step. Each later run's details live in its run record,
+and its frozen method in the [protocol map](../protocols/README.md). The
+[design](../README.md) owns the scientific question and user choices.
+
+## Current synthesis
+
+As of 2026-11-07, after the rules-decoder run. This is agent synthesis; each point
+links its evidence. No confirmatory depth comparison has been made.
+
+### What is established
+
+- **Under the primary conditions, no tested model transmits the bit.** Those
+  conditions are no shared strategy, a 0/1 payload, a fact-preserving paraphrase,
+  and no written encoder reasoning.
+  - Dory 4B stayed exactly at chance in the depth pilot (below).
+  - GPT-5.5 showed nothing ([paid reference](paid-reference.md)).
+  - Sonnet 5.5's best cell (Holm p 0.051) failed a pre-registered confirmation on
+    288 new covers (p 0.69; [confirmation](sonnet-confirmation.md)).
+- **So the floor is the task as specified, not Dory's size.** The depth comparison
+  has no responsive condition to work with.
+- **Meaningful labels such as fast/slow let Sonnet coordinate, through tone.** The
+  fact-preserving judge rejected those paraphrases as adding claims
+  ([paid reference](paid-reference.md)).
+- **When an endpoint reasons, it picks an explicit rule, but the two endpoints have
+  not picked the same one:**
+  - a thinking decoder read word-count parity, which the non-reasoning encoder
+    does not follow ([reasoning decoder](reasoning-decoder.md));
+  - a thinking encoder signalled with sentence count while the thinking decoder
+    still read parity ([both reasoning](both-reasoning.md));
+  - shown the writer's instructions, the thinking decoder moved to sentence count
+    but took the opposite mapping, and thought less often
+    ([rules decoder](rules-decoder.md)).
+
+  Inference: coordination fails on how to map an arbitrary bit. The shared
+  information offers features, but nothing in it fixes which value each form means.
+- **One weak signal has held up:** a non-thinking decoder reading the thinking
+  encoder's paraphrases. It scored +0.097 (p 0.0005), and +0.090 with the writer's
+  instructions shown.
+  - Both readings are secondaries on the same 288 covers.
+  - The encoder reasons in writing there, which relaxes the primary condition.
+
+### Methods lessons
+
+- **Score within covers.** The pilot's joint-success contrast moved with
+  acceptance alone; the pair score replaced it (see the
+  [demonstrated defect](#demonstrated-analysis-defect)).
+- **Balance and report option order.** Decoders lean toward `0` and toward the
+  first option shown.
+- **Gate on thinking with balanced orders.** With the writer's instructions shown,
+  whether Sonnet 5.5 thought depended on option order. A pre-test of mostly
+  `1`-first jobs overstated the thinking rate ([rules decoder](rules-decoder.md)).
+- **Expect decoder noise from GPT-5.5.** At default sampling its decodes of
+  identical carriers disagreed, so identical pairs score noise
+  ([paid reference](paid-reference.md)).
+- **Keep caps and timeouts high.** A reply stopped by its output cap blocked the
+  shared ledger ([paid reference](paid-reference.md)).
+- **Plan for pinned shared code.** Frozen runs pin `src/eval_core` and
+  `pyproject.toml`; re-run offline commands from a checkout of the recorded revision
+  ([protocol map](../protocols/README.md#how-frozen-runs-are-verified)).
+- **Keep the scripts behind the evidence in the repository.** They are in
+  [`tools/recurrent_steganography`](../../../tools/recurrent_steganography/README.md).
+
+### Open questions
+
+- Is there a condition, within or near the primary constraints, that any model
+  passes? Until one is found, the recurrent-depth comparison cannot start.
+- Does the thinking-encoder, answer-only-decoder signal hold on fresh covers?
+- The local observer the user chose first never qualified (see the
+  [observer failure](#observer-contract-failure)); the paid runs used a paid judge,
+  which the user allowed.
+- Untested: whether Dory's depth setting matters at all without its reasoning mode
+  (see [remaining risks](#interpretation-and-remaining-risks)).
+
+### Decisions pending with the user
+
+- **The next direction.** On 2026-11-07 the user deferred a fresh-cover
+  confirmation of the answer-only signal ("Not now"; see
+  [user policy](../../../docs/user-policy.md#recurrent-depth-follow-up-after-the-first-pilot)).
+  Options recorded in the run records:
+  - covers with room for tone, which would relax the cover rule;
+  - the supplied-scheme depth track, which the user held "until other things are
+    tested";
+  - the other recurrence research candidates in `docs/research/`.
+
+Spend in this experiment so far: $15.57 across the paid runs, against $47.00 of
+separate per-run approvals. Per-run figures are in the run records; the campaign
+ledger is the canonical total.
 
 ## Prospective preflight observations
 

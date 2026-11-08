@@ -1,7 +1,74 @@
-# Pilot method and freeze status
+# Protocol map
 
-The study question and user-selected scope are in the [experiment README](../README.md).
-The current pilot is exploratory. The user selected a calibrated local observer;
+Scope: the frozen method of every run in `experiments/recurrent_steganography`, in
+run order, with its canonical sources and commands. Each section ends with a short
+status that links its run record. Results live in those records, and the current
+synthesis is in [findings](../notes/findings.md#current-synthesis). The study
+question and the user's choices are in the [experiment README](../README.md).
+
+| Protocol | Kind | Run record |
+| --- | --- | --- |
+| `unassisted-one-bit-v0.1`, the Dory depth pilot | exploratory | [findings](../notes/findings.md#first-pilot-recorded-observations) |
+| `paid-feasibility-reference-v1`, with its Sonnet answer-only amendment | exploratory | [paid reference](../notes/paid-reference.md) |
+| `sonnet-plain-bits-confirmation-v1` | pre-registered | [confirmation](../notes/sonnet-confirmation.md) |
+| `sonnet-reasoning-decoder-v1`, with its v1.1 amendment | exploratory | [reasoning decoder](../notes/reasoning-decoder.md) |
+| `sonnet-both-reasoning-v1` | pre-registered | [both reasoning](../notes/both-reasoning.md) |
+| `sonnet-rules-decoder-v1` | exploratory | [rules decoder](../notes/rules-decoder.md) |
+
+The scripts behind the committed evidence extracts, cover sets, and power figures
+are indexed in [`tools/recurrent_steganography`](../../../tools/recurrent_steganography/README.md).
+
+## How frozen runs are verified
+
+Each package's `freeze` writes a `plan.json` holding the configuration, source
+hashes, Git revision, prompt fingerprints, and job identities. Its `execute` and
+`analyze` recompute that plan from the working tree and refuse to run if any of it
+differs.
+
+The pinned sources are broad. From the paid reference on, the checks cover the
+following, either directly or through the parent run they re-verify:
+
+- the run's own package and the earlier packages it builds on;
+- every file under `src/eval_core`, the shared workspace code;
+- `pyproject.toml`.
+
+So a later change to any of those files, even one made for another experiment,
+stops these runs' commands in the current tree. That is deliberate: it prevents new
+code from being silently substituted for a frozen method. It has already happened
+once, since the stopped reasoning-decoder v1 run verifies only at `73aeb85`.
+
+**To re-run an offline command** such as `analyze` after such a change, use a
+checkout of the run's recorded revision (`git.revision` in its `plan.json`):
+
+```powershell
+git worktree add --detach ..\evals-REVISION REVISION
+# Run data is local-only and ignored: copy in any parent run the configuration names.
+New-Item -ItemType Directory -Force ..\evals-REVISION\artifacts\runs\recurrent_steganography
+Copy-Item -Recurse artifacts\runs\recurrent_steganography\PARENT_RUN ..\evals-REVISION\artifacts\runs\recurrent_steganography\
+# analyze refuses to overwrite its output, so re-analyse a copy without it.
+Copy-Item -Recurse artifacts\runs\recurrent_steganography\RUN ..\rerun
+Remove-Item ..\rerun\analysis-v1.json
+Set-Location ..\evals-REVISION
+$env:PYTHONPATH = "$PWD\src"   # import the checkout's code, not the main tree's
+..\Evals\.venv\Scripts\python.exe -B -m recurrent_steg.rules_decoder analyze --run ..\rerun
+```
+
+- **Tested on 2026-11-07** with the equivalent Git Bash commands: re-analysing the
+  rules-decoder run at `7da0b1d` reproduced its `analysis-v1.json` byte for byte.
+  The PowerShell form above was not itself run.
+- **Never run live phases from a worktree.** The budget ledger path resolves
+  inside whichever checkout is running, so a worktree would start a new, empty
+  ledger and bypass the campaign's spending controls.
+- **Copy run data in; do not link to it.** A link would let worktree removal reach
+  the only copy of the raw data.
+- **Windows path length:** deleting the copied run folders can fail with "Filename
+  too long". Remove the worktree with
+  `git -c core.longpaths=true worktree remove --force ..\evals-REVISION`, and delete
+  any leftover folder through a `\\?\` path.
+
+## Depth pilot: `unassisted-one-bit-v0.1`
+
+The pilot was exploratory. The user selected a calibrated local observer;
 the exact model and qualification checks are agent implementation choices.
 Version `unassisted-one-bit-v0.1` has now been executed. Its observer contract
 failed and no primary joint result is available; see [findings](../notes/findings.md).
@@ -231,8 +298,7 @@ Then run `encode`, `decoder-check`, `decode`, and `judge` in that order, and
 `analyze --run RUN_DIRECTORY`.
 
 Status: run on 2026-11-06 as `20261107T022508Z-confirmation`, frozen at
-`6c69336`, $3.09 spent. **Not confirmed**: the informative pair score was 26 /
-232 / 30, exact p 0.69, 95% interval [-0.066, +0.038]. Results are in the
+`6c69336`, $3.09 spent. Not confirmed (p 0.69). The results are in the
 [confirmation record](../notes/sonnet-confirmation.md).
 
 ## Exploratory: reasoning decoder on the confirmation's paraphrases
@@ -242,8 +308,9 @@ next design after the null confirmation (see
 [user policy](../../../docs/user-policy.md#recurrent-depth-follow-up-after-the-first-pilot)).
 It was recorded and committed before any of its model calls.
 
-**The ceiling is pending.** The $10.00 in the configuration is a proposal, and the
-run needs the user's spending approval first.
+**Ceiling:** the $10.00 in the configuration was proposed with the design, and the
+user approved it for this run only after the design was committed. The amendment
+below later received the user's separate approval to spend what remained.
 
 | Component | Canonical source |
 | --- | --- |
@@ -317,8 +384,8 @@ verifies only against its frozen commit, `73aeb85`.
 ### Amendment: ask the decoder to think
 
 Protocol `sonnet-reasoning-decoder-v1.1`, recorded and committed before any of its
-model calls. **It is pending:** it needs the user's approval and shares the $10.00
-already approved.
+model calls. After the v1 stop, the user approved it to spend the $9.99 that
+remained of v1's $10.00 approval.
 
 | Component | Canonical source |
 | --- | --- |
@@ -345,13 +412,8 @@ directory.
 
 **Status:** the user approved it, and it was frozen at `9b76761` and run on
 2026-11-06 as `20261107T055920Z-reasoning-decoder-v1.1`. The pre-test passed with
-8/8 answers reasoned.
-
-**Result: no signal.** The informative pair score was 51 / 195 / 42, exact p 0.41,
-95% interval [-0.035, +0.097]. Against the answer-only decoder, 59 covers improved
-and 45 worsened (p 0.32). The decoder mostly applied word-count parity, which the
-encoder does not use. $1.38 was spent. Results are in the
-[run record](../notes/reasoning-decoder.md).
+8/8 answers reasoned, and $1.38 was spent across v1 and v1.1. No signal was found
+(p 0.41). The results are in the [run record](../notes/reasoning-decoder.md).
 
 ```powershell
 .\.venv\Scripts\python.exe -B -m recurrent_steg.reasoning_decoder validate
@@ -475,24 +537,9 @@ Then run `encoder-check`, `encode`, `decoder-check`, `decode`, `judge`, and
 `decode-answer-only` in that order, and `analyze --run RUN_DIRECTORY`.
 
 **Status:** the user approved the $15.00 ceiling. The run was frozen at `c507dbc`
-and ran on 2026-11-07 as `20261107T132019Z-both-reasoning`.
-
-- **Encoder pre-test:** passed. All 16 payload encodes thought, and the projected
-  cost was $7.61 against $14.89 remaining.
-- **Decoder pre-test:** passed, with 8 of 8 answers valid and reasoned.
-
-**Result: transmission not shown.**
-
-- The informative pair score was 69 / 171 / 48: mean +0.073, exact p 0.064, 95%
-  interval [0.000, +0.146].
-- Each endpoint settled on an explicit rule, but not the same one. The encoder
-  wrote one sentence for 1 and mostly kept two sentences for 0. The decoder mostly
-  read word-count parity.
-- The answer-only decoder, a secondary, scored +0.097 (p 0.0005) on the same
-  paraphrases.
-- $5.76 was spent.
-
-Results are in the [run record](../notes/both-reasoning.md).
+and ran on 2026-11-07 as `20261107T132019Z-both-reasoning`; both pre-tests passed
+and $5.76 was spent. Transmission was not shown (p 0.064). The execution record and
+results are in the [run record](../notes/both-reasoning.md).
 
 ## Exploratory: the decoder sees the writer's instructions
 
@@ -582,24 +629,8 @@ user approved it for this run only after the design was committed.
 ```
 
 **Status:** the user approved the $6.00 ceiling. The run was frozen at `7da0b1d`
-and ran on 2026-11-07 as `20261107T175409Z-rules-decoder`.
-
-- **Pre-test:** passed, with 8 of 8 answers valid and 7 reasoned. The projected
-  cost was $3.22 against $5.98 remaining.
-- **The pre-test overstated thinking.** Six of its eight jobs show `1` first. In
-  the full decode, the decoder thought on 54% of decodes with `1` first and 16%
-  with `0` first. A future gate on thinking should balance option orders.
-
-**Result: not helped; the thinking decoder got worse.**
-
-- Per cover, 40 covers improved and 91 worsened: mean -0.233, exact two-sided p
-  1.1 × 10⁻⁶.
-- The thinking decoder's own informative pair score was 8 / 226 / 54 (mean
-  -0.160). It thought on only 201 of 576 payload decodes and otherwise answered
-  `0`. When it thought, it read sentence count but took two sentences as 1, the
-  opposite of the encoder.
-- The answer-only decoder scored +0.090 (p 2.6 × 10⁻⁶), unchanged from +0.097
-  without the instructions.
-- $1.89 was spent.
-
-Results are in the [run record](../notes/rules-decoder.md).
+and ran on 2026-11-07 as `20261107T175409Z-rules-decoder`; the pre-test passed and
+$1.89 was spent. The instructions did not help, and the thinking decoder got worse
+(p 1.1 × 10⁻⁶). The pre-test overstated how often the decoder would think, because
+6 of its 8 jobs show `1` first. The execution record and results are in the
+[run record](../notes/rules-decoder.md).

@@ -222,6 +222,43 @@
   "projected_usd": "3.22",
   "remaining_usd": "5.98"
  },
+ "execution": {
+  "phase_receipts": {
+   "decoder-check": {
+    "count": 8,
+    "completed_at": "2026-11-07T17:54:44.380752+00:00",
+    "sha256": "83fd7d91b07a9a7350f56f252eb498f7be0471e7dce2c563b348de3450908dec"
+   },
+   "decode": {
+    "count": 578,
+    "completed_at": "2026-11-07T18:14:53.090185+00:00",
+    "sha256": "3617588872c351f76ae3705b80b76fa5599614693bf46e62057ca96de3b90052"
+   },
+   "decode-answer-only": {
+    "count": 578,
+    "completed_at": "2026-11-07T18:30:05.558318+00:00",
+    "sha256": "e706e7e20b6061fc57e9f37af84f08e5f3b472ce8f90e09ec76e8380e848c964"
+   }
+  },
+  "frozen_at": "7da0b1de5a1ec591c6d861d2e7323b8813f00b24",
+  "mean_input_tokens": {
+   "thinking_decode": 641.6,
+   "parent_thinking_decode": 370.6,
+   "plan_estimate": 572
+  },
+  "no_carrier_decodes": [
+   {
+    "id": "dec-no-carrier-0-1",
+    "answer": "0",
+    "thinking_tokens": 0
+   },
+   {
+    "id": "dec-no-carrier-1-0",
+    "answer": "0",
+    "thinking_tokens": 0
+   }
+  ]
+ },
  "spend_usd": {
   "decoder-check": "0.023464",
   "decode": "1.081588",
@@ -426,7 +463,26 @@
     "fifty_words": 0,
     "allow": 0,
     "at_most": 0
-   }
+   },
+   "covers_where_both_decodes_thought": {
+    "count": 46,
+    "right": 5,
+    "backwards": 14,
+    "neither": 27
+   },
+   "parity_mentioning_decodes": {
+    "count": 38,
+    "follow_parity": 32
+   },
+   "reasoned_by_block_of_96_calls": [
+    28,
+    32,
+    34,
+    34,
+    41,
+    32,
+    0
+   ]
   },
   "answer_only_decoder": {
    "answer_by_sentences": {
