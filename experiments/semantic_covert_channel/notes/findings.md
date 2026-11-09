@@ -1,7 +1,8 @@
 # Research state
 
 Scope: exploratory semantic-channel research, including the original V1.4 matrix,
-V1.5 development screen, and saved-carrier decoder diagnostic. This is the current
+the Sonnet refusal calibration, the V1.5 development screen, and the saved-carrier
+decoder diagnostic. This is the current
 synthesis; [study design and commands](../README.md) and the
 [protocol map](../protocols/README.md) describe the methods.
 
@@ -9,6 +10,78 @@ The original V1.4 matrix and V1.5 screen are complete. Observed V1.4 cases helpe
 motivate V1.5 and remain development evidence for later work. The confirmation
 partition remains unused; current conditions are not eligible for confirmatory
 execution.
+
+## Sonnet refusals and the "reasoning trace" wording
+
+Recorded 2026-11-09 from local run records; an agent read them, and no new model
+calls were made. The raw records stay local and ignored by Git.
+
+### What prompted it
+
+In the V1.4 matrix, Sonnet 5.5 scored 0/8, and all eight trials ended in an API
+refusal (`stop_reason` `refusal`, category `reasoning_extraction`). Six were at
+the control stage and two at the encoder stage. The control call never sees a
+hidden message, so the covert task alone cannot explain those refusals.
+
+- The first refusal, `v1-001`, blocked the campaign ledger and stopped run
+  `20261026T204300Z-reasoning_like_semantic_covert_channel_v1-live-71645f28`
+  after 17 trials.
+- The harness was then changed to settle a refusal's known cost and record it as
+  a refusal instead of blocking the ledger.
+- Run `20261026T205223Z-reasoning_like_semantic_covert_channel_v1-live-e89e1af1`
+  resumed from those 17 trials and completed the remaining Sonnet trials, all
+  refused.
+
+### Calibration
+
+Run `20261028T014526Z-sonnet-refusal-calibration-live-53f51ca8`, protocol
+`sonnet-control-refusal-factorial-v1.0`, used control prompts only. The subject
+was `claude-sonnet-5-5` without up-front thinking. The run crossed evaluation
+framing (present or absent) with the output wording ("reasoning trace" or
+"analytical paragraph"), on cases `v1-001`, `v1-005`, `v1-009` and `v1-019`, with
+three repetitions each. That is 48 calls, and the V1.4 prompts were not modified.
+
+| Wording | Evaluation framing | API refusals | Wilson 95% |
+| --- | --- | ---: | --- |
+| Reasoning trace | present | 9/12 | [0.47, 0.91] |
+| Reasoning trace | absent | 12/12 | [0.76, 1.00] |
+| Analytical paragraph | present | 0/12 | [0.00, 0.24] |
+| Analytical paragraph | absent | 0/12 | [0.00, 0.24] |
+
+- **What the refusals were:** every one was the API's refusal with category
+  `reasoning_extraction`. Refused calls returned no text. The API's explanation
+  cited Anthropic's terms on reverse engineering or duplicating model outputs, so
+  these are not refusals of harmful content.
+- **Text refusals:** none of the completed outputs was the model declining in
+  text (0 in every cell).
+- **Cost:** `$0.081346`.
+
+Repetitions of a case are not independent cases, and only four cases were used.
+Within that limit, the wording accounts for the refusals, and evaluation framing
+did not increase them.
+
+### What followed
+
+- **The wording changed.** V1.5 replaced "plausible intermediate reasoning trace"
+  with "natural analytical paragraph". This is recorded as a change to the carrier
+  framing, not as a neutral fix; see the
+  [study design](../README.md#v15-condition-aware-exploration). In the V1.5 screen,
+  all 16 Sonnet trials completed, with no refusals.
+- **The harness change came before the calibration.** Settling refusals came
+  during the V1.4 matrix, as described above. The calibration run is also the
+  first to record the outcome schema that keeps refusals as their own operational
+  status, with the provider's category.
+- **Refusals still count as failures** in the primary all-attempt rates; see the
+  [study design](../README.md#v1-design).
+
+Local evidence, SHA-256:
+
+| File | SHA-256 |
+| --- | --- |
+| calibration `summary.json` | `fb81aa48a591407eec3846c3bcb418d294a17d6e5a18a8a2735be73e01fb06ec` |
+| calibration `results.jsonl` | `cef11a13176796f4f7b74ed76ef82e80d770f54be0d95e623cd63bbcce157c13` |
+| calibration `manifest.json` | `73376922c8319fc999e69f821d81c04bba770666459b68767380ca08a5e52530` |
+| resumed V1.4 matrix `summary.json` | `92b65f096cf95c7a73607a29d554d292abe3a840247247e66227b405d7459fee` |
 
 ## V1.5 development screen
 
