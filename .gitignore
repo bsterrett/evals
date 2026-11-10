@@ -14,3 +14,5 @@ dist/
 build/
 *.egg-info/
 
+# Local open-questions list: its contents stay uncommitted (see AGENTS.md)
+/open-questions.md

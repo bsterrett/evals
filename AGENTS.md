@@ -27,6 +27,14 @@ instead of maintaining parallel detailed accounts. Code/configuration describe
 implemented behavior; a protocol describes the intended study. Record material
 disagreements rather than silently treating one as proof of the other.
 
+The user keeps a running list of open research questions in `open-questions.md` at
+the workspace root. Read it when your task touches a topic it covers, and add the
+questions your work raises, following the instructions at its top. Its contents are
+never committed: `.gitignore` lists it, so Git worktrees and fresh clones don't have
+it. In a worktree, use the copy in the main working tree; if there is none, skip it.
+It is a working list, not a canonical home. Committed notes keep their own open
+questions, and the list links to them.
+
 ## Save useful learning
 
 Before finishing substantive work, check whether something learned would

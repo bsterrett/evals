@@ -312,3 +312,37 @@ baseline distinct from the additional compute-efficiency question. The unit of
 “turn” and practical/statistical margins remain to be operationalized before an
 experiment; the agent's proposed metrics are recommendations, not additional user
 policy.
+
+## Local open-questions list
+
+Scope: `open-questions.md` at the workspace root. Source: the user's request and
+answers in a Claude Code chat, 2026-11-10, America/Los_Angeles; no portable message
+IDs are available.
+
+The user asked:
+
+> Can you help me make an untracked/uncommitted file in this repo that tracks open
+> research questions?
+
+Asked what the file should start with, the user selected "Empty template" over
+seeding it from existing notes. Asked whether future agent sessions should use it,
+the user selected "Read and update", described as future sessions adding questions
+they raise and marking answered ones, labelled as agent-added. For scope, the user
+selected the steganography experiments, the recurrence candidates and the other
+candidates. They did not select questions about how the research is run.
+
+The user first chose a local-only Git exclude, then revised that:
+
+> I think a .gitignore is fine instead of exclude, and I don't want to work too hard
+> to hide the existence of this file from the repo. I think it is okay for AGENTS.md
+> to mention it, or even encourage agents to write to it or read from it.
+
+> I think the contents of the list should still not be committed, but the list's
+> existence will be able to be inferred from my desired setup's public github
+> representation.
+
+Application: `.gitignore` lists the file, and its contents are never committed.
+Tracked documents, including AGENTS.md, may name it and direct agents to read it and
+add to it. Agent choices: the `[user]` and `[agent-added]` tags and the entry format;
+leaving the wording of `[user]` entries alone; and treating the list as a working
+list that links to the committed notes rather than replacing them.
