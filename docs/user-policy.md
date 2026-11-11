@@ -11,18 +11,6 @@ the excerpts preserve the operative wording. The later agreement with the design
 and request for an adoption plan do not establish unrelated research or execution
 policies.
 
-## Agent audience and Git retention
-
-Scope: durable repository documentation.
-
-> The documentation should be by agents, for agents, and there is no assumption of
-> direct human consumption of documentation. The documents should get committed
-> to the git repo.
-
-Application: optimize for useful context, evidence inspection, and future agent
-work; include durable documentation in the relevant Git commits. Large generated
-run records retain their existing storage arrangements.
-
 ## Distinguish evidence, reasoning, and user authority
 
 Scope: research claims and decisions documented in this repository.
@@ -346,3 +334,71 @@ Tracked documents, including AGENTS.md, may name it and direct agents to read it
 add to it. Agent choices: the `[user]` and `[agent-added]` tags and the entry format;
 leaving the wording of `[user]` entries alone; and treating the list as a working
 list that links to the committed notes rather than replacing them.
+
+## Directing the research and building skill
+
+Scope: how agents work with the user on research in this repository, for new work
+from 2026-11-11. Earlier records keep their wording, and earlier entries that make
+prompts, covers, statistics or trial counts agent choices keep their scope for the
+runs they cover. Source: the user's messages in a Claude Code chat, 2026-11-10 and
+2026-11-11, America/Los_Angeles; no portable message IDs are available.
+
+The user opened the request:
+
+> I still want to work with agents to do research, but I want to be able to take
+> more credit for directing the research.
+
+Answering questions about it, the user said that "honing my skills should take
+precedence" over showing them, expected both to be served together, and wrote:
+
+> I don't want the agents to let me make mistakes, or to miss obvious avenues of
+> research. I want to strike a balance between AI guidance that keeps the research
+> on track and opportunity for me to learn and grow and demonstrate skills.
+
+On documentation and the record of the user's role:
+
+> "by agents for agents" seems like it might be counterproductive in retrospect. It
+> is at least in question, if not on the chopping block. [...] I don't want this
+> repo to be 'performative.'
+
+On a review step that Claude Opus 5.5 proposed, no next run until the user has
+reviewed the last one, and on what the user would do personally:
+
+> I think "no next run until human review of last run" is a good principle. I like
+> how it can help with my stated goals, and also, it is in keeping with the kind of
+> safety principles that I would like the labs to use
+
+> Reading the transcripts is a good start.
+
+On an escape hatch that Claude Opus 5.5 proposed, 2026-11-11:
+
+> I like the idea of a "just propose" hatch that allows me to fall back on AI help
+> when I want or need it, giving up any credit that I could take for the work.
+
+On pre-registration:
+
+> Agentic help is expected for this, but a lot of it will come from me.
+
+On naming models, the user's own proposal after seeing a public post credit a named
+model:
+
+> I want to give credit to the specific model that was used, instead of just
+> crediting "agent" generally, wherever credit to an agent would occur.
+
+The user called the first version of the proposal "very good". They judged that a
+later set of additions raised the bar for their own work too far, and questioned one
+of them, a randomly drawn transcript sample. That sample was Claude Opus 5.5's idea,
+not a source's recommendation. The additions were trimmed, leaving the review step
+as the only requirement that "just propose" does not cover. The user then asked:
+"Draft them".
+
+Application: [AGENTS.md](../AGENTS.md#work-with-the-user) holds the working rules.
+Claude Opus 5.5 (Claude Code) proposed their mechanics in that chat, in response to
+the directions above: asking the user first at research decisions, the review step
+and its form, the split of pre-registration work, explaining methods, reviewing
+measurement code, and the origin notes. Naming the model is the user's direction.
+Documentation is written for agents and for the user; the workspace README is the
+only page for outside readers. This replaces the 2026-10-30 direction that
+documentation be "by agents, for agents", whose entry the user had removed on
+2026-11-11. Committing documentation with the work remains the practice under
+AGENTS.md.

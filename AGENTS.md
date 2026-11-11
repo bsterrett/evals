@@ -2,8 +2,10 @@
 
 This is a research workspace. Preserve the distinction between what is being
 asked, what was observed, what is inferred, and what the user has directed.
-Documentation is durable working context for agents; its policy basis is in
-[user policy](docs/user-policy.md).
+Documentation is durable working context for agents and for the user, who must be
+able to read it to review the work; its policy basis is in
+[user policy](docs/user-policy.md). The workspace README is the only page written
+for outside readers.
 
 ## Find the relevant context
 
@@ -35,6 +37,71 @@ it. In a worktree, use the copy in the main working tree; if there is none, skip
 It is a working list, not a canonical home. Committed notes keep their own open
 questions, and the list links to them.
 
+## Work with the user
+
+The user directs this research and uses it to build their own research skills, and
+to show them. Building the skills comes first. Agents keep the work rigorous and on
+track, and the record says accurately who did what, without performing for an
+audience. The policy basis is the
+[user policy entry](docs/user-policy.md#directing-the-research-and-building-skill).
+
+**Ask before proposing.** At these research decisions, ask for the user's view
+before giving yours:
+
+- what to investigate next;
+- a hypothesis, and the user's prediction;
+- what counts as success, and how it is measured;
+- conditions and controls;
+- the design of an important new component;
+- the diagnosis of an anomaly;
+- what a result means.
+
+Then add what the user missed, and say that you added it. Implementation details,
+such as code structure and file layout, remain agent choices: decide them and report
+them. Offer option menus, or mark an option as recommended, only after the user has
+answered or for routine choices. When the user says "just propose" or the
+equivalent, propose first and record the item as the model's.
+
+**Never hold back a material problem.** Correct work matters more than practice.
+After the user has answered, or at once if waiting would waste money or invalidate a
+result, say plainly what is wrong or missing.
+
+**Review each run before the next.** After a paid run, or any run whose results go
+into findings, design no further run until the user has reviewed it:
+
+1. Give the user raw transcripts to read before showing your analysis. Your
+   selection is a starting point; the user may ask for any others.
+2. Record the user's notes on what they noticed and what they think the result
+   means.
+3. Then give your analysis, and say what each of you caught that the other missed.
+
+Keep the review to one sitting. Other work can continue meanwhile, and smoke tests
+are exempt. "Just propose" does not cover this step. When a result would change what
+happens next, such as a positive or surprising result, also ask the user how it
+could be an artifact before giving your own list.
+
+**Pre-registration.** Unless the user says "just propose", the user writes these
+first: the hypothesis, their prediction and why, what result would change their
+mind, the assumptions the result depends on, and whether it would say anything about
+more capable models. Help with the sample size, test, decision threshold and
+exclusions, explaining each so the user could defend it; the user chooses. For the
+sample size, ask what effect would matter and work out the sample from that. Draft
+configs, seeds and identities yourself.
+
+**Explain methods and show measurement code.** Before a statistical or experimental
+method enters a protocol, explain in plain terms what it tests, why it fits, and the
+main alternative. Before a paid run, ask the user to review changes to code that
+shapes the measurement: prompts, scorers, judges, sampling, refusal handling and
+budget guards.
+
+**Record who did what.** Treat it as a research fact, not a credit claim. For
+hypotheses, definitions, design choices, interpretations and caught errors, note
+where the idea came from: the user; the user, refined by a model; or a model, chosen
+by the user. Wherever an agent would get credit, name the model and the tool, for
+example "Claude Opus 5.5 (Claude Code)". For a subagent, name the model it ran on;
+if the model is unknown, say so instead of guessing. Quote the user's words rather
+than paraphrasing them. Apply this to new work; earlier records keep their wording.
+
 ## Save useful learning
 
 Before finishing substantive work, check whether something learned would
@@ -60,15 +127,16 @@ contain several kinds of claim; a label on every sentence is unnecessary.
 | --- | --- |
 | Research question | What remains unknown. |
 | Hypothesis | A proposed testable claim; whether it preceded the relevant observations or arose afterward. |
-| Observation | What was measured or inspected and under which conditions. Distinguish automated scores, agent inspection, and an external source's report. |
+| Observation | What was measured or inspected and under which conditions. Distinguish automated scores, the user's inspection, a named model's inspection, and an external source's report. |
 | Assumption or supposition | An unverified premise and the reasoning that depends on it. |
 | Inference | The evidence-to-conclusion reasoning, important alternatives, and limits. An untested explanation remains untested. |
 | Reproduction | Prerequisites, commands, identities, expected checks, and which steps were actually exercised versus proposed. |
-| Agent recommendation or choice | A proposed action or an implementation choice within authorized scope, with its rationale. |
+| Agent recommendation or choice | A proposed action or an implementation choice within authorized scope, with its rationale and the model that made it. |
 | User policy | An attributable user direction with its scope and source; use the policy record below. |
 
-Agent choices within existing authorization need no separate policy ratification.
-Approval for a particular execution retains its stated scope. Scientific findings,
+Agent choices within existing authorization need no separate policy ratification,
+but the research decisions under [Work with the user](#work-with-the-user) go to the
+user first. Approval for a particular execution retains its stated scope. Scientific findings,
 agent recommendations, and unattributed imperative prose do not establish user
 policy. Record actual enduring user directions in `docs/user-policy.md`, preserving
 a short faithful excerpt, scope, date, and message reference when available. An
