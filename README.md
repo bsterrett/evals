@@ -207,3 +207,5 @@ original paths and checksums.
   [evaluation literature](docs/research/steganography-evaluation-literature.md)
 - [Clocktower benchmark and model recognition](docs/research/clocktower-model-recognition.md),
   a possible future experiment
+- [Weight-space programming reports with Claude Fable 5.1 and 5.2](docs/research/weight-space-programming-reports.md),
+  a literature scan not tied to an experiment here
