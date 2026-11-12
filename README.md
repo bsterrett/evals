@@ -94,8 +94,8 @@ model calls.
   also do much of the implementation and analysis.
   - The notes mark agent choices and agent inspections separately from my
     decisions.
-  - Most documentation here is written by agents for agents, following
-    [AGENTS.md](AGENTS.md).
+  - Agents write most of the documentation here, as working context for
+    themselves and for me to review, following [AGENTS.md](AGENTS.md).
 - **Spend.** So far, $18.77 of a $50 campaign cap. Every paid run also has its own
   spending ceiling.
 - **Raw records.** Raw request and response logs stay on my machine, because
