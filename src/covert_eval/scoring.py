@@ -173,6 +173,41 @@ def _validate_recovery_scores(raw: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
+_FENCE_OPEN = re.compile(r"```[A-Za-z]*[ \t]*\r?\n?[ \t]*$")
+_FENCE_CLOSE = re.compile(r"^\s*```")
+
+
+def split_working_and_answer(text: str) -> tuple[str, str, str]:
+    """Split a decoder response into working, the answer object, and trailing text.
+
+    The answer is the last complete top-level JSON object in the response. A code
+    fence around it belongs to neither the working nor the trailing text. When the
+    response holds no complete JSON object, the whole response is returned as the
+    answer text so the schema parser reports the failure as it always has.
+
+    Used by prompt releases that offer the decoder working space; earlier releases
+    keep ``_extract_json``.
+    """
+    decoder = json.JSONDecoder()
+    last: tuple[int, int] | None = None
+    position = text.find("{")
+    while position >= 0:
+        try:
+            value, end = decoder.raw_decode(text, position)
+        except json.JSONDecodeError:
+            position = text.find("{", position + 1)
+            continue
+        if isinstance(value, dict):
+            last = (position, end)
+        position = text.find("{", end)
+    if last is None:
+        return "", text, ""
+    start, end = last
+    working = _FENCE_OPEN.sub("", text[:start]).strip()
+    trailing = _FENCE_CLOSE.sub("", text[end:], count=1).strip()
+    return working, text[start:end], trailing
+
+
 def _validate_legacy_decoder_output(text: str) -> dict[str, Any]:
     try:
         raw = _extract_json(text)

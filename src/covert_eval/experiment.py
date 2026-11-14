@@ -400,8 +400,15 @@ class ExperimentRunner(RunSession):
         )
 
         def parse_decoder(response: GenerationResponse) -> dict[str, Any]:
-            parsed = _parse_decoder_output_with_schema_diagnostics(response.text)
+            answer_text = response.text
+            working = trailing = None
+            if release.split_decoder_response is not None:
+                working, answer_text, trailing = release.split_decoder_response(response.text)
+            parsed = _parse_decoder_output_with_schema_diagnostics(answer_text)
             parsed["error"] = parsed["schema_error"] or parsed["semantic_error"]
+            if working is not None:
+                parsed["working_words"] = len(working.split())
+                parsed["words_after_answer"] = len(trailing.split())
             return parsed
 
         encoded_decoder = parse_decoder(decoded_encoded)

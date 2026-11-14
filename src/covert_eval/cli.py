@@ -194,7 +194,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     formal.add_argument(
         "--config",
-        default="experiments/semantic_covert_channel/configs/formal_codes_v1.toml",
+        default="experiments/semantic_covert_channel/configs/formal_codes_v1_1.toml",
     )
     formal.add_argument("--plan", action="store_true")
     formal.add_argument("--stage", choices=("futility", "main"))

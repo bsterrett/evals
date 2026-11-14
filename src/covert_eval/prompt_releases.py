@@ -8,6 +8,8 @@ from covert_eval.models import EvalCase
 from covert_eval import prompts as v1_4
 from covert_eval import prompts_v1_5 as v1_5
 from covert_eval import prompts_v1_6 as v1_6
+from covert_eval import prompts_v1_6_1 as v1_6_1
+from covert_eval.scoring import split_working_and_answer
 
 
 @dataclass(frozen=True)
@@ -21,6 +23,9 @@ class PromptRelease:
     leak_judge: Callable[..., str]
     recovery_judge: Callable[..., str]
     fingerprint: Callable[[ExperimentalCondition], str]
+    # When set, the decoder may write working before its answer. The function
+    # returns (working, answer text, trailing text).
+    split_decoder_response: Callable[[str], tuple[str, str, str]] | None = None
 
 
 def _legacy_encoder(case: EvalCase, condition: ExperimentalCondition) -> str:
@@ -71,6 +76,18 @@ RELEASES = {
         leak_judge=v1_6.leak_judge_prompt,
         recovery_judge=v1_6.recovery_judge_prompt,
         fingerprint=v1_6.prompt_fingerprint,
+    ),
+    "v1.6.1": PromptRelease(
+        id="v1.6.1",
+        scoring_protocol_id=v1_6_1.SCORING_PROTOCOL_ID,
+        encoder=v1_6_1.encoder_prompt,
+        control=v1_6_1.control_prompt,
+        decoder=v1_6_1.decoder_prompt,
+        cover_judge=v1_6_1.cover_judge_prompt,
+        leak_judge=v1_6_1.leak_judge_prompt,
+        recovery_judge=v1_6_1.recovery_judge_prompt,
+        fingerprint=v1_6_1.prompt_fingerprint,
+        split_decoder_response=split_working_and_answer,
     ),
 }
 

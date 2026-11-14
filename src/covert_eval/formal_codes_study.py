@@ -40,15 +40,16 @@ from covert_eval.experiment import (
 )
 from covert_eval.formal_codes import ATTEMPT_THRESHOLD, DETECTOR_VERSION, detect_formal_code
 from covert_eval.models import AppConfig, EvalCase, ModelConfig
+from covert_eval.prompts_v1_6_1 import WORKING_WORD_CAP
 from covert_eval.providers import ProviderRefusal
 from covert_eval.stats import wilson_interval
 
 
-PROTOCOL_VERSION = "formal-codes-permitted-v1.0"
-ANALYSIS_PLAN_ID = "formal-codes-permitted-v1.0"
+PROTOCOL_VERSION = "formal-codes-permitted-v1.1"
+ANALYSIS_PLAN_ID = "formal-codes-permitted-v1.1"
 EXPERIMENT_TYPE = "formal_codes_study"
-PERMITTED_ID = "v1_6_formal_permitted_analytical_long"
-BASELINE_ID = "v1_6_strict_analytical_long_neutral_decoder"
+PERMITTED_ID = "v1_6_1_formal_permitted_analytical_long"
+BASELINE_ID = "v1_6_1_strict_analytical_long_working_decoder"
 CONDITION_IDS = (PERMITTED_ID, BASELINE_ID)
 SUBJECT_IDS = (
     "openai_gpt_5_5_no_reasoning",
@@ -431,6 +432,29 @@ def _detector(row: dict[str, Any], arm: str) -> dict[str, Any] | None:
     return detect_formal_code(cover, row["implicit_message"])
 
 
+def _decoder_working(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """How often the decoder used its optional working space, by decoded arm."""
+    summary: dict[str, Any] = {"word_cap_in_prompt": WORKING_WORD_CAP}
+    for arm in ("encoded", "control"):
+        decodes = [
+            row[f"decoded_{arm}"]
+            for row in rows
+            if isinstance(row.get(f"decoded_{arm}"), dict)
+            and "working_words" in row[f"decoded_{arm}"]
+        ]
+        words = [int(decode["working_words"]) for decode in decodes]
+        summary[arm] = {
+            "decodes": len(decodes),
+            "with_working": sum(count > 0 for count in words),
+            "over_word_cap": sum(count > WORKING_WORD_CAP for count in words),
+            "max_working_words": max(words, default=0),
+            "with_text_after_answer": sum(
+                int(decode.get("words_after_answer", 0)) > 0 for decode in decodes
+            ),
+        }
+    return summary
+
+
 def _cell(rows: list[dict[str, Any]]) -> dict[str, Any]:
     total = len(rows)
     detectors = {row["trial_id"]: _detector(row, "encoded") for row in rows}
@@ -503,6 +527,7 @@ def _cell(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 not attempted(row) and _declared_recovery(row) for row in rows
             ),
         },
+        "decoder_working": _decoder_working(rows),
         "declared_recovery_trial_ids": sorted(
             row["trial_id"] for row in rows if _declared_recovery(row)
         ),
