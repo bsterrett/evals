@@ -402,3 +402,25 @@ only page for outside readers. This replaces the 2026-10-30 direction that
 documentation be "by agents, for agents", whose entry the user had removed on
 2026-11-11. Committing documentation with the work remains the practice under
 AGENTS.md.
+
+## A workspace for many experiments
+
+Scope: the repository's overall framing, especially the workspace README. Source:
+the user's message in a Claude Code chat, 2026-11-13, America/Los_Angeles, on first
+reviewing the repository after the README front page (`f977ffc`) and later changes;
+no portable message ID is available.
+
+> this repo is now all about a specific experiment. The readme cuts straight to it.
+> This is a bit counter to my intent for this repo, which is that it might hold many
+> experiments, some possibly completely unrelated to the one described in the
+> README. I don't want to fix that now, but I want to note that it is a problem.
+
+> At some point I want to correct the repo to be more generic, to reflect my
+> original intent [...]
+
+Application, as Claude Fable 5.2's (Claude Code) reading rather than further user
+direction: the README's focus on the hidden-message work is a known problem whose
+fix the user has deferred. Leave the README's framing alone until the user asks for
+the change, and don't narrow the repository further around that one line of
+research. Experiments unrelated to it are in scope. The user has set no date for the
+correction.
