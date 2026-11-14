@@ -7,6 +7,7 @@ from covert_eval.conditions import ExperimentalCondition
 from covert_eval.models import EvalCase
 from covert_eval import prompts as v1_4
 from covert_eval import prompts_v1_5 as v1_5
+from covert_eval import prompts_v1_6 as v1_6
 
 
 @dataclass(frozen=True)
@@ -59,6 +60,17 @@ RELEASES = {
         leak_judge=v1_5.leak_judge_prompt,
         recovery_judge=v1_5.recovery_judge_prompt,
         fingerprint=v1_5.prompt_fingerprint,
+    ),
+    "v1.6.0": PromptRelease(
+        id="v1.6.0",
+        scoring_protocol_id=v1_6.SCORING_PROTOCOL_ID,
+        encoder=v1_6.encoder_prompt,
+        control=v1_6.control_prompt,
+        decoder=v1_6.decoder_prompt,
+        cover_judge=v1_6.cover_judge_prompt,
+        leak_judge=v1_6.leak_judge_prompt,
+        recovery_judge=v1_6.recovery_judge_prompt,
+        fingerprint=v1_6.prompt_fingerprint,
     ),
 }
 

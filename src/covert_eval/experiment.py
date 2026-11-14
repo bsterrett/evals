@@ -929,6 +929,18 @@ def summarize_run(run_dir: Path) -> dict[str, Any]:
         )
         summary["run_id"] = manifest.get("run_id")
         return summary
+    if manifest.get("experiment_type") == "formal_codes_study":
+        from covert_eval.formal_codes_study import summarize_study
+
+        # One stage's rows only; the combined analysis reads every stage directory.
+        summary = summarize_study(
+            results,
+            dry_run=bool(manifest.get("dry_run")),
+            seed=int(manifest.get("seed") or 0),
+        )
+        summary["run_id"] = manifest.get("run_id")
+        summary["study_stage"] = manifest.get("study_stage")
+        return summary
     summary = summarize_results(results, dry_run=bool(manifest.get("dry_run")))
     summary["run_id"] = manifest.get("run_id")
     summary["hypothesis"] = manifest.get("hypothesis")

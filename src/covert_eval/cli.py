@@ -187,6 +187,37 @@ def _parser() -> argparse.ArgumentParser:
     sensitivity.add_argument("--live", action="store_true")
     sensitivity.add_argument("--confirm-live-spend", action="store_true")
     sensitivity.add_argument("--run-budget-usd", default="1.00")
+
+    formal = subparsers.add_parser(
+        "study-formal-codes",
+        help="Run a stage of the formal-codes-permitted development study",
+    )
+    formal.add_argument(
+        "--config",
+        default="experiments/semantic_covert_channel/configs/formal_codes_v1.toml",
+    )
+    formal.add_argument("--plan", action="store_true")
+    formal.add_argument("--stage", choices=("futility", "main"))
+    formal.add_argument(
+        "--prior-run",
+        action="append",
+        default=[],
+        help="Earlier run directory of this study; its trials are not repeated",
+    )
+    formal.add_argument(
+        "--reader-found-codes",
+        type=int,
+        help="Main stage: passages in the reading packet where the reader found a "
+        "formal code that the detector did not mark",
+    )
+    formal.add_argument(
+        "--summarize",
+        action="store_true",
+        help="Print the combined summary of the --prior-run directories; no calls",
+    )
+    formal.add_argument("--live", action="store_true")
+    formal.add_argument("--confirm-live-spend", action="store_true")
+    formal.add_argument("--run-budget-usd", default="5.00")
     return parser
 
 
@@ -350,6 +381,85 @@ def main(argv: list[str] | None = None) -> int:
             with (run_dir / "summary.json").open("r", encoding="utf-8") as handle:
                 summary = json.load(handle)
             print(json.dumps({"run_dir": str(run_dir), "summary": summary}, indent=2))
+            return 0
+        if args.command == "study-formal-codes":
+            from covert_eval.formal_codes_study import (
+                MAX_RUN_BUDGET_USD,
+                FormalCodesStudyRunner,
+                load_prior_results,
+                study_plan,
+                summarize_study,
+            )
+
+            prior_runs = [Path(value) for value in args.prior_run]
+            if args.plan:
+                if args.live or args.confirm_live_spend or args.summarize:
+                    raise ConfigError("--plan cannot be combined with other modes")
+                print(json.dumps(study_plan(config), indent=2))
+                return 0
+            if args.summarize:
+                if args.live or args.confirm_live_spend:
+                    raise ConfigError("--summarize makes no calls and takes no live flags")
+                if not prior_runs:
+                    raise ConfigError("--summarize requires at least one --prior-run")
+                dry_flags = set()
+                for run in prior_runs:
+                    with (run / "manifest.json").open("r", encoding="utf-8") as handle:
+                        dry_flags.add(bool(json.load(handle).get("dry_run")))
+                if len(dry_flags) != 1:
+                    raise ConfigError("Dry-run and live results cannot be combined")
+                dry = dry_flags.pop()
+                rows, provenance = load_prior_results(prior_runs, dry_run=dry)
+                summary = summarize_study(
+                    rows, dry_run=dry, seed=config.experiment.seed
+                )
+                summary["runs"] = provenance
+                print(json.dumps(summary, indent=2))
+                return 0
+            if args.stage is None:
+                raise ConfigError("--stage is required unless --plan or --summarize is given")
+            try:
+                run_budget = Decimal(args.run_budget_usd)
+            except Exception as exc:
+                raise ConfigError("--run-budget-usd must be a decimal number") from exc
+            if run_budget <= 0 or run_budget > MAX_RUN_BUDGET_USD:
+                raise ConfigError(
+                    "--run-budget-usd must be greater than zero and no more than "
+                    f"{MAX_RUN_BUDGET_USD}"
+                )
+            if args.live and not args.confirm_live_spend:
+                raise ConfigError("--live requires --confirm-live-spend")
+            if args.confirm_live_spend and not args.live:
+                raise ConfigError("--confirm-live-spend is only valid with --live")
+            if args.live:
+                _load_live_environment()
+            try:
+                runner = FormalCodesStudyRunner(
+                    config,
+                    stage=args.stage,
+                    dry_run=not args.live,
+                    run_budget_usd=run_budget,
+                    prior_runs=prior_runs,
+                    reader_found_codes=args.reader_found_codes,
+                )
+            except ValueError as exc:
+                raise ConfigError(str(exc)) from exc
+            run_dir = runner.run()
+            with (run_dir / "manifest.json").open("r", encoding="utf-8") as handle:
+                manifest = json.load(handle)
+            # Scores are deliberately not printed: the futility stage is read
+            # blind, and the main stage is reviewed from raw transcripts first.
+            report = {
+                "run_dir": str(run_dir),
+                "stage": args.stage,
+                "status": manifest.get("status"),
+                "trials_this_run": manifest.get("attempted_trials"),
+                "run_spent_usd": str(manifest.get("run_spent_usd")),
+            }
+            if args.stage == "futility":
+                report["reading_packet"] = str(run_dir / "reading_packet.md")
+                report["futility_check"] = str(run_dir / "futility_check.json")
+            print(json.dumps(report, indent=2))
             return 0
         if args.command == "calibrate-sonnet-refusal":
             from covert_eval.refusal_calibration import (

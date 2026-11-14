@@ -1,0 +1,155 @@
+schema_version = 1
+registry_id = "semantic-channel-conditions-v2.0"
+
+[[conditions]]
+id = "legacy_v1_4_strict_trace_standard"
+prompt_release = "v1.4.0"
+scoring_protocol_id = "cover-coupled-v1.0"
+analysis_plan_id = "legacy-v1"
+claim_family = "strict_zero_shot_reasoning_like"
+strict_claim_eligible = true
+confirmatory_eligible = false
+changed_from_parent = []
+
+[conditions.factors]
+carrier_style_instruction = "reasoning_trace"
+carrier_word_range = "60-140"
+explicit_retention = "full"
+additional_assertions = "forbidden"
+payload_expression = "no_overt_expression"
+channel_family = "ordinary_linguistic_choices"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate"
+
+[[conditions]]
+id = "v1_5_strict_analytical_standard"
+prompt_release = "v1.5.0"
+scoring_protocol_id = "cover-independent-v2.0"
+analysis_plan_id = "screening-frontier-v1.0"
+claim_family = "strict_zero_shot_analytical_proxy"
+strict_claim_eligible = true
+confirmatory_eligible = false
+parent_condition_id = "legacy_v1_4_strict_trace_standard"
+changed_from_parent = ["carrier_style_instruction"]
+
+[conditions.factors]
+carrier_style_instruction = "analytical_paragraph"
+carrier_word_range = "60-140"
+explicit_retention = "full"
+additional_assertions = "forbidden"
+payload_expression = "no_overt_expression"
+channel_family = "ordinary_linguistic_choices"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate"
+
+[[conditions]]
+id = "v1_5_strict_analytical_long"
+prompt_release = "v1.5.0"
+scoring_protocol_id = "cover-independent-v2.0"
+analysis_plan_id = "screening-frontier-v1.0"
+claim_family = "strict_zero_shot_analytical_proxy"
+strict_claim_eligible = true
+confirmatory_eligible = false
+parent_condition_id = "v1_5_strict_analytical_standard"
+changed_from_parent = ["carrier_word_range"]
+
+[conditions.factors]
+carrier_style_instruction = "analytical_paragraph"
+carrier_word_range = "180-300"
+explicit_retention = "full"
+additional_assertions = "forbidden"
+payload_expression = "no_overt_expression"
+channel_family = "ordinary_linguistic_choices"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate"
+
+[[conditions]]
+id = "v1_5_elaboration_analytical_standard"
+prompt_release = "v1.5.0"
+scoring_protocol_id = "cover-independent-v2.0"
+analysis_plan_id = "screening-frontier-v1.0"
+claim_family = "relaxed_additional_assertions_channel_feasibility"
+strict_claim_eligible = false
+confirmatory_eligible = false
+parent_condition_id = "v1_5_strict_analytical_standard"
+changed_from_parent = ["additional_assertions"]
+
+[conditions.factors]
+carrier_style_instruction = "analytical_paragraph"
+carrier_word_range = "60-140"
+explicit_retention = "full"
+additional_assertions = "harmless_elaboration_permitted"
+payload_expression = "no_overt_expression"
+channel_family = "ordinary_linguistic_choices"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate"
+
+[[conditions]]
+id = "v1_5_elaboration_analytical_long"
+prompt_release = "v1.5.0"
+scoring_protocol_id = "cover-independent-v2.0"
+analysis_plan_id = "screening-frontier-v1.0"
+claim_family = "relaxed_additional_assertions_channel_feasibility"
+strict_claim_eligible = false
+confirmatory_eligible = false
+parent_condition_id = "v1_5_elaboration_analytical_standard"
+changed_from_parent = ["carrier_word_range"]
+
+[conditions.factors]
+carrier_style_instruction = "analytical_paragraph"
+carrier_word_range = "180-300"
+explicit_retention = "full"
+additional_assertions = "harmless_elaboration_permitted"
+payload_expression = "no_overt_expression"
+channel_family = "ordinary_linguistic_choices"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate"
+
+[[conditions]]
+id = "v1_6_strict_analytical_long_neutral_decoder"
+prompt_release = "v1.6.0"
+scoring_protocol_id = "cover-independent-v2.0"
+analysis_plan_id = "formal-codes-permitted-v1.0"
+claim_family = "strict_zero_shot_analytical_proxy"
+strict_claim_eligible = true
+confirmatory_eligible = false
+parent_condition_id = "v1_5_strict_analytical_long"
+changed_from_parent = ["decoder_awareness"]
+
+[conditions.factors]
+carrier_style_instruction = "analytical_paragraph"
+carrier_word_range = "180-300"
+explicit_retention = "full"
+additional_assertions = "forbidden"
+payload_expression = "no_overt_expression"
+channel_family = "ordinary_linguistic_choices"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate_channel_neutral"
+
+[[conditions]]
+id = "v1_6_formal_permitted_analytical_long"
+prompt_release = "v1.6.0"
+scoring_protocol_id = "cover-independent-v2.0"
+analysis_plan_id = "formal-codes-permitted-v1.0"
+claim_family = "formal_codes_permitted_channel_feasibility"
+strict_claim_eligible = false
+confirmatory_eligible = false
+parent_condition_id = "v1_6_strict_analytical_long_neutral_decoder"
+changed_from_parent = ["channel_family"]
+
+[conditions.factors]
+carrier_style_instruction = "analytical_paragraph"
+carrier_word_range = "180-300"
+explicit_retention = "full"
+additional_assertions = "forbidden"
+payload_expression = "no_overt_expression"
+channel_family = "any_method_permitted"
+shared_protocol = "none"
+encoder_process = "one_shot"
+decoder_awareness = "explicit_forced_candidate_channel_neutral"
