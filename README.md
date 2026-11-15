@@ -205,7 +205,11 @@ original paths and checksums.
   This is a separate candidate question; both recurrence questions remain open.
 - [Steganography experiment design](docs/research/steganography-experiment-design.md) and
   [evaluation literature](docs/research/steganography-evaluation-literature.md)
+- [Is reasoning-off output a stand-in for native reasoning?](docs/research/visible-output-as-reasoning-stand-in.md),
+  a literature scan on an assumption both experiments rest on
 - [Clocktower benchmark and model recognition](docs/research/clocktower-model-recognition.md),
   a possible future experiment
 - [Weight-space programming reports with Claude Fable 5.1 and 5.2](docs/research/weight-space-programming-reports.md),
+  a literature scan not tied to an experiment here
+- [How LLM calibration has been measured](docs/research/llm-calibration-literature.md),
   a literature scan not tied to an experiment here
