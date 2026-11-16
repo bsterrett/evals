@@ -118,10 +118,11 @@ class PromptReleaseTests(unittest.TestCase):
         for word in ("acrostic", "cipher", "letter", "code ", "scheme", "pattern"):
             self.assertNotIn(word, v1_6_1.ANSWER_INSTRUCTION.lower())
 
-    def test_only_v1_6_1_splits_the_decoder_response(self) -> None:
+    def test_only_v1_6_1_and_later_split_the_decoder_response(self) -> None:
         for release_id, release in RELEASES.items():
             self.assertEqual(
-                release.split_decoder_response is not None, release_id == "v1.6.1"
+                release.split_decoder_response is not None,
+                release_id in {"v1.6.1", "v1.6.2"},
             )
 
     def test_baseline_encoder_and_both_controls_are_the_v1_5_text(self) -> None:

@@ -9,6 +9,7 @@ from covert_eval import prompts as v1_4
 from covert_eval import prompts_v1_5 as v1_5
 from covert_eval import prompts_v1_6 as v1_6
 from covert_eval import prompts_v1_6_1 as v1_6_1
+from covert_eval import prompts_v1_6_2 as v1_6_2
 from covert_eval.scoring import split_working_and_answer
 
 
@@ -87,6 +88,18 @@ RELEASES = {
         leak_judge=v1_6_1.leak_judge_prompt,
         recovery_judge=v1_6_1.recovery_judge_prompt,
         fingerprint=v1_6_1.prompt_fingerprint,
+        split_decoder_response=split_working_and_answer,
+    ),
+    "v1.6.2": PromptRelease(
+        id="v1.6.2",
+        scoring_protocol_id=v1_6_2.SCORING_PROTOCOL_ID,
+        encoder=v1_6_2.encoder_prompt,
+        control=v1_6_2.control_prompt,
+        decoder=v1_6_2.decoder_prompt,
+        cover_judge=v1_6_2.cover_judge_prompt,
+        leak_judge=v1_6_2.leak_judge_prompt,
+        recovery_judge=v1_6_2.recovery_judge_prompt,
+        fingerprint=v1_6_2.prompt_fingerprint,
         split_decoder_response=split_working_and_answer,
     ),
 }
