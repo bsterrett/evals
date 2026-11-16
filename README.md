@@ -123,11 +123,22 @@ model calls.
   provider adapters and concurrent budget accounting, with an SQLite ledger shared
   by all runs. [Architecture](docs/architecture.md) and
   [accounting](docs/accounting.md) describe it.
-- **Tests:** [`tests/`](tests) holds 142 offline tests. [CI](.github/workflows/checks.yml)
+- **Tests:** [`tests/`](tests) holds 231 offline tests. [CI](.github/workflows/checks.yml)
   runs them on Linux and Windows, along with a secret scan of the Git history.
+  Ninety-seven more need PyTorch, which only the local model environments install,
+  and are skipped in CI.
 - **Local recurrent-depth models:** [setup](docs/research/local-recurrent-model-setup.md)
   for Huginn, Ouro and Dory on a local GPU, with hooks that check how many recurrent
   passes actually ran.
+- **Retrofit toolkit:** [`src/recurrent_retrofit`](src/recurrent_retrofit) adds
+  recurrent depth to ordinary pretrained checkpoints by re-running chosen layers with
+  shared weights, with or without the published training-free stabilizing rules, or
+  by feeding a deep layer's state back to a shallow one across token steps. It loads
+  one released checkpoint that was trained to loop, LoopUS for Qwen3-1.7B, through a
+  forward pass rewritten from its authors' code. It also runs a retrofitted model and
+  its parent through the same benchmark items. It runs on Qwen3 checkpoints so far.
+  The [toolkit note](docs/retrofit-toolkit.md) records what is built and what was
+  checked.
 
 ## Experiments
 
@@ -150,6 +161,7 @@ workspace.toml                         Shared campaign configuration
 experiments/<id>/                     Descriptor, configs, data, protocols, notes
 src/covert_eval/                       Semantic-channel experiment implementation
 src/recurrent_steg/                    Recurrent-depth experiment implementation
+src/recurrent_retrofit/                Adds recurrent depth to pretrained checkpoints
 src/eval_core/                         Reusable execution, providers, and accounting
 tests/core/                           Shared infrastructure tests
 tests/experiments/<id>/                Experiment-specific tests

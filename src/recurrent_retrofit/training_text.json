@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "texts": {
+    "fineweb-edu-2025-26-000": {
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "file": "data/CC-MAIN-2025-26/000_00000.parquet",
+      "bytes": 1387647887,
+      "sha256": "4cefc2e8d3efd44e756e33ef25e940e0a228bc457f54517de9cfd67dbd11a4a1",
+      "field": "text",
+      "licence": "ODC-By 1.0; CommonCrawl's terms of use apply"
+    }
+  }
+}

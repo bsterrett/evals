@@ -28,5 +28,5 @@ eval-local-worker = "eval_core.local.worker:main"
 eval_recurrent_dory = "eval_core.local.dory_plugin:register"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/covert_eval", "src/eval_core", "src/recurrent_steg"]
+packages = ["src/covert_eval", "src/eval_core", "src/recurrent_retrofit", "src/recurrent_steg"]
 

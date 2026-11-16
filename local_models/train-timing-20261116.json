@@ -1,0 +1,2145 @@
+{
+  "profiles": {
+    "qwen3-1.7b": {
+      "profile": "qwen3-1.7b",
+      "runtime": {
+        "profile": "qwen3-1.7b",
+        "parent": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+        "model_class": "Qwen3ForCausalLM",
+        "parent_layers": 28,
+        "precision": "bfloat16",
+        "placement": "gpu",
+        "attention": "sdpa",
+        "parameter_bytes": 3441149952,
+        "eos_token_ids": [
+          151643,
+          151645
+        ],
+        "load_seconds": 0.732329486000026,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "gpu_total_bytes": 17066033152,
+        "torch_cuda": "12.8",
+        "versions": {
+          "torch": "2.9.1+cu128",
+          "transformers": "4.57.1",
+          "accelerate": "1.11.0",
+          "safetensors": "0.6.2",
+          "huggingface-hub": "0.36.0"
+        }
+      },
+      "free_gib_at_start": 14.66,
+      "allocator_cap_gib": 13.66,
+      "repeats": 2,
+      "adapter_rank": 16,
+      "gate_rank": 128,
+      "measurements": [
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.228,
+          "tokens_per_second": 2245.7,
+          "peak_allocated_gib": 4.21,
+          "peak_reserved_gib": 4.31
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.4028,
+          "tokens_per_second": 2542.1,
+          "peak_allocated_gib": 5.15,
+          "peak_reserved_gib": 5.43
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.7774,
+          "tokens_per_second": 2634.4,
+          "peak_allocated_gib": 7.03,
+          "peak_reserved_gib": 7.48
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": true,
+          "seconds_per_step": 1.6098,
+          "tokens_per_second": 2544.4,
+          "peak_allocated_gib": 10.78,
+          "peak_reserved_gib": 11.66
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 16,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.9901,
+          "tokens_per_second": 1029.1,
+          "peak_allocated_gib": 7.03,
+          "peak_reserved_gib": 7.45
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.1555,
+          "tokens_per_second": 13168.5,
+          "peak_allocated_gib": 7.03,
+          "peak_reserved_gib": 7.45
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.4147,
+          "tokens_per_second": 2469.3,
+          "peak_allocated_gib": 5.16,
+          "peak_reserved_gib": 5.43
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.8755,
+          "tokens_per_second": 2339.2,
+          "peak_allocated_gib": 7.03,
+          "peak_reserved_gib": 7.48
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.6261,
+          "tokens_per_second": 2518.9,
+          "peak_allocated_gib": 10.79,
+          "peak_reserved_gib": 11.75
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 4.2403,
+          "tokens_per_second": 966.0,
+          "peak_allocated_gib": 10.79,
+          "peak_reserved_gib": 11.77
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.343,
+          "tokens_per_second": 11940.2,
+          "peak_allocated_gib": 10.79,
+          "peak_reserved_gib": 11.72
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.3805,
+          "tokens_per_second": 1345.6,
+          "peak_allocated_gib": 5.64,
+          "peak_reserved_gib": 5.88
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.5886,
+          "tokens_per_second": 1739.8,
+          "peak_allocated_gib": 7.8,
+          "peak_reserved_gib": 8.22
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.1726,
+          "tokens_per_second": 1746.6,
+          "peak_allocated_gib": 12.13,
+          "peak_reserved_gib": 12.96
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 2.9078,
+          "tokens_per_second": 704.3,
+          "peak_allocated_gib": 12.13,
+          "peak_reserved_gib": 12.95
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.2958,
+          "tokens_per_second": 6924.5,
+          "peak_allocated_gib": 12.13,
+          "peak_reserved_gib": 12.96
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.6439,
+          "tokens_per_second": 1590.2,
+          "peak_allocated_gib": 7.81,
+          "peak_reserved_gib": 8.23
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.2943,
+          "tokens_per_second": 1582.3,
+          "peak_allocated_gib": 12.13,
+          "peak_reserved_gib": 12.93
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 1.6974,
+          "tokens_per_second": 603.3,
+          "peak_allocated_gib": 7.81,
+          "peak_reserved_gib": 8.22
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 16099329,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.1845,
+          "tokens_per_second": 5550.8,
+          "peak_allocated_gib": 7.81,
+          "peak_reserved_gib": 8.22
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.1505,
+          "tokens_per_second": 3403.0,
+          "peak_allocated_gib": 4.64,
+          "peak_reserved_gib": 4.89
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.2566,
+          "tokens_per_second": 3990.2,
+          "peak_allocated_gib": 6.01,
+          "peak_reserved_gib": 6.15
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.4959,
+          "tokens_per_second": 4129.7,
+          "peak_allocated_gib": 8.75,
+          "peak_reserved_gib": 9.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.2474,
+          "tokens_per_second": 1641.8,
+          "peak_allocated_gib": 8.75,
+          "peak_reserved_gib": 9.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.2481,
+          "tokens_per_second": 8255.3,
+          "peak_allocated_gib": 8.75,
+          "peak_reserved_gib": 9.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.2972,
+          "tokens_per_second": 3445.2,
+          "peak_allocated_gib": 6.02,
+          "peak_reserved_gib": 6.15
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.582,
+          "tokens_per_second": 3518.9,
+          "peak_allocated_gib": 8.76,
+          "peak_reserved_gib": 9.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.3985,
+          "tokens_per_second": 1464.4,
+          "peak_allocated_gib": 8.76,
+          "peak_reserved_gib": 9.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 534529,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.2709,
+          "tokens_per_second": 7560.9,
+          "peak_allocated_gib": 8.76,
+          "peak_reserved_gib": 9.91
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.1795,
+          "tokens_per_second": 2852.6,
+          "peak_allocated_gib": 4.87,
+          "peak_reserved_gib": 5.08
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.3128,
+          "tokens_per_second": 3273.2,
+          "peak_allocated_gib": 6.43,
+          "peak_reserved_gib": 6.78
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.5982,
+          "tokens_per_second": 3423.5,
+          "peak_allocated_gib": 9.56,
+          "peak_reserved_gib": 10.54
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.3288,
+          "tokens_per_second": 1541.3,
+          "peak_allocated_gib": 9.56,
+          "peak_reserved_gib": 10.54
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.2529,
+          "tokens_per_second": 8097.9,
+          "peak_allocated_gib": 9.56,
+          "peak_reserved_gib": 10.54
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.3088,
+          "tokens_per_second": 3316.1,
+          "peak_allocated_gib": 6.44,
+          "peak_reserved_gib": 6.78
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.6425,
+          "tokens_per_second": 3187.4,
+          "peak_allocated_gib": 9.57,
+          "peak_reserved_gib": 10.54
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.8027,
+          "tokens_per_second": 1275.7,
+          "peak_allocated_gib": 6.44,
+          "peak_reserved_gib": 6.78
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 3024897,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.1523,
+          "tokens_per_second": 6722.8,
+          "peak_allocated_gib": 6.44,
+          "peak_reserved_gib": 6.78
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 9.3056,
+          "tokens_per_second": 13.8,
+          "peak_allocated_gib": 5.11,
+          "peak_reserved_gib": 5.17
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 9.1235,
+          "tokens_per_second": 28.1,
+          "peak_allocated_gib": 6.92,
+          "peak_reserved_gib": 7.0
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 9.2146,
+          "tokens_per_second": 55.6,
+          "peak_allocated_gib": 10.55,
+          "peak_reserved_gib": 10.83
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 256,
+          "setting": "one token at a time",
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 18.7758,
+          "tokens_per_second": 13.6,
+          "peak_allocated_gib": 9.38,
+          "peak_reserved_gib": 9.58
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 256,
+          "setting": "one token at a time",
+          "batch": 2,
+          "fits": false
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[14to7]/convex,alpha=0.07",
+          "trained_parameters": 395328,
+          "context": 512,
+          "setting": "one token at a time",
+          "batch": 1,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.1893,
+          "tokens_per_second": 2705.3,
+          "peak_allocated_gib": 5.62,
+          "peak_reserved_gib": 5.92
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.3231,
+          "tokens_per_second": 3169.0,
+          "peak_allocated_gib": 7.21,
+          "peak_reserved_gib": 7.61
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.6043,
+          "tokens_per_second": 3388.8,
+          "peak_allocated_gib": 10.39,
+          "peak_reserved_gib": 10.49
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.4808,
+          "tokens_per_second": 1383.0,
+          "peak_allocated_gib": 10.39,
+          "peak_reserved_gib": 10.49
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.2921,
+          "tokens_per_second": 7012.4,
+          "peak_allocated_gib": 10.39,
+          "peak_reserved_gib": 10.49
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.3486,
+          "tokens_per_second": 2937.1,
+          "peak_allocated_gib": 7.21,
+          "peak_reserved_gib": 7.61
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.6751,
+          "tokens_per_second": 3033.6,
+          "peak_allocated_gib": 10.39,
+          "peak_reserved_gib": 10.79
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.6019,
+          "tokens_per_second": 1278.5,
+          "peak_allocated_gib": 10.39,
+          "peak_reserved_gib": 10.49
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            12,
+            16
+          ],
+          "trained_parameters": 201878529,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.3121,
+          "tokens_per_second": 6561.3,
+          "peak_allocated_gib": 10.39,
+          "peak_reserved_gib": 10.49
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.4583,
+          "tokens_per_second": 1117.1,
+          "peak_allocated_gib": 12.66,
+          "peak_reserved_gib": 12.79
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.7149,
+          "tokens_per_second": 1432.4,
+          "peak_allocated_gib": 12.67,
+          "peak_reserved_gib": 13.28
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.8105,
+          "tokens_per_second": 565.6,
+          "peak_allocated_gib": 12.67,
+          "peak_reserved_gib": 13.28
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.2605,
+          "tokens_per_second": 3931.0,
+          "peak_allocated_gib": 12.67,
+          "peak_reserved_gib": 13.28
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.7903,
+          "tokens_per_second": 1295.7,
+          "peak_allocated_gib": 12.67,
+          "peak_reserved_gib": 13.29
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 2.012,
+          "tokens_per_second": 508.9,
+          "peak_allocated_gib": 12.67,
+          "peak_reserved_gib": 13.29
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            27
+          ],
+          "trained_parameters": 1258934529,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.2906,
+          "tokens_per_second": 3524.0,
+          "peak_allocated_gib": 12.67,
+          "peak_reserved_gib": 13.27
+        }
+      ],
+      "completed_at": "2026-11-16T19:42:49.114700+00:00"
+    },
+    "qwen3-4b-instruct": {
+      "profile": "qwen3-4b-instruct",
+      "runtime": {
+        "profile": "qwen3-4b-instruct",
+        "parent": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+        "model_class": "Qwen3ForCausalLM",
+        "parent_layers": 36,
+        "precision": "bfloat16",
+        "placement": "gpu",
+        "attention": "sdpa",
+        "parameter_bytes": 8044936192,
+        "eos_token_ids": [
+          151643,
+          151645
+        ],
+        "load_seconds": 1.075919082000155,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "gpu_total_bytes": 17066033152,
+        "torch_cuda": "12.8",
+        "versions": {
+          "torch": "2.9.1+cu128",
+          "transformers": "4.57.1",
+          "accelerate": "1.11.0",
+          "safetensors": "0.6.2",
+          "huggingface-hub": "0.36.0"
+        }
+      },
+      "free_gib_at_start": 14.66,
+      "allocator_cap_gib": 13.66,
+      "repeats": 2,
+      "adapter_rank": 16,
+      "gate_rank": 128,
+      "measurements": [
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.5283,
+          "tokens_per_second": 969.2,
+          "peak_allocated_gib": 8.54,
+          "peak_reserved_gib": 8.61
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.9557,
+          "tokens_per_second": 1071.4,
+          "peak_allocated_gib": 9.51,
+          "peak_reserved_gib": 9.73
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 1.7761,
+          "tokens_per_second": 1153.1,
+          "peak_allocated_gib": 11.45,
+          "peak_reserved_gib": 11.89
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 8,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 4.445,
+          "tokens_per_second": 460.7,
+          "peak_allocated_gib": 11.45,
+          "peak_reserved_gib": 11.89
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 4,
+          "fits": true,
+          "seconds_per_step": 0.305,
+          "tokens_per_second": 6714.7,
+          "peak_allocated_gib": 11.45,
+          "peak_reserved_gib": 11.89
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.9875,
+          "tokens_per_second": 1037.0,
+          "peak_allocated_gib": 9.51,
+          "peak_reserved_gib": 9.73
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.9134,
+          "tokens_per_second": 1070.4,
+          "peak_allocated_gib": 11.45,
+          "peak_reserved_gib": 11.86
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 4.7605,
+          "tokens_per_second": 430.2,
+          "peak_allocated_gib": 11.45,
+          "peak_reserved_gib": 11.89
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.3259,
+          "tokens_per_second": 6283.8,
+          "peak_allocated_gib": 11.45,
+          "peak_reserved_gib": 11.86
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 30945793,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.814,
+          "tokens_per_second": 629.0,
+          "peak_allocated_gib": 11.56,
+          "peak_reserved_gib": 11.89
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 30945793,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 30945793,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 2.037,
+          "tokens_per_second": 251.4,
+          "peak_allocated_gib": 11.56,
+          "peak_reserved_gib": 11.94
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 30945793,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.2044,
+          "tokens_per_second": 2505.3,
+          "peak_allocated_gib": 11.56,
+          "peak_reserved_gib": 11.92
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 30945793,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.339,
+          "tokens_per_second": 1510.3,
+          "peak_allocated_gib": 9.57,
+          "peak_reserved_gib": 9.71
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.5733,
+          "tokens_per_second": 1786.0,
+          "peak_allocated_gib": 11.55,
+          "peak_reserved_gib": 11.9
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.3641,
+          "tokens_per_second": 750.7,
+          "peak_allocated_gib": 11.55,
+          "peak_reserved_gib": 11.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.2724,
+          "tokens_per_second": 3759.7,
+          "peak_allocated_gib": 11.55,
+          "peak_reserved_gib": 11.9
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.6356,
+          "tokens_per_second": 1611.2,
+          "peak_allocated_gib": 11.55,
+          "peak_reserved_gib": 11.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": false
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 1.5201,
+          "tokens_per_second": 673.7,
+          "peak_allocated_gib": 11.55,
+          "peak_reserved_gib": 11.91
+        },
+        {
+          "candidate": "gate",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 668161,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.3033,
+          "tokens_per_second": 3375.8,
+          "peak_allocated_gib": 11.55,
+          "peak_reserved_gib": 11.9
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.3764,
+          "tokens_per_second": 1360.3,
+          "peak_allocated_gib": 9.93,
+          "peak_reserved_gib": 10.09
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.6281,
+          "tokens_per_second": 1630.3,
+          "peak_allocated_gib": 12.23,
+          "peak_reserved_gib": 12.64
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 1.4691,
+          "tokens_per_second": 697.0,
+          "peak_allocated_gib": 12.23,
+          "peak_reserved_gib": 12.64
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 0.2887,
+          "tokens_per_second": 3546.8,
+          "peak_allocated_gib": 12.23,
+          "peak_reserved_gib": 12.64
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.6859,
+          "tokens_per_second": 1493.0,
+          "peak_allocated_gib": 12.23,
+          "peak_reserved_gib": 12.6
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": false
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 1024,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 1.6474,
+          "tokens_per_second": 621.6,
+          "peak_allocated_gib": 12.24,
+          "peak_reserved_gib": 12.6
+        },
+        {
+          "candidate": "lora",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 4338177,
+          "context": 1024,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.3251,
+          "tokens_per_second": 3149.9,
+          "peak_allocated_gib": 12.23,
+          "peak_reserved_gib": 12.6
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[18to9]/convex,alpha=0.07",
+          "trained_parameters": 494144,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 11.8772,
+          "tokens_per_second": 10.8,
+          "peak_allocated_gib": 10.14,
+          "peak_reserved_gib": 10.2
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[18to9]/convex,alpha=0.07",
+          "trained_parameters": 494144,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 2,
+          "fits": true,
+          "seconds_per_step": 11.9356,
+          "tokens_per_second": 21.4,
+          "peak_allocated_gib": 12.69,
+          "peak_reserved_gib": 12.77
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[18to9]/convex,alpha=0.07",
+          "trained_parameters": 494144,
+          "context": 128,
+          "setting": "one token at a time",
+          "batch": 4,
+          "fits": false
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[18to9]/convex,alpha=0.07",
+          "trained_parameters": 494144,
+          "context": 256,
+          "setting": "one token at a time",
+          "batch": 1,
+          "fits": false
+        },
+        {
+          "candidate": "recirc",
+          "design": "recirculate[18to9]/convex,alpha=0.07",
+          "trained_parameters": 494144,
+          "context": 512,
+          "setting": "one token at a time",
+          "batch": 1,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 404391425,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.4075,
+          "tokens_per_second": 1256.5,
+          "peak_allocated_gib": 11.43,
+          "peak_reserved_gib": 11.7
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 404391425,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 2,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 404391425,
+          "context": 512,
+          "setting": [
+            20,
+            5
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.9812,
+          "tokens_per_second": 521.8,
+          "peak_allocated_gib": 11.42,
+          "peak_reserved_gib": 11.58
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 404391425,
+          "context": 512,
+          "setting": [
+            1,
+            1
+          ],
+          "batch": 1,
+          "fits": true,
+          "seconds_per_step": 0.1975,
+          "tokens_per_second": 2592.5,
+          "peak_allocated_gib": 11.42,
+          "peak_reserved_gib": 11.58
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            15,
+            19
+          ],
+          "trained_parameters": 404391425,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 3331385089,
+          "context": 512,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": false
+        },
+        {
+          "candidate": "full",
+          "unit": [
+            2,
+            35
+          ],
+          "trained_parameters": 3331385089,
+          "context": 1024,
+          "setting": [
+            8,
+            2
+          ],
+          "batch": 1,
+          "fits": false
+        }
+      ],
+      "completed_at": "2026-11-16T19:47:45.621320+00:00"
+    }
+  }
+}

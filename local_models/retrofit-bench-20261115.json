@@ -1,0 +1,3936 @@
+{
+  "schema_version": 1,
+  "purpose": "Benchmark-runner validation runs; measurements for checking the tool, not findings",
+  "source_directory": "artifacts/runs/local-runtime/retrofit-bench-20261115",
+  "note": "Qwen3-4B-Instruct in BF16 on one RTX 5070 Ti, run on 2026-11-15 and 16 local time. The MMLU-Pro records use two items per subject, 28 items. Records made before the seed option existed show seed null, which is what they used.",
+  "runs": [
+    {
+      "record": "qwen3-4b-instruct-euler3-anchor-csqa7.json",
+      "record_sha256": "d01d04be824b7efb0c87643fefe950d0e64b2d893de85ad010b457cfd9f8d353",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler,anchor=0.5",
+      "design": "block[15:19]/euler,anchor=0.5",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1221,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 104.7,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:32:09.238513+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.8001638001638002,
+            "acc_stderr,none": 0.01144844799672829
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 977
+          },
+          "prompts_sha256": "3e7b9540fc8ed1bf0ec096cdc20246e1956be5df139a8b6de68164ec307674c4"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-anchor-openbookqa.json",
+      "record_sha256": "a1c1218167dc7ec120e165ccf779f4a4014278b623b7f052f520c5678bf7f570",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[11:15]/euler,anchor=0.5",
+      "design": "block[11:15]/euler,anchor=0.5",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 51.5,
+      "peak_allocated_GiB": 7.59,
+      "completed_at": "2026-11-16T07:57:52.497208+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.312,
+            "acc_stderr,none": 0.020740596536488017,
+            "acc_norm,none": 0.396,
+            "acc_norm_stderr,none": 0.021893529941665716
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 156,
+            "acc_norm": 198
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-anchor-sciq.json",
+      "record_sha256": "6eee9d351b2eef021a3285ad7dd9934650038cb2824a74ffe45bc1bda887f496",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler,anchor=0.5",
+      "design": "block[15:19]/euler,anchor=0.5",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "sciq"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "sciq": {
+          "dataset": "allenai/sciq",
+          "revision": "2c94ad3e1aafab77146f384e23536f97a4849815"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 2808,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 121.3,
+      "peak_allocated_GiB": 8.08,
+      "completed_at": "2026-11-16T07:54:59.923839+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "sciq": {
+          "scores": {
+            "acc,none": 0.963,
+            "acc_stderr,none": 0.0059721576223896395,
+            "acc_norm,none": 0.935,
+            "acc_norm_stderr,none": 0.007799733061832043
+          },
+          "items_run": 1000,
+          "correct": {
+            "acc": 963,
+            "acc_norm": 935
+          },
+          "prompts_sha256": "a697d948b1ce19716e3e17e653be7afd05eed96ee1de7e79826c5bfee1bc2d6a"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-batch16-openbookqa.json",
+      "record_sha256": "53e94861976b676bf6c3f9b1ed6fc2c4c61d7a95af5077b454a5933b2152181a",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[11:15]/euler",
+      "design": "block[11:15]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 99,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 11.6,
+      "peak_allocated_GiB": 8.32,
+      "completed_at": "2026-11-16T09:39:34.413089+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.314,
+            "acc_stderr,none": 0.020776701920308973,
+            "acc_norm,none": 0.396,
+            "acc_norm_stderr,none": 0.021893529941665716
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 157,
+            "acc_norm": 198
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-batch16-sciq.json",
+      "record_sha256": "c11d732ed9229c6fd60fa9afb42a6b07cb30479d4463d82fb5e27d770629a380",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "sciq"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "sciq": {
+          "dataset": "allenai/sciq",
+          "revision": "2c94ad3e1aafab77146f384e23536f97a4849815"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 176,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 53.9,
+      "peak_allocated_GiB": 15.29,
+      "completed_at": "2026-11-16T09:39:14.879910+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "sciq": {
+          "scores": {
+            "acc,none": 0.968,
+            "acc_stderr,none": 0.005568393575081328,
+            "acc_norm,none": 0.945,
+            "acc_norm_stderr,none": 0.0072129762946392
+          },
+          "items_run": 1000,
+          "correct": {
+            "acc": 968,
+            "acc_norm": 945
+          },
+          "prompts_sha256": "a697d948b1ce19716e3e17e653be7afd05eed96ee1de7e79826c5bfee1bc2d6a"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-batch8-mmlupro-limit2.json",
+      "record_sha256": "72052f5dd1a62168dd7618739d341e4dcca8e9d83aa4e8123b6d39f9ff60e3c4",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "mmlu_pro"
+        ],
+        "fewshot": null,
+        "limit": 2,
+        "batch_size": 8,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "mmlu_pro": {
+          "dataset": "TIGER-Lab/MMLU-Pro",
+          "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 5608,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 5037.4,
+      "peak_allocated_GiB": 13.43,
+      "completed_at": "2026-11-16T09:36:54.900955+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {
+        "mmlu_pro": {
+          "exact_match,custom-extract": 0.5357142857142857,
+          "exact_match_stderr,custom-extract": 0.07985957062499249
+        }
+      },
+      "tasks": {
+        "mmlu_pro_biology": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "2b7892307043d24ffef4216a00fad19862044c7d88c910004fc671ab77ee9d6c"
+        },
+        "mmlu_pro_business": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "f339d4aee231388cf7ed073e1647b335c460369dc7020a4f9d78c2469bf49380"
+        },
+        "mmlu_pro_chemistry": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "26a5a1aee905d65e8e1acf426e440df100e36d99adc06fb6649faed48c5187c2"
+        },
+        "mmlu_pro_computer_science": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "d9febcd94c40b2bd53286f9f95b121d2224393e629b0cbcd2c771314cd7b8f67"
+        },
+        "mmlu_pro_economics": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "09b48d51173ba5541179b6db6c3ec1c0cab7cbce25417b3bcdec14fcc5c706b6"
+        },
+        "mmlu_pro_engineering": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "0da8feabbe3cda3f029a73445fa08b1c233c293302c40fb8775b5faba064f3a4"
+        },
+        "mmlu_pro_health": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "3bd4b65a11718b35ee550b404a4e02d5f20dc5229fdf0b6d517dab668e77dc45"
+        },
+        "mmlu_pro_history": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "53d66d50b189a09347a59128185f26e0bb8157a55552da9c1f836c9fcaf773d8"
+        },
+        "mmlu_pro_law": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "d2e2aa81fed60f96b78954679c6220628fd546dd2f81f33fef845dbe00b58ee6"
+        },
+        "mmlu_pro_math": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "2746b686f677cb15a4f463b0dc2d5a5db2e0ea2b553f7a70173cae0e46fa5a96"
+        },
+        "mmlu_pro_other": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "fca9bc50ca557a0b2bdd5dbc42fe8576449427f51ce39eb7b94089c0e74b0497"
+        },
+        "mmlu_pro_philosophy": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "353bdfe61a1efcd06a1516ff956d462cc2a1dcd0f24f3aad86de16c6d39122a2"
+        },
+        "mmlu_pro_physics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "1c3e12c5c053cf32ba4b5f07adf00e3f8142c13ed810f2cc1a25046b5a6adbf1"
+        },
+        "mmlu_pro_psychology": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "98352b4583b1c36ebceb29bfc6492f499b3791ed8e530243ddb9e46d66034bc1"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-chat-csqa7.json",
+      "record_sha256": "4d0f5e4ac10a04a3f98a6af1304266baf190aa1ca5f9233e0b45fad8ce3f8b56",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": true,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1221,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 109.1,
+      "peak_allocated_GiB": 7.95,
+      "completed_at": "2026-11-16T07:39:01.603364+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7985257985257985,
+            "acc_stderr,none": 0.011483500195202893
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 975
+          },
+          "prompts_sha256": "c0d665bd6875dcfff6f40742a0310257feb7c0fdb764ce16c101ac5e7b0da774"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-csqa7.json",
+      "record_sha256": "eaee4fdc1894676007f116bcdf3cc8e4dd664ddecd2528bc89782bf9ae6eedc7",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1221,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 107.5,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:30:16.211220+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.8018018018018018,
+            "acc_stderr,none": 0.011413095456219376
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 979
+          },
+          "prompts_sha256": "3e7b9540fc8ed1bf0ec096cdc20246e1956be5df139a8b6de68164ec307674c4"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-mmlupro-limit2.json",
+      "record_sha256": "bbfc00aa8f4c349fa3e8fca1a6b83b3790728b57ed7a61e89f0659f8798ead75",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "mmlu_pro"
+        ],
+        "fewshot": null,
+        "limit": 2,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "mmlu_pro": {
+          "dataset": "TIGER-Lab/MMLU-Pro",
+          "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 5107,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 154.8,
+      "peak_allocated_GiB": 8.05,
+      "completed_at": "2026-11-16T08:03:54.877615+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {
+        "mmlu_pro": {
+          "exact_match,custom-extract": 0.5714285714285714,
+          "exact_match_stderr,custom-extract": 0.08748177652797065
+        }
+      },
+      "tasks": {
+        "mmlu_pro_biology": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "2b7892307043d24ffef4216a00fad19862044c7d88c910004fc671ab77ee9d6c"
+        },
+        "mmlu_pro_business": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "f339d4aee231388cf7ed073e1647b335c460369dc7020a4f9d78c2469bf49380"
+        },
+        "mmlu_pro_chemistry": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "26a5a1aee905d65e8e1acf426e440df100e36d99adc06fb6649faed48c5187c2"
+        },
+        "mmlu_pro_computer_science": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "d9febcd94c40b2bd53286f9f95b121d2224393e629b0cbcd2c771314cd7b8f67"
+        },
+        "mmlu_pro_economics": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "09b48d51173ba5541179b6db6c3ec1c0cab7cbce25417b3bcdec14fcc5c706b6"
+        },
+        "mmlu_pro_engineering": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "0da8feabbe3cda3f029a73445fa08b1c233c293302c40fb8775b5faba064f3a4"
+        },
+        "mmlu_pro_health": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "3bd4b65a11718b35ee550b404a4e02d5f20dc5229fdf0b6d517dab668e77dc45"
+        },
+        "mmlu_pro_history": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "53d66d50b189a09347a59128185f26e0bb8157a55552da9c1f836c9fcaf773d8"
+        },
+        "mmlu_pro_law": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "d2e2aa81fed60f96b78954679c6220628fd546dd2f81f33fef845dbe00b58ee6"
+        },
+        "mmlu_pro_math": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "2746b686f677cb15a4f463b0dc2d5a5db2e0ea2b553f7a70173cae0e46fa5a96"
+        },
+        "mmlu_pro_other": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "fca9bc50ca557a0b2bdd5dbc42fe8576449427f51ce39eb7b94089c0e74b0497"
+        },
+        "mmlu_pro_philosophy": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "353bdfe61a1efcd06a1516ff956d462cc2a1dcd0f24f3aad86de16c6d39122a2"
+        },
+        "mmlu_pro_physics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "1c3e12c5c053cf32ba4b5f07adf00e3f8142c13ed810f2cc1a25046b5a6adbf1"
+        },
+        "mmlu_pro_psychology": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "98352b4583b1c36ebceb29bfc6492f499b3791ed8e530243ddb9e46d66034bc1"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-openbookqa.json",
+      "record_sha256": "aab9ba921226a7ca9e23a9400d030c34153ce1c8af49add8662f13c9a46e1bd5",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[11:15]/euler",
+      "design": "block[11:15]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 52.0,
+      "peak_allocated_GiB": 7.59,
+      "completed_at": "2026-11-16T07:56:52.841567+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.316,
+            "acc_stderr,none": 0.020812359515855822,
+            "acc_norm,none": 0.398,
+            "acc_norm_stderr,none": 0.021912377885779953
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 158,
+            "acc_norm": 199
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-euler3-sciq.json",
+      "record_sha256": "cc37ab0390465f8b6d8f331d11219e0225b374e334ec933baff9d904fd035fbb",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "settings": {
+        "tasks": [
+          "sciq"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "sciq": {
+          "dataset": "allenai/sciq",
+          "revision": "2c94ad3e1aafab77146f384e23536f97a4849815"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 2808,
+        "layer_calls_per_forward": 44,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 119.7,
+      "peak_allocated_GiB": 8.08,
+      "completed_at": "2026-11-16T07:52:50.373523+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "sciq": {
+          "scores": {
+            "acc,none": 0.968,
+            "acc_stderr,none": 0.005568393575081328,
+            "acc_norm,none": 0.945,
+            "acc_norm_stderr,none": 0.0072129762946392
+          },
+          "items_run": 1000,
+          "correct": {
+            "acc": 968,
+            "acc_norm": 945
+          },
+          "prompts_sha256": "a697d948b1ce19716e3e17e653be7afd05eed96ee1de7e79826c5bfee1bc2d6a"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-onepass-csqa7.json",
+      "record_sha256": "e8b7a0fd68ad776493b8cd607954144aa44ee9bc86aa2bfca90063477a2cbf8b",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1221,
+        "layer_calls_per_forward": 36,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 88.5,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:33:46.008286+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7985257985257985,
+            "acc_stderr,none": 0.011483500195202893
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 975
+          },
+          "prompts_sha256": "3e7b9540fc8ed1bf0ec096cdc20246e1956be5df139a8b6de68164ec307674c4"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-onepass-mmlupro-limit2.json",
+      "record_sha256": "a33c7db8e9c3e4051da67dd419508be888deea7d506e584578c66aa4a55bd688",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+block[15:19]/euler",
+      "design": "block[15:19]/euler",
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "mmlu_pro"
+        ],
+        "fewshot": null,
+        "limit": 2,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "mmlu_pro": {
+          "dataset": "TIGER-Lab/MMLU-Pro",
+          "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 3488,
+        "layer_calls_per_forward": 36,
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 91.4,
+      "peak_allocated_GiB": 7.95,
+      "completed_at": "2026-11-16T08:01:11.557083+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {
+        "mmlu_pro": {
+          "exact_match,custom-extract": 0.7142857142857143,
+          "exact_match_stderr,custom-extract": 0.10101525445522107
+        }
+      },
+      "tasks": {
+        "mmlu_pro_biology": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "2b7892307043d24ffef4216a00fad19862044c7d88c910004fc671ab77ee9d6c"
+        },
+        "mmlu_pro_business": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "f339d4aee231388cf7ed073e1647b335c460369dc7020a4f9d78c2469bf49380"
+        },
+        "mmlu_pro_chemistry": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "26a5a1aee905d65e8e1acf426e440df100e36d99adc06fb6649faed48c5187c2"
+        },
+        "mmlu_pro_computer_science": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "d9febcd94c40b2bd53286f9f95b121d2224393e629b0cbcd2c771314cd7b8f67"
+        },
+        "mmlu_pro_economics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "09b48d51173ba5541179b6db6c3ec1c0cab7cbce25417b3bcdec14fcc5c706b6"
+        },
+        "mmlu_pro_engineering": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "0da8feabbe3cda3f029a73445fa08b1c233c293302c40fb8775b5faba064f3a4"
+        },
+        "mmlu_pro_health": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "3bd4b65a11718b35ee550b404a4e02d5f20dc5229fdf0b6d517dab668e77dc45"
+        },
+        "mmlu_pro_history": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "53d66d50b189a09347a59128185f26e0bb8157a55552da9c1f836c9fcaf773d8"
+        },
+        "mmlu_pro_law": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "d2e2aa81fed60f96b78954679c6220628fd546dd2f81f33fef845dbe00b58ee6"
+        },
+        "mmlu_pro_math": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "2746b686f677cb15a4f463b0dc2d5a5db2e0ea2b553f7a70173cae0e46fa5a96"
+        },
+        "mmlu_pro_other": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "fca9bc50ca557a0b2bdd5dbc42fe8576449427f51ce39eb7b94089c0e74b0497"
+        },
+        "mmlu_pro_philosophy": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "353bdfe61a1efcd06a1516ff956d462cc2a1dcd0f24f3aad86de16c6d39122a2"
+        },
+        "mmlu_pro_physics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "1c3e12c5c053cf32ba4b5f07adf00e3f8142c13ed810f2cc1a25046b5a6adbf1"
+        },
+        "mmlu_pro_psychology": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "98352b4583b1c36ebceb29bfc6492f499b3791ed8e530243ddb9e46d66034bc1"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-batch16-csqa7.json",
+      "record_sha256": "628f94c29af7e46c5d71364f94cf440d07f042b350be7dee2d61a0455fed3170",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 87.1,
+      "peak_allocated_GiB": 13.15,
+      "completed_at": "2026-11-16T07:37:04.055753+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.8001638001638002,
+            "acc_stderr,none": 0.01144844799672829
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 977
+          },
+          "prompts_sha256": "3e7b9540fc8ed1bf0ec096cdc20246e1956be5df139a8b6de68164ec307674c4"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-batch16-openbookqa.json",
+      "record_sha256": "ecf766d318b9eedd1f5e9a8814541446857d3960e3535c3c451a0a472dac762b",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 10.8,
+      "peak_allocated_GiB": 8.32,
+      "completed_at": "2026-11-16T09:38:13.351903+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.318,
+            "acc_stderr,none": 0.020847571620814014,
+            "acc_norm,none": 0.406,
+            "acc_norm_stderr,none": 0.021983962090086417
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 159,
+            "acc_norm": 203
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-batch16-sciq.json",
+      "record_sha256": "464cf6a70a846d96a84d31d078660628d681dffedcc35abc24d30881f25a73e0",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "sciq"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "sciq": {
+          "dataset": "allenai/sciq",
+          "revision": "2c94ad3e1aafab77146f384e23536f97a4849815"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 46.1,
+      "peak_allocated_GiB": 15.29,
+      "completed_at": "2026-11-16T09:37:54.615658+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "sciq": {
+          "scores": {
+            "acc,none": 0.957,
+            "acc_stderr,none": 0.006418114379799739,
+            "acc_norm,none": 0.927,
+            "acc_norm_stderr,none": 0.008230354715243976
+          },
+          "items_run": 1000,
+          "correct": {
+            "acc": 957,
+            "acc_norm": 927
+          },
+          "prompts_sha256": "a697d948b1ce19716e3e17e653be7afd05eed96ee1de7e79826c5bfee1bc2d6a"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-batch8-mmlupro-limit2.json",
+      "record_sha256": "90cc230c4dcce7f363b7892086e2c8a7aa55e4e0ddf32451bdbe9a1ba1baa2c2",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "mmlu_pro"
+        ],
+        "fewshot": null,
+        "limit": 2,
+        "batch_size": 8,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "mmlu_pro": {
+          "dataset": "TIGER-Lab/MMLU-Pro",
+          "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 526.1,
+      "peak_allocated_GiB": 12.45,
+      "completed_at": "2026-11-16T08:12:49.389196+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {
+        "mmlu_pro": {
+          "exact_match,custom-extract": 0.6785714285714286,
+          "exact_match_stderr,custom-extract": 0.0944911182523068
+        }
+      },
+      "tasks": {
+        "mmlu_pro_biology": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "2b7892307043d24ffef4216a00fad19862044c7d88c910004fc671ab77ee9d6c"
+        },
+        "mmlu_pro_business": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "f339d4aee231388cf7ed073e1647b335c460369dc7020a4f9d78c2469bf49380"
+        },
+        "mmlu_pro_chemistry": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "26a5a1aee905d65e8e1acf426e440df100e36d99adc06fb6649faed48c5187c2"
+        },
+        "mmlu_pro_computer_science": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "d9febcd94c40b2bd53286f9f95b121d2224393e629b0cbcd2c771314cd7b8f67"
+        },
+        "mmlu_pro_economics": {
+          "scores": {
+            "exact_match,custom-extract": 0.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 0
+          },
+          "prompts_sha256": "09b48d51173ba5541179b6db6c3ec1c0cab7cbce25417b3bcdec14fcc5c706b6"
+        },
+        "mmlu_pro_engineering": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "0da8feabbe3cda3f029a73445fa08b1c233c293302c40fb8775b5faba064f3a4"
+        },
+        "mmlu_pro_health": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "3bd4b65a11718b35ee550b404a4e02d5f20dc5229fdf0b6d517dab668e77dc45"
+        },
+        "mmlu_pro_history": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "53d66d50b189a09347a59128185f26e0bb8157a55552da9c1f836c9fcaf773d8"
+        },
+        "mmlu_pro_law": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "d2e2aa81fed60f96b78954679c6220628fd546dd2f81f33fef845dbe00b58ee6"
+        },
+        "mmlu_pro_math": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "2746b686f677cb15a4f463b0dc2d5a5db2e0ea2b553f7a70173cae0e46fa5a96"
+        },
+        "mmlu_pro_other": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "fca9bc50ca557a0b2bdd5dbc42fe8576449427f51ce39eb7b94089c0e74b0497"
+        },
+        "mmlu_pro_philosophy": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "353bdfe61a1efcd06a1516ff956d462cc2a1dcd0f24f3aad86de16c6d39122a2"
+        },
+        "mmlu_pro_physics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "1c3e12c5c053cf32ba4b5f07adf00e3f8142c13ed810f2cc1a25046b5a6adbf1"
+        },
+        "mmlu_pro_psychology": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "98352b4583b1c36ebceb29bfc6492f499b3791ed8e530243ddb9e46d66034bc1"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-chat-csqa7.json",
+      "record_sha256": "20cb7552ddf3979265016fd3378ab24190e530c516e2bae8408d13fbb9f6025c",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": true,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 94.5,
+      "peak_allocated_GiB": 7.95,
+      "completed_at": "2026-11-16T07:35:28.690188+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7968877968877969,
+            "acc_stderr,none": 0.01151825479363406
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 973
+          },
+          "prompts_sha256": "c0d665bd6875dcfff6f40742a0310257feb7c0fdb764ce16c101ac5e7b0da774"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-csqa7.json",
+      "record_sha256": "fb00b0f3873cf4b33b980a58a27389eff484176f99e4e7c80863a99943a1060d",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 89.1,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:27:29.530790+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7985257985257985,
+            "acc_stderr,none": 0.011483500195202893
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 975
+          },
+          "prompts_sha256": "3e7b9540fc8ed1bf0ec096cdc20246e1956be5df139a8b6de68164ec307674c4"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-mmlupro-limit2.json",
+      "record_sha256": "03923a35b3b824e45c6d3e197e6a0e1522ac9bd914652ca50634a84b197ae4c2",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "mmlu_pro"
+        ],
+        "fewshot": null,
+        "limit": 2,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "mmlu_pro": {
+          "dataset": "TIGER-Lab/MMLU-Pro",
+          "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 91.0,
+      "peak_allocated_GiB": 7.95,
+      "completed_at": "2026-11-16T07:59:31.864899+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {
+        "mmlu_pro": {
+          "exact_match,custom-extract": 0.7142857142857143,
+          "exact_match_stderr,custom-extract": 0.10101525445522107
+        }
+      },
+      "tasks": {
+        "mmlu_pro_biology": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "2b7892307043d24ffef4216a00fad19862044c7d88c910004fc671ab77ee9d6c"
+        },
+        "mmlu_pro_business": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "f339d4aee231388cf7ed073e1647b335c460369dc7020a4f9d78c2469bf49380"
+        },
+        "mmlu_pro_chemistry": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "26a5a1aee905d65e8e1acf426e440df100e36d99adc06fb6649faed48c5187c2"
+        },
+        "mmlu_pro_computer_science": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "d9febcd94c40b2bd53286f9f95b121d2224393e629b0cbcd2c771314cd7b8f67"
+        },
+        "mmlu_pro_economics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "09b48d51173ba5541179b6db6c3ec1c0cab7cbce25417b3bcdec14fcc5c706b6"
+        },
+        "mmlu_pro_engineering": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "0da8feabbe3cda3f029a73445fa08b1c233c293302c40fb8775b5faba064f3a4"
+        },
+        "mmlu_pro_health": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "3bd4b65a11718b35ee550b404a4e02d5f20dc5229fdf0b6d517dab668e77dc45"
+        },
+        "mmlu_pro_history": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "53d66d50b189a09347a59128185f26e0bb8157a55552da9c1f836c9fcaf773d8"
+        },
+        "mmlu_pro_law": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "d2e2aa81fed60f96b78954679c6220628fd546dd2f81f33fef845dbe00b58ee6"
+        },
+        "mmlu_pro_math": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "2746b686f677cb15a4f463b0dc2d5a5db2e0ea2b553f7a70173cae0e46fa5a96"
+        },
+        "mmlu_pro_other": {
+          "scores": {
+            "exact_match,custom-extract": 1.0,
+            "exact_match_stderr,custom-extract": 0.0
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 2
+          },
+          "prompts_sha256": "fca9bc50ca557a0b2bdd5dbc42fe8576449427f51ce39eb7b94089c0e74b0497"
+        },
+        "mmlu_pro_philosophy": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "353bdfe61a1efcd06a1516ff956d462cc2a1dcd0f24f3aad86de16c6d39122a2"
+        },
+        "mmlu_pro_physics": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "1c3e12c5c053cf32ba4b5f07adf00e3f8142c13ed810f2cc1a25046b5a6adbf1"
+        },
+        "mmlu_pro_psychology": {
+          "scores": {
+            "exact_match,custom-extract": 0.5,
+            "exact_match_stderr,custom-extract": 0.5
+          },
+          "items_run": 2,
+          "correct": {
+            "exact_match": 1
+          },
+          "prompts_sha256": "98352b4583b1c36ebceb29bfc6492f499b3791ed8e530243ddb9e46d66034bc1"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-openbookqa.json",
+      "record_sha256": "cf8f21382b4e6037100ef5d691c91b6e66cca27d4e772004db0c8e20304cadf3",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 43.9,
+      "peak_allocated_GiB": 7.59,
+      "completed_at": "2026-11-16T07:55:52.380727+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.316,
+            "acc_stderr,none": 0.020812359515855822,
+            "acc_norm,none": 0.4,
+            "acc_norm_stderr,none": 0.02193084412072858
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 158,
+            "acc_norm": 200
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-sciq.json",
+      "record_sha256": "f4571019f146ffe5613198e712aeccfd4783803f1646af9d85d90052d93c2f0c",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "sciq"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "sciq": {
+          "dataset": "allenai/sciq",
+          "revision": "2c94ad3e1aafab77146f384e23536f97a4849815"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 100.0,
+      "peak_allocated_GiB": 8.08,
+      "completed_at": "2026-11-16T07:50:42.366828+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "sciq": {
+          "scores": {
+            "acc,none": 0.957,
+            "acc_stderr,none": 0.006418114379799739,
+            "acc_norm,none": 0.926,
+            "acc_norm_stderr,none": 0.0082820645127041
+          },
+          "items_run": 1000,
+          "correct": {
+            "acc": 957,
+            "acc_norm": 926
+          },
+          "prompts_sha256": "a697d948b1ce19716e3e17e653be7afd05eed96ee1de7e79826c5bfee1bc2d6a"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-seed0-csqa7.json",
+      "record_sha256": "369bbebaa044668d1f84a7e55b37eb5243804a78297e89b7a9e12a13bb0cfd61",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": 0
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 0,
+        "torch_seed": 0,
+        "fewshot_seed": 0
+      },
+      "executed": null,
+      "seconds": 90.6,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:42:21.761473+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.8091728091728092,
+            "acc_stderr,none": 0.01125021581097898
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 988
+          },
+          "prompts_sha256": "f5e22c95b0a0798a4903b8069a3b597e011e4cdc4eee5f176ec0d9c5a898d56e"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-seed1-csqa7.json",
+      "record_sha256": "b8a51d60771a50ab35195391d3571dde40af34c6a69a20c40bd515a682216208",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": 1
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 1,
+        "numpy_seed": 1,
+        "torch_seed": 1,
+        "fewshot_seed": 1
+      },
+      "executed": null,
+      "seconds": 89.1,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:43:59.368296+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.8026208026208026,
+            "acc_stderr,none": 0.011395305685091258
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 980
+          },
+          "prompts_sha256": "164713b8b17398a6f30ce00956288145f4af7c5c6c96f503f5a56ec00345a5aa"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-seed123-csqa7.json",
+      "record_sha256": "1c34ac3f872712472b42a3e1479d4591d4878c2115f308275a1bfe1b2ba2a982",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": 123
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 123,
+        "numpy_seed": 123,
+        "torch_seed": 123,
+        "fewshot_seed": 123
+      },
+      "executed": null,
+      "seconds": 90.3,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:45:38.359373+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7936117936117936,
+            "acc_stderr,none": 0.011586881879177889
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 969
+          },
+          "prompts_sha256": "7da32eab8f35fbfd80cc2a0d528ee18b9e82d8301909d5f9c65320c23415125b"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-seed1234-csqa7.json",
+      "record_sha256": "341e915752c50c5a5006afd3db2d092ea5af429dc1827b5267a88f3a2ac834f0",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": 1234
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 1234,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 88.7,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:48:53.999594+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7985257985257985,
+            "acc_stderr,none": 0.011483500195202893
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 975
+          },
+          "prompts_sha256": "3e7b9540fc8ed1bf0ec096cdc20246e1956be5df139a8b6de68164ec307674c4"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-seed2024-csqa7.json",
+      "record_sha256": "e8d92373201356797115e9999f6c1ff187dd15d875bb2939bec8199b79ee8102",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": 2024
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 2024,
+        "numpy_seed": 2024,
+        "torch_seed": 2024,
+        "fewshot_seed": 2024
+      },
+      "executed": null,
+      "seconds": 90.2,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:47:17.009539+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.8001638001638002,
+            "acc_stderr,none": 0.01144844799672829
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 977
+          },
+          "prompts_sha256": "7d6b17fade8945a930981453040f9c0c7ba794144944d2982b0ad9d09a4549a7"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-parent-seed42-csqa7.json",
+      "record_sha256": "bee3304e9e1f2b6d98012403a1ab4c0267b846090c939f44905bb518c2966cd3",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "commonsense_qa"
+        ],
+        "fewshot": 7,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": 42
+      },
+      "datasets": {
+        "commonsense_qa": {
+          "dataset": "tau/commonsense_qa",
+          "revision": "94630fe30dad47192a8546eb75f094926d47e155"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 42,
+        "numpy_seed": 42,
+        "torch_seed": 42,
+        "fewshot_seed": 42
+      },
+      "executed": null,
+      "seconds": 89.9,
+      "peak_allocated_GiB": 7.89,
+      "completed_at": "2026-11-16T07:40:43.026145+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "commonsense_qa": {
+          "scores": {
+            "acc,none": 0.7977067977067978,
+            "acc_stderr,none": 0.011500914525260477
+          },
+          "items_run": 1221,
+          "correct": {
+            "acc": 974
+          },
+          "prompts_sha256": "e31172ba22ca3b5a39a9637ca2c3cc71e5934137849952b11b4d53658bd8e0e3"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-recirc-additive-batch16-openbookqa.json",
+      "record_sha256": "5dcd2de8b5d44888a9bf340f026545e471288c9c0b30bc71c120d86d6bdfee38",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+recirculate[18to9]/additive,alpha=0.07",
+      "design": "recirculate[18to9]/additive,alpha=0.07",
+      "passes": 2,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1462,
+        "layer_calls_per_forward": 62,
+        "a_forward_pass_is": "one token",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 60.7,
+      "peak_allocated_GiB": 8.32,
+      "completed_at": "2026-11-16T10:13:17.236572+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.328,
+            "acc_stderr,none": 0.021017027165175464,
+            "acc_norm,none": 0.406,
+            "acc_norm_stderr,none": 0.021983962090086417
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 164,
+            "acc_norm": 203
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-recirc-convex-batch16-openbookqa.json",
+      "record_sha256": "c588258c187eb007b609bde02a7c47e3c76c12066b3397fb23d8a40c3b5b2c0a",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+recirculate[18to9]/convex,alpha=0.07",
+      "design": "recirculate[18to9]/convex,alpha=0.07",
+      "passes": 2,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1462,
+        "layer_calls_per_forward": 62,
+        "a_forward_pass_is": "one token",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 60.6,
+      "peak_allocated_GiB": 8.32,
+      "completed_at": "2026-11-16T10:12:08.657147+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.322,
+            "acc_stderr,none": 0.020916668330019865,
+            "acc_norm,none": 0.404,
+            "acc_norm_stderr,none": 0.021966635293832883
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 161,
+            "acc_norm": 202
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-recirc-zero-batch16-openbookqa.json",
+      "record_sha256": "d8f04634a3ebeb4b0d78aa223964db80aa5e0c45e5bde56dd504867a428a5235",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+recirculate[18to9]/convex,alpha=0",
+      "design": "recirculate[18to9]/convex,alpha=0",
+      "passes": 2,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1462,
+        "layer_calls_per_forward": 62,
+        "a_forward_pass_is": "one token",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 60.3,
+      "peak_allocated_GiB": 8.32,
+      "completed_at": "2026-11-16T10:10:59.962567+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.318,
+            "acc_stderr,none": 0.020847571620814014,
+            "acc_norm,none": 0.404,
+            "acc_norm_stderr,none": 0.021966635293832883
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 159,
+            "acc_norm": 202
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "qwen3-4b-instruct-serial-batch16-openbookqa.json",
+      "record_sha256": "fdb94142ba03638e790955933cf18d24e0ecfb53554e463656ed554083bbd425",
+      "model": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554+recirculate[18to9]/convex,alpha=0.07",
+      "design": "recirculate[18to9]/convex,alpha=0.07",
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 16,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1462,
+        "layer_calls_per_forward": 36,
+        "a_forward_pass_is": "one token",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 42.3,
+      "peak_allocated_GiB": 8.32,
+      "completed_at": "2026-11-16T10:09:51.519215+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.318,
+            "acc_stderr,none": 0.020847571620814014,
+            "acc_norm,none": 0.404,
+            "acc_norm_stderr,none": 0.021966635293832883
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 159,
+            "acc_norm": 202
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "parent_record": "qwen3-4b-instruct-parent-csqa7.json",
+      "design_record": "qwen3-4b-instruct-euler3-anchor-csqa7.json",
+      "design": "block[15:19]/euler,anchor=0.5",
+      "passes": 3,
+      "tasks": {
+        "commonsense_qa": {
+          "acc": {
+            "metric": "acc",
+            "items": 1221,
+            "both": 962,
+            "parent_only": 13,
+            "design_only": 15,
+            "neither": 231,
+            "parent_correct": 975,
+            "design_correct": 977,
+            "parent_score": 0.7985257985257985,
+            "design_score": 0.8001638001638002,
+            "difference": 0.001638001638001638
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-euler3-anchor-openbookqa.json",
+      "design": "block[11:15]/euler,anchor=0.5",
+      "passes": 3,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 151,
+            "parent_only": 7,
+            "design_only": 5,
+            "neither": 337,
+            "parent_correct": 158,
+            "design_correct": 156,
+            "parent_score": 0.316,
+            "design_score": 0.312,
+            "difference": -0.004
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 196,
+            "parent_only": 4,
+            "design_only": 2,
+            "neither": 298,
+            "parent_correct": 200,
+            "design_correct": 198,
+            "parent_score": 0.4,
+            "design_score": 0.396,
+            "difference": -0.004
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-sciq.json",
+      "design_record": "qwen3-4b-instruct-euler3-anchor-sciq.json",
+      "design": "block[15:19]/euler,anchor=0.5",
+      "passes": 3,
+      "tasks": {
+        "sciq": {
+          "acc": {
+            "metric": "acc",
+            "items": 1000,
+            "both": 957,
+            "parent_only": 0,
+            "design_only": 6,
+            "neither": 37,
+            "parent_correct": 957,
+            "design_correct": 963,
+            "parent_score": 0.957,
+            "design_score": 0.963,
+            "difference": 0.006
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1000,
+            "both": 926,
+            "parent_only": 0,
+            "design_only": 9,
+            "neither": 65,
+            "parent_correct": 926,
+            "design_correct": 935,
+            "parent_score": 0.926,
+            "design_score": 0.935,
+            "difference": 0.009
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-euler3-batch16-openbookqa.json",
+      "design": "block[11:15]/euler",
+      "passes": 3,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 149,
+            "parent_only": 10,
+            "design_only": 8,
+            "neither": 333,
+            "parent_correct": 159,
+            "design_correct": 157,
+            "parent_score": 0.318,
+            "design_score": 0.314,
+            "difference": -0.004
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 196,
+            "parent_only": 7,
+            "design_only": 2,
+            "neither": 295,
+            "parent_correct": 203,
+            "design_correct": 198,
+            "parent_score": 0.406,
+            "design_score": 0.396,
+            "difference": -0.01
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch16-sciq.json",
+      "design_record": "qwen3-4b-instruct-euler3-batch16-sciq.json",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "tasks": {
+        "sciq": {
+          "acc": {
+            "metric": "acc",
+            "items": 1000,
+            "both": 957,
+            "parent_only": 0,
+            "design_only": 11,
+            "neither": 32,
+            "parent_correct": 957,
+            "design_correct": 968,
+            "parent_score": 0.957,
+            "design_score": 0.968,
+            "difference": 0.011
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1000,
+            "both": 926,
+            "parent_only": 1,
+            "design_only": 19,
+            "neither": 54,
+            "parent_correct": 927,
+            "design_correct": 945,
+            "parent_score": 0.927,
+            "design_score": 0.945,
+            "difference": 0.018
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch8-mmlupro-limit2.json",
+      "design_record": "qwen3-4b-instruct-euler3-batch8-mmlupro-limit2.json",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "tasks": {
+        "mmlu_pro_biology": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_business": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 1,
+            "parent_score": 1.0,
+            "design_score": 0.5,
+            "difference": -0.5
+          }
+        },
+        "mmlu_pro_chemistry": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_computer_science": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_economics": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 2,
+            "parent_correct": 0,
+            "design_correct": 0,
+            "parent_score": 0.0,
+            "design_score": 0.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_engineering": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_health": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_history": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_law": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 0,
+            "parent_score": 0.5,
+            "design_score": 0.0,
+            "difference": -0.5
+          }
+        },
+        "mmlu_pro_math": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 0,
+            "parent_score": 0.5,
+            "design_score": 0.0,
+            "difference": -0.5
+          }
+        },
+        "mmlu_pro_other": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_philosophy": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_physics": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_psychology": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 0,
+            "parent_score": 0.5,
+            "design_score": 0.0,
+            "difference": -0.5
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-chat-csqa7.json",
+      "design_record": "qwen3-4b-instruct-euler3-chat-csqa7.json",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "tasks": {
+        "commonsense_qa": {
+          "acc": {
+            "metric": "acc",
+            "items": 1221,
+            "both": 943,
+            "parent_only": 30,
+            "design_only": 32,
+            "neither": 216,
+            "parent_correct": 973,
+            "design_correct": 975,
+            "parent_score": 0.7968877968877969,
+            "design_score": 0.7985257985257985,
+            "difference": 0.001638001638001638
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-csqa7.json",
+      "design_record": "qwen3-4b-instruct-euler3-csqa7.json",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "tasks": {
+        "commonsense_qa": {
+          "acc": {
+            "metric": "acc",
+            "items": 1221,
+            "both": 942,
+            "parent_only": 33,
+            "design_only": 37,
+            "neither": 209,
+            "parent_correct": 975,
+            "design_correct": 979,
+            "parent_score": 0.7985257985257985,
+            "design_score": 0.8018018018018018,
+            "difference": 0.003276003276003276
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-mmlupro-limit2.json",
+      "design_record": "qwen3-4b-instruct-euler3-mmlupro-limit2.json",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "tasks": {
+        "mmlu_pro_biology": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_business": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 1,
+            "parent_score": 1.0,
+            "design_score": 0.5,
+            "difference": -0.5
+          }
+        },
+        "mmlu_pro_chemistry": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_computer_science": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_economics": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 0,
+            "parent_score": 0.5,
+            "design_score": 0.0,
+            "difference": -0.5
+          }
+        },
+        "mmlu_pro_engineering": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_health": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_history": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_law": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_math": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 0,
+            "parent_score": 0.5,
+            "design_score": 0.0,
+            "difference": -0.5
+          }
+        },
+        "mmlu_pro_other": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_philosophy": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_physics": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_psychology": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 0,
+            "parent_only": 1,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 0,
+            "parent_score": 0.5,
+            "design_score": 0.0,
+            "difference": -0.5
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-euler3-openbookqa.json",
+      "design": "block[11:15]/euler",
+      "passes": 3,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 149,
+            "parent_only": 9,
+            "design_only": 9,
+            "neither": 333,
+            "parent_correct": 158,
+            "design_correct": 158,
+            "parent_score": 0.316,
+            "design_score": 0.316,
+            "difference": 0.0
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 196,
+            "parent_only": 4,
+            "design_only": 3,
+            "neither": 297,
+            "parent_correct": 200,
+            "design_correct": 199,
+            "parent_score": 0.4,
+            "design_score": 0.398,
+            "difference": -0.002
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-sciq.json",
+      "design_record": "qwen3-4b-instruct-euler3-sciq.json",
+      "design": "block[15:19]/euler",
+      "passes": 3,
+      "tasks": {
+        "sciq": {
+          "acc": {
+            "metric": "acc",
+            "items": 1000,
+            "both": 957,
+            "parent_only": 0,
+            "design_only": 11,
+            "neither": 32,
+            "parent_correct": 957,
+            "design_correct": 968,
+            "parent_score": 0.957,
+            "design_score": 0.968,
+            "difference": 0.011
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1000,
+            "both": 925,
+            "parent_only": 1,
+            "design_only": 20,
+            "neither": 54,
+            "parent_correct": 926,
+            "design_correct": 945,
+            "parent_score": 0.926,
+            "design_score": 0.945,
+            "difference": 0.019
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-csqa7.json",
+      "design_record": "qwen3-4b-instruct-onepass-csqa7.json",
+      "design": "block[15:19]/euler",
+      "passes": 1,
+      "tasks": {
+        "commonsense_qa": {
+          "acc": {
+            "metric": "acc",
+            "items": 1221,
+            "both": 975,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 246,
+            "parent_correct": 975,
+            "design_correct": 975,
+            "parent_score": 0.7985257985257985,
+            "design_score": 0.7985257985257985,
+            "difference": 0.0
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-mmlupro-limit2.json",
+      "design_record": "qwen3-4b-instruct-onepass-mmlupro-limit2.json",
+      "design": "block[15:19]/euler",
+      "passes": 1,
+      "tasks": {
+        "mmlu_pro_biology": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_business": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_chemistry": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_computer_science": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_economics": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_engineering": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_health": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_history": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_law": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_math": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_other": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 2,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 0,
+            "parent_correct": 2,
+            "design_correct": 2,
+            "parent_score": 1.0,
+            "design_score": 1.0,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_philosophy": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_physics": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        },
+        "mmlu_pro_psychology": {
+          "exact_match": {
+            "metric": "exact_match",
+            "items": 2,
+            "both": 1,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 1,
+            "parent_correct": 1,
+            "design_correct": 1,
+            "parent_score": 0.5,
+            "design_score": 0.5,
+            "difference": 0.0
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-recirc-additive-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/additive,alpha=0.07",
+      "passes": 2,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 159,
+            "parent_only": 0,
+            "design_only": 5,
+            "neither": 336,
+            "parent_correct": 159,
+            "design_correct": 164,
+            "parent_score": 0.318,
+            "design_score": 0.328,
+            "difference": 0.01
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 201,
+            "parent_only": 2,
+            "design_only": 2,
+            "neither": 295,
+            "parent_correct": 203,
+            "design_correct": 203,
+            "parent_score": 0.406,
+            "design_score": 0.406,
+            "difference": 0.0
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-recirc-convex-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/convex,alpha=0.07",
+      "passes": 2,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 157,
+            "parent_only": 2,
+            "design_only": 4,
+            "neither": 337,
+            "parent_correct": 159,
+            "design_correct": 161,
+            "parent_score": 0.318,
+            "design_score": 0.322,
+            "difference": 0.004
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 200,
+            "parent_only": 3,
+            "design_only": 2,
+            "neither": 295,
+            "parent_correct": 203,
+            "design_correct": 202,
+            "parent_score": 0.406,
+            "design_score": 0.404,
+            "difference": -0.002
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-recirc-zero-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/convex,alpha=0",
+      "passes": 2,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 156,
+            "parent_only": 3,
+            "design_only": 3,
+            "neither": 338,
+            "parent_correct": 159,
+            "design_correct": 159,
+            "parent_score": 0.318,
+            "design_score": 0.318,
+            "difference": 0.0
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 200,
+            "parent_only": 3,
+            "design_only": 2,
+            "neither": 295,
+            "parent_correct": 203,
+            "design_correct": 202,
+            "parent_score": 0.406,
+            "design_score": 0.404,
+            "difference": -0.002
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "qwen3-4b-instruct-parent-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-serial-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/convex,alpha=0.07",
+      "passes": 1,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 156,
+            "parent_only": 3,
+            "design_only": 3,
+            "neither": 338,
+            "parent_correct": 159,
+            "design_correct": 159,
+            "parent_score": 0.318,
+            "design_score": 0.318,
+            "difference": 0.0
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 200,
+            "parent_only": 3,
+            "design_only": 2,
+            "neither": 295,
+            "parent_correct": 203,
+            "design_correct": 202,
+            "parent_score": 0.406,
+            "design_score": 0.404,
+            "difference": -0.002
+          }
+        }
+      }
+    }
+  ],
+  "token_by_token_pairs": [
+    {
+      "baseline_record": "qwen3-4b-instruct-serial-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-recirc-additive-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/additive,alpha=0.07",
+      "the_parent_in_these_counts_is": "the token-by-token baseline",
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 158,
+            "parent_only": 1,
+            "design_only": 6,
+            "neither": 335,
+            "parent_correct": 159,
+            "design_correct": 164,
+            "parent_score": 0.318,
+            "design_score": 0.328,
+            "difference": 0.01
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 201,
+            "parent_only": 1,
+            "design_only": 2,
+            "neither": 296,
+            "parent_correct": 202,
+            "design_correct": 203,
+            "parent_score": 0.404,
+            "design_score": 0.406,
+            "difference": 0.002
+          }
+        }
+      }
+    },
+    {
+      "baseline_record": "qwen3-4b-instruct-serial-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-recirc-convex-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/convex,alpha=0.07",
+      "the_parent_in_these_counts_is": "the token-by-token baseline",
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 156,
+            "parent_only": 3,
+            "design_only": 5,
+            "neither": 336,
+            "parent_correct": 159,
+            "design_correct": 161,
+            "parent_score": 0.318,
+            "design_score": 0.322,
+            "difference": 0.004
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 200,
+            "parent_only": 2,
+            "design_only": 2,
+            "neither": 296,
+            "parent_correct": 202,
+            "design_correct": 202,
+            "parent_score": 0.404,
+            "design_score": 0.404,
+            "difference": 0.0
+          }
+        }
+      }
+    },
+    {
+      "baseline_record": "qwen3-4b-instruct-serial-batch16-openbookqa.json",
+      "design_record": "qwen3-4b-instruct-recirc-zero-batch16-openbookqa.json",
+      "design": "recirculate[18to9]/convex,alpha=0",
+      "the_parent_in_these_counts_is": "the token-by-token baseline",
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 159,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 341,
+            "parent_correct": 159,
+            "design_correct": 159,
+            "parent_score": 0.318,
+            "design_score": 0.318,
+            "difference": 0.0
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 202,
+            "parent_only": 0,
+            "design_only": 0,
+            "neither": 298,
+            "parent_correct": 202,
+            "design_correct": 202,
+            "parent_score": 0.404,
+            "design_score": 0.404,
+            "difference": 0.0
+          }
+        }
+      }
+    }
+  ]
+}

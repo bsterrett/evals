@@ -27,6 +27,11 @@ model revisions and startup depth. GPU packages are isolated in WSL and imported
 only by the worker; ordinary controller imports and offline tests need no torch
 installation. See [local model setup](research/local-recurrent-model-setup.md).
 
+`recurrent_retrofit` adds recurrent depth to ordinary pretrained checkpoints and
+serves them through the same worker contract, so anything that takes a local depth
+setting can use a retrofitted model. It depends on `eval_core`; `eval_core` does not
+depend on it. See the [retrofit toolkit](retrofit-toolkit.md).
+
 Configurations resolve dataset and output paths relative to their own location.
 Project-root discovery walks upward to `pyproject.toml` rather than assuming a fixed
 configuration depth. New manifests include the experiment ID, Git revision/dirty

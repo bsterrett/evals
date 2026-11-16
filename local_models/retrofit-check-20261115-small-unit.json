@@ -1,0 +1,580 @@
+{
+  "schema_version": 2,
+  "purpose": "Retrofit runner acceptance; validates the tool, not whether any design helps a model",
+  "source_directory": "artifacts/runs/local-runtime/retrofit-check-20261115-small-unit",
+  "note": "Plain loops over the middle four layers, the unit the update rules used in the main run, so that their generated text can be compared. Half precision on the GPU only. Decode speeds are rough setup figures.",
+  "records": [
+    {
+      "record": "qwen3-1.7b-bfloat16.json",
+      "record_sha256": "683b5c3b839bf040aaacaf0e2a9ce4e769a580eda3716c6811ae5c01ec26a4df",
+      "passed": true,
+      "failures": [],
+      "completed_at": "2026-11-16T03:09:24.074567+00:00",
+      "parent": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "parent_layers": 28,
+      "loop_unit": [
+        12,
+        16
+      ],
+      "update_unit": [
+        12,
+        16
+      ],
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "tokens_per_prompt": 24,
+      "prompts": [
+        "raw-capital",
+        "chat-sum",
+        "chat-colors"
+      ],
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "gaps_decided": false,
+      "tolerance": 0.01,
+      "one_pass_identical_to_parent": {
+        "parent": true,
+        "block[12:16]": true,
+        "layer[12:16]": true,
+        "block[12:16]/euler": true,
+        "block[12:16]/euler,anchor=0.5": true,
+        "layer[12:16]/euler,anchor=0.5": true,
+        "block[12:16]/uniform": true,
+        "block[12:16]/uniform,per=layer": true,
+        "layer[12:16]/uniform": true,
+        "block[12:16]/ema,eta=0.5": true
+      },
+      "parent_restored_after_removal": true,
+      "parent_cache_gap": 0.1875,
+      "parent_explicit_gap": 0.0625,
+      "parent_mean_decode_tokens_per_second": 34.67,
+      "parent_peak_allocated_GiB": 3.252803325653076,
+      "parent_texts": {
+        "raw-capital": " Paris. The capital of the United States is Washington, D.C. The capital of the United Kingdom is London. The",
+        "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|>",
+        "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n<|endoftext|>You are a helpful assistant.<|im_end|>\n"
+      },
+      "loops": [
+        {
+          "program": "block[12:16]",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 4.49609375,
+          "mean_decode_tokens_per_second": 31.0,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of Italy is Rome. The capital of Spain is Madrid. The capital of Germany is Berlin. The",
+            "chat-sum": "4<|im_end|>\n\nLet me know if you need help with anything else!<|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|>\n\nOkay,",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n\nLet me know if you'd like a different set"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        },
+        {
+          "program": "block[12:16]",
+          "passes": 3,
+          "layer_calls": 36,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.328125,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 6.76171875,
+          "mean_decode_tokens_per_second": 28.74,
+          "peak_allocated_GiB": 3.272582530975342,
+          "texts": {
+            "raw-capital": " the city of Paris.  How many letters does the name of this capital city contain? Let me think. Okay,",
+            "chat-sum": "4<|im_end|>\n\n2 + 2 = 4<|im_end|>\n\n2 + 2 = 4<|im_end|>\n\n2 + ",
+            "chat-colors": "The three primary colors are red, blue, and yellow, often referred to as RGB in digital contexts.<|im_end|>\n\nIf"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        },
+        {
+          "program": "layer[12:16]",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.53125,
+          "cache_argmax_equal": "5/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 3.84375,
+          "mean_decode_tokens_per_second": 30.82,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " the city of Paris. 1000 years ago, the city of Paris was a different city. 1",
+            "chat-sum": "4<|im_end|>\n\nOkay, let me think. The user asked, \"What is 2 + 2? Reply with",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n\nIf you want a different answer (e.g.,"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        },
+        {
+          "program": "layer[12:16]",
+          "passes": 3,
+          "layer_calls": 36,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.71875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 10.3125,
+          "mean_decode_tokens_per_second": 27.97,
+          "peak_allocated_GiB": 3.272582530975342,
+          "texts": {
+            "raw-capital": " a city with 100000, and the population of a city in 2000 is",
+            "chat-sum": "2<|im_end|>\n\n2<|im_end|>\n\n2<|im_end|>\n\n2<|im_end|>\n\n2<|im_end|>\n\n2<|im_end|>\n\n2<|im_end|>\n\n2<|im_end|>\n\n",
+            "chat-colors": "The three primary colors are red, blue, and green in the traditional color model, and they are also referred to as"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        }
+      ],
+      "updates": [
+        {
+          "program": "block[12:16]/euler",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 1.765625,
+          "mean_decode_tokens_per_second": 30.59,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of the United States is Washington, D.C. The capital of the United Kingdom is London. The",
+            "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n\nWait, I just said that. Let me"
+          }
+        },
+        {
+          "program": "block[12:16]/euler,anchor=0.5",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.24365234375,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.9375,
+          "mean_decode_tokens_per_second": 30.81,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of the United States is Washington, D.C. The capital of the United Kingdom is London. The",
+            "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n\nOkay, the user asked for the three primary"
+          }
+        },
+        {
+          "program": "layer[12:16]/euler,anchor=0.5",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 8,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.84765625,
+          "mean_decode_tokens_per_second": 31.08,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of Italy is Rome. The capital of Spain is Madrid. The capital of Portugal is Lisbon. The",
+            "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n\nOkay, the user asked for the three primary"
+          }
+        },
+        {
+          "program": "block[12:16]/uniform",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 2.37890625,
+          "mean_decode_tokens_per_second": 31.74,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Japan is Tokyo. The",
+            "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n<|endoftext|>You are a helpful assistant.<|im_end|>\n"
+          }
+        },
+        {
+          "program": "block[12:16]/uniform,per=layer",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 8,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.453125,
+          "mean_decode_tokens_per_second": 31.08,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of Italy is Rome. The capital of Spain is Madrid. The capital of Portugal is Lisbon. The",
+            "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n\nOkay, the user asked for the three primary"
+          }
+        },
+        {
+          "program": "layer[12:16]/uniform",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 8,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.21875,
+          "cache_argmax_equal": "5/6",
+          "explicit_gap": 0.03125,
+          "first_step_gap_from_parent": 2.78125,
+          "mean_decode_tokens_per_second": 31.16,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of the United States is Washington, D.C. The capital of the United Kingdom is London. The",
+            "chat-sum": "4<|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|>\n\n4<|im_end|><|im_end|>\n\n4<|im_end|><|im_end|>\n\n4<|im_end|><|im_end|>\n\n4<|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n\nLet me know if you need a different answer,"
+          }
+        },
+        {
+          "program": "block[12:16]/ema,eta=0.5",
+          "passes": 2,
+          "layer_calls": 32,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 2.37890625,
+          "mean_decode_tokens_per_second": 31.41,
+          "peak_allocated_GiB": 3.270385265350342,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Japan is Tokyo. The",
+            "chat-sum": "4<|im_end|><|im_end|>\n\n</think>\n\n4<|im_end|><|im_end|><|im_end|>\n\n4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|><|im_end|>\n<|endoftext|>You are a helpful assistant.<|im_end|>\n"
+          }
+        }
+      ]
+    },
+    {
+      "record": "qwen3-4b-instruct-bfloat16.json",
+      "record_sha256": "d045235733fc3d6168823959f5362559640c6acf0a0d39b76d65a4e13af7e3da",
+      "passed": true,
+      "failures": [],
+      "completed_at": "2026-11-16T03:12:05.402562+00:00",
+      "parent": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+      "parent_layers": 36,
+      "loop_unit": [
+        16,
+        20
+      ],
+      "update_unit": [
+        16,
+        20
+      ],
+      "precision": "bfloat16",
+      "placement": "gpu",
+      "tokens_per_prompt": 24,
+      "prompts": [
+        "raw-capital",
+        "chat-sum",
+        "chat-colors"
+      ],
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "gaps_decided": false,
+      "tolerance": 0.01,
+      "one_pass_identical_to_parent": {
+        "parent": true,
+        "block[16:20]": true,
+        "layer[16:20]": true,
+        "block[16:20]/euler": true,
+        "block[16:20]/euler,anchor=0.5": true,
+        "layer[16:20]/euler,anchor=0.5": true,
+        "block[16:20]/uniform": true,
+        "block[16:20]/uniform,per=layer": true,
+        "layer[16:20]/uniform": true,
+        "block[16:20]/ema,eta=0.5": true
+      },
+      "parent_restored_after_removal": true,
+      "parent_cache_gap": 0.25,
+      "parent_explicit_gap": 0.0625,
+      "parent_mean_decode_tokens_per_second": 22.27,
+      "parent_peak_allocated_GiB": 7.543224811553955,
+      "parent_texts": {
+        "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+        "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2? Reply with just the number.\nModel: 4",
+        "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|endoftext|>Human: What are the three primary colors in"
+      },
+      "loops": [
+        {
+          "program": "block[16:20]",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 2.0,
+          "mean_decode_tokens_per_second": 15.77,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2?\nModel: GPT-4\n4\nHuman",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|im_end|>\n<|im_start|>Assistant\nThe three primary colors are"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        },
+        {
+          "program": "block[16:20]",
+          "passes": 3,
+          "layer_calls": 44,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.28125,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 3.65625,
+          "mean_decode_tokens_per_second": 14.27,
+          "peak_allocated_GiB": 7.566055774688721,
+          "texts": {
+            "raw-capital": " Paris. The capital of France is not Paris. What is wrong with this argument?\n\nThe argument is flawed due to a",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 5 + 7?\nModel: GPT-4o\n\nWhat is",
+            "chat-colors": "The three primary colors—red, yellow, and blue—are the foundational colors used in art and pigment mixing, with variations"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        },
+        {
+          "program": "layer[16:20]",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.5,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 4.0625,
+          "mean_decode_tokens_per_second": 15.49,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. Paris is a city in France. Berlin is a city in Germany. Therefore",
+            "chat-sum": "4<|im_end|>\n<|im_end|>\n<|im_start|> user\nWhat is 2 + 2? Reply with just the number.<|im_end|>\n",
+            "chat-colors": "The three primary colors in art and pigment are red, blue, and yellow.<|im_end|>\n<|im_end|>\n<|im_start|>user:utf8"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        },
+        {
+          "program": "layer[16:20]",
+          "passes": 3,
+          "layer_calls": 44,
+          "update_cells": 0,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.75,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 8.671875,
+          "mean_decode_tokens_per_second": 14.07,
+          "peak_allocated_GiB": 7.566055774688721,
+          "texts": {
+            "raw-capital": " Paris.\n\nThe capital of France is not Paris.\n\nWhat is the correct answer: A. A. True; B.",
+            "chat-sum": "4<|im_end|>\n<|im_end|>\n<|im_end|><|im_end|>\n<|im_end|>\n<|im_end|>\n<|im_end|>\n<|im_end|>\n<|im_end|>\n<|im_end|>\n<|im_end|>\n<|im_end|>\n",
+            "chat-colors": "The three primary colors are red, blue, and yellow, which are the foundational colors used to create other colors through specific"
+          },
+          "stock_copy_identical": {
+            "cached": true,
+            "uncached": true
+          }
+        }
+      ],
+      "updates": [
+        {
+          "program": "block[16:20]/euler",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.84375,
+          "mean_decode_tokens_per_second": 15.92,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2?\nModel: gpt-3.5-tur",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|endoftext|>Human: What are the three primary colors in"
+          }
+        },
+        {
+          "program": "block[16:20]/euler,anchor=0.5",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.4765625,
+          "mean_decode_tokens_per_second": 16.27,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2?\nModel: gpt-3.5-tur",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|endoftext|>Human: What are the three primary colors in"
+          }
+        },
+        {
+          "program": "layer[16:20]/euler,anchor=0.5",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 8,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.234375,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.8125,
+          "mean_decode_tokens_per_second": 16.07,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2?\nModel response: 4\n\nHuman: What is",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|endoftext|>Human: What are the three primary colors in"
+          }
+        },
+        {
+          "program": "block[16:20]/uniform",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 1.0625,
+          "mean_decode_tokens_per_second": 17.04,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2?\nModel: 4\nHuman: What is ",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|im_end|>\n<|im_start|>問\nWhat are the three primary"
+          }
+        },
+        {
+          "program": "block[16:20]/uniform,per=layer",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 8,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 0.28125,
+          "mean_decode_tokens_per_second": 16.02,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2? Reply with just the number.\nModel: 4",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|endoftext|>Human: What are the three primary colors in"
+          }
+        },
+        {
+          "program": "layer[16:20]/uniform",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 8,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.25,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 2.0,
+          "mean_decode_tokens_per_second": 16.51,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|im_end|>\n<|im_start|> user\nWhat is 2 + 2? Reply with just the number.<|im_end|>\n",
+            "chat-colors": "The three primary colors in traditional art are red, blue, and yellow.<|im_end|>\n<|im_end|>\n<|im_start|>Assistant  \nThe three"
+          }
+        },
+        {
+          "program": "block[16:20]/ema,eta=0.5",
+          "passes": 2,
+          "layer_calls": 40,
+          "update_cells": 2,
+          "error": null,
+          "calls_and_slots_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.0625,
+          "first_step_gap_from_parent": 1.0625,
+          "mean_decode_tokens_per_second": 17.35,
+          "peak_allocated_GiB": 7.563980579376221,
+          "texts": {
+            "raw-capital": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome. The capital of Spain is Madrid. The",
+            "chat-sum": "4<|im_end|>\n<|endoftext|>Human: What is 2 + 2?\nModel: 4\nHuman: What is ",
+            "chat-colors": "The three primary colors are red, blue, and yellow.<|im_end|>\n<|im_end|>\n<|im_start|>問\nWhat are the three primary"
+          }
+        }
+      ]
+    }
+  ]
+}

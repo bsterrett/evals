@@ -13,7 +13,7 @@ def main() -> None:
     uv = args.root / "tools/uv"
     locks = ROOT / "local_models/locks"
     locks.mkdir(parents=True, exist_ok=True)
-    for profile in ["huginn", "ouro", "dory"]:
+    for profile in ["huginn", "ouro", "dory", "retrofit"]:
         python = args.root / "envs" / profile / "bin/python"
         freeze = subprocess.check_output([str(uv), "pip", "freeze", "--python", str(python)], text=True)
         freeze = "\n".join(line for line in freeze.splitlines() if not line.startswith("-e ")) + "\n"

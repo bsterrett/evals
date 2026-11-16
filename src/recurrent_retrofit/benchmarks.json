@@ -1,0 +1,84 @@
+{
+  "harness": {"package": "lm_eval", "version": "0.4.11"},
+  "tasks": {
+    "arc_challenge": {
+      "dataset": "allenai/ai2_arc",
+      "config": "ARC-Challenge",
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "scoring": "likelihood"
+    },
+    "arc_easy": {
+      "dataset": "allenai/ai2_arc",
+      "config": "ARC-Easy",
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "scoring": "likelihood"
+    },
+    "commonsense_qa": {
+      "dataset": "tau/commonsense_qa",
+      "revision": "94630fe30dad47192a8546eb75f094926d47e155",
+      "scoring": "likelihood"
+    },
+    "hellaswag": {
+      "dataset": "Rowan/hellaswag",
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+      "scoring": "likelihood"
+    },
+    "lambada_openai": {
+      "dataset": "EleutherAI/lambada_openai",
+      "config": "default",
+      "revision": "900124bf3b8235c6daf21033af9948b3f07346c4",
+      "scoring": "perplexity"
+    },
+    "mmlu": {
+      "dataset": "cais/mmlu",
+      "configs": ["abstract_algebra", "anatomy", "astronomy", "business_ethics", "clinical_knowledge",
+        "college_biology", "college_chemistry", "college_computer_science", "college_mathematics",
+        "college_medicine", "college_physics", "computer_security", "conceptual_physics", "econometrics",
+        "electrical_engineering", "elementary_mathematics", "formal_logic", "global_facts", "high_school_biology",
+        "high_school_chemistry", "high_school_computer_science", "high_school_european_history",
+        "high_school_geography", "high_school_government_and_politics", "high_school_macroeconomics",
+        "high_school_mathematics", "high_school_microeconomics", "high_school_physics", "high_school_psychology",
+        "high_school_statistics", "high_school_us_history", "high_school_world_history", "human_aging",
+        "human_sexuality", "international_law", "jurisprudence", "logical_fallacies", "machine_learning",
+        "management", "marketing", "medical_genetics", "miscellaneous", "moral_disputes", "moral_scenarios",
+        "nutrition", "philosophy", "prehistory", "professional_accounting", "professional_law",
+        "professional_medicine", "professional_psychology", "public_relations", "security_studies", "sociology",
+        "us_foreign_policy", "virology", "world_religions"],
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "scoring": "likelihood"
+    },
+    "mmlu_pro": {
+      "dataset": "TIGER-Lab/MMLU-Pro",
+      "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be",
+      "scoring": "generated"
+    },
+    "openbookqa": {
+      "dataset": "allenai/openbookqa",
+      "config": "main",
+      "revision": "388097ea7776314e93a529163e0fea805b8a6454",
+      "scoring": "likelihood"
+    },
+    "piqa": {
+      "dataset": "baber/piqa",
+      "revision": "142f6d7367fd9877f0fb3b5734ea6a545f54cdd1",
+      "scoring": "likelihood"
+    },
+    "sciq": {
+      "dataset": "allenai/sciq",
+      "revision": "2c94ad3e1aafab77146f384e23536f97a4849815",
+      "scoring": "likelihood"
+    },
+    "wikitext": {
+      "dataset": "EleutherAI/wikitext_document_level",
+      "config": "wikitext-2-raw-v1",
+      "revision": "647234772b9554e208af6c826f23b99e3cac88c8",
+      "scoring": "perplexity"
+    },
+    "winogrande": {
+      "dataset": "allenai/winogrande",
+      "config": "winogrande_xl",
+      "revision": "01e74176c63542e6b0bcb004dcdea22d94fb67b5",
+      "scoring": "likelihood"
+    }
+  }
+}

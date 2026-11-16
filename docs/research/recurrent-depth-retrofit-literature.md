@@ -44,6 +44,25 @@ Repeats a middle layer range and regularizes the activations by interpolation
 with the ordinary forward-pass state or previous iterations. Studies Gemma 2
 2B/9B and Llama 3 8B. This is an inference intervention without weight updates.
 
+Added 2026-11-15, from an automated extraction of the v1 HTML (WebFetch) requested by
+Claude Fable 5.2, not a direct reading: the loop keeps every state `h(t)` at the loop
+boundary, with `h(0)` the ordinary forward-pass state, and feeds the next pass a
+weighted mix. "Uniform" is the mean of all states so far (equation 9), "moving
+average" is `eta h(0) + (1 - eta) h(t)` (equation 10, `eta` not stated), and
+"auto-alignment" weights states by a softmax of their inner products with `h(0)`.
+Three repetitions; Gemma 2 2B loops layers 10 to 13. Multiple-choice tasks are scored
+by length-normalized likelihood. Cache handling during decoding is not described.
+
+The paper's text does not say whether `h(0)` is the state entering the loop or
+leaving it after the ordinary pass, nor which state the later layers receive. A
+second automated reading, of `src/looped_llama.py` in the authors' repository on
+2026-11-15, says the code differs from the equations in two ways: it stores and
+mixes the output of every looped layer across iterations, not only the loop's
+output, and its first iteration is the ordinary pass, so one repetition is the
+unmodified model. It also reported a moving-average weight of 0.5, each pass given
+its own cache slot, and two apparent bugs in that file. The reader would not quote
+the code, so none of this is verified. The toolkit offers both arrangements.
+
 The gains are small and uneven: Gemma 2 2B WinoGrande, five-shot, changes from
 68.75 +/- 1.30 to 69.53 +/- 1.29 with uniform interpolation, whereas ARC-Easy
 changes from 80.30 to 80.01. These are the paper's displayed uncertainties, not
@@ -62,6 +81,60 @@ execution. Reports seven model families and gains including **+2.64 percentage
 points on MMLU-Pro for Qwen3-4B-Instruct**. Naive looping, wide windows, and some
 small-model configurations fail. Most evidence concerns multiple-choice scoring;
 transfer to open-ended generation requires a separate check.
+
+**Details that shape a replication (added 2026-11-15).** These come from two
+automated extractions of the v1 HTML (WebFetch, which answers through a small model),
+requested by Claude Fable 5.2 while building the
+[retrofit toolkit](../retrofit-toolkit.md). They were not read directly, and the
+extraction itself flagged internal inconsistencies in the paper. Check each against
+the paper before relying on it.
+
+- The update is damped Euler with step `1/K`: `x <- (1 - 1/K) x + (1/K) g(x)`, for
+  `K` sub-steps (equation 10). The anchored form mixes in the unmodified block
+  output: `beta g(x0) + (1 - beta) F^K(x0)` (equation 16), with `beta = 0.5` in
+  appendix E. `K` is 2 or 3.
+- Windows are written `[a-b]` with both ends included. Qwen3-4B-Instruct mostly uses
+  layers 15 to 18 with `K = 3`; some cells use 11 to 14 or 17 to 19.
+- **Selection used the reported benchmarks.** Appendix P searches about 720
+  configurations per cell and keeps the best, so the published gains are not
+  held-out estimates. Appendix D's "no per-cell tuning" conflicts with this.
+- **The attention cache is shared across passes.** One stored key/value set per
+  looped layer serves every pass during decoding, written from the state before or
+  after the loop. This approximates the looped computation; the toolkit's runner
+  instead keeps one set per pass, which equals recomputing the whole prefix. The two
+  agree for likelihood scoring, where no decoding happens, and can differ for
+  generated text.
+- The MMLU-Pro cell is labelled "5sh CoT", which suggests generated answers, not
+  option likelihoods. The scoring method is not stated. lm-eval 0.4.11's own
+  `mmlu_pro` task, read directly from its source, is five-shot with written reasoning
+  and takes the answer from the generated text.
+
+A third extraction the same day, of the appendices, added the settings below. The
+same caution applies.
+
+- **Per-cell settings for Qwen3-4B-Instruct (Table 6).** Windows are 0-based with
+  both ends included. Seven of nine cells use layers 15 to 18, block mode, `K = 3`
+  and a strategy named "Euler", with the cache written from the first pass and loops
+  on every decoding step. MedMCQA and OpenBookQA use layers 11 to 14. ARC-Challenge
+  uses "damped Euler" with a coefficient of 0.5 and a halting threshold the paper
+  does not define. Reported scores, baseline to looped: MMLU-Pro five-shot 57.14 to
+  59.79, GPQA-Main 33.71 to 35.71, SciQ 93.30 to 95.10, MMLU 68.15 to 69.45,
+  CommonsenseQA seven-shot 78.87 to 79.93, MedMCQA 53.40 to 54.13, ARC-Challenge
+  25-shot 62.54 to 63.14, C-Eval 72.21 to 72.73, OpenBookQA 40.20 to 40.60.
+- **Whether the "Euler" cells use the anchor is not stated.** The table gives no
+  anchor value for them.
+- **Harness settings.** lm-eval 0.4.11, BF16 weights, SDPA attention, "deterministic
+  seeds" with no values, "default lm-eval-harness batch sizes", and nothing on a chat
+  template or task names. Appendix F.1 names Transformers 4.46.
+- **The cache choice changes the generated-text result.** Table 20 gives the MMLU-Pro
+  gain as +2.64 points writing the cache from the first pass, +1.00 from the last and
+  -8.86 with none. Appendix N.1 says every number uses the last pass unless stated,
+  while Table 6 lists the first for this model.
+- Other tables give different numbers for the same model: MMLU at layers 17 to 19
+  with `K = 2` is 69.14 in Table 14, against 69.45 in Table 6.
+
+The toolkit's attempt to reproduce the CommonsenseQA cell is recorded in the
+[toolkit note](../retrofit-toolkit.md#reproducing-a-published-number).
 
 **Availability observation:** the [advertised repository](https://github.com/L-z-Chen/Training-Free-Looped-Transformer)
 and its README returned 404 through direct GitHub access during this review.
@@ -250,6 +323,107 @@ performance guarantee.
 | [SOLAR depth up-scaling, reviewed v3](https://arxiv.org/abs/2312.15166v3) | Builds a larger model from copied layers and continues pretraining. Untied copies can diverge; parameter growth changes the comparison. |
 | [Mergekit passthrough](https://github.com/arcee-ai/mergekit/blob/main/docs/merge_methods.md#passthrough-passthrough) | Reusable tooling for assembling unchanged layer ranges, including repetition through overlapping slices. Checkpoint construction alone does not supply recurrence training, stable activations, or evidence of improved performance. |
 
+### Recirculation details that shape an implementation
+
+These come from three automated extractions of the v1 HTML on 2026-11-16, made to
+build the [toolkit's recirculation design](../retrofit-toolkit.md#feedback-across-token-steps).
+A small model read the page each time; no person or top-tier model read the paper
+directly, and Appendix A was not in the extracted text.
+
+- **The update.** Equation 1 mixes a token's source-layer state into its own
+  destination-layer state, one unrolling step later, with weights `alpha` and `beta`.
+  Equation 2 first rescales the source to the destination's L2 norm. The states are
+  residual-stream outputs "after" a layer, indexed by unrolling step, input step and
+  layer.
+- **Passes.** The text says the stack runs twice per input step, that only the
+  previous step's stack is recirculated so each is recirculated exactly once, and
+  that the read-out follows the first pass. Appendix A is reported to describe `k`
+  recirculations with `k + 1` stacks per step.
+- **Serial prefill.** The abstract and section 5.2 say the prompt must be processed
+  token by token.
+- **Coefficients.** Sweeps used `alpha` of 0.04, 0.07, 0.10 and 0.16. Appendix C is
+  reported to use 0.07, with `beta = 1 - alpha` on Gemma 3 1B and `beta = 1` on 4B
+  and 12B, where the text says a non-convex mixture is required. One extraction also
+  reported 0.15 for the section 4.2 evaluation; the two were not reconciled.
+- **Placements, as {source, destination}.** Gemma 3 PT: 1B {11, 4}, 4B {18, 9}, 12B
+  {35, 16}. Gemma 3 IT: 4B {18, 8}, 12B {29, 16}. The MMLU condition on 4B PT used
+  {16, 5} with `alpha` 0.09, selected on MMLU development problems.
+- **Variants not in the toolkit.** Table B.2 lists eight ways to normalize and mix.
+  `alpha` was ramped over the first 10 tokens on the 1B model only. The learned
+  variant trains a small network, with the base model frozen, to produce
+  token-specific mixing vectors, and is reported to cut perplexity by 23.0% on
+  average against 8.5% for fixed coefficients.
+- **Not stated in the extracted text:** whether layer indices start at zero, where in
+  the residual stream the mixture is written, how the attention cache is handled,
+  whether the second pass continues above the source layer, and any code link.
+
+### LoopUS details that shape an implementation
+
+Read on 2026-11-16 to load the released checkpoint in the
+[toolkit](../retrofit-toolkit.md#a-checkpoint-trained-to-loop). Claude Fable 5.2 read
+the sources below as page text in a browser, not through a summarizing model:
+
+- the authors' code at `Thrillcrazyer/LoopUS` commit
+  `003ad7a5a5967d059b4639751777edd94d5640a4` (2026-10-13): all of
+  `models/modeling_lds.py`, `models/configuration_lds.py`, `utils/inference.py`,
+  `utils/lm_eval_harness.py`, `evaluate.py`, `script/eval_model.sh` and the README,
+  and the training loop in `training_runtime.py`;
+- the paper's v1 HTML: the gate in section 3.1, section 4.1, Table 1 and appendix
+  A.1 to A.5. The rest of the paper was not read;
+- the checkpoint `Thrillcrazyer/Qwen3_1.7B_LoopUS` at commit
+  `5d66726aa98197c1b5876e26339cf393d82b436c`: its configuration, model card and the
+  list of tensors in its weight file.
+
+None of the code was run.
+
+- **Three blocks.** The first layers run once, the middle layers loop, and the last
+  layers, final norm and output head run once. For Qwen3-1.7B the paper's appendix
+  A.1 and the checkpoint agree: layers 0 and 1, then 2 to 26, then 27.
+- **The gate.** The code and the paper's equations 3 to 5 agree. With `M(h)` the
+  looped block's output for state `h`: `delta = softplus(W (M(h) - h) + b)`,
+  `alpha = exp(delta * A)` with `A = -exp(A_log)`, and the next state is
+  `alpha * M(h) + (1 - alpha) * h`. `W` is a product of a 2048-to-128 and a
+  128-to-2048 matrix. The gate follows every pass, the first included. The gate
+  class's own description states the mixture with the two states exchanged; the code
+  below it and the paper do not.
+- **The confidence head** is a layer norm and a linear layer. It reads the change
+  before the gate, `M(h) - h`, at the last valid token of each sequence. Under the
+  default rule a sequence stops when the sigmoid of the head exceeds a threshold. The
+  code has two other rules, on the size of the state change and on a cumulative
+  probability.
+- **Stopping works differently with and without a cache.** Without one, each row of a
+  batch stops separately and keeps its state while the others continue. With one, the
+  loop ends only when every row has passed the threshold, each row uses the state
+  from the first pass on which it did, and the caches of the passes that did not run
+  are left out of the returned cache and start empty on the next call. So after a
+  token stops early, later tokens at the deeper passes attend only to the tokens
+  since then.
+- **Caches.** The looped block keeps one attention cache per pass.
+- **Evaluation.** The authors score likelihoods through their own lm-eval adapter,
+  not the harness's stock one: left-padded batches with an attention mask, no cache,
+  and the context and continuation tokenized separately without special tokens. The
+  released template sets at most 8 passes, a threshold of 0.6, batch size 8 and seed
+  2026. Appendix A.3 gives the same 8 and 0.6 as standard inference, zero-shot.
+- **Training.** The paper reports FineWeb-Edu, 3 billion tokens, context 1,024 and 20
+  loop steps of which 5 random ones are supervised per batch; the README's example
+  command uses 1.5 billion tokens. In the training loop each step is one pass of the
+  block and its gate, and the first layers run without gradients.
+- **The released configuration** records 20 passes, a threshold of 0.9, the threshold
+  rule, and the head read on every pass. It was written by Transformers 5.3.0. The
+  pinned 4.57.1 cannot load it directly: the rotary base is under `rope_parameters`,
+  and the tokenizer settings give `extra_special_tokens` as a list.
+- **Which parent.** The model card names `Qwen/Qwen3-1.7B-Base`, and the configuration
+  names `Qwen/Qwen3-1.7B`. The weights settle it. The checkpoint's embedding, final
+  norm and all 22 tensors of layers 0 and 1 are bit-identical to `Qwen/Qwen3-1.7B` at
+  `70d244cc`, and over the whole decoder it is 0.019 away from that model in relative
+  distance against 0.060 from the Base model. The record is in the
+  [acceptance summary](../../local_models/gated-check-20261116.json).
+- **Published numbers for Qwen3-1.7B (Table 1), without and with LoopUS:** WikiText
+  perplexity 21 and 16.9, LAMBADA perplexity 12.21 and 7.43, and accuracy on MMLU
+  55.4 and 56.6, HellaSwag 46.2 and 46.3, ARC-Easy 72.5 and 74.9, ARC-Challenge 40.2
+  and 43.1, PIQA 72.2 and 73.3, WinoGrande 61.3 and 63.0, OpenBookQA 28 and 29.6.
+  The paper does not say which Qwen3-1.7B the first row is.
+
 ## Reusability and inspected evidence
 
 There is no single verified “apply to any model” framework in the reviewed set.
@@ -266,7 +440,7 @@ they identify files, not an installed or tested environment.
 | `dnhkng/RYS`, `main` | README and `src/core/layer_duplicator.py`, file blob `dfaefd01ed14b613dd1312339c65f82b5ab65f96` | Runtime layer copies share weights and receive new cache indices; exporter storage differs. |
 | `mcleish7/retrofitting-recurrence`, `master` | README, conversion directory, and `convert_llama.py`, blob `78ad359abe04f4be30e00b1243178e9a0059ab68` | Actual weight-mapping/conversion functions exist. README pins conversion to `transformers==4.51.0` because of cache changes and requires model-file replacement/comparison steps. This is research code requiring adaptation. |
 | `tianyi-lab/PoLar`, `main` | Root directory and README, blob `eab2cbf36ef8415cf5e31f4ebd0d48563b48874e` | Offline MCTS directory is present; README documents four supported models and controller supervision inputs. |
-| `Thrillcrazyer/LoopUS`, `main` | README | Conversion/training CLI and released-checkpoint links are available; compatibility and numerical correctness were not tested. |
+| `Thrillcrazyer/LoopUS`, `main` | README on 2026-11-06. On 2026-11-16, at commit `003ad7a5a5967d059b4639751777edd94d5640a4`, the model class, configuration, evaluation code and training loop, as [listed above](#loopus-details-that-shape-an-implementation) | Conversion/training CLI and released-checkpoint links are available. The released Qwen3-1.7B checkpoint loads in the [toolkit](../retrofit-toolkit.md#a-checkpoint-trained-to-loop) through a forward pass rewritten from this code. The authors' code itself was not run, so their output was not compared with the toolkit's directly. |
 | `Batorskq/MACRO`, `main` | README | Search, validation selection, and model-specific configurations are documented; underlying executor was not audited. |
 | `jonathanlys01/looped-transformer`, `main` | Repository metadata and README | Accessible setup source; substantive implementation unverified. |
 | Training-Free Looped Transformers | Direct repository/README 404; indexed README; accessible `JegZheng/tflt-dev` README | Current official code availability unresolved. Independent code's documented defaults require scrutiny. |

@@ -471,6 +471,67 @@ transcript, which is local-only: 9 of the 25 questions the agent ended a turn on
 were commit, push or run permissions, and the study's protocol reached 1,009 lines
 for 39 trials.
 
+## Recurrent-depth retrofit toolkit
+
+Scope: the [toolkit](retrofit-toolkit.md) that adds recurrent depth to pretrained
+models, and the order in which it serves the recurrence questions. Source: the user's
+messages in a Claude Code chat, 2026-11-15, America/Los_Angeles; no portable message
+IDs are available.
+
+The request:
+
+> I want to create a set of working tools that can be used to create models with
+> recurrent depth through different methodologies that take a pre-trained model as
+> input. [...] This wouldn't directly address a question, but would facilitate some
+> question-answering.
+
+Asked which question it should serve first, whether training is in scope, which
+methods count, and which models to start with, the user answered:
+
+> Retrofit improvement first. This will provide a better foundation on which to
+> answer the other questions.
+
+> Training is in scope. This local system is available but we can explore other
+> systems, hosted, other PCs I have, etc.
+
+> Feeding activations back across tokens counts in my mind.
+
+> Let's start with Qwen3 in the range you specified
+
+The range was 1.7B to 4B parameters. On judging whether a retrofit improves a model:
+
+> I actually had multiple benchmarks in mind, not specific ones, but just the idea
+> that many benchmarks might give a more conclusive picture than a single one.
+
+On what kind of work building the toolkit is:
+
+> I wouldn't consider this part of experimental design where I want to practice my
+> research skills.
+
+The user then approved downloading `Qwen/Qwen3-1.7B` (3.80 GiB) and
+`Qwen/Qwen3-4B-Instruct-2507` (7.51 GiB) from Hugging Face and starting the build.
+Later the same day an agent asked for a hypothesis and prediction before building
+the benchmark piece, and the user answered:
+
+> We're not doing any research yet, as I see it. We are preparing for research.
+> [...] Please don't record my hypotheses yet [...] This is mechanistic setup and
+> validation.
+
+Application:
+
+- Building and validating the toolkit is setup, not research. The research steps in
+  [Work with the user](../AGENTS.md#work-with-the-user) don't apply to it: asking for
+  the user's view first, a hypothesis and prediction, the run review, and the
+  attribution list. Toolkit notes say what the tool does and what was checked.
+- Agents decide the toolkit's design and how it is validated, and report both.
+  Downloads, spending and hosted compute still need the user's approval. This entry
+  authorizes no training run and no spending.
+- Those research steps apply once the toolkit is used to answer a research question,
+  such as whether a retrofit improves its parent.
+- It amends [Two distinct recurrence research candidates](#two-distinct-recurrence-research-candidates),
+  which authorized no model execution: local inference with the two approved
+  checkpoints, to build and check the toolkit, is now covered.
+
 ## A workspace for many experiments
 
 Scope: the repository's overall framing, especially the workspace README. Source:

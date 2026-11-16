@@ -27,9 +27,12 @@ def main() -> None:
     parser.add_argument("--max-output-tokens", type=int, default=128)
     parser.add_argument("--prompt-format", choices=PROMPT_FORMATS, default="native-chat-system-v1")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts/runs/local-runtime")
+    parser.add_argument("--method", help="Design the retrofit worker was started with, e.g. block[9:18]")
     args = parser.parse_args()
     settings = profiles()[args.profile]
-    model = ModelConfig(id=f"{args.profile}-d{args.depth}", provider="local", model=identity(args.profile),
+    # A retrofit worker's identity names its design, so a different design is refused.
+    model_identity = identity(args.profile) + (f"+{args.method}" if args.method else "")
+    model = ModelConfig(id=f"{args.profile}-d{args.depth}", provider="local", model=model_identity,
         rate=RateCard(Decimal(0), Decimal(0), settings["max_total_tokens"] - 1, date.today(), "Local GPU: no API charge"))
     budget = load_workspace(ROOT).budget
     session = RunSession(experiment_id="local-runtime-validation", output_dir=args.output,

@@ -1,0 +1,1206 @@
+{
+  "schema_version": 1,
+  "purpose": "Acceptance of a checkpoint trained to loop; validates the tool, not the method",
+  "source_directory": "artifacts/runs/local-runtime/gated-check-20261116",
+  "note": "Acceptance of the released LoopUS checkpoint for Qwen3-1.7B as a gated loop. The loss and trace figures are measurements on 200 SciQ support passages, kept to show how the rebuilt checkpoint behaves; they are not findings about the method.",
+  "records": [
+    {
+      "record": "loss-qwen3-1.7b-base-bfloat16.json",
+      "record_sha256": "d9f7a3284c3cfd63978286952a92c8775e06b09e6620083a489f1b1cc2ea8784",
+      "model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "precision": "bfloat16",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T17:51:05.053905+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "parent loss",
+      "profile": "qwen3-1.7b-base",
+      "passage_loss": {
+        "mean_loss": 1.92108,
+        "perplexity": 6.828,
+        "scored_tokens": 18778
+      }
+    },
+    {
+      "record": "loss-qwen3-1.7b-base-float32.json",
+      "record_sha256": "26e109dd50787b7968b630973cb3535e2e622352d378f4baebfcde177327b4fd",
+      "model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "precision": "float32",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T17:50:52.036955+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "parent loss",
+      "profile": "qwen3-1.7b-base",
+      "passage_loss": {
+        "mean_loss": 1.92055,
+        "perplexity": 6.825,
+        "scored_tokens": 18778
+      }
+    },
+    {
+      "record": "loss-qwen3-1.7b-bfloat16.json",
+      "record_sha256": "9f1e0eb4e1382bb2dcd1ba0a93883147c5257a226606b8c0353ad50091547e30",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "precision": "bfloat16",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T17:50:37.174280+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "parent loss",
+      "profile": "qwen3-1.7b",
+      "passage_loss": {
+        "mean_loss": 2.35526,
+        "perplexity": 10.541,
+        "scored_tokens": 18778
+      }
+    },
+    {
+      "record": "loss-qwen3-1.7b-float32.json",
+      "record_sha256": "5cb44c4ee26175e598a6e97e25ce711fac711d2a92eaf85fa627db08ce4b457e",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "precision": "float32",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T17:50:24.139991+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "parent loss",
+      "profile": "qwen3-1.7b",
+      "passage_loss": {
+        "mean_loss": 2.35081,
+        "perplexity": 10.494,
+        "scored_tokens": 18778
+      }
+    },
+    {
+      "record": "parents-qwen3-1.7b-loopus.json",
+      "record_sha256": "ea91ae80fda78e4d78e169e276f41f26fa45928e864ee633d0021017e08601c7",
+      "kind": "parents",
+      "profile": "qwen3-1.7b-loopus",
+      "checkpoint": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c",
+      "parent_named_in_config": "Qwen/Qwen3-1.7B",
+      "parent_named_in_model_card": "Qwen/Qwen3-1.7B-Base",
+      "candidates": {
+        "qwen3-1.7b": {
+          "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+          "tensors_compared": 311,
+          "tensors_identical": 35,
+          "relative_distance": 0.019244,
+          "by_block": {
+            "decoder layers": {
+              "tensors": 11,
+              "identical": 1,
+              "relative_distance": 0.013074
+            },
+            "output head": {
+              "tensors": 1,
+              "identical": 0,
+              "relative_distance": 0.063114
+            },
+            "final norm": {
+              "tensors": 1,
+              "identical": 1,
+              "relative_distance": 0.0
+            },
+            "embedding": {
+              "tensors": 1,
+              "identical": 1,
+              "relative_distance": 0.0
+            },
+            "encoder layers": {
+              "tensors": 22,
+              "identical": 22,
+              "relative_distance": 0.0
+            },
+            "reasoning layers": {
+              "tensors": 275,
+              "identical": 10,
+              "relative_distance": 0.013428
+            }
+          },
+          "tokenizer": {
+            "same_vocabulary": true,
+            "same_chat_template": true,
+            "same_end_and_padding_tokens": true,
+            "sample_texts_encoded_identically": 7,
+            "sample_texts": 7
+          }
+        },
+        "qwen3-1.7b-base": {
+          "model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+          "tensors_compared": 311,
+          "tensors_identical": 5,
+          "relative_distance": 0.060409,
+          "by_block": {
+            "decoder layers": {
+              "tensors": 11,
+              "identical": 1,
+              "relative_distance": 0.029156
+            },
+            "output head": {
+              "tensors": 1,
+              "identical": 0,
+              "relative_distance": 0.11345
+            },
+            "final norm": {
+              "tensors": 1,
+              "identical": 0,
+              "relative_distance": 0.001696
+            },
+            "embedding": {
+              "tensors": 1,
+              "identical": 0,
+              "relative_distance": 0.092642
+            },
+            "encoder layers": {
+              "tensors": 22,
+              "identical": 0,
+              "relative_distance": 0.062486
+            },
+            "reasoning layers": {
+              "tensors": 275,
+              "identical": 4,
+              "relative_distance": 0.054894
+            }
+          },
+          "tokenizer": {
+            "same_vocabulary": true,
+            "same_chat_template": false,
+            "same_end_and_padding_tokens": false,
+            "sample_texts_encoded_identically": 7,
+            "sample_texts": 7
+          }
+        }
+      },
+      "completed_at": "2026-11-16T17:38:30.686033+00:00"
+    },
+    {
+      "record": "qwen3-1.7b-loopus-bfloat16.json",
+      "record_sha256": "d6b735529f4821f861d27f2370ed9129b1c7e62f38e2c20a1d3768e6e779fe36",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c",
+      "precision": "bfloat16",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T18:17:30.827054+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "gated loop",
+      "profile": "qwen3-1.7b-loopus",
+      "placement": "gpu",
+      "passed": true,
+      "failures": [],
+      "checkpoint": {
+        "format": "lds",
+        "unit": [
+          2,
+          27
+        ],
+        "trained_passes": 20,
+        "checkpoint_threshold": 0.9,
+        "tensors": 319,
+        "parent_named_in_config": "Qwen/Qwen3-1.7B",
+        "written_by_transformers": "5.3.0"
+      },
+      "parent_layers": 28,
+      "tokens_per_prompt": 24,
+      "prompts": [
+        "raw-capital",
+        "raw-photosynthesis",
+        "chat-sum"
+      ],
+      "gaps_decided": false,
+      "tolerance": 0.01,
+      "restored_after_removal": true,
+      "fixed": [
+        {
+          "design": "gated[2:27]",
+          "passes": 1,
+          "error": null,
+          "layer_calls_per_forward": 28,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 0.5,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.375,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 10.78669,
+            "perplexity": 48372.696,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 48.23,
+          "peak_allocated_GiB": 3.83,
+          "texts": {
+            "raw-capital": " Paris addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction",
+            "raw-photosynthesis": " green plants manufacture sugars addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 2,
+          "error": null,
+          "layer_calls_per_forward": 53,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.1875,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99529,
+            "perplexity": 7.354,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 28.4,
+          "peak_allocated_GiB": 3.85,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert sunlight into chemical energy. This process is essential for life on Earth, as it",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 3,
+          "error": null,
+          "layer_calls_per_forward": 78,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.34375,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99385,
+            "perplexity": 7.344,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 19.86,
+          "peak_allocated_GiB": 3.86,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert sunlight into chemical energy. This process is essential for life on Earth, as it",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 4,
+          "error": null,
+          "layer_calls_per_forward": 103,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 0.21875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.25,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99315,
+            "perplexity": 7.339,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 15.25,
+          "peak_allocated_GiB": 3.87,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert sunlight into chemical energy. This process is essential for life on Earth, as it",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 8,
+          "error": null,
+          "layer_calls_per_forward": 203,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 0.1875,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.21875,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99332,
+            "perplexity": 7.34,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 8.07,
+          "peak_allocated_GiB": 3.92,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert light energy into chemical energy. This process is essential for the survival of most organisms",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 20,
+          "error": null,
+          "layer_calls_per_forward": 503,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 0.34375,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 0.40625,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99456,
+            "perplexity": 7.349,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 3.18,
+          "peak_allocated_GiB": 4.07,
+          "texts": {
+            "raw-capital": " Paris, a city that has been a symbol of French culture, art, and history for centuries. Located in the Î",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert light energy into chemical energy. This process is essential for the survival of most organisms",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        }
+      ],
+      "stopping": [
+        {
+          "design": "gated[2:27]/halt,threshold=1",
+          "passes": 8,
+          "threshold": 1.0,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_gap": 0.53125,
+          "identical_to_the_fixed_loop": true,
+          "identical_to_one_pass": null,
+          "passage_loss": {
+            "mean_loss": 1.99332,
+            "perplexity": 7.34,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "8": 200
+            },
+            "mean": 8.0,
+            "layer_calls": 40600
+          },
+          "early_stops_found": 0,
+          "early_stops_recomputed_by_hand": []
+        },
+        {
+          "design": "gated[2:27]/halt,threshold=0",
+          "passes": 8,
+          "threshold": 0.0,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 1,
+            "raw-photosynthesis": 1,
+            "chat-sum": 1
+          },
+          "explicit_passes_used": {
+            "raw-capital": 1,
+            "raw-photosynthesis": 1,
+            "chat-sum": 1
+          },
+          "explicit_gap": 0.25,
+          "identical_to_the_fixed_loop": null,
+          "identical_to_one_pass": true,
+          "passage_loss": {
+            "mean_loss": 10.78669,
+            "perplexity": 48372.696,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "1": 200
+            },
+            "mean": 1.0,
+            "layer_calls": 5600
+          },
+          "early_stops_found": 200,
+          "early_stops_recomputed_by_hand": [
+            {
+              "passage": 0,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 0.25
+            },
+            {
+              "passage": 1,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 0.25
+            },
+            {
+              "passage": 2,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 0.25
+            },
+            {
+              "passage": 3,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 0.25
+            },
+            {
+              "passage": 4,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 0.25
+            }
+          ]
+        },
+        {
+          "design": "gated[2:27]/halt,threshold=0.6",
+          "passes": 8,
+          "threshold": 0.6,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_gap": 0.53125,
+          "identical_to_the_fixed_loop": null,
+          "identical_to_one_pass": null,
+          "passage_loss": {
+            "mean_loss": 1.99346,
+            "perplexity": 7.341,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "2": 4,
+              "8": 196
+            },
+            "mean": 7.88,
+            "layer_calls": 40000
+          },
+          "early_stops_found": 4,
+          "early_stops_recomputed_by_hand": [
+            {
+              "passage": 0,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 0.25
+            },
+            {
+              "passage": 45,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 0.1875
+            },
+            {
+              "passage": 127,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 0.15625
+            },
+            {
+              "passage": 188,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 0.203125
+            }
+          ]
+        },
+        {
+          "design": "gated[2:27]/halt,threshold=0.9",
+          "passes": 8,
+          "threshold": 0.9,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_gap": 0.53125,
+          "identical_to_the_fixed_loop": null,
+          "identical_to_one_pass": null,
+          "passage_loss": {
+            "mean_loss": 1.99332,
+            "perplexity": 7.34,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "8": 200
+            },
+            "mean": 8.0,
+            "layer_calls": 40600
+          },
+          "early_stops_found": 0,
+          "early_stops_recomputed_by_hand": []
+        }
+      ]
+    },
+    {
+      "record": "qwen3-1.7b-loopus-float32.json",
+      "record_sha256": "efb3a35a3b16621b188ba10414bdf0cf2342430094793289c72de5060ad6350f",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c",
+      "precision": "float32",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T18:23:58.720700+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "gated loop",
+      "profile": "qwen3-1.7b-loopus",
+      "placement": "gpu",
+      "passed": true,
+      "failures": [],
+      "checkpoint": {
+        "format": "lds",
+        "unit": [
+          2,
+          27
+        ],
+        "trained_passes": 20,
+        "checkpoint_threshold": 0.9,
+        "tensors": 319,
+        "parent_named_in_config": "Qwen/Qwen3-1.7B",
+        "written_by_transformers": "5.3.0"
+      },
+      "parent_layers": 28,
+      "tokens_per_prompt": 24,
+      "prompts": [
+        "raw-capital",
+        "raw-photosynthesis",
+        "chat-sum"
+      ],
+      "gaps_decided": true,
+      "tolerance": 0.01,
+      "restored_after_removal": true,
+      "fixed": [
+        {
+          "design": "gated[2:27]",
+          "passes": 1,
+          "error": null,
+          "layer_calls_per_forward": 28,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 3.4332275390625e-05,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 3.814697265625e-05,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 11.07214,
+            "perplexity": 64353.369,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 41.33,
+          "peak_allocated_GiB": 7.63,
+          "texts": {
+            "raw-capital": " Paris addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction",
+            "raw-photosynthesis": " green plants addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction addAction",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 2,
+          "error": null,
+          "layer_calls_per_forward": 53,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 1.239776611328125e-05,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 1.2874603271484375e-05,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99613,
+            "perplexity": 7.36,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 25.89,
+          "peak_allocated_GiB": 7.66,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second largest city in the European Union. Paris is known for its",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert sunlight into chemical energy. This process is essential for life on Earth, as it",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 3,
+          "error": null,
+          "layer_calls_per_forward": 78,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 9.5367431640625e-06,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 1.2040138244628906e-05,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99417,
+            "perplexity": 7.346,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 18.38,
+          "peak_allocated_GiB": 7.69,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert sunlight into chemical energy. This process is essential for life on Earth, as it",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 4,
+          "error": null,
+          "layer_calls_per_forward": 103,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 1.33514404296875e-05,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 1.33514404296875e-05,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99359,
+            "perplexity": 7.342,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 14.14,
+          "peak_allocated_GiB": 7.72,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert sunlight into chemical energy. This process is essential for life on Earth, as it",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 8,
+          "error": null,
+          "layer_calls_per_forward": 203,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 9.5367431640625e-06,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 1.52587890625e-05,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99353,
+            "perplexity": 7.341,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 7.43,
+          "peak_allocated_GiB": 7.81,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert light energy into chemical energy. This process is essential for the survival of most organisms",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        },
+        {
+          "design": "gated[2:27]",
+          "passes": 20,
+          "error": null,
+          "layer_calls_per_forward": 503,
+          "calls_and_cache_verified_every_forward": true,
+          "cache_gap": 1.0967254638671875e-05,
+          "cache_argmax_equal": "6/6",
+          "explicit_gap": 1.3113021850585938e-05,
+          "explicit_argmax_equal": "6/6",
+          "passage_loss": {
+            "mean_loss": 1.99619,
+            "perplexity": 7.361,
+            "scored_tokens": 18778
+          },
+          "mean_decode_tokens_per_second": 3.04,
+          "peak_allocated_GiB": 8.1,
+          "texts": {
+            "raw-capital": " Paris. It is the largest city in France and the second most populous city in the European Union. Paris is also the",
+            "raw-photosynthesis": " plants, algae, and some bacteria convert light energy into chemical energy. This process is essential for the survival of most organisms",
+            "chat-sum": "4<|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|><|im_end|>"
+          }
+        }
+      ],
+      "stopping": [
+        {
+          "design": "gated[2:27]/halt,threshold=1",
+          "passes": 8,
+          "threshold": 1.0,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_gap": 4.291534423828125e-05,
+          "identical_to_the_fixed_loop": true,
+          "identical_to_one_pass": null,
+          "passage_loss": {
+            "mean_loss": 1.99353,
+            "perplexity": 7.341,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "8": 200
+            },
+            "mean": 8.0,
+            "layer_calls": 40600
+          },
+          "early_stops_found": 0,
+          "early_stops_recomputed_by_hand": []
+        },
+        {
+          "design": "gated[2:27]/halt,threshold=0",
+          "passes": 8,
+          "threshold": 0.0,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 1,
+            "raw-photosynthesis": 1,
+            "chat-sum": 1
+          },
+          "explicit_passes_used": {
+            "raw-capital": 1,
+            "raw-photosynthesis": 1,
+            "chat-sum": 1
+          },
+          "explicit_gap": 2.47955322265625e-05,
+          "identical_to_the_fixed_loop": null,
+          "identical_to_one_pass": true,
+          "passage_loss": {
+            "mean_loss": 11.07214,
+            "perplexity": 64353.369,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "1": 200
+            },
+            "mean": 1.0,
+            "layer_calls": 5600
+          },
+          "early_stops_found": 200,
+          "early_stops_recomputed_by_hand": [
+            {
+              "passage": 0,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 3.62396240234375e-05
+            },
+            {
+              "passage": 1,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 2.6702880859375e-05
+            },
+            {
+              "passage": 2,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 2.86102294921875e-05
+            },
+            {
+              "passage": 3,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 1.9073486328125e-05
+            },
+            {
+              "passage": 4,
+              "passes_used": 1,
+              "explicit_passes_used": 1,
+              "explicit_gap": 1.9073486328125e-05
+            }
+          ]
+        },
+        {
+          "design": "gated[2:27]/halt,threshold=0.6",
+          "passes": 8,
+          "threshold": 0.6,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_gap": 4.291534423828125e-05,
+          "identical_to_the_fixed_loop": null,
+          "identical_to_one_pass": null,
+          "passage_loss": {
+            "mean_loss": 1.9937,
+            "perplexity": 7.343,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "2": 4,
+              "3": 1,
+              "8": 195
+            },
+            "mean": 7.855,
+            "layer_calls": 39875
+          },
+          "early_stops_found": 5,
+          "early_stops_recomputed_by_hand": [
+            {
+              "passage": 0,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 2.6702880859375e-05
+            },
+            {
+              "passage": 31,
+              "passes_used": 3,
+              "explicit_passes_used": 3,
+              "explicit_gap": 1.9073486328125e-05
+            },
+            {
+              "passage": 45,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 2.2411346435546875e-05
+            },
+            {
+              "passage": 127,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 1.621246337890625e-05
+            },
+            {
+              "passage": 188,
+              "passes_used": 2,
+              "explicit_passes_used": 2,
+              "explicit_gap": 1.9073486328125e-05
+            }
+          ]
+        },
+        {
+          "design": "gated[2:27]/halt,threshold=0.9",
+          "passes": 8,
+          "threshold": 0.9,
+          "error": null,
+          "calls_verified_every_forward": true,
+          "passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_passes_used": {
+            "raw-capital": 8,
+            "raw-photosynthesis": 8,
+            "chat-sum": 8
+          },
+          "explicit_gap": 4.291534423828125e-05,
+          "identical_to_the_fixed_loop": null,
+          "identical_to_one_pass": null,
+          "passage_loss": {
+            "mean_loss": 1.99353,
+            "perplexity": 7.341,
+            "scored_tokens": 18778
+          },
+          "passage_passes": {
+            "per_passage": {
+              "8": 200
+            },
+            "mean": 8.0,
+            "layer_calls": 40600
+          },
+          "early_stops_found": 0,
+          "early_stops_recomputed_by_hand": []
+        }
+      ]
+    },
+    {
+      "record": "trace-qwen3-1.7b-loopus-float32.json",
+      "record_sha256": "68099030b4faee500c0e90ae0d91a901bfd6756d7ba5100b83be39e9610d53d9",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c",
+      "precision": "float32",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "completed_at": "2026-11-16T17:53:14.061783+00:00",
+      "passage_text": {
+        "source": "allenai/sciq@2c94ad3e1aafab77146f384e23536f97a4849815",
+        "split": "test",
+        "field": "support",
+        "passages": 200,
+        "token_limits": [
+          32,
+          256
+        ],
+        "tokens": 18978,
+        "scored_tokens": 18778,
+        "token_ids_sha256": "29731aa7867dc1a29ba0917cafe344ae85db4e9a65e66d09405dc7eaf103046a"
+      },
+      "kind": "pass by pass",
+      "profile": "qwen3-1.7b-loopus",
+      "what": "Each pass computed by hand on whole passages with no cache; the state after it is decoded",
+      "passes": [
+        {
+          "pass": 1,
+          "mean_loss": {
+            "as_released": 11.0721,
+            "unit_output_without_the_gate": 3.5948,
+            "gate_with_its_two_states_exchanged": 10.9115
+          },
+          "mean_share_of_the_units_output_let_through": 0.9608,
+          "share_of_entries_above_0.99": 0.957,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3204,
+            "median": 0.4155,
+            "highest": 0.5176,
+            "share_of_passages_above_0.6": 0.0,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 2,
+          "mean_loss": {
+            "as_released": 1.9961,
+            "unit_output_without_the_gate": 2.2316,
+            "gate_with_its_two_states_exchanged": 10.2469
+          },
+          "mean_share_of_the_units_output_let_through": 0.0603,
+          "share_of_entries_above_0.99": 0.0379,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3888,
+            "median": 0.4977,
+            "highest": 0.6215,
+            "share_of_passages_above_0.6": 0.02,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 3,
+          "mean_loss": {
+            "as_released": 1.9942,
+            "unit_output_without_the_gate": 2.2165,
+            "gate_with_its_two_states_exchanged": 10.8941
+          },
+          "mean_share_of_the_units_output_let_through": 0.0283,
+          "share_of_entries_above_0.99": 0.0266,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3816,
+            "median": 0.5047,
+            "highest": 0.6306,
+            "share_of_passages_above_0.6": 0.025,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 4,
+          "mean_loss": {
+            "as_released": 1.9936,
+            "unit_output_without_the_gate": 2.2148,
+            "gate_with_its_two_states_exchanged": 11.8024
+          },
+          "mean_share_of_the_units_output_let_through": 0.0271,
+          "share_of_entries_above_0.99": 0.0259,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3808,
+            "median": 0.5029,
+            "highest": 0.6313,
+            "share_of_passages_above_0.6": 0.025,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 5,
+          "mean_loss": {
+            "as_released": 1.9934,
+            "unit_output_without_the_gate": 2.2139,
+            "gate_with_its_two_states_exchanged": 12.6583
+          },
+          "mean_share_of_the_units_output_let_through": 0.0268,
+          "share_of_entries_above_0.99": 0.0257,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3817,
+            "median": 0.504,
+            "highest": 0.6332,
+            "share_of_passages_above_0.6": 0.025,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 6,
+          "mean_loss": {
+            "as_released": 1.9933,
+            "unit_output_without_the_gate": 2.2134,
+            "gate_with_its_two_states_exchanged": 13.3331
+          },
+          "mean_share_of_the_units_output_let_through": 0.0267,
+          "share_of_entries_above_0.99": 0.0256,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3826,
+            "median": 0.5046,
+            "highest": 0.6348,
+            "share_of_passages_above_0.6": 0.025,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 7,
+          "mean_loss": {
+            "as_released": 1.9934,
+            "unit_output_without_the_gate": 2.213,
+            "gate_with_its_two_states_exchanged": 13.8257
+          },
+          "mean_share_of_the_units_output_let_through": 0.0265,
+          "share_of_entries_above_0.99": 0.0256,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3834,
+            "median": 0.5051,
+            "highest": 0.6362,
+            "share_of_passages_above_0.6": 0.025,
+            "share_of_passages_above_0.9": 0.0
+          }
+        },
+        {
+          "pass": 8,
+          "mean_loss": {
+            "as_released": 1.9935,
+            "unit_output_without_the_gate": 2.2127,
+            "gate_with_its_two_states_exchanged": 14.1765
+          },
+          "mean_share_of_the_units_output_let_through": 0.0265,
+          "share_of_entries_above_0.99": 0.0255,
+          "confidence_at_the_last_token": {
+            "lowest": 0.3841,
+            "median": 0.5056,
+            "highest": 0.6374,
+            "share_of_passages_above_0.6": 0.025,
+            "share_of_passages_above_0.9": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

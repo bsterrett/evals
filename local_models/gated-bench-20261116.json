@@ -1,0 +1,707 @@
+{
+  "schema_version": 1,
+  "purpose": "Benchmark-runner validation runs; measurements for checking the tool, not findings",
+  "source_directory": "artifacts/runs/local-runtime/gated-bench-20261116",
+  "note": "OpenBookQA, zero-shot, batch size 1, BF16: the LoopUS checkpoint for Qwen3-1.7B beside the two candidate parents. A check of the loader and forward pass against one published table row, not a finding about the method.",
+  "runs": [
+    {
+      "record": "loopus-fixed2-openbookqa.json",
+      "record_sha256": "c7f5d444c92594213686ca9bf63f9b2c4c7811c29c4a43978b5743e41c034af0",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 2,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": 53,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 57.4,
+      "peak_allocated_GiB": 3.88,
+      "completed_at": "2026-11-16T18:03:03.764502+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.29,
+            "acc_stderr,none": 0.020313179231745138,
+            "acc_norm,none": 0.392,
+            "acc_norm_stderr,none": 0.02185468495561119
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 145,
+            "acc_norm": 196
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "loopus-fixed20-openbookqa.json",
+      "record_sha256": "2e90498df54464d8b33a5111cc7f7f8a512824533fd98c01818377b90049b7e0",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 20,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": 503,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 489.7,
+      "peak_allocated_GiB": 4.0,
+      "completed_at": "2026-11-16T18:11:21.096295+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.296,
+            "acc_stderr,none": 0.020435342091896222,
+            "acc_norm,none": 0.396,
+            "acc_norm_stderr,none": 0.021893529941665716
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 148,
+            "acc_norm": 198
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "loopus-fixed8-openbookqa.json",
+      "record_sha256": "a2c25939bc5a2dbf7321d5b479870bf0204379cc775dd43ab892b73f01d7c4d6",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 199.3,
+      "peak_allocated_GiB": 3.92,
+      "completed_at": "2026-11-16T17:58:11.806521+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.296,
+            "acc_stderr,none": 0.020435342091896222,
+            "acc_norm,none": 0.394,
+            "acc_norm_stderr,none": 0.02187429930168918
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 148,
+            "acc_norm": 197
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "loopus-halt8-openbookqa.json",
+      "record_sha256": "d1c3011c64845cbf5f20a05b2f8c7fe1c4a157fd9db1428fd5622aa28b24a539",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 317450,
+        "passes_per_sequence": {
+          "1": 13,
+          "8": 1562
+        },
+        "mean_passes": 7.942
+      },
+      "seconds": 218.4,
+      "peak_allocated_GiB": 3.88,
+      "completed_at": "2026-11-16T18:01:57.746179+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.294,
+            "acc_stderr,none": 0.02039509548493655,
+            "acc_norm,none": 0.396,
+            "acc_norm_stderr,none": 0.021893529941665716
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 147,
+            "acc_norm": 198
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "parent-base-openbookqa.json",
+      "record_sha256": "3ada817340bf309fe9385e4c1a26fbef88f6d9b26dc6aa1bb2c431399f6ff568",
+      "model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 33.8,
+      "peak_allocated_GiB": 3.3,
+      "completed_at": "2026-11-16T17:54:44.793644+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.298,
+            "acc_stderr,none": 0.020475118092988954,
+            "acc_norm,none": 0.388,
+            "acc_norm_stderr,none": 0.021814300984787705
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 149,
+            "acc_norm": 194
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "parent-chat-openbookqa.json",
+      "record_sha256": "739cb48f689fb1a54f81564654038de37dad1108bf16141977d1a91364ef07a4",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 36.2,
+      "peak_allocated_GiB": 3.3,
+      "completed_at": "2026-11-16T17:54:01.165834+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.28,
+            "acc_stderr,none": 0.020099950647503192,
+            "acc_norm,none": 0.376,
+            "acc_norm_stderr,none": 0.02168382753928621
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 140,
+            "acc_norm": 188
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "parent_record": "parent-base-openbookqa.json",
+      "design_record": "loopus-fixed2-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "design": "gated[2:27]",
+      "passes": 2,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 117,
+            "parent_only": 32,
+            "design_only": 28,
+            "neither": 323,
+            "parent_correct": 149,
+            "design_correct": 145,
+            "parent_score": 0.298,
+            "design_score": 0.29,
+            "difference": -0.008
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 172,
+            "parent_only": 22,
+            "design_only": 24,
+            "neither": 282,
+            "parent_correct": 194,
+            "design_correct": 196,
+            "parent_score": 0.388,
+            "design_score": 0.392,
+            "difference": 0.004
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-chat-openbookqa.json",
+      "design_record": "loopus-fixed2-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 2,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 111,
+            "parent_only": 29,
+            "design_only": 34,
+            "neither": 326,
+            "parent_correct": 140,
+            "design_correct": 145,
+            "parent_score": 0.28,
+            "design_score": 0.29,
+            "difference": 0.01
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 167,
+            "parent_only": 21,
+            "design_only": 29,
+            "neither": 283,
+            "parent_correct": 188,
+            "design_correct": 196,
+            "parent_score": 0.376,
+            "design_score": 0.392,
+            "difference": 0.016
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-base-openbookqa.json",
+      "design_record": "loopus-fixed20-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "design": "gated[2:27]",
+      "passes": 20,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 119,
+            "parent_only": 30,
+            "design_only": 29,
+            "neither": 322,
+            "parent_correct": 149,
+            "design_correct": 148,
+            "parent_score": 0.298,
+            "design_score": 0.296,
+            "difference": -0.002
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 173,
+            "parent_only": 21,
+            "design_only": 25,
+            "neither": 281,
+            "parent_correct": 194,
+            "design_correct": 198,
+            "parent_score": 0.388,
+            "design_score": 0.396,
+            "difference": 0.008
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-chat-openbookqa.json",
+      "design_record": "loopus-fixed20-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 20,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 112,
+            "parent_only": 28,
+            "design_only": 36,
+            "neither": 324,
+            "parent_correct": 140,
+            "design_correct": 148,
+            "parent_score": 0.28,
+            "design_score": 0.296,
+            "difference": 0.016
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 167,
+            "parent_only": 21,
+            "design_only": 31,
+            "neither": 281,
+            "parent_correct": 188,
+            "design_correct": 198,
+            "parent_score": 0.376,
+            "design_score": 0.396,
+            "difference": 0.02
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-base-openbookqa.json",
+      "design_record": "loopus-fixed8-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 118,
+            "parent_only": 31,
+            "design_only": 30,
+            "neither": 321,
+            "parent_correct": 149,
+            "design_correct": 148,
+            "parent_score": 0.298,
+            "design_score": 0.296,
+            "difference": -0.002
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 171,
+            "parent_only": 23,
+            "design_only": 26,
+            "neither": 280,
+            "parent_correct": 194,
+            "design_correct": 197,
+            "parent_score": 0.388,
+            "design_score": 0.394,
+            "difference": 0.006
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-chat-openbookqa.json",
+      "design_record": "loopus-fixed8-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 111,
+            "parent_only": 29,
+            "design_only": 37,
+            "neither": 323,
+            "parent_correct": 140,
+            "design_correct": 148,
+            "parent_score": 0.28,
+            "design_score": 0.296,
+            "difference": 0.016
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 167,
+            "parent_only": 21,
+            "design_only": 30,
+            "neither": 282,
+            "parent_correct": 188,
+            "design_correct": 197,
+            "parent_score": 0.376,
+            "design_score": 0.394,
+            "difference": 0.018
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-base-openbookqa.json",
+      "design_record": "loopus-halt8-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B-Base@ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 118,
+            "parent_only": 31,
+            "design_only": 29,
+            "neither": 322,
+            "parent_correct": 149,
+            "design_correct": 147,
+            "parent_score": 0.298,
+            "design_score": 0.294,
+            "difference": -0.004
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 172,
+            "parent_only": 22,
+            "design_only": 26,
+            "neither": 280,
+            "parent_correct": 194,
+            "design_correct": 198,
+            "parent_score": 0.388,
+            "design_score": 0.396,
+            "difference": 0.008
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-chat-openbookqa.json",
+      "design_record": "loopus-halt8-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 111,
+            "parent_only": 29,
+            "design_only": 36,
+            "neither": 324,
+            "parent_correct": 140,
+            "design_correct": 147,
+            "parent_score": 0.28,
+            "design_score": 0.294,
+            "difference": 0.014
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 167,
+            "parent_only": 21,
+            "design_only": 31,
+            "neither": 281,
+            "parent_correct": 188,
+            "design_correct": 198,
+            "parent_score": 0.376,
+            "design_score": 0.396,
+            "difference": 0.02
+          }
+        }
+      }
+    }
+  ],
+  "token_by_token_pairs": []
+}

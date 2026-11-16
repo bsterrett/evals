@@ -56,5 +56,46 @@
     "max_total_tokens": 2048,
     "vllm": "0.32.0",
     "source_sha256": {}
+  },
+  "qwen3-1.7b": {
+    "family": "qwen3",
+    "environment": "retrofit",
+    "repo_id": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "depths": [1, 2, 3, 4],
+    "max_total_tokens": 2048,
+    "transformers": "4.57.1",
+    "source_sha256": {}
+  },
+  "qwen3-4b-instruct": {
+    "family": "qwen3",
+    "environment": "retrofit",
+    "repo_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "depths": [1, 2, 3, 4],
+    "max_total_tokens": 2048,
+    "transformers": "4.57.1",
+    "source_sha256": {}
+  },
+  "qwen3-1.7b-base": {
+    "family": "qwen3",
+    "environment": "retrofit",
+    "repo_id": "Qwen/Qwen3-1.7B-Base",
+    "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "depths": [1, 2, 3, 4],
+    "max_total_tokens": 2048,
+    "transformers": "4.57.1",
+    "source_sha256": {}
+  },
+  "qwen3-1.7b-loopus": {
+    "family": "loopus",
+    "environment": "retrofit",
+    "repo_id": "Thrillcrazyer/Qwen3_1.7B_LoopUS",
+    "revision": "5d66726aa98197c1b5876e26339cf393d82b436c",
+    "trained_from": "qwen3-1.7b",
+    "depths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "max_total_tokens": 1024,
+    "transformers": "4.57.1",
+    "source_sha256": {}
   }
 }

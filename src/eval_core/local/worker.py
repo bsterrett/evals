@@ -99,6 +99,8 @@ def main() -> None:
     args = parser.parse_args()
     if args.depth not in profiles()[args.profile]["depths"]:
         parser.error("Unsupported depth for the selected profile")
+    if profiles()[args.profile].get("family", args.profile) not in ("huginn", "ouro", "dory"):
+        parser.error("This profile has its own worker; start it through tools/local_models/serve.py")
     with gpu_lock(args.root):
         if args.profile == "dory":
             from eval_core.local.dory_backend import DoryBackend

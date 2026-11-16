@@ -11,6 +11,15 @@ The [2026-11-06 preflight](../../experiments/recurrent_steganography/notes/findi
 completes runtime checks across the intended Dory and Ouro-2.6B depths and records
 broader ordinary-task controls for the new experiment.
 
+2026-11-15 addition: a fourth environment, `retrofit`, holds two ordinary Qwen3
+checkpoints that the [retrofit toolkit](../retrofit-toolkit.md) loops. Its setup,
+commands and acceptance checks are recorded there; the rest of this note describes
+the three natively recurrent models. On 2026-11-16 two more snapshots were added for
+that environment: `Qwen/Qwen3-1.7B-Base` (3.3 GiB on disk) and the LoopUS checkpoint
+`Thrillcrazyer/Qwen3_1.7B_LoopUS` (3.8 GiB), both pinned in
+[`profiles.json`](../../src/eval_core/local/profiles.json). The WSL filesystem then
+had 101 GiB free.
+
 Use the existing `Ubuntu-LLM` WSL distribution, three isolated Python environments,
 and a small local inference worker. Keep experiment source, protocols, and
 authoritative run records in the evaluation repository. Validate generation and
@@ -27,6 +36,7 @@ G:\Evals\                           Experiment source and authoritative results
   envs/huginn/                        Huginn Python environment
   envs/ouro/                          Ouro Python environment
   envs/dory/                          Dory vLLM environment
+  envs/retrofit/                      Qwen3 parents and the LoopUS checkpoint for the retrofit toolkit (added 2026-11-15)
   cache/huggingface/                  Shared immutable model snapshots
   logs/                              Worker diagnostics
   benchmarks/                        Runtime validation measurements
