@@ -403,6 +403,74 @@ documentation be "by agents, for agents", whose entry the user had removed on
 2026-11-11. Committing documentation with the work remains the practice under
 AGENTS.md.
 
+Amended on 2026-11-15 by [A lighter process](#a-lighter-process), which changes the
+origin notes, the list of ask-first decisions, the split of pre-registration work
+and how approvals are asked, and adds probes before pre-registration.
+
+## A lighter process
+
+Scope: amends the entry above for new work from 2026-11-15. Earlier records keep
+their wording. Source: the user's messages in a Claude Code chat, 2026-11-14 and
+2026-11-15, America/Los_Angeles, after the first study run under the 2026-11-11
+rules, the
+[formal-codes study](../experiments/semantic_covert_channel/protocols/formal-codes-permitted.md);
+no portable message IDs are available.
+
+The user wrote:
+
+> I think that it is partially successful in the sense that I am now more intimately
+> involved in what is happening, how things are designed, what the outcomes were, how
+> to interpret things, etc. But I am noticing two problems: the progress has slowed
+> way down, and it feels like we have over-indexed on attributing credit. So much
+> work is going into separating credit, above and beyond making progress.
+
+Asked for its own opinion, Claude Fable 5.2 (Claude Code) reviewed that study's
+session and proposed four changes. Of the first three, the user wrote:
+
+> The first 3 proposed changes make perfect sense to me, please draft them now.
+
+The fourth was a lighter tier for exploratory runs. After an explanation of the
+problem it addresses and what it costs, the user wrote:
+
+> I'm fully on board with point #4 in the proposal. Please add that to the draft as
+> well.
+
+Application: [AGENTS.md](../AGENTS.md#work-with-the-user) holds the amended rules.
+
+- **Attribution by exception.** Work is the agent's unless the record says
+  otherwise, and each study lists the user's contributions once. This replaces the
+  per-item origin notes and the instruction to quote the user throughout. Naming the
+  model wherever an agent is credited remains the user's direction.
+- **Ask first at three decisions:** what to test next, the hypothesis and
+  prediction, and what a result means. Agents propose the rest for the user to
+  accept or change.
+- **One approval per run.** One yes covers the commit and push before the run, the
+  review of the measurement code, and the run up to its ceiling.
+- **Probes before registration.** A small capped run on development cases, with
+  three lines written first, can look at what happens without a pre-registration.
+  Its result is exploratory and cannot support a finding. A confirmatory run, with a
+  pre-registration and fresh cases, comes when the user wants to state a result as a
+  finding or the next step would exceed the cap.
+
+The review of each run before the next is unchanged, and it applies to probes.
+
+Drafting choices by Claude Fable 5.2 within that direction:
+
+- the probe cap of about 40 trials and $3, which the proposal offered as the user's
+  number to set and the user accepted without changing;
+- of the pre-registration items, the user now writes only the hypothesis and
+  prediction first, and the agent drafts the others;
+- the one approval also covers committing and pushing the run's record after the
+  review;
+- operational failures are diagnosed and a fix proposed without waiting for the
+  user's diagnosis;
+- outside runs, a commit and its push are asked about together.
+
+Observations behind the proposal, counted by Claude Fable 5.2 from that session's
+transcript, which is local-only: 9 of the 25 questions the agent ended a turn on
+were commit, push or run permissions, and the study's protocol reached 1,009 lines
+for 39 trials.
+
 ## A workspace for many experiments
 
 Scope: the repository's overall framing, especially the workspace README. Source:

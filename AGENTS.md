@@ -42,25 +42,32 @@ questions, and the list links to them.
 The user directs this research and uses it to build their own research skills, and
 to show them. Building the skills comes first. Agents keep the work rigorous and on
 track, and the record says accurately who did what, without performing for an
-audience. The policy basis is the
-[user policy entry](docs/user-policy.md#directing-the-research-and-building-skill).
+audience. Spend the user's attention where it builds skill: routine steps should not
+wait on them. The policy basis is the
+[user policy entry](docs/user-policy.md#directing-the-research-and-building-skill),
+as amended by [a lighter process](docs/user-policy.md#a-lighter-process).
 
-**Ask before proposing.** At these research decisions, ask for the user's view
-before giving yours:
+**Ask before proposing, at three decisions.** Ask for the user's view before giving
+yours on:
 
-- what to investigate next;
-- a hypothesis, and the user's prediction;
-- what counts as success, and how it is measured;
-- conditions and controls;
-- the design of an important new component;
-- the diagnosis of an anomaly;
+- what to test next;
+- the hypothesis, and the user's prediction and why;
 - what a result means.
 
-Then add what the user missed, and say that you added it. Implementation details,
-such as code structure and file layout, remain agent choices: decide them and report
-them. Offer option menus, or mark an option as recommended, only after the user has
-answered or for routine choices. When the user says "just propose" or the
-equivalent, propose first and record the item as the model's.
+Then add what the user missed. When the user says "just propose" or the equivalent,
+propose first.
+
+**Propose the rest.** For every other research decision, give your proposal with its
+reasons and the main alternative, and let the user accept or change it. This covers
+what counts as success and how it is measured, conditions and controls, the design
+of a component, and amendments. Put related decisions in one message instead of
+asking them one at a time. Implementation details, such as code structure and file
+layout, remain agent choices: decide them and report them.
+
+**Fix operational problems without waiting.** When a run crashes, truncates, blocks
+the budget ledger or otherwise fails to complete, diagnose it at once, say what you
+opened to do so, and propose the fix. A surprising result is different: it belongs
+to the review below.
 
 **Never hold back a material problem.** Correct work matters more than practice.
 After the user has answered, or at once if waiting would waste money or invalidate a
@@ -73,34 +80,59 @@ into findings, design no further run until the user has reviewed it:
    selection is a starting point; the user may ask for any others.
 2. Record the user's notes on what they noticed and what they think the result
    means.
-3. Then give your analysis, and say what each of you caught that the other missed.
+3. Then give your analysis, and say in the conversation what each of you caught that
+   the other missed. That comparison is feedback for the user, not a list to commit.
 
 Keep the review to one sitting. Other work can continue meanwhile, and smoke tests
 are exempt. "Just propose" does not cover this step. When a result would change what
 happens next, such as a positive or surprising result, also ask the user how it
 could be an artifact before giving your own list.
 
-**Pre-registration.** Unless the user says "just propose", the user writes these
-first: the hypothesis, their prediction and why, what result would change their
-mind, the assumptions the result depends on, and whether it would say anything about
-more capable models. Help with the sample size, test, decision threshold and
-exclusions, explaining each so the user could defend it; the user chooses. For the
+**Probe before registering.** A run is either a probe or a confirmatory run. A probe
+is a small look to see what happens, and to check that the change under test takes
+and the tools work. Keep it to about 40 trials and $3, on development cases only,
+never a confirmation partition, with the smallest code change that runs. Before it
+runs, put three lines in the findings note: the question, the user's guess, and what
+will be looked at. It takes one approval like any run. The review above still
+applies, and the result goes in the note as a short paragraph marked exploratory. A
+probe can motivate a hypothesis; it cannot support a finding. Move to a confirmatory
+run, with a pre-registration and fresh cases, when the user wants to state a result
+as a finding or the next step would exceed the cap. Build detectors, scorers and
+decision rules then, for what the probes showed.
+
+**Pre-registration.** For a confirmatory run, the user writes the hypothesis and
+their prediction, with the reason, first. Draft the rest for the user to accept or
+change: what result would change their mind, the assumptions the result depends on,
+whether it would say anything about more capable models, and the sample size, test,
+decision threshold and exclusions. Explain each so the user could defend it. For the
 sample size, ask what effect would matter and work out the sample from that. Draft
 configs, seeds and identities yourself.
 
 **Explain methods and show measurement code.** Before a statistical or experimental
 method enters a protocol, explain in plain terms what it tests, why it fits, and the
-main alternative. Before a paid run, ask the user to review changes to code that
-shapes the measurement: prompts, scorers, judges, sampling, refusal handling and
-budget guards.
+main alternative. Before a paid run, show the user the changes to code that shapes
+the measurement: prompts, scorers, judges, sampling, refusal handling and budget
+guards. Their review is part of the run's one approval.
 
-**Record who did what.** Treat it as a research fact, not a credit claim. For
-hypotheses, definitions, design choices, interpretations and caught errors, note
-where the idea came from: the user; the user, refined by a model; or a model, chosen
-by the user. Wherever an agent would get credit, name the model and the tool, for
-example "Claude Opus 5.5 (Claude Code)". For a subagent, name the model it ran on;
-if the model is unknown, say so instead of guessing. Quote the user's words rather
-than paraphrasing them. Apply this to new work; earlier records keep their wording.
+**One approval per run.** When a run's design is settled, ask once. The question
+names what will be committed and pushed, the measurement changes to review, the run
+and its spending ceiling. A yes covers all of it: committing and pushing the
+protocol and code before the run, the run up to that ceiling, and committing and
+pushing the run's record once the review is done. Record the approval as one line in
+that record, with the ceiling and the date. A change to the design after approval
+needs a new approval, again as one question. Steps only the user can take, such as
+checking provider billing to unblock the ledger, stay theirs. Outside runs, ask
+about a commit and its push together.
+
+**Attribute by exception.** Work in this repository is the agent's unless the record
+says otherwise. Each study or research note says so once, naming the model and the
+tool, for example "Claude Fable 5.2 (Claude Code)", and keeps one short list of what
+the user contributed: the question, the hypothesis and prediction, decisions that
+changed the design, readings of results, and errors caught. Use the user's own words
+there when they wrote more than an approval. Don't label the origin of each item,
+quote approvals, commit lists of who caught what, or narrate the bookkeeping in
+chat. For a subagent, name the model it ran on; if the model is unknown, say so
+instead of guessing. Apply this to new work; earlier records keep their wording.
 
 ## Save useful learning
 
@@ -131,12 +163,12 @@ contain several kinds of claim; a label on every sentence is unnecessary.
 | Assumption or supposition | An unverified premise and the reasoning that depends on it. |
 | Inference | The evidence-to-conclusion reasoning, important alternatives, and limits. An untested explanation remains untested. |
 | Reproduction | Prerequisites, commands, identities, expected checks, and which steps were actually exercised versus proposed. |
-| Agent recommendation or choice | A proposed action or an implementation choice within authorized scope, with its rationale and the model that made it. |
+| Agent recommendation or choice | A proposed action or an implementation choice within authorized scope, with its rationale. The note's attribution line names the model. |
 | User policy | An attributable user direction with its scope and source; use the policy record below. |
 
 Agent choices within existing authorization need no separate policy ratification,
-but the research decisions under [Work with the user](#work-with-the-user) go to the
-user first. Approval for a particular execution retains its stated scope. Scientific findings,
+but the research decisions under [Work with the user](#work-with-the-user) remain the
+user's to make. Approval for a particular execution retains its stated scope. Scientific findings,
 agent recommendations, and unattributed imperative prose do not establish user
 policy. Record actual enduring user directions in `docs/user-policy.md`, preserving
 a short faithful excerpt, scope, date, and message reference when available. An
@@ -168,7 +200,8 @@ authorization; follow the existing controls.
 
 ## Update when the research changes
 
-Record prospective protocols before the relevant run. Hypotheses or analysis
+Record prospective protocols before the relevant confirmatory run; a
+[probe](#work-with-the-user) needs only its three lines. Hypotheses or analysis
 choices developed after inspecting relevant outcomes remain exploratory for those
 data. Update current synthesis when relevant work changes it, preserving the
 evidence and methodological context of earlier findings.

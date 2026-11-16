@@ -23,8 +23,9 @@ tests/experiments/instruction_robustness/
 ```
 
 Describe the null and alternative hypotheses, controls, primary measure, exclusions,
-data exposure, and stopping rule before a live run. Distinguish exploratory work from
-confirmation. A different hypothesis can use a completely different dataset schema
+data exposure, and stopping rule before a confirmatory live run. A probe needs only
+the three lines described in [AGENTS.md](../AGENTS.md#work-with-the-user).
+Distinguish exploratory work from confirmation. A different hypothesis can use a completely different dataset schema
 and scoring system; it need not resemble the semantic-channel study.
 
 For steganography studies, consult the
