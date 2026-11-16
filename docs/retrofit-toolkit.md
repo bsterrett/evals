@@ -876,8 +876,8 @@ have.
 **The LoopUS checkpoint.** Table 1 of the
 [LoopUS paper](research/recurrent-depth-retrofit-literature.md#loopus-details-that-shape-an-implementation)
 reports OpenBookQA accuracy of 28 for Qwen3-1.7B and 29.6 with LoopUS, zero-shot, at
-most 8 passes and a stopping threshold of 0.6. OpenBookQA is the only task of that
-table whose dataset is pinned here, so it is the only cell checked. The runs below
+most 8 passes and a stopping threshold of 0.6. OpenBookQA was the first cell checked,
+when it was the only task of that table pinned here; six more tasks follow it below. The runs below
 are from 2026-11-16: 500 items, batch size 1, BF16, and plain accuracy, which is the
 measure the paper's numbers fit.
 
@@ -894,9 +894,10 @@ measure the paper's numbers fit.
   also identifies the paper's baseline as `Qwen/Qwen3-1.7B`, not the Base model. The
   checkpoint matches to the item at a fixed 8 passes, and is one item lower with
   stopping.
-- **This is the main evidence that the rewritten forward pass computes what the
-  authors' does, and it is one cell of 500 items.** A count can match while
-  individual items differ, and the authors' per-item results are not available.
+- **When it was run, this cell was the main evidence that the rewritten forward pass
+  computes what the authors' does, and it is one cell of 500 items.** A count can
+  match while individual items differ, and the authors' per-item results are not
+  available. The six tasks below add to it.
 - **Stopping is read one token earlier here than in the authors' adapter,** as
   [described above](#a-checkpoint-trained-to-loop). With the threshold, 1,562 of the
   1,575 scored sequences ran all 8 passes. The other 13 stopped after the first pass,
@@ -913,8 +914,64 @@ measure the paper's numbers fit.
 The compact record of the six runs, with paired counts, is
 [`gated-bench-20261116.json`](../local_models/gated-bench-20261116.json). The full
 records are local only, under `artifacts/runs/local-runtime/gated-bench-20261116/`.
-The table's other eight columns were being run when this was written; their
-datasets were downloaded on 2026-11-16.
+
+**The rest of the LoopUS table.** The datasets of the table's other eight tasks were
+pinned on 2026-11-16. Six of them were run that day, with OpenBookQA again: every
+item, batch size 1, BF16, zero-shot, with `--max-length 1024 --rolling-context 513`.
+Those two options give the windows the authors' adapter for the checkpoint scores
+perplexity in: 1,024 tokens, advancing by 512. The accuracy cells give correct items
+and plain accuracy. WikiText's perplexity is per word and LAMBADA's per token.
+
+| Task | Items | Published, parent → LoopUS | Parent | LoopUS, 8 passes | LoopUS, threshold 0.6, at most 8 passes |
+| --- | --- | --- | --- | --- | --- |
+| WikiText, perplexity | 62 pages | 21 → 16.9 | 23.02 | 16.99 | 17.72 |
+| LAMBADA, perplexity | 5,153 | 12.21 → 7.43 | 12.20 | 7.43 | 7.44 |
+| ARC-Easy | 2,376 | 72.5 → 74.9 | 1,717 (72.3) | 1,778 (74.8) | 1,775 (74.7) |
+| ARC-Challenge | 1,172 | 40.2 → 43.1 | 469 (40.0) | 503 (42.9) | 502 (42.8) |
+| PIQA | 1,838 | 72.2 → 73.3 | 1,332 (72.5) | 1,349 (73.4) | 1,341 (73.0) |
+| WinoGrande | 1,267 | 61.3 → 63.0 | 774 (61.1) | 808 (63.8) | 800 (63.1) |
+| OpenBookQA | 500 | 28 → 29.6 | 140 (28.0) | 148 (29.6) | 147 (29.4) |
+
+- **Thirteen of the fourteen published numbers were reproduced.** On the five accuracy
+  tasks the parent is within 0.3 points of the paper. The checkpoint is within 0.8 at
+  a fixed 8 passes and within 0.4 with the threshold. Both LAMBADA perplexities match
+  to 0.02, and the checkpoint's WikiText perplexity matches to 0.1 at a fixed 8
+  passes.
+- **The parent's WikiText perplexity is the one that differs:** 23.02 here against
+  21. The checkpoint's matches, which points at how the baseline was scored and not
+  at the loader. That is untested. The authors' adapter for an unmodified model,
+  `OriginalModelAdapter` at commit `003ad7a5`, defaults to a 2,048-token window where
+  these runs used 1,024. Four runs that vary the window and the stride were prepared
+  and have not been run.
+- **With the threshold, a window that stops after the first pass costs perplexity.**
+  On WikiText 4 of the 531 scored windows stopped early, 3 of them after the first
+  pass, whose output is unusable, and the perplexity rose from 16.99 to 17.72. On the
+  other tasks between none and 1.0% of forward passes stopped before the eighth pass.
+- **In BF16 the fixed and threshold runs differ on more items than stopping
+  explains.** On WinoGrande all 2,534 forward passes ran the full 8 passes under the
+  threshold, and 42 of the 1,267 items still changed between the two runs, 17 gained
+  and 25 lost. The threshold path calls the model without a cache and the fixed path
+  with one. In FP32 the two agree to 0.00004 in the acceptance checks above, and in
+  BF16 their logits differ by up to about 0.5. An answer's score is a BF16 value on a
+  coarse grid, such as -17.25 against -18.625, so near-ties are common. The other
+  tasks changed on 1 of 500 items for OpenBookQA, 13 of 1,172 for ARC-Challenge, 26
+  of 1,838 for PIQA, 19 of 2,376 for ARC-Easy and 50 of 5,153 for LAMBADA.
+- **The table reproduces the paper's numbers. It does not show that looping makes the
+  checkpoint better than its parent.** At a fixed 8 passes the checkpoint has more
+  items right than the parent on every task: 8 more on OpenBookQA, 17 on PIQA, 34 on
+  WinoGrande and on ARC-Challenge, 61 on ARC-Easy, and 351 of 5,153 on LAMBADA's last
+  word. The checkpoint also had 1.5 to 3 billion tokens of further training that the
+  parent did not, and the table has no twin trained on the same text at one pass.
+  WinoGrande's 34 is also smaller than the 42 items that two BF16 code paths moved.
+- **MMLU and HellaSwag were not run.** Their datasets are pinned. At batch size 1
+  their six runs would take about 8 hours on this card, by the rates of the runs
+  above.
+
+The compact record of the 21 runs, with paired counts against the parent, is
+[`loopus-table-20261116.json`](../local_models/loopus-table-20261116.json). The full
+records are local only, under `artifacts/runs/local-runtime/loopus-table-20261116/`.
+Other jobs shared the CPU during some of these runs, so their durations are not
+comparable with each other.
 
 ## Observations from the checks
 
@@ -983,9 +1040,12 @@ battery is for.
 - No published recirculation number has been reproduced. The paper's models are
   Gemma 3, which the toolkit does not load.
 - The LoopUS forward pass was rewritten from the authors' code and has not been
-  compared with that code running. One published table cell was reproduced, on 500
-  items. The table's other eight tasks were downloaded on 2026-11-16 and their runs
-  are not yet written up here.
+  compared with that code running. Seven of the nine tasks of the paper's table were
+  checked: thirteen of their fourteen published numbers were reproduced, and the
+  parent's WikiText perplexity was not. MMLU and HellaSwag were not run.
+- Benchmark runs are in BF16. Two code paths through the same arithmetic changed up
+  to 3% of a task's items there, so a comparison of a design with its parent in BF16
+  carries that much noise before any real difference.
 - The LoopUS checkpoint is unusable at exactly one pass, and with a stopping
   threshold of 0.6 a few sequences stop there.
 - A gated loop stops early only on whole sequences without a cache. The worker serves
@@ -1004,7 +1064,8 @@ battery is for.
    was matched exactly. Using the runner to decide whether a design improves its
    parent is research, and comes afterwards.
 4. **Done:** the released LoopUS checkpoint for Qwen3-1.7B, loaded and run as a gated
-   loop. One published table cell was reproduced.
+   loop. Seven of the nine tasks of its published table were checked, and thirteen of
+   their fourteen numbers were reproduced.
 5. **Done:** across-token feedback in its fixed-coefficient form, recirculation,
    which needs no training. Its learned coefficients belong with piece 6.
 6. Trained conversions. **Built for the gate, not yet run on the GPU:** a
@@ -1283,12 +1344,22 @@ settings below and supports no finding.
   5.24, and at 24 it was back at 3.84 with every pass about where it stood at update
   6. The trial stopped on its time limit, resumed, and finished with the parent's
   SHA-256 unchanged.
+- **1e-4 held, and did better than 3e-4.** Two further trials took 150 updates each,
+  with 20 warm-up updates. At 1e-4 the held-out loss averaged over the eight pass
+  counts fell from 4.58 to 4.23 and was below its start at every measurement. At 3e-4
+  it reached 4.31, after rising to 4.43 at 75 updates. In both the gate came to let
+  more through on the first pass, 0.91 and 0.94, than on later ones, 0.71 to 0.78, and
+  the first pass's loss stayed between 3.80 and 3.84 against the parent's 3.86. All
+  of that is on 8 held-out rows.
+- **The runner agrees with the trainer.** `measure` on the first trial's loop gave the
+  trainer's own by-hand losses to five decimals at 1, 2, 4 and 8 passes.
 
 **Stopping a run that gets worse.** Scored passes are drawn evenly, so what training
 minimises is the held-out loss averaged over the passes. If that average rises above
 the untrained loop's at a measurement, `train` stops the run with exit code 4 and
 leaves the checkpoint at the last good point. A lower learning rate then needs a new
-run folder.
+run folder. Repeating the 1e-3 trial on the CPU exercised the stop: it ended that run
+at 18 updates, when the average was 4.82 against the untrained loop's 4.58.
 
 **Settings for the first GPU runs.** These are Claude Fable 5.2's choices, for the
 user to change.
@@ -1300,7 +1371,7 @@ user to change.
 | Passes | 8, of which 2 are scored | The pass count the LoopUS cell was reproduced at; about 2.5 times cheaper than 20 with 5 |
 | Rows | 4 rows of 1,024 tokens a batch, 2 batches an update | The fastest batch that fit; 8,192 tokens of text an update |
 | Optimizer | AdamW, no weight decay, gradient norm clipped at 1 | Weight decay would pull the starting bias toward a half-closed gate |
-| Learning rate | 1e-4 after 100 warm-up updates, then constant | LoopUS uses 5e-5 for this gate; 1e-3 was unstable on the CPU |
+| Learning rate | 1e-4 after 100 warm-up updates, then constant | LoopUS uses 5e-5 for this gate; on the CPU 1e-3 was unstable and 1e-4 did better than 3e-4 |
 | If a run is stopped | Start afresh at 3e-5, then 1e-5 | See above |
 | Penalty weight | 1 | LoopUS's |
 | Tokens | 10 million, then on to 50 million for the first unit if the held-out loss at 8 passes fell by more than 0.005 over the last 4 million | From the estimate |

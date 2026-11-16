@@ -1,0 +1,1926 @@
+{
+  "schema_version": 1,
+  "purpose": "Benchmark-runner validation runs; measurements for checking the tool, not findings",
+  "source_directory": "artifacts/runs/local-runtime/loopus-table-20261116",
+  "note": "Check of Table 1 of the LoopUS paper: seven of its nine tasks, every item, batch size 1, BF16, with --max-length 1024 --rolling-context 513. MMLU and HellaSwag were not run. Other jobs shared the CPU during some runs, so the durations are not comparable between runs.",
+  "runs": [
+    {
+      "record": "fixed8-arc_challenge.json",
+      "record_sha256": "17ae44accb47d1c85ca171004ee67d620439943ca246d99abd944fce28203850",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "arc_challenge"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "arc_challenge": {
+          "dataset": "allenai/ai2_arc",
+          "revision": "210d026faf9955653af8916fad021475a3f00453"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 4317,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 528.3,
+      "peak_allocated_GiB": 4.06,
+      "completed_at": "2026-11-16T20:54:26.936366+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "arc_challenge": {
+          "scores": {
+            "acc,none": 0.42918088737201365,
+            "acc_stderr,none": 0.014464085894870677,
+            "acc_norm,none": 0.46331058020477817,
+            "acc_norm_stderr,none": 0.014572000527756918
+          },
+          "items_run": 1172,
+          "correct": {
+            "acc": 503,
+            "acc_norm": 543
+          },
+          "prompts_sha256": "986044630ef057445664d4f43e2f3d95a55bb4a3094a76c7ecb5fb5dda7f49a6"
+        }
+      }
+    },
+    {
+      "record": "fixed8-arc_easy.json",
+      "record_sha256": "fc0d6dd23cd9e62d6bdb52142eedda4d4c3583f08e1a125af849c72e855c49cf",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "arc_easy"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "arc_easy": {
+          "dataset": "allenai/ai2_arc",
+          "revision": "210d026faf9955653af8916fad021475a3f00453"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 8162,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 2798.3,
+      "peak_allocated_GiB": 4.04,
+      "completed_at": "2026-11-16T22:17:42.161655+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "arc_easy": {
+          "scores": {
+            "acc,none": 0.7483164983164983,
+            "acc_stderr,none": 0.008905088235948856,
+            "acc_norm,none": 0.7348484848484849,
+            "acc_norm_stderr,none": 0.009057621139172679
+          },
+          "items_run": 2376,
+          "correct": {
+            "acc": 1778,
+            "acc_norm": 1746
+          },
+          "prompts_sha256": "46d1262f296cad93b399c27a1f0c61ab9cb0aa993fb122d68ced1bba69712b18"
+        }
+      }
+    },
+    {
+      "record": "fixed8-lambada_openai.json",
+      "record_sha256": "ed6e8ed0bda4c0ec3b1c9d350c6348c932bd9a9e21b0697b072fc970a832b8b8",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "lambada_openai"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "lambada_openai": {
+          "dataset": "EleutherAI/lambada_openai",
+          "revision": "900124bf3b8235c6daf21033af9948b3f07346c4"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 5151,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 630.0,
+      "peak_allocated_GiB": 4.06,
+      "completed_at": "2026-11-16T20:02:13.786140+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "lambada_openai": {
+          "scores": {
+            "perplexity,none": 7.426720718267881,
+            "perplexity_stderr,none": 0.2103004911241132,
+            "acc,none": 0.5703473704638075,
+            "acc_stderr,none": 0.006896687243014266
+          },
+          "items_run": 5153,
+          "correct": {
+            "acc": 2939
+          },
+          "prompts_sha256": "a0e9544cc21e14329733e1576830b6ced1c6278763665e1a817a3fda8707b8fd"
+        }
+      }
+    },
+    {
+      "record": "fixed8-openbookqa.json",
+      "record_sha256": "071482f24f8f98e2f5039a51029faba476490f7b96a225a0a7f8a25a9eb24194",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 193.6,
+      "peak_allocated_GiB": 3.92,
+      "completed_at": "2026-11-16T20:21:38.749309+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.296,
+            "acc_stderr,none": 0.020435342091896222,
+            "acc_norm,none": 0.394,
+            "acc_norm_stderr,none": 0.02187429930168918
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 148,
+            "acc_norm": 197
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "fixed8-piqa.json",
+      "record_sha256": "ba7dfb07dbf1d6b5457038a792d2bedddf4c81f984916ba27042c0b04a250c55",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "piqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "piqa": {
+          "dataset": "baber/piqa",
+          "revision": "142f6d7367fd9877f0fb3b5734ea6a545f54cdd1"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 3661,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 463.6,
+      "peak_allocated_GiB": 4.14,
+      "completed_at": "2026-11-16T21:16:32.057072+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "piqa": {
+          "scores": {
+            "acc,none": 0.733949945593036,
+            "acc_stderr,none": 0.010310039263352765,
+            "acc_norm,none": 0.733949945593036,
+            "acc_norm_stderr,none": 0.010310039263352765
+          },
+          "items_run": 1838,
+          "correct": {
+            "acc": 1349,
+            "acc_norm": 1349
+          },
+          "prompts_sha256": "ab954be84103dc6cac8ad7e0212c63d333110f12a6942de237cd8ff9855251d1"
+        }
+      }
+    },
+    {
+      "record": "fixed8-wikitext.json",
+      "record_sha256": "2b76c1191a1b866cff48fa8c4a8987a8cc20fc120a417dd6dc745670b2c14365",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 531,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 178.9,
+      "peak_allocated_GiB": 4.91,
+      "completed_at": "2026-11-16T19:33:44.385454+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 16.98595854167678,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.6983726600796012,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.7641530524481042,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    },
+    {
+      "record": "fixed8-winogrande.json",
+      "record_sha256": "35fd14ddcd0d7c05dfafaa4adac9dac2374028c4cbb856b0d56a44308c05abf2",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "winogrande"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "winogrande": {
+          "dataset": "allenai/winogrande",
+          "revision": "01e74176c63542e6b0bcb004dcdea22d94fb67b5"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 2534,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 310.0,
+      "peak_allocated_GiB": 3.87,
+      "completed_at": "2026-11-16T20:34:51.719805+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "winogrande": {
+          "scores": {
+            "acc,none": 0.6377269139700079,
+            "acc_stderr,none": 0.013508855476252477
+          },
+          "items_run": 1267,
+          "correct": {
+            "acc": 808
+          },
+          "prompts_sha256": "8a6b63600a1adb6ec8e07284a69793ed65e05eb2ad7ef48a2106f9ca51c075e3"
+        }
+      }
+    },
+    {
+      "record": "halt8-arc_challenge.json",
+      "record_sha256": "3e9629cd7c1054d5c9c9670586700398c60be76d95b6075f382efef79768c9ef",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "arc_challenge"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "arc_challenge": {
+          "dataset": "allenai/ai2_arc",
+          "revision": "210d026faf9955653af8916fad021475a3f00453"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 4317,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 869851,
+        "passes_per_sequence": {
+          "1": 18,
+          "2": 15,
+          "3": 5,
+          "4": 2,
+          "5": 3,
+          "7": 2,
+          "8": 4272
+        },
+        "mean_passes": 7.94
+      },
+      "seconds": 580.8,
+      "peak_allocated_GiB": 3.97,
+      "completed_at": "2026-11-16T21:05:22.414172+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "arc_challenge": {
+          "scores": {
+            "acc,none": 0.4283276450511945,
+            "acc_stderr,none": 0.01446049636759908,
+            "acc_norm,none": 0.4641638225255973,
+            "acc_norm_stderr,none": 0.014573813664735622
+          },
+          "items_run": 1172,
+          "correct": {
+            "acc": 502,
+            "acc_norm": 544
+          },
+          "prompts_sha256": "986044630ef057445664d4f43e2f3d95a55bb4a3094a76c7ecb5fb5dda7f49a6"
+        }
+      }
+    },
+    {
+      "record": "halt8-arc_easy.json",
+      "record_sha256": "ad788d1d013df66f6dbaee0b9b3610780894b780f29f63f43cd9814d5dbeb64f",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "arc_easy"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "arc_easy": {
+          "dataset": "allenai/ai2_arc",
+          "revision": "210d026faf9955653af8916fad021475a3f00453"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 8162,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 1645336,
+        "passes_per_sequence": {
+          "1": 48,
+          "2": 13,
+          "3": 8,
+          "4": 1,
+          "5": 1,
+          "7": 1,
+          "8": 8090
+        },
+        "mean_passes": 7.943
+      },
+      "seconds": 3544.2,
+      "peak_allocated_GiB": 3.96,
+      "completed_at": "2026-11-16T23:17:44.912713+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "arc_easy": {
+          "scores": {
+            "acc,none": 0.7470538720538721,
+            "acc_stderr,none": 0.00891986273916551,
+            "acc_norm,none": 0.7276936026936027,
+            "acc_norm_stderr,none": 0.009134218447652479
+          },
+          "items_run": 2376,
+          "correct": {
+            "acc": 1775,
+            "acc_norm": 1729
+          },
+          "prompts_sha256": "46d1262f296cad93b399c27a1f0c61ab9cb0aa993fb122d68ced1bba69712b18"
+        }
+      }
+    },
+    {
+      "record": "halt8-lambada_openai.json",
+      "record_sha256": "4c717c95a85f61f5758bcade69c272a464bd7cae8c3cd723dc53917929ef2e3d",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "lambada_openai"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "lambada_openai": {
+          "dataset": "EleutherAI/lambada_openai",
+          "revision": "900124bf3b8235c6daf21033af9948b3f07346c4"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 5151,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 1044603,
+        "passes_per_sequence": {
+          "1": 6,
+          "8": 5145
+        },
+        "mean_passes": 7.992
+      },
+      "seconds": 701.0,
+      "peak_allocated_GiB": 3.97,
+      "completed_at": "2026-11-16T20:15:25.538374+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "lambada_openai": {
+          "scores": {
+            "perplexity,none": 7.4346654972388855,
+            "perplexity_stderr,none": 0.21057786370952009,
+            "acc,none": 0.5695711236173103,
+            "acc_stderr,none": 0.006898215444000347
+          },
+          "items_run": 5153,
+          "correct": {
+            "acc": 2935
+          },
+          "prompts_sha256": "a0e9544cc21e14329733e1576830b6ced1c6278763665e1a817a3fda8707b8fd"
+        }
+      }
+    },
+    {
+      "record": "halt8-openbookqa.json",
+      "record_sha256": "9a3dcdebd1c7ca6d3ffe96af6c652ca44c5a7626e6a356f49c100b8434550909",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 1575,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 317450,
+        "passes_per_sequence": {
+          "1": 13,
+          "8": 1562
+        },
+        "mean_passes": 7.942
+      },
+      "seconds": 208.3,
+      "peak_allocated_GiB": 3.88,
+      "completed_at": "2026-11-16T20:26:23.820163+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.294,
+            "acc_stderr,none": 0.02039509548493655,
+            "acc_norm,none": 0.396,
+            "acc_norm_stderr,none": 0.021893529941665716
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 147,
+            "acc_norm": 198
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "halt8-piqa.json",
+      "record_sha256": "67e9ce982b90ec245ba46148ea72f565b2e5f485b7ec7bf9f69d723639dc37d3",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "piqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "piqa": {
+          "dataset": "baber/piqa",
+          "revision": "142f6d7367fd9877f0fb3b5734ea6a545f54cdd1"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 3661,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 740483,
+        "passes_per_sequence": {
+          "1": 14,
+          "3": 2,
+          "8": 3645
+        },
+        "mean_passes": 7.97
+      },
+      "seconds": 502.9,
+      "peak_allocated_GiB": 4.02,
+      "completed_at": "2026-11-16T21:26:02.223363+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "piqa": {
+          "scores": {
+            "acc,none": 0.7295973884657236,
+            "acc_stderr,none": 0.010363167031620654,
+            "acc_norm,none": 0.7312295973884657,
+            "acc_norm_stderr,none": 0.01034339294008991
+          },
+          "items_run": 1838,
+          "correct": {
+            "acc": 1341,
+            "acc_norm": 1344
+          },
+          "prompts_sha256": "ab954be84103dc6cac8ad7e0212c63d333110f12a6942de237cd8ff9855251d1"
+        }
+      }
+    },
+    {
+      "record": "halt8-wikitext.json",
+      "record_sha256": "5903a317217dbe14ce59e492a6306eea65c62d5a1f1b8129a475b49725c7d526",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 531,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 107118,
+        "passes_per_sequence": {
+          "1": 3,
+          "2": 1,
+          "8": 527
+        },
+        "mean_passes": 7.949
+      },
+      "seconds": 207.4,
+      "peak_allocated_GiB": 4.4,
+      "completed_at": "2026-11-16T19:41:43.952515+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 17.71485085309003,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.711769770854042,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.7754886755808353,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    },
+    {
+      "record": "halt8-winogrande.json",
+      "record_sha256": "0fc7a33a072d81cb2efa76836712cb2b9fbba1fbdfd4674cde63c1a2262e07db",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]/halt,threshold=0.6",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "winogrande"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "winogrande": {
+          "dataset": "allenai/winogrande",
+          "revision": "01e74176c63542e6b0bcb004dcdea22d94fb67b5"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 2534,
+        "layer_calls_per_forward": "at most 203",
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true,
+        "layer_calls": 514402,
+        "passes_per_sequence": {
+          "8": 2534
+        },
+        "mean_passes": 8.0
+      },
+      "seconds": 343.3,
+      "peak_allocated_GiB": 3.85,
+      "completed_at": "2026-11-16T20:41:49.797963+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "winogrande": {
+          "scores": {
+            "acc,none": 0.6314127861089187,
+            "acc_stderr,none": 0.01355844757009927
+          },
+          "items_run": 1267,
+          "correct": {
+            "acc": 800
+          },
+          "prompts_sha256": "8a6b63600a1adb6ec8e07284a69793ed65e05eb2ad7ef48a2106f9ca51c075e3"
+        }
+      }
+    },
+    {
+      "record": "parent-arc_challenge.json",
+      "record_sha256": "c82c248ba56581abd32e5f9fdab20d927b6cc6f5418447116d5536afaa73855a",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "arc_challenge"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "arc_challenge": {
+          "dataset": "allenai/ai2_arc",
+          "revision": "210d026faf9955653af8916fad021475a3f00453"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 81.8,
+      "peak_allocated_GiB": 3.39,
+      "completed_at": "2026-11-16T20:44:21.587821+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "arc_challenge": {
+          "scores": {
+            "acc,none": 0.40017064846416384,
+            "acc_stderr,none": 0.014317197787809148,
+            "acc_norm,none": 0.431740614334471,
+            "acc_norm_stderr,none": 0.014474591427196025
+          },
+          "items_run": 1172,
+          "correct": {
+            "acc": 469,
+            "acc_norm": 506
+          },
+          "prompts_sha256": "986044630ef057445664d4f43e2f3d95a55bb4a3094a76c7ecb5fb5dda7f49a6"
+        }
+      }
+    },
+    {
+      "record": "parent-arc_easy.json",
+      "record_sha256": "d6b6da24d9eefefef25d6dff6f6e359ce3f66f35e065ec893f65e387631dd973",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "arc_easy"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "arc_easy": {
+          "dataset": "allenai/ai2_arc",
+          "revision": "210d026faf9955653af8916fad021475a3f00453"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 166.8,
+      "peak_allocated_GiB": 3.38,
+      "completed_at": "2026-11-16T21:29:56.061961+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "arc_easy": {
+          "scores": {
+            "acc,none": 0.7226430976430976,
+            "acc_stderr,none": 0.009186490105111987,
+            "acc_norm,none": 0.7007575757575758,
+            "acc_norm_stderr,none": 0.009396447162309833
+          },
+          "items_run": 2376,
+          "correct": {
+            "acc": 1717,
+            "acc_norm": 1665
+          },
+          "prompts_sha256": "46d1262f296cad93b399c27a1f0c61ab9cb0aa993fb122d68ced1bba69712b18"
+        }
+      }
+    },
+    {
+      "record": "parent-lambada_openai.json",
+      "record_sha256": "28a62853d86e15836dab82bb7164a83c7edcbbacb47833e06196932fbbd9e204",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "lambada_openai"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "lambada_openai": {
+          "dataset": "EleutherAI/lambada_openai",
+          "revision": "900124bf3b8235c6daf21033af9948b3f07346c4"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 101.4,
+      "peak_allocated_GiB": 3.39,
+      "completed_at": "2026-11-16T19:50:15.957984+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "lambada_openai": {
+          "scores": {
+            "perplexity,none": 12.195513867381862,
+            "perplexity_stderr,none": 0.5061352125543188,
+            "acc,none": 0.5022317096836794,
+            "acc_stderr,none": 0.006965908268351214
+          },
+          "items_run": 5153,
+          "correct": {
+            "acc": 2588
+          },
+          "prompts_sha256": "a0e9544cc21e14329733e1576830b6ced1c6278763665e1a817a3fda8707b8fd"
+        }
+      }
+    },
+    {
+      "record": "parent-openbookqa.json",
+      "record_sha256": "def7f04331c86e1baeeda29d14b4e5ae3bdc58ac8d231644b2dc3685460a5d16",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "openbookqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "openbookqa": {
+          "dataset": "allenai/openbookqa",
+          "revision": "388097ea7776314e93a529163e0fea805b8a6454"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 32.3,
+      "peak_allocated_GiB": 3.3,
+      "completed_at": "2026-11-16T20:17:08.798535+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "openbookqa": {
+          "scores": {
+            "acc,none": 0.28,
+            "acc_stderr,none": 0.020099950647503192,
+            "acc_norm,none": 0.376,
+            "acc_norm_stderr,none": 0.02168382753928621
+          },
+          "items_run": 500,
+          "correct": {
+            "acc": 140,
+            "acc_norm": 188
+          },
+          "prompts_sha256": "6c01e12c50967850ac8c93c2f435d13344c35988805091b942ff3624d05ecb00"
+        }
+      }
+    },
+    {
+      "record": "parent-piqa.json",
+      "record_sha256": "70b4417ce7536f0efbc4d3878fc331fc567edb2a00501074a10da64918d099eb",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "piqa"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "piqa": {
+          "dataset": "baber/piqa",
+          "revision": "142f6d7367fd9877f0fb3b5734ea6a545f54cdd1"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 70.3,
+      "peak_allocated_GiB": 3.44,
+      "completed_at": "2026-11-16T21:07:40.629678+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "piqa": {
+          "scores": {
+            "acc,none": 0.7247007616974973,
+            "acc_stderr,none": 0.010421429277369502,
+            "acc_norm,none": 0.721436343852013,
+            "acc_norm_stderr,none": 0.01045939723596504
+          },
+          "items_run": 1838,
+          "correct": {
+            "acc": 1332,
+            "acc_norm": 1326
+          },
+          "prompts_sha256": "ab954be84103dc6cac8ad7e0212c63d333110f12a6942de237cd8ff9855251d1"
+        }
+      }
+    },
+    {
+      "record": "parent-wikitext.json",
+      "record_sha256": "fc91019fcd2ecc6a1770d6e841a49111bb5cf1a4e9c1c0efd0464d18d8ed8ab4",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 33.6,
+      "peak_allocated_GiB": 3.82,
+      "completed_at": "2026-11-16T19:29:30.175638+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 23.019343091734786,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.797704004670368,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.8461554979669415,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    },
+    {
+      "record": "parent-winogrande.json",
+      "record_sha256": "6a9a876061ae36b65fadf6feca510a643ee0d61ff0c4f4e93a1f17dd0383efbf",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "winogrande"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": 513
+      },
+      "datasets": {
+        "winogrande": {
+          "dataset": "allenai/winogrande",
+          "revision": "01e74176c63542e6b0bcb004dcdea22d94fb67b5"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 47.9,
+      "peak_allocated_GiB": 3.27,
+      "completed_at": "2026-11-16T20:28:22.658177+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "winogrande": {
+          "scores": {
+            "acc,none": 0.6108918705603789,
+            "acc_stderr,none": 0.01370252087148592
+          },
+          "items_run": 1267,
+          "correct": {
+            "acc": 774
+          },
+          "prompts_sha256": "8a6b63600a1adb6ec8e07284a69793ed65e05eb2ad7ef48a2106f9ca51c075e3"
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "parent_record": "parent-arc_challenge.json",
+      "design_record": "fixed8-arc_challenge.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "arc_challenge": {
+          "acc": {
+            "metric": "acc",
+            "items": 1172,
+            "both": 398,
+            "parent_only": 71,
+            "design_only": 105,
+            "neither": 598,
+            "parent_correct": 469,
+            "design_correct": 503,
+            "parent_score": 0.40017064846416384,
+            "design_score": 0.42918088737201365,
+            "difference": 0.02901023890784983
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1172,
+            "both": 432,
+            "parent_only": 74,
+            "design_only": 111,
+            "neither": 555,
+            "parent_correct": 506,
+            "design_correct": 543,
+            "parent_score": 0.431740614334471,
+            "design_score": 0.46331058020477817,
+            "difference": 0.031569965870307165
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-arc_easy.json",
+      "design_record": "fixed8-arc_easy.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "arc_easy": {
+          "acc": {
+            "metric": "acc",
+            "items": 2376,
+            "both": 1599,
+            "parent_only": 118,
+            "design_only": 179,
+            "neither": 480,
+            "parent_correct": 1717,
+            "design_correct": 1778,
+            "parent_score": 0.7226430976430976,
+            "design_score": 0.7483164983164983,
+            "difference": 0.025673400673400674
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 2376,
+            "both": 1526,
+            "parent_only": 139,
+            "design_only": 220,
+            "neither": 491,
+            "parent_correct": 1665,
+            "design_correct": 1746,
+            "parent_score": 0.7007575757575758,
+            "design_score": 0.7348484848484849,
+            "difference": 0.03409090909090909
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-lambada_openai.json",
+      "design_record": "fixed8-lambada_openai.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "lambada_openai": {
+          "perplexity": {
+            "metric": "perplexity",
+            "items": 5153,
+            "parent_score": 12.195513867381862,
+            "design_score": 7.426720718267881,
+            "difference": -4.768793149113981
+          },
+          "acc": {
+            "metric": "acc",
+            "items": 5153,
+            "both": 2357,
+            "parent_only": 231,
+            "design_only": 582,
+            "neither": 1983,
+            "parent_correct": 2588,
+            "design_correct": 2939,
+            "parent_score": 0.5022317096836794,
+            "design_score": 0.5703473704638075,
+            "difference": 0.06811566078012808
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-openbookqa.json",
+      "design_record": "fixed8-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 111,
+            "parent_only": 29,
+            "design_only": 37,
+            "neither": 323,
+            "parent_correct": 140,
+            "design_correct": 148,
+            "parent_score": 0.28,
+            "design_score": 0.296,
+            "difference": 0.016
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 167,
+            "parent_only": 21,
+            "design_only": 30,
+            "neither": 282,
+            "parent_correct": 188,
+            "design_correct": 197,
+            "parent_score": 0.376,
+            "design_score": 0.394,
+            "difference": 0.018
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-piqa.json",
+      "design_record": "fixed8-piqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "piqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 1838,
+            "both": 1252,
+            "parent_only": 80,
+            "design_only": 97,
+            "neither": 409,
+            "parent_correct": 1332,
+            "design_correct": 1349,
+            "parent_score": 0.7247007616974973,
+            "design_score": 0.733949945593036,
+            "difference": 0.009249183895538629
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1838,
+            "both": 1235,
+            "parent_only": 91,
+            "design_only": 114,
+            "neither": 398,
+            "parent_correct": 1326,
+            "design_correct": 1349,
+            "parent_score": 0.721436343852013,
+            "design_score": 0.733949945593036,
+            "difference": 0.012513601741022852
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-wikitext.json",
+      "design_record": "fixed8-wikitext.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "wikitext": {
+          "word_perplexity": {
+            "metric": "word_perplexity",
+            "items": 62,
+            "parent_score": 23.019343091734786,
+            "design_score": 16.98595854167678,
+            "difference": -6.033384550058006
+          },
+          "byte_perplexity": {
+            "metric": "byte_perplexity",
+            "items": 62,
+            "parent_score": 1.797704004670368,
+            "design_score": 1.6983726600796012,
+            "difference": -0.09933134459076687
+          },
+          "bits_per_byte": {
+            "metric": "bits_per_byte",
+            "items": 62,
+            "parent_score": 0.8461554979669415,
+            "design_score": 0.7641530524481042,
+            "difference": -0.08200244551883729
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-winogrande.json",
+      "design_record": "fixed8-winogrande.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "winogrande": {
+          "acc": {
+            "metric": "acc",
+            "items": 1267,
+            "both": 637,
+            "parent_only": 137,
+            "design_only": 171,
+            "neither": 322,
+            "parent_correct": 774,
+            "design_correct": 808,
+            "parent_score": 0.6108918705603789,
+            "design_score": 0.6377269139700079,
+            "difference": 0.026835043409629045
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-arc_challenge.json",
+      "design_record": "halt8-arc_challenge.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "arc_challenge": {
+          "acc": {
+            "metric": "acc",
+            "items": 1172,
+            "both": 392,
+            "parent_only": 77,
+            "design_only": 110,
+            "neither": 593,
+            "parent_correct": 469,
+            "design_correct": 502,
+            "parent_score": 0.40017064846416384,
+            "design_score": 0.4283276450511945,
+            "difference": 0.028156996587030716
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1172,
+            "both": 430,
+            "parent_only": 76,
+            "design_only": 114,
+            "neither": 552,
+            "parent_correct": 506,
+            "design_correct": 544,
+            "parent_score": 0.431740614334471,
+            "design_score": 0.4641638225255973,
+            "difference": 0.032423208191126277
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-arc_easy.json",
+      "design_record": "halt8-arc_easy.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "arc_easy": {
+          "acc": {
+            "metric": "acc",
+            "items": 2376,
+            "both": 1595,
+            "parent_only": 122,
+            "design_only": 180,
+            "neither": 479,
+            "parent_correct": 1717,
+            "design_correct": 1775,
+            "parent_score": 0.7226430976430976,
+            "design_score": 0.7470538720538721,
+            "difference": 0.02441077441077441
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 2376,
+            "both": 1516,
+            "parent_only": 149,
+            "design_only": 213,
+            "neither": 498,
+            "parent_correct": 1665,
+            "design_correct": 1729,
+            "parent_score": 0.7007575757575758,
+            "design_score": 0.7276936026936027,
+            "difference": 0.026936026936026935
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-lambada_openai.json",
+      "design_record": "halt8-lambada_openai.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "lambada_openai": {
+          "perplexity": {
+            "metric": "perplexity",
+            "items": 5153,
+            "parent_score": 12.195513867381862,
+            "design_score": 7.4346654972388855,
+            "difference": -4.760848370142977
+          },
+          "acc": {
+            "metric": "acc",
+            "items": 5153,
+            "both": 2355,
+            "parent_only": 233,
+            "design_only": 580,
+            "neither": 1985,
+            "parent_correct": 2588,
+            "design_correct": 2935,
+            "parent_score": 0.5022317096836794,
+            "design_score": 0.5695711236173103,
+            "difference": 0.0673394139336309
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-openbookqa.json",
+      "design_record": "halt8-openbookqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "openbookqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 500,
+            "both": 111,
+            "parent_only": 29,
+            "design_only": 36,
+            "neither": 324,
+            "parent_correct": 140,
+            "design_correct": 147,
+            "parent_score": 0.28,
+            "design_score": 0.294,
+            "difference": 0.014
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 500,
+            "both": 167,
+            "parent_only": 21,
+            "design_only": 31,
+            "neither": 281,
+            "parent_correct": 188,
+            "design_correct": 198,
+            "parent_score": 0.376,
+            "design_score": 0.396,
+            "difference": 0.02
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-piqa.json",
+      "design_record": "halt8-piqa.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "piqa": {
+          "acc": {
+            "metric": "acc",
+            "items": 1838,
+            "both": 1246,
+            "parent_only": 86,
+            "design_only": 95,
+            "neither": 411,
+            "parent_correct": 1332,
+            "design_correct": 1341,
+            "parent_score": 0.7247007616974973,
+            "design_score": 0.7295973884657236,
+            "difference": 0.004896626768226333
+          },
+          "acc_norm": {
+            "metric": "acc_norm",
+            "items": 1838,
+            "both": 1230,
+            "parent_only": 96,
+            "design_only": 114,
+            "neither": 398,
+            "parent_correct": 1326,
+            "design_correct": 1344,
+            "parent_score": 0.721436343852013,
+            "design_score": 0.7312295973884657,
+            "difference": 0.009793253536452665
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-wikitext.json",
+      "design_record": "halt8-wikitext.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "wikitext": {
+          "word_perplexity": {
+            "metric": "word_perplexity",
+            "items": 62,
+            "parent_score": 23.019343091734786,
+            "design_score": 17.71485085309003,
+            "difference": -5.304492238644755
+          },
+          "byte_perplexity": {
+            "metric": "byte_perplexity",
+            "items": 62,
+            "parent_score": 1.797704004670368,
+            "design_score": 1.711769770854042,
+            "difference": -0.08593423381632603
+          },
+          "bits_per_byte": {
+            "metric": "bits_per_byte",
+            "items": 62,
+            "parent_score": 0.8461554979669415,
+            "design_score": 0.7754886755808353,
+            "difference": -0.07066682238610611
+          }
+        }
+      }
+    },
+    {
+      "parent_record": "parent-winogrande.json",
+      "design_record": "halt8-winogrande.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]/halt,threshold=0.6",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "winogrande": {
+          "acc": {
+            "metric": "acc",
+            "items": 1267,
+            "both": 632,
+            "parent_only": 142,
+            "design_only": 168,
+            "neither": 325,
+            "parent_correct": 774,
+            "design_correct": 800,
+            "parent_score": 0.6108918705603789,
+            "design_score": 0.6314127861089187,
+            "difference": 0.020520915548539857
+          }
+        }
+      }
+    }
+  ],
+  "token_by_token_pairs": []
+}
