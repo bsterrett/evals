@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "purpose": "Benchmark-runner validation runs; measurements for checking the tool, not findings",
+  "source_directory": "artifacts/runs/local-runtime/loopus-table-20261116-windows",
+  "note": "WikiText only, run on 2026-11-17 to see whether the context window or the stride explains the parent's perplexity differing from the LoopUS paper's. Compare with the wikitext runs in loopus-table-20261116.json, which used --max-length 1024 --rolling-context 513.",
+  "runs": [
+    {
+      "record": "fixed8-wikitext-stock1024.json",
+      "record_sha256": "67b7dd49d3de68fc2d6f35e0b165ee643146aec4e58174bfad4aeac6ceea162a",
+      "model": "Thrillcrazyer/Qwen3_1.7B_LoopUS@5d66726aa98197c1b5876e26339cf393d82b436c+gated[2:27]",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": null
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": {
+        "forward_passes": 311,
+        "layer_calls_per_forward": 203,
+        "a_forward_pass_is": "one call of the model",
+        "every_layer_matched_the_program": true
+      },
+      "seconds": 109.9,
+      "peak_allocated_GiB": 4.91,
+      "completed_at": "2026-11-17T13:52:24.158823+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 18.572528970621764,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.7269717288246462,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.7882444656008686,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    },
+    {
+      "record": "parent-wikitext-2048.json",
+      "record_sha256": "8ea86077a10b8a7f758fe2bac5208463d1083a0dfa13e1574923bbf9af8cda1d",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 2048,
+        "rolling_context": 1025
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 31.2,
+      "peak_allocated_GiB": 4.4,
+      "completed_at": "2026-11-17T13:49:34.718055+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 22.29229254214349,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.78694701042873,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.837496853783344,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    },
+    {
+      "record": "parent-wikitext-stock1024.json",
+      "record_sha256": "2fbcf79d5eeca2199ceee0114702981c2211c527fa2e170ef3066a1d309779c5",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 1024,
+        "rolling_context": null
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 25.5,
+      "peak_allocated_GiB": 3.82,
+      "completed_at": "2026-11-17T13:48:46.529737+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 24.826698698852297,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.82329449569087,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.8665476020566782,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    },
+    {
+      "record": "parent-wikitext-stock2048.json",
+      "record_sha256": "30940e40b5d979629e9ddc7265201b5a32999b0781b6c69d1ed7f7d2edab3304",
+      "model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": null,
+      "passes": 1,
+      "settings": {
+        "tasks": [
+          "wikitext"
+        ],
+        "fewshot": null,
+        "limit": null,
+        "batch_size": 1,
+        "chat_template": false,
+        "precision": "bfloat16",
+        "seed": null,
+        "max_length": 2048,
+        "rolling_context": null
+      },
+      "datasets": {
+        "wikitext": {
+          "dataset": "EleutherAI/wikitext_document_level",
+          "revision": "647234772b9554e208af6c826f23b99e3cac88c8"
+        }
+      },
+      "harness": {
+        "lm_eval": "0.4.11",
+        "datasets": "4.8.5",
+        "random_seed": 0,
+        "numpy_seed": 1234,
+        "torch_seed": 1234,
+        "fewshot_seed": 1234
+      },
+      "executed": null,
+      "seconds": 22.7,
+      "peak_allocated_GiB": 4.4,
+      "completed_at": "2026-11-17T13:50:13.887992+00:00",
+      "versions": {
+        "torch": "2.9.1+cu128",
+        "transformers": "4.57.1",
+        "accelerate": "1.11.0",
+        "safetensors": "0.6.2",
+        "huggingface-hub": "0.36.0"
+      },
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "groups": {},
+      "tasks": {
+        "wikitext": {
+          "scores": {
+            "word_perplexity,none": 23.103876432083545,
+            "word_perplexity_stderr,none": null,
+            "byte_perplexity,none": 1.7989367096689226,
+            "byte_perplexity_stderr,none": null,
+            "bits_per_byte,none": 0.8471444304732325,
+            "bits_per_byte_stderr,none": null
+          },
+          "items_run": 62,
+          "correct": {},
+          "prompts_sha256": "d88e33fddd1c741a17daae8184c1572217fbc071f3afd08a4900e4679fe2244b"
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "parent_record": "parent-wikitext-stock1024.json",
+      "design_record": "fixed8-wikitext-stock1024.json",
+      "parent_model": "Qwen/Qwen3-1.7B@70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "design": "gated[2:27]",
+      "passes": 8,
+      "the_two_runs_use_different_checkpoints": true,
+      "tasks": {
+        "wikitext": {
+          "word_perplexity": {
+            "metric": "word_perplexity",
+            "items": 62,
+            "parent_score": 24.826698698852297,
+            "design_score": 18.572528970621764,
+            "difference": -6.254169728230533
+          },
+          "byte_perplexity": {
+            "metric": "byte_perplexity",
+            "items": 62,
+            "parent_score": 1.82329449569087,
+            "design_score": 1.7269717288246462,
+            "difference": -0.09632276686622387
+          },
+          "bits_per_byte": {
+            "metric": "bits_per_byte",
+            "items": 62,
+            "parent_score": 0.8665476020566782,
+            "design_score": 0.7882444656008686,
+            "difference": -0.07830313645580966
+          }
+        }
+      }
+    }
+  ],
+  "token_by_token_pairs": []
+}

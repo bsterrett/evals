@@ -5,6 +5,7 @@
   train      train for one segment, resuming the run folder's checkpoint if there is one
   falling    exit with 0 if a run's held-out loss is still falling, and with 3 if it is not
   measure    loss by number of passes through the runner: parent, untrained loop, trained loop
+  summarize  write the compact, tracked summary of a directory of run records
 
 `train` holds the GPU lock for one segment of at most `--minutes` and then
 exits, so other GPU jobs can take a turn. Run it again with the same settings to
@@ -294,6 +295,41 @@ def measure(args) -> None:
     print(f"Saved {destination}", flush=True)
 
 
+def summarize(args) -> None:
+    """The compact, tracked summary of a directory holding runs' `<run>-settings.json` and
+    `<run>-log.jsonl` copies and `measure` records."""
+    import hashlib
+    folder = args.input.resolve()
+
+    def read(path: Path):
+        return json.loads(path.read_text(encoding="utf-8"))
+
+    runs = []
+    for path in sorted(folder.glob("*-settings.json")):
+        name = path.name[:-len("-settings.json")]
+        log = [json.loads(line) for line in (folder / f"{name}-log.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+        runs.append({"run": name, "settings": read(path), "seconds_training_and_measuring": log[-1]["seconds"],
+            "stopped": log[-1].get("stopped"),
+            "heldout_during_training": [{"tokens": entry["tokens"], "updates": entry["updates"], **entry["heldout"]} for entry in log]})
+    measurements = []
+    for path in sorted(folder.glob("train-measure-*.json")):
+        record, runtime = read(path), read(path)["runtime"]
+        measurements.append({"record": path.name, "record_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "loop": {name: record["loop"][name] for name in ("parent", "unit", "gate_rank", "trained_passes", "tokens_seen",
+                "updates", "precision", "parent_sha256", "tensors_sha256")},
+            "precision": runtime["precision"], "versions": runtime["versions"], "gpu": runtime["gpu"],
+            "passage_text": record["passage_text"], "heldout_text": record["heldout_text"],
+            "parent_weights_are_those_trained_over": record["parent_weights_are_those_trained_over"],
+            "parent": record["parent"], "loops": record["loops"], "by_hand_on_heldout": record["by_hand_on_heldout"],
+            "took": record["took"], "completed_at": record["completed_at"]})
+    if not runs and not measurements:
+        raise SystemExit("No run records found")
+    summary = {"schema_version": 1, "purpose": "Gate training over a frozen parent; validates the trainer, not the method",
+        "source_directory": args.input.as_posix(), "note": args.note, "runs": runs, "measurements": measurements}
+    args.output.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    print(f"Summarized {len(runs)} runs and {len(measurements)} measurements", flush=True)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -359,6 +395,12 @@ def main() -> None:
         / datetime.now(timezone.utc).strftime("retrofit-train-%Y%m%dT%H%M%SZ"))
     shared(command)
     command.set_defaults(handler=measure)
+
+    command = commands.add_parser("summarize", help="Write the compact summary of a directory of run records")
+    command.add_argument("input", type=Path)
+    command.add_argument("--output", type=Path, required=True)
+    command.add_argument("--note", help="A caveat to store with the summary")
+    command.set_defaults(handler=summarize)
 
     args = parser.parse_args()
     args.handler(args)

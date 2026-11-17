@@ -939,10 +939,9 @@ and plain accuracy. WikiText's perplexity is per word and LAMBADA's per token.
   passes.
 - **The parent's WikiText perplexity is the one that differs:** 23.02 here against
   21. The checkpoint's matches, which points at how the baseline was scored and not
-  at the loader. That is untested. The authors' adapter for an unmodified model,
-  `OriginalModelAdapter` at commit `003ad7a5`, defaults to a 2,048-token window where
-  these runs used 1,024. Four runs that vary the window and the stride were prepared
-  and have not been run.
+  at the loader. The authors' adapter for an unmodified model, `OriginalModelAdapter`
+  at commit `003ad7a5`, defaults to a 2,048-token window where these runs used 1,024.
+  The window runs below tried that, and it explains about a third of the difference.
 - **With the threshold, a window that stops after the first pass costs perplexity.**
   On WikiText 4 of the 531 scored windows stopped early, 3 of them after the first
   pass, whose output is unusable, and the perplexity rose from 16.99 to 17.72. On the
@@ -972,6 +971,32 @@ The compact record of the 21 runs, with paired counts against the parent, is
 records are local only, under `artifacts/runs/local-runtime/loopus-table-20261116/`.
 Other jobs shared the CPU during some of these runs, so their durations are not
 comparable with each other.
+
+**WikiText windows.** Four more WikiText runs on 2026-11-17 varied the context window
+and how far each window advances, with everything else as above. The first row is
+from the table above.
+
+| Windows | `--max-length`, `--rolling-context` | Parent | LoopUS, 8 passes |
+| --- | --- | --- | --- |
+| 1,024 tokens, advancing by 512 | 1024, 513 | 23.02 | 16.99 |
+| 1,024 tokens, the harness's disjoint windows | 1024, none | 24.83 | 18.57 |
+| 2,048 tokens, advancing by 1,024 | 2048, 1025 | 22.29 | not run |
+| 2,048 tokens, disjoint | 2048, none | 23.10 | not run |
+| Published | | 21 | 16.9 |
+
+- **A 2,048-token window does not account for the parent's published 21.** It lowers
+  the parent's perplexity from 23.02 to 22.29, about a third of the difference. How
+  the paper's baseline row was scored is still not identified.
+- **The checkpoint's published 16.9 needs the overlapping windows.** With the
+  harness's own disjoint windows it scores 18.57. That supports reading
+  `--rolling-context 513` as what the authors' adapter does for the checkpoint.
+- **Overlap is worth about 1.6 to 1.8 perplexity at 1,024 tokens and 0.8 at 2,048,**
+  because disjoint windows score each window's first tokens with almost no context.
+
+The compact record of these four runs is
+[`loopus-table-windows-20261117.json`](../local_models/loopus-table-windows-20261117.json).
+The full records are local only, under
+`artifacts/runs/local-runtime/loopus-table-20261116-windows/`.
 
 ## Observations from the checks
 
@@ -1068,8 +1093,10 @@ battery is for.
    their fourteen numbers were reproduced.
 5. **Done:** across-token feedback in its fixed-coefficient form, recirculation,
    which needs no training. Its learned coefficients belong with piece 6.
-6. Trained conversions. **Built for the gate, not yet run on the GPU:** a
-   [trainer for a gate over a frozen parent](#training-a-gate-over-a-frozen-parent).
+6. Trained conversions. **Built for the gate, and run twice:** a
+   [trainer for a gate over a frozen parent](#training-a-gate-over-a-frozen-parent),
+   with two gates trained over Qwen3-1.7B. Both took, and nearly all of their gain
+   over the parent is on the first pass, so they say nothing yet about looping.
    Adapters, the full block and learned recirculation are not built. The
    [estimate](#estimate-for-trained-conversions) sized all four. The gated loop built
    for piece 4 is the forward pass a LoopUS-style conversion trains.
@@ -1230,10 +1257,10 @@ For `qwen3-4b-instruct` the units were `2:35` and `15:19`.
 
 ### Training a gate over a frozen parent
 
-Scope: toolkit setup, built on 2026-11-16 by Claude Fable 5.2 (Claude Code). Everything
-below ran on the CPU. No GPU training has run. On 2026-11-16 the user approved the
-1.29 GiB download and up to 8 hours of local gate training, to start that night once
-they say so.
+Scope: toolkit setup, built on 2026-11-16 by Claude Fable 5.2 (Claude Code). The
+trainer was built and checked on the CPU, and then trained two gates on the GPU
+overnight. On 2026-11-16 the user approved the 1.29 GiB download and up to 8 hours of
+local gate training, and started the training that night; it used 7.0 hours.
 
 **What it trains.** [`training.py`](../src/recurrent_retrofit/training.py) trains a
 `gated.Loop`: the gate that follows every pass of the looped layers, and the confidence
@@ -1262,17 +1289,18 @@ documents backward, and the two may not share a document. For `qwen3-1.7b` at co
 about 460 million Qwen tokens, where the estimate guessed 490 million GPT-2 tokens.
 Whether LoopUS packs its rows or pads them was not checked.
 
-**Use.** [`retrofit_train.py`](../tools/local_models/retrofit_train.py) has five
+**Use.** [`retrofit_train.py`](../tools/local_models/retrofit_train.py) has six
 commands. In a WSL shell:
 
 ```bash
 PY="/home/ben/llm/recurrent/envs/retrofit/bin/python -u -B /mnt/g/Evals/tools/local_models/retrofit_train.py"
-RUN=/home/ben/llm/recurrent/training/runs/qwen3-1.7b-gate-2-27-n8k2
+RUN=/home/ben/llm/recurrent/training/runs/qwen3-1.7b-gate-2-27-n8k2-lr1e-4
 $PY fetch                                                      # the only step that uses the network
 $PY prepare --profile qwen3-1.7b --train-tokens 50000000       # tokenize and pack, on the CPU
-$PY train --profile qwen3-1.7b --unit 2:27 --run $RUN --tokens 10000000
+$PY train --profile qwen3-1.7b --unit 2:27 --run $RUN --tokens 10000000 --learning-rate 1e-4 --warmup-updates 100
 $PY falling --run $RUN                                         # exit code 0 if the held-out loss is still falling
 $PY measure --loop $RUN/loops/9994240
+$PY summarize <folder of records> --output local_models/<name>.json
 ```
 
 - `train` holds the GPU lock for one segment of at most `--minutes`, 45 by default,
@@ -1293,8 +1321,9 @@ $PY measure --loop $RUN/loops/9994240
 - A trained loop is not yet a profile. `load_parent`, the worker and the benchmark
   runner cannot load one by name until the loader has a family for it.
 
-`fetch` and `prepare` were run as shown. `train`, `falling` and `measure` were run on
-the CPU only, with `--placement cpu --precision float32` at context 64.
+All six were run. `train`, `falling` and `measure` ran first on the CPU, with
+`--placement cpu --precision float32` at context 64, and then on the GPU as shown. For
+layers 12 to 15, `train` also took `--batch 2 --accumulate 4`.
 
 **What was checked.** [`test_training.py`](../tests/retrofit/test_training.py) has 31
 tests, which take 10 seconds on the CPU. The trainer tests use a tiny Qwen3 model that
@@ -1369,22 +1398,81 @@ user to change.
 | Parent | `qwen3-1.7b`, BF16, frozen | The LoopUS checkpoint's parent, so the two run side by side |
 | Units | Layers 2 to 26, then 12 to 15 | LoopUS's unit, and the four middle layers the checks use |
 | Passes | 8, of which 2 are scored | The pass count the LoopUS cell was reproduced at; about 2.5 times cheaper than 20 with 5 |
-| Rows | 4 rows of 1,024 tokens a batch, 2 batches an update | The fastest batch that fit; 8,192 tokens of text an update |
+| Rows | 4 rows of 1,024 tokens a batch and 2 batches an update for layers 2 to 26; 2 rows and 4 batches for layers 12 to 15 | The largest batch that fits each unit; 8,192 tokens of text an update |
 | Optimizer | AdamW, no weight decay, gradient norm clipped at 1 | Weight decay would pull the starting bias toward a half-closed gate |
 | Learning rate | 1e-4 after 100 warm-up updates, then constant | LoopUS uses 5e-5 for this gate; on the CPU 1e-3 was unstable and 1e-4 did better than 3e-4 |
 | If a run is stopped | Start afresh at 3e-5, then 1e-5 | See above |
 | Penalty weight | 1 | LoopUS's |
 | Tokens | 10 million, then on to 50 million for the first unit if the held-out loss at 8 passes fell by more than 0.005 over the last 4 million | From the estimate |
 
+**The first GPU runs.** Two gates were trained over frozen Qwen3-1.7B in BF16 on the
+night of 2026-11-16, with the settings above. They validate the trainer. Each is one
+seed with no control, and they support no finding about looping. The compact record
+is [`retrofit-train-20261116.json`](../local_models/retrofit-train-20261116.json). The
+full records are local-only, under `artifacts/runs/local-runtime/retrofit-train-20261116/`,
+and the saved loops are under `~/llm/recurrent/training/runs/` in WSL.
+
+| Gate over | Tokens read | Updates | Seconds, training and measuring | Tokens a second |
+| --- | --- | --- | --- | --- |
+| Layers 2 to 26 | 49,995,776 | 6,103 | 21,776 | 2,296, against 2,519 timed |
+| Layers 12 to 15 | 9,994,240 | 1,220 | 3,009 | 3,321, against 3,519 timed |
+
+Loss through the runner on 64 held-out rows of the training file, 65,472 scored
+tokens. The parent's loss is 2.666.
+
+| Passes | Layers 2 to 26, untrained | Trained | Layers 12 to 15, untrained | Trained |
+| --- | --- | --- | --- | --- |
+| 1 | 2.665 | 2.512 | 2.666 | 2.573 |
+| 2 | 2.768 | 2.507 | 2.778 | 2.556 |
+| 3 | 2.959 | 2.505 | 3.028 | 2.557 |
+| 4 | 3.258 | 2.505 | 3.467 | 2.565 |
+| 6 | 4.074 | 2.504 | 5.073 | 2.601 |
+| 8 | 4.940 | 2.504 | 7.127 | 2.665 |
+
+The same on the 200 science passages, 18,778 scored tokens, which come from another
+dataset. The parent's loss is 2.355.
+
+| Passes | Layers 2 to 26, untrained | Trained | Layers 12 to 15, untrained | Trained |
+| --- | --- | --- | --- | --- |
+| 1 | 2.355 | 2.174 | 2.355 | 2.227 |
+| 2 | 2.451 | 2.169 | 2.559 | 2.218 |
+| 3 | 2.651 | 2.168 | 2.969 | 2.225 |
+| 4 | 2.960 | 2.166 | 3.728 | 2.239 |
+| 6 | 3.740 | 2.162 | 6.172 | 2.286 |
+| 8 | 4.548 | 2.159 | 8.611 | 2.364 |
+
+- **Both loops took.** At every number of passes from 2 up, each trained loop's loss
+  is below the same loop's before training, on both texts.
+- **The trainer's checks held on the GPU.** The parent's SHA-256 was the same before
+  and after every segment and at measurement. The runner's held-out losses equal the
+  trainer's by-hand ones to five decimals at all six pass counts, for both loops.
+  The first run stopped on its time limit and resumed eight times. A learning rate of
+  1e-4 held, and no run was stopped for getting worse.
+- **What the gates learned.** Over layers 2 to 26 the gate lets 0.94 of the unit's
+  output through on the first pass and 0.02 or less on later ones. Over layers 12 to
+  15 it lets 0.68 through on the first pass, and 0.16 falling to 0.05 on later ones.
+- **Nearly all of the gain over the parent is on the first pass.** At one pass the
+  first loop is 0.154 below the parent on the held-out rows and 0.181 below on the
+  passages. Seven more passes add 0.007 and 0.016. A gate that reshapes the state
+  once can act as a small adapter that fits the parent to plain text, and these
+  measurements do not separate that from looping. That reading is untested. The
+  control is a gate trained on the same tokens at one pass, which was not run.
+- **The second loop is unfinished.** Its loss is lowest at two passes and climbs back
+  to about the parent's by eight. Its held-out loss was still falling when it stopped
+  at 10 million tokens.
+- **One run failed.** The first attempt over layers 12 to 15 used 4 rows a batch and
+  ran out of GPU memory at its first batch, because a scored pass is decoded there
+  through 12 layers and not 1. It holds only its starting measurement.
+
 **Limits.**
 
 - Only the gate is trained. Adapters and the full block need the looped layers'
   gradients and a loader for changed layers, and are not built.
-- The trainer has not run on the GPU. Its forward pass is the one
-  [`train_timing.py`](../tools/local_models/train_timing.py) timed there, without
-  that tool's automatic mixed precision.
 - Rows are full, so nothing here handles padding, and the confidence head is trained
-  on each row's last token only.
+  on each row's last token only. The head was trained and never used: no measurement
+  here stops early.
 - The learning rate, warm-up and starting bias were chosen from one short CPU look.
   Nothing was tuned at the batch size the GPU runs use.
+- The command-line tool has no unit tests. Its commands, its stop for a run that gets
+  worse and its resuming were exercised by the trials and runs above.
 
