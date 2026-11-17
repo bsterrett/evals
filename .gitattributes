@@ -1,1 +1,7 @@
 * text=auto eol=lf
+
+# Machine-written records under local_models: dated run summaries and environment
+# freezes. GitHub collapses them in diffs and leaves them out of its statistics.
+# The hand-written case and pin files there carry no date, so they stay visible.
+local_models/*-20[0-9][0-9][0-9][0-9][0-9][0-9]*.json linguist-generated
+local_models/locks/*.txt linguist-generated
