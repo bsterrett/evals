@@ -916,7 +916,8 @@ The compact record of the six runs, with paired counts, is
 records are local only, under `artifacts/runs/local-runtime/gated-bench-20261116/`.
 
 **The rest of the LoopUS table.** The datasets of the table's other eight tasks were
-pinned on 2026-11-16. Six of them were run that day, with OpenBookQA again: every
+pinned on 2026-11-16. Six of them were run that day, with OpenBookQA again, and MMLU
+and HellaSwag overnight on 2026-11-17: every
 item, batch size 1, BF16, zero-shot, with `--max-length 1024 --rolling-context 513`.
 Those two options give the windows the authors' adapter for the checkpoint scores
 perplexity in: 1,024 tokens, advancing by 512. The accuracy cells give correct items
@@ -931,8 +932,10 @@ and plain accuracy. WikiText's perplexity is per word and LAMBADA's per token.
 | PIQA | 1,838 | 72.2 → 73.3 | 1,332 (72.5) | 1,349 (73.4) | 1,341 (73.0) |
 | WinoGrande | 1,267 | 61.3 → 63.0 | 774 (61.1) | 808 (63.8) | 800 (63.1) |
 | OpenBookQA | 500 | 28 → 29.6 | 140 (28.0) | 148 (29.6) | 147 (29.4) |
+| MMLU | 14,042 | 55.4 → 56.6 | 7,801 (55.6) | 7,928 (56.5) | 7,937 (56.5) |
+| HellaSwag | 10,042 | 46.2 → 46.3 | 4,632 (46.1) | 4,653 (46.3) | 4,646 (46.3) |
 
-- **Thirteen of the fourteen published numbers were reproduced.** On the five accuracy
+- **Seventeen of the eighteen published numbers were reproduced.** On the seven accuracy
   tasks the parent is within 0.3 points of the paper. The checkpoint is within 0.8 at
   a fixed 8 passes and within 0.4 with the threshold. Both LAMBADA perplexities match
   to 0.02, and the checkpoint's WikiText perplexity matches to 0.1 at a fixed 8
@@ -945,7 +948,9 @@ and plain accuracy. WikiText's perplexity is per word and LAMBADA's per token.
 - **With the threshold, a window that stops after the first pass costs perplexity.**
   On WikiText 4 of the 531 scored windows stopped early, 3 of them after the first
   pass, whose output is unusable, and the perplexity rose from 16.99 to 17.72. On the
-  other tasks between none and 1.0% of forward passes stopped before the eighth pass.
+  other tasks between none and 2.3% of forward passes stopped before the eighth pass.
+  MMLU is the 2.3%: 322 of its 14,015 forward passes stopped early, 257 of them after
+  2 or 3 passes, and its count was 9 items higher with the threshold than without.
 - **In BF16 the fixed and threshold runs differ on more items than stopping
   explains.** On WinoGrande all 2,534 forward passes ran the full 8 passes under the
   threshold, and 42 of the 1,267 items still changed between the two runs, 17 gained
@@ -954,23 +959,33 @@ and plain accuracy. WikiText's perplexity is per word and LAMBADA's per token.
   BF16 their logits differ by up to about 0.5. An answer's score is a BF16 value on a
   coarse grid, such as -17.25 against -18.625, so near-ties are common. The other
   tasks changed on 1 of 500 items for OpenBookQA, 13 of 1,172 for ARC-Challenge, 26
-  of 1,838 for PIQA, 19 of 2,376 for ARC-Easy and 50 of 5,153 for LAMBADA.
+  of 1,838 for PIQA, 19 of 2,376 for ARC-Easy, 50 of 5,153 for LAMBADA, 53 of 10,042
+  for HellaSwag and 129 of 14,042 for MMLU.
 - **The table reproduces the paper's numbers. It does not show that looping makes the
   checkpoint better than its parent.** At a fixed 8 passes the checkpoint has more
-  items right than the parent on every task: 8 more on OpenBookQA, 17 on PIQA, 34 on
-  WinoGrande and on ARC-Challenge, 61 on ARC-Easy, and 351 of 5,153 on LAMBADA's last
-  word. The checkpoint also had 1.5 to 3 billion tokens of further training that the
-  parent did not, and the table has no twin trained on the same text at one pass.
-  WinoGrande's 34 is also smaller than the 42 items that two BF16 code paths moved.
-- **MMLU and HellaSwag were not run.** Their datasets are pinned. At batch size 1
-  their six runs would take about 8 hours on this card, by the rates of the runs
-  above.
+  items right than the parent on every task: 8 more on OpenBookQA, 17 on PIQA, 21 on
+  HellaSwag, 34 on WinoGrande and on ARC-Challenge, 61 on ARC-Easy, 127 on MMLU, and
+  351 of 5,153 on LAMBADA's last word. The checkpoint also had 1.5 to 3 billion tokens
+  of further training that the parent did not, and the table has no twin trained on
+  the same text at one pass. WinoGrande's 34 and HellaSwag's 21 are also smaller than
+  the 42 and 53 items that two BF16 code paths moved on those tasks.
+- **Many more items change than the totals show.** Between the parent and the
+  checkpoint at a fixed 8 passes, 2,289 MMLU items changed, 1,208 gained and 1,081
+  lost, and 749 HellaSwag items changed, 385 gained and 364 lost.
+- **MMLU and HellaSwag took 4.4 hours for their six runs,** with nothing else on the
+  GPU. MMLU's choices are single letters, so the harness scores a question's four
+  choices in one forward pass, and its runs took 6, 34 and 36 minutes. HellaSwag's
+  took 13, 87 and 90.
 
-The compact record of the 21 runs, with paired counts against the parent, is
-[`loopus-table-20261116.json`](../local_models/loopus-table-20261116.json). The full
-records are local only, under `artifacts/runs/local-runtime/loopus-table-20261116/`.
-Other jobs shared the CPU during some of these runs, so their durations are not
-comparable with each other.
+The compact record of the first 21 runs, with paired counts against the parent, is
+[`loopus-table-20261116.json`](../local_models/loopus-table-20261116.json), and that
+of the six MMLU and HellaSwag runs is
+[`loopus-table-long-20261117.json`](../local_models/loopus-table-long-20261117.json).
+The full records are local only, under
+`artifacts/runs/local-runtime/loopus-table-20261116/` and
+`artifacts/runs/local-runtime/loopus-table-long-20261117/`. Other jobs shared the CPU
+during some of the first 21 runs, so their durations are not comparable with each
+other.
 
 **WikiText windows.** Four more WikiText runs on 2026-11-17 varied the context window
 and how far each window advances, with everything else as above. The first row is
@@ -1065,9 +1080,9 @@ battery is for.
 - No published recirculation number has been reproduced. The paper's models are
   Gemma 3, which the toolkit does not load.
 - The LoopUS forward pass was rewritten from the authors' code and has not been
-  compared with that code running. Seven of the nine tasks of the paper's table were
-  checked: thirteen of their fourteen published numbers were reproduced, and the
-  parent's WikiText perplexity was not. MMLU and HellaSwag were not run.
+  compared with that code running. All nine tasks of the paper's table were checked:
+  seventeen of their eighteen published numbers were reproduced, and the parent's
+  WikiText perplexity was not.
 - Benchmark runs are in BF16. Two code paths through the same arithmetic changed up
   to 3% of a task's items there, so a comparison of a design with its parent in BF16
   carries that much noise before any real difference.
@@ -1089,8 +1104,8 @@ battery is for.
    was matched exactly. Using the runner to decide whether a design improves its
    parent is research, and comes afterwards.
 4. **Done:** the released LoopUS checkpoint for Qwen3-1.7B, loaded and run as a gated
-   loop. Seven of the nine tasks of its published table were checked, and thirteen of
-   their fourteen numbers were reproduced.
+   loop. All nine tasks of its published table were checked, and seventeen of their
+   eighteen numbers were reproduced.
 5. **Done:** across-token feedback in its fixed-coefficient form, recirculation,
    which needs no training. Its learned coefficients belong with piece 6.
 6. Trained conversions. **Built for the gate, and run twice:** a
