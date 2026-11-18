@@ -142,33 +142,46 @@ show measurement code** above) stay on the lead's model and effort. Same-model
 subagents are allowed. If unsure whether work is research-sensitive, treat it as
 sensitive.
 
-Smaller-model subagents may handle specified lookups, log searches, searches across
-many files, and bounded source discovery when briefing, execution and verification
-together plausibly cost less than direct work. A larger lead context and substantial
-worker reading with a small checkable answer strengthen the case; they do not
-guarantee savings. Single-command tasks and Git writes stay with the lead;
-deterministic transformations and checks use scripts.
+Other work may go to subagents where you see fit, without asking the user or always
+reporting the choice. The model is yours to choose; a cheaper one is allowed, not
+required. Delegated mechanical work does not run on Fable by default; choose Fable
+only for a reason. A subagent on a cheaper model than yours runs at high effort, or
+medium for a quick lookup; one on your own model keeps your effort. Cost is a
+consideration, not a precondition: a worker for one command or a short operational
+step rarely saves anything, while a long lead context and substantial worker reading
+with a small checkable answer make delegation more promising. Git writes stay with
+the lead; deterministic transformations and checks use scripts.
 
-Give smaller-model workers a compact scope, inputs and constraints. They return source locations,
-raw excerpts and uncertainty without interpreting research outcomes, changing files,
-expanding scope or delegating onward. The lead checks the output and directly reads
-the relevant primary-source text or figures before relying on a claim, assessing
-limitations and search coverage. A model-generated fetch summary is not a direct
-read. Existing approvals, spending limits, attribution and user-first review still
-apply; delegation must not pre-empt the user's reading.
+A subagent's result comes back within the turn. A separate session, which outlives
+it, is proposed to the user and started only when the user asks for one. When the
+user asks for a draft "for another agent", give the user the draft and launch
+nothing; if the wording could mean either, ask in one line.
 
-**Codex:** for permitted smaller-model work, explicitly choose available
-`gpt-6-luna`, `gpt-6.1-sol` or `gpt-6.1-terra` and supported effort with
+Give smaller-model workers a compact scope, inputs and constraints. On research
+material they return source locations, raw excerpts and uncertainty without
+interpreting research outcomes, changing files, expanding scope or delegating
+onward. The lead checks the output and directly reads the relevant primary-source
+text or figures before relying on a claim, assessing limitations and search
+coverage. A model-generated fetch summary is not a direct read. Existing approvals,
+spending limits, attribution and user-first review still apply; delegation must not
+pre-empt the user's reading.
+
+**Codex:** for smaller-model work, explicitly choose available `gpt-6-luna`,
+`gpt-6.1-sol` or `gpt-6.1-terra` with high effort where supported and
 `fork_turns="none"`. Protected workers inherit model and effort without overrides.
 
-**Claude Code:** use per-call `sonnet` and explicit effort for permitted work.
-For protected work, use a fork or `general-purpose` with model and effort omitted
-and no overriding defaults, not Explore. WebFetch's small-model answer does not
-satisfy the direct-read requirement. If inheritance is uncertain, keep the work
-with the lead. Do not introduce global subagent-model downgrades.
+**Claude Code:** for smaller-model work, pass a per-call `model` such as `sonnet`
+and `effort: "high"`; the Agent tool sets effort only when instructions ask for a
+level. A subagent or session left on the lead's model inherits it, so under a Fable
+lead, mechanical work needs an explicit cheaper model. For protected work, use a
+fork or `general-purpose` with model and effort omitted and no overriding defaults,
+not Explore. WebFetch's small-model answer does not satisfy the direct-read
+requirement. If inheritance is uncertain, keep protected work with the lead. Do not
+introduce global subagent-model downgrades.
 
-Policy: [user direction](docs/user-policy.md#smaller-model-delegation).
-[Mechanics and evidence](docs/subagent-delegation.md) give the basis and limits.
+Policy: [user direction](docs/user-policy.md#smaller-model-delegation), amended
+2026-11-17. [Mechanics and evidence](docs/subagent-delegation.md) give the basis and
+limits.
 
 ## Save useful learning
 

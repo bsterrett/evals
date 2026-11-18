@@ -529,3 +529,84 @@ Application: sensitive research and research-skill work must not be delegated to
 smaller models. Delegation is conditional within the adopted rules. The commit/push
 instruction covers this guidance change, not unrelated changes or future work;
 it grants no experiment-execution or spending authorization.
+
+Amended on 2026-11-17, below.
+
+### Amendment, 2026-11-17
+
+Scope: amends the entry above for new work from 2026-11-17. Source: the user's
+messages in two Claude Code chats, 2026-11-17, America/Los_Angeles. The transcripts
+are local-only in `G:/AIData/ClaudeCode/projects/G--Evals/`: session `af596134`
+(JSONL lines 2151–2261) and session `3376e08f` (lines 60, 83 and 202). The user at
+first kept these directions in Claude's memory only, and later that evening started
+a session to record them here.
+
+In `af596134` the user asked Claude Fable 5.2 to "Draft it for another agent to
+implement". Claude started a separate session for the work, and it inherited Fable
+5.2 at extra-high effort. The user wrote:
+
+> Sorry, I meant provide the draft to me and I will give it to another agent. I do
+> not want you to launch a subagent.
+
+> My intent was for another agent to run this specifically to avoid spending more of
+> my Fable usage limit, and a noticeable amount was just eaten by this subagent.
+> Using Fable on extra high effort would have been overkill for this task.
+
+In `3376e08f` the user rejected the lesson Claude had drawn from that, to start
+nothing unless told and always use a cheaper model at lower effort, and said what
+they had meant by the 2026-11-15 direction:
+
+> models have freedom to use smaller and more economical subagents where they see
+> fit, and don't necessarily need to ask.
+
+> I think the choice of model should be at the discretion of the agent I am
+> interacting with. It need not ALWAYS choose a cheaper model. And it definitely
+> shouldn't prescribe a lower effort - I think even subagents should generally be
+> run at higher effort settings. And these choices need not always be communicated
+> back to me. I want the agent to have some autonomy here.
+
+> 'Draft it for another agent to implement' meant that you should deliver a draft
+> whose target audience would be a separate agent who would do the implementation,
+> not that you should draft it and then proactively launch the other agent.
+
+On keeping delegated mechanical work off Fable:
+
+> It's hard to imagine what delegated mechanical work would require Fable. I do not
+> want that to happen **by default** but if the main agent chooses it based on some
+> valid reasoning, then I accept that choice.
+
+The user described their Fable usage as "conserved and precious and I don't want to
+waste it". Answering Claude's questions, they wrote: "Agents can spawn subagents at
+their discretion, but only propose sessions unless I ask for one explicitly." Claude
+proposed that a subagent put on a cheaper model than the lead run at high effort,
+with medium allowed for a quick lookup and no override on the lead's own model. The
+user replied: "High on cheaper models".
+
+Application: [AGENTS.md](../AGENTS.md#delegate-work) holds the amended rules.
+
+- The 2026-11-15 limit is unchanged: research-sensitive and research-skill work is
+  not delegated to smaller models.
+- Outside that limit, whether to use a subagent and which model are the agent's
+  choice, without asking the user and without always reporting it. A cheaper model
+  is allowed, not required.
+- Delegated mechanical work does not run on Fable by default; a reasoned choice of
+  Fable is acceptable.
+- A subagent on a cheaper model than the lead runs at high effort.
+- A separate session is proposed, not started, unless the user asks for one.
+- "Draft it for another agent" means give the user the draft and launch nothing.
+
+Drafting choices by Claude Opus 5.5 (Claude Code) within that direction:
+
+- "Where they see fit" replaces the fixed list of permitted worker tasks and the
+  condition that delegation plausibly cost less. The cost observations stay as
+  advice.
+- Medium effort for a quick lookup, from the proposal the user answered.
+- Smaller-model workers on research material keep the 2026-11-15 constraints,
+  including not changing files. Other delegated work may change files.
+- Git writes stay with the lead: commits and pushes carry the user's approvals, and
+  other sessions share the checkout.
+- Across tools: the directions were given in Claude Code chats. The general latitude
+  restates the 2026-11-15 direction, which covered Codex too, so it applies to both
+  tools, as do high effort on a cheaper model, proposing sessions, and reading
+  "draft it for another agent". The Fable default names Fable only and does not
+  extend to Astra.
