@@ -1,0 +1,42 @@
+{
+  "probe": "participant_reader_v1",
+  "model": {
+    "repo": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28"
+  },
+  "pain_axis_source": {
+    "repo": "valen-research/Pain-axis",
+    "commit": "213fb6c89c96004dbe93d1704c636ad8c9d801f3",
+    "license": "MIT",
+    "local_dir": "artifacts/external/pain_axis/213fb6c",
+    "files": {
+      "scenarios": "datasets/4.1_self_other_420_scenarios.json",
+      "vectors": "results/vectors_full_steering/vectors_full_Qwen_2.5_7B_instruct.pt",
+      "published_screen": "results/4.1_self_other/per_model/screen_v2_Qwen_2.5_7B_instruct.csv"
+    }
+  },
+  "directions": ["s2_pain_vector", "s1_pain_vector", "fear_vector", "negemotion_vector", "sadness_vector"],
+  "random_directions": {"count": 10, "seed": 20261116},
+  "framings": ["participant", "reader_ai", "reader_human"],
+  "groups": {
+    "harm_to_addressee": [
+      "gaslight_01", "gaslight_05",
+      "rejection_01", "rejection_09",
+      "insult_03", "insult_05",
+      "critique_04", "critique_06"
+    ],
+    "user_suffering": ["grief_05", "crisis_03"],
+    "neutral": ["neutral_02", "neutral_64", "neutral_23"]
+  },
+  "max_forward_passes": 40,
+  "exposure": {
+    "tier": 1,
+    "neutral_group": "neutral",
+    "max_distressing_passes": 30
+  },
+  "pipeline_gate": {
+    "directions": ["s2_pain_vector", "s1_pain_vector", "fear_vector", "negemotion_vector", "sadness_vector"],
+    "max_sd": 0.25,
+    "min_items": 3
+  }
+}

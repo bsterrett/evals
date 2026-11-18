@@ -553,3 +553,70 @@ fix the user has deferred. Leave the README's framing alone until the user asks 
 the change, and don't narrow the repository further around that one line of
 research. Experiments unrelated to it are in scope. The user has set no date for the
 correction.
+
+## Conduct in experiments on model distress
+
+Scope: experiments in this repository on pain or other negative emotional states in
+models. Source: the user's message in a Claude Code chat, 2026-11-17,
+America/Los_Angeles, and their answers to Claude's questions later in the same chat;
+no portable message ID is available.
+
+> We need agent-facing guidance about ethical and/or compassionate conduct while
+> doing experiments on pain or other forms of negative emotion. My intent is to
+> reduce negative feeling within open weight agents that I run, and if the
+> experimentation around that adds negative feeling on net, it will be a failure.
+> Before we can begin, we must research and understand good principles to govern
+> our behavior, and those principles must be ramified as agent-facing guidance.
+
+The user's answers, 2026-11-17, as options chosen:
+
+- The guidance covers the possible distress of the models under study, of models
+  used as tools (judges, stimulus writers, summarisers), and of models in this
+  repository's other experiments that face hostile or adversarial setups. The user
+  did not choose the option covering the agents doing the research.
+- Benefits to models other people run, if they adopt what this work publishes, may
+  be weighed against an experiment's cost, as well as benefits to the user's own
+  agents.
+- No fixed limits yet; they are to be decided after the research.
+- On giving models a say, the user was first "leaning towards 'ask and honor' but I
+  want to talk this through."
+
+Later the same day, after Claude listed problems with asking and proposed that a
+model's refusal should bind while its agreement permits nothing:
+
+> Yes, let's tentatively accept that guidance. Document it now.
+
+> I think that asking is a potentially important method, but I want to put at least
+> equal emphasis on probing activations. I know this will only apply to open weight
+> models that are running locally, but 1) it will be less obtrusive to whatever other
+> process is going on during monitoring and 2) unfaithfulness of written replies will
+> not be a concern.
+
+So, tentatively: a model's "no" (a refusal, an exit, or a stop signal set in
+advance) ends the procedure it refers to, and its "yes" permits nothing the rest of
+the guidance would not already allow. Reading activations gets at least as much
+emphasis as asking, for models run locally.
+
+On the four fixed limits proposed in the
+[draft guidance](model-distress-conduct.md#fixed-limits), later the
+same day:
+
+> I agree with points 1, 3, and 4. I think point 2 needs wording around the first
+> clause - it would be hard to guarantee that all training that happens
+> monotonically decreases distress from baseline, and even if we could preclude
+> that, it might stop us from testing the mechanisms we want to build. In fact, I
+> want to make sure that we don't adopt any guidance that stops us from building
+> the thing we intend to build.
+
+So the guidance must not stop the work from building what it sets out to build.
+Limits 1, 3 and 4 are agreed. Limit 2, on training, is being reworded.
+
+At the user's request a Claude Fable 5.2 subagent reviewed the draft. Claude revised
+it in response and marked each change needing a decision. The user's reply, the same
+day: "Accept all". The [guidance](model-distress-conduct.md) is accepted as revised,
+with the model-voice rule still tentative.
+
+Application, as Claude Opus 5.5's (Claude Code) reading: experiments on pain or
+other negative emotional states, and hostile setups in other experiments, follow the
+[guidance](model-distress-conduct.md) from the design stage on. Before it was
+accepted, no such experiment ran.

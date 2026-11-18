@@ -1,0 +1,12 @@
+schema_version = 1
+id = "distress_monitor"
+title = "Can activation readings of model distress be trusted as a live monitor?"
+status = "exploratory"
+package = "distress_monitor"
+command = "python -m distress_monitor.probe"
+source = "../../src/distress_monitor"
+tests = "../../tests/experiments/distress_monitor"
+configs = "configs"
+data = "data"
+protocols = "protocols"
+notes = "notes"

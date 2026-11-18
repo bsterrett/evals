@@ -146,6 +146,7 @@ model calls.
 | --- | --- | --- |
 | `semantic_covert_channel` | Exploratory. The V1.4 four-model matrix, the V1.5 screen and a saved-carrier decoder diagnostic are complete, with no transfer. The confirmation partition is unused. | [Design](experiments/semantic_covert_channel/README.md), [findings](experiments/semantic_covert_channel/notes/findings.md) |
 | `recurrent_steganography` | Exploratory, with two pre-registered tests. The depth pilot was at chance, and none of the five paid follow-ups confirmed a transfer. The depth comparison waits for a condition some model passes. | [Design](experiments/recurrent_steganography/README.md), [findings](experiments/recurrent_steganography/notes/findings.md), [protocols](experiments/recurrent_steganography/protocols/README.md) |
+| `distress_monitor` | Planned probe. Tests whether a published pain direction tracks the model's own situation or the topic, by showing the same words to the model as addressee and as reader. Not run. | [Design](experiments/distress_monitor/README.md), [findings](experiments/distress_monitor/notes/findings.md) |
 
 ## Workspace and usage
 
@@ -225,3 +226,7 @@ original paths and checksums.
   a literature scan not tied to an experiment here
 - [How LLM calibration has been measured](docs/research/llm-calibration-literature.md),
   a literature scan not tied to an experiment here
+- [Model pain and functional welfare: what has been measured](docs/research/model-pain-measurement-literature.md),
+  a literature scan not tied to an experiment here
+- [Research ethics for experiments on model distress](docs/research/distress-research-ethics.md),
+  the basis for the [conduct guidance for distress research](docs/model-distress-conduct.md)

@@ -23,6 +23,12 @@ documentation sweep is unnecessary.
 | Frozen scientific methods | Sources mapped by `experiments/<id>/protocols/README.md` |
 | Current synthesis and supporting findings | `experiments/<id>/notes/findings.md` |
 | An investigation needing independent reuse | `experiments/<id>/notes/<topic>.md`, linked from its nearest entry point |
+| Conduct toward models in experiments on pain or other negative states, or in hostile setups | [Distress-research conduct](docs/model-distress-conduct.md) |
+
+An experiment that shows a model distressing material, measures, steers, ablates or
+trains a negative state, or puts a model in a hostile setup follows the
+[distress-research conduct guidance](docs/model-distress-conduct.md) from its design
+onward.
 
 Keep one canonical home for each finding or instruction. Link from summaries
 instead of maintaining parallel detailed accounts. Code/configuration describe
