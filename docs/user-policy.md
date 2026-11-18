@@ -554,6 +554,43 @@ the change, and don't narrow the repository further around that one line of
 research. Experiments unrelated to it are in scope. The user has set no date for the
 correction.
 
+## Smaller-model delegation
+
+Scope: guidance for repository sessions led by Astra, Fable or Opus. Source: the
+user's request and clarification in Codex chat
+`01a1e325-d4d0-75f1-a86a-6866f76f24ce`, 2026-11-15, America/Los_Angeles.
+
+> I want to make sure that sensitive work, particularly work about research or
+> about my skills related to research, is done by these models and not delegated
+> to smaller models.
+
+The user requested guidance for both Codex and Claude Code, initially leaving shared
+versus separate implementation for a proposal. In response to agent-written options,
+the user selected lower cost while preserving quality as the objective, and allowed strictly
+mechanical work on research material if tightly specified and checked by the lead.
+The question named extracting specified fields and running an already-chosen
+offline check, with selection and interpretation retained by the lead.
+
+After supplying Claude Fable 5.2's review of the proposal, the user selected two
+further agent-written options in this chat on the same date:
+
+- Allow bounded literature discovery with lead assessment. The question specified
+  narrowly defined searches returning candidate sources, with the lead independently
+  reading and assessing every source used to support a claim.
+- Include Luna as a candidate for lightweight Codex tasks alongside Sol and Terra.
+
+After a second review, the user directed implementation of the feedback the agent
+agreed with, followed by a commit and push. GPT-6 Astra (Codex) adopted shared
+guidance with per-call routing, a conservative rule for uncertain cases, direct
+source reads, and explicit permitted tasks. The working rules are in
+[AGENTS.md](../AGENTS.md#delegate-work); [the short supporting note](subagent-delegation.md)
+records mechanics and evidence limits.
+
+Application: sensitive research and research-skill work must not be delegated to
+smaller models. Delegation is conditional within the adopted rules. The commit/push
+instruction covers this guidance change, not unrelated changes or future work;
+it grants no experiment-execution or spending authorization.
+
 ## Conduct in experiments on model distress
 
 Scope: experiments in this repository on pain or other negative emotional states in
